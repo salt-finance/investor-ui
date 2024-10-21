@@ -5,7 +5,7 @@
   "description": "Notus Svelte - A free Tailwind CSS and Svelte UI Kit and Admin by Creative Tim.",
   "repository": "https://github.com/creativetimofficial/notus-svelte",
   "license": "MIT",
-   "scripts": {
+  "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public -s",
