@@ -13,11 +13,13 @@
 
 
   let { url } = $props();
+  let location = window.location.pathname.replaceAll('index.html', '');
   console.log('app svelte');
   console.log(url);
+  console.log(location);
 </script>
 
-<Router basepath={url} {url}>
+<Router basepath={url} url={location}>
   <!-- admin layout -->
   <Route path="admin/*admin" component={Admin} />
   <!-- auth layout -->

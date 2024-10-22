@@ -11,11 +11,10 @@
   import Settings from "views/admin/Settings.svelte";
   import Tables from "views/admin/Tables.svelte";
 
-  export let location = window.location;
  </script>
 
 <div>
-  <Sidebar location={location}/>
+  <Sidebar/>
   <div class="relative md:ml-64 bg-blueGray-100">
     <AdminNavbar />
     <HeaderStats />
