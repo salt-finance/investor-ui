@@ -5,3 +5,4 @@
 
 commit.sh
 package-lock.json
+.env
