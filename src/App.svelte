@@ -17,7 +17,7 @@
   console.log(url);
 </script>
 
-<Router {url}>
+<Router basepath={url} {url}>
   <!-- admin layout -->
   <Route path="admin/*admin" component={Admin} />
   <!-- auth layout -->
