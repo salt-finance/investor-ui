@@ -2,13 +2,10 @@
   "name": "investor-ui",
   "version": "0.0.1",
   "description": "Investor UI is the investor portal built on svelte",
-  "repository": "https://github.com/salt-finance/investor-ui",
-  "homepage": "https://salt-finance.github.io/investor-ui",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "start": "sirv public -s",
-    "deploy": "gh-pages -d public",
     "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css",
     "build:fontawesome": "mkdir -p public/assets/vendor/@fortawesome/fontawesome-free/webfonts && mkdir -p public/assets/vendor/@fortawesome/fontawesome-free/css && cp -a ./node_modules/@fortawesome/fontawesome-free/webfonts public/assets/vendor/@fortawesome/fontawesome-free/ && cp ./node_modules/@fortawesome/fontawesome-free/css/all.min.css public/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install && npm run build:tailwind && npm run build:fontawesome && npm run dev"
@@ -19,7 +16,6 @@
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "10.4.20",
-    "gh-pages": "^6.2.0",
     "postcss": "^8.4.47",
     "rollup": "^4.24.0",
     "rollup-plugin-css-only": "^4.5.2",

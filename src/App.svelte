@@ -11,7 +11,7 @@
   import Landing from "./views/Landing.svelte";
   import Profile from "./views/Profile.svelte";
 
-  export const url = "";
+  export const url = "/investor-ui";
 </script>
 
 <Router url="{url}">

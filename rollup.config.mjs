@@ -81,13 +81,13 @@ if (production) {
     "./public/200.html",
     indexTemplate
       .replace("<<process-env-status>>", "PRODUCTION: true")
-      .replace(/<<live-preview-link>>/g, "/notus-svelte")
+      .replace(/<<live-preview-link>>/g, "/investor-ui")
   );
   fs.writeFileSync(
     "./public/404.html",
     indexTemplate
       .replace("<<process-env-status>>", "PRODUCTION: true")
-      .replace(/<<live-preview-link>>/g, "/notus-svelte")
+      .replace(/<<live-preview-link>>/g, "/investor-ui")
   );
 } else {
   fs.writeFileSync(
