@@ -11,7 +11,7 @@
   import Settings from "views/admin/Settings.svelte";
   import Tables from "views/admin/Tables.svelte";
 
-  export let location;
+  export let location = window.location;
  </script>
 
 <div>

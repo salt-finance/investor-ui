@@ -20,7 +20,7 @@
   <!-- auth layout -->
   <Route path="auth/*auth" component="{Auth}" />
   <!-- no layout pages -->
-  <Route path="landing" component="{Landing}" />
-  <Route path="profile" component="{Profile}" />
-  <Route path="/" component="{Index}" />
+  <Route path="landing" component={Landing} />
+  <Route path="profile" component={Profile} />
+  <Route path="/" component={Index} />
 </Router>

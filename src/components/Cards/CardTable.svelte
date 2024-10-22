@@ -77,7 +77,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-whit'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-white'}"
             >
               Argon Design System
             </span>
@@ -151,7 +151,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-whit'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-white'}"
             >
               Angular Now UI Kit PRO
             </span>
@@ -226,7 +226,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-whit'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-white'}"
             >
               Black Dashboard Sketch
             </span>
@@ -300,7 +300,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-whit'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-white'}"
             >
               React Material Dashboard
             </span>
@@ -374,7 +374,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-whit'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-blueGray-600' : 'text-white'}"
             >
               React Material Dashboard
             </span>

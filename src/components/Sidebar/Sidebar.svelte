@@ -5,13 +5,13 @@
   import NotificationDropdown from "components/Dropdowns/NotificationDropdown.svelte";
   import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
 
-  let collapseShow = "hidden";
+  let collapseShow = $state("hidden");
 
   function toggleCollapseShow(classes) {
     collapseShow = classes;
   }
 
-  export let location;
+ let {location = window.location} = $props() 
 </script>
 
 <nav
@@ -24,7 +24,8 @@
     <button
       class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
       type="button"
-      on:click={() => toggleCollapseShow('bg-white m-2 py-3 px-6')}
+      aria-label="togglecollapse"
+      onclick={() => toggleCollapseShow('bg-white m-2 py-3 px-6')}
     >
       <i class="fas fa-bars"></i>
     </button>
@@ -67,7 +68,8 @@
             <button
               type="button"
               class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-              on:click={() => toggleCollapseShow('hidden')}
+              aria-label="togglecollapse"
+              onclick={() => toggleCollapseShow('hidden')}
             >
               <i class="fas fa-times"></i>
             </button>
