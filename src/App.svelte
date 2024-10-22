@@ -12,6 +12,8 @@
   import Profile from "./views/Profile.svelte";
 
   export const url = window.location.pathname;
+  console.log(url);
+  console.log(window);
 </script>
 
 <Router url="{url}">
