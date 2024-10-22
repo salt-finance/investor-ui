@@ -4,3 +4,4 @@
 .DS_Store
 
 commit.sh
+package-lock.json
