@@ -1,10 +1,10 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import terser from '@rollup/plugin-terser';
 import { spawn } from "node:child_process";
 import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
-// import { terser } from "rollup-plugin-terser";
 // library that helps you import in svelte with
 // absolute paths, instead of
 // import Component  from "../../../../components/Component.svelte";
@@ -57,7 +57,7 @@ const indexTemplate = `
         var process = { env: {<<process-env-status>>} };
       }
     </script>
-    <script defer src="<<live-preview-link>>/build/bundle.js"></script>
+    <script defer src="<<live-preview-link>>/build/bundle.min.js"></script>
   </head>
 
   <body class="text-blueGray-700 antialiased">
@@ -75,8 +75,8 @@ const indexTemplate = `
 const processEnv =
   "PRODUCTION:" + `"${production}",` + "BASE_URL:" + `"${basePath}"`;
 
-  console.log('build args');
-  console.table(processEnv);
+console.log("build args");
+console.table(processEnv);
 
 fs.writeFileSync(
   "./public/index.html",
@@ -120,12 +120,20 @@ function serve() {
 
 export default {
   input: `src/main.js`,
-  output: {
-    sourcemap: true,
-    format: "iife",
-    name: "app",
-    file: "public/build/bundle.js",
-  },
+  output: [
+    {
+      sourcemap: true,
+      format: "iife",
+      name: "app",
+      file: "public/build/bundle.js",
+    },
+    {
+      file: "public/build/bundle.min.js",
+      format: "iife",
+      name: "version",
+      plugins: [terser()],
+    },
+  ],
 
   plugins: [
     svelte({
@@ -139,7 +147,6 @@ export default {
       },
 
       emitCss: true,
-
     }),
     css({ output: "bundle.css" }),
     resolve({
