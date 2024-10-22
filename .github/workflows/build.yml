@@ -27,7 +27,7 @@ jobs:
     - name: Build fontawesome
       run: npm run build:fontawesome
     - name: Build project
-      run: npm run build
+      run: npm run build-prod
     - name: Upload GitHub Pages artifact
       uses: actions/upload-pages-artifact@v3.0.1
       with:

@@ -11,12 +11,13 @@
   import Landing from "./views/Landing.svelte";
   import Profile from "./views/Profile.svelte";
 
-let { basepath } = $props();
-  console.log(basepath);
-  console.log(window);
+
+  let { url } = $props();
+  console.log('app svelte');
+  console.log(url);
 </script>
 
-<Router  {basepath}>
+<Router {url}>
   <!-- admin layout -->
   <Route path="admin/*admin" component={Admin} />
   <!-- auth layout -->

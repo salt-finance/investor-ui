@@ -4,7 +4,6 @@ import { spawn } from "node:child_process";
 import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
-
 // import { terser } from "rollup-plugin-terser";
 // library that helps you import in svelte with
 // absolute paths, instead of
@@ -17,8 +16,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
-const production = !process.env.ROLLUP_WATCH;
+const production = process.env.BUILD === "production";
+const watch = process.env.ROLLUP_WATCH;
 const projectRootDir = path.resolve(__dirname);
+const basePath = production ? "/investor-ui" : "";
 
 // configure aliases for absolute imports
 const aliases = alias({
@@ -70,45 +71,30 @@ const indexTemplate = `
 </html>
 `;
 
-if (production) {
-  fs.writeFileSync(
-    "./public/index.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "PRODUCTION: true")
-      .replace(/<<live-preview-link>>/g, "/investor-ui")
-  );
-  fs.writeFileSync(
-    "./public/200.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "PRODUCTION: true")
-      .replace(/<<live-preview-link>>/g, "/investor-ui")
-  );
-  fs.writeFileSync(
-    "./public/404.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "PRODUCTION: true")
-      .replace(/<<live-preview-link>>/g, "/investor-ui")
-  );
-} else {
-  fs.writeFileSync(
-    "./public/index.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "")
-      .replace(/<<live-preview-link>>/g, "")
-  );
-  fs.writeFileSync(
-    "./public/200.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "")
-      .replace(/<<live-preview-link>>/g, "")
-  );
-  fs.writeFileSync(
-    "./public/404.html",
-    indexTemplate
-      .replace("<<process-env-status>>", "")
-      .replace(/<<live-preview-link>>/g, "")
-  );
-}
+const processEnv =
+  "PRODUCTION:" + `"${production}",` + "BASE_URL:" + `"${basePath}"`;
+
+  console.log('build args');
+  console.table(processEnv);
+
+fs.writeFileSync(
+  "./public/index.html",
+  indexTemplate
+    .replace("<<process-env-status>>", processEnv)
+    .replace(/<<live-preview-link>>/g, basePath)
+);
+fs.writeFileSync(
+  "./public/200.html",
+  indexTemplate
+    .replace("<<process-env-status>>", processEnv)
+    .replace(/<<live-preview-link>>/g, basePath)
+);
+fs.writeFileSync(
+  "./public/404.html",
+  indexTemplate
+    .replace("<<process-env-status>>", processEnv)
+    .replace(/<<live-preview-link>>/g, basePath)
+);
 
 function serve() {
   let server;
@@ -132,7 +118,7 @@ function serve() {
 }
 
 export default {
-  input: "src/main.js",
+  input: `src/main.js`,
   output: {
     sourcemap: true,
     format: "iife",
@@ -151,55 +137,20 @@ export default {
         handler(warning);
       },
 
-      // css: function (css) {
-      //   console.log(css.code); // the concatenated CSS
-      //   console.log(css.map); // a sourcemap
-
-      //   // creates `main.css` and `main.css.map`
-      //   // using a falsy name will default to the bundle name
-      //   // — pass `false` as the second argument if you don't want the sourcemap
-      //   css.write('bundle.css');
-      // },
       emitCss: true,
-      // onwarn: (a, (warning) => {}),
-      // enable run-time checks when not in production
-      // dev: !production,
-      // we'll extract any component CSS out into
-      // a separate file - better for performance
-      // css: (css) => {
-      //   css.write("bundle.css");
-      // },
+
     }),
     css({ output: "bundle.css" }),
-
-    // If you have external dependencies installed from
-    // npm, you'll most likely need these plugins. In
-    // some cases you'll need additional configuration -
-    // consult the documentation for details:
-    // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
       dedupe: ["svelte"],
     }),
     commonjs(),
 
-    // In dev mode, call `npm run start` once
-    // the bundle has been generated
-    !production && serve(),
+    watch && serve(),
 
-    // Watch the `public` directory and refresh the
-    // browser on changes when not in production
-    !production && livereload("public"),
+    watch && livereload("public"),
 
-    // If we're building for production (npm run build
-    // instead of npm run dev), minify
-    // production && terser(),
-
-    // for absolut imports
-    // i.e., instead of
-    // import Component  from "../../../../components/Component.svelte";
-    // we will be able to say
-    // import Component from "components/Component.svelte";
     aliases,
   ],
   watch: {
