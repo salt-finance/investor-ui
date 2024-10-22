@@ -18,5 +18,13 @@ jobs:
       uses: actions/setup-node@v4.0.4
       with:
        node-version: 20.x
-    - name: run
+       cache: npm
+    - name: Install node packages
       run: npm i
+    - name: Build tailwind
+      run: npm run build:tailwind
+    - name: Build fontawesome
+      run: npm run build:fontawesome
+    - name: Build project
+      run: npm run build
+    
