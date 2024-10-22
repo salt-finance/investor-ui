@@ -33,7 +33,7 @@ const aliases = alias({
   ],
 });
 
-const indexTemplate = `<!--
+const indexTemplate = `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +48,7 @@ const indexTemplate = `<!--
       href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
     />
     <link rel="stylesheet" href="/assets/styles/tailwind.css" />
-    <title>Notus Svelte</title>
+    <title>Salt Investor</title>
 
     <script>
       if (process === undefined) {
