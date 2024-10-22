@@ -1,10 +1,8 @@
 {
-  "name": "notus-svelte",
-  "version": "1.1.0",
-  "homepage": "https://demos.creative-tim.com/notus-svelte/",
-  "description": "Notus Svelte - A free Tailwind CSS and Svelte UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-svelte",
-  "license": "MIT",
+  "name": "investor-ui",
+  "version": "0.0.1",
+  "description": "Investor UI is the investor portal built on svelte",
+  "repository": "https://github.com/salt-finance/investor-ui",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
