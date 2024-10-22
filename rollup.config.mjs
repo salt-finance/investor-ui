@@ -1,9 +1,9 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import { spawn } from "node:child_process";
+import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
-// const path = require('path');
-import { spawn } from "node:child_process";
 
 // import { terser } from "rollup-plugin-terser";
 // library that helps you import in svelte with
@@ -164,11 +164,22 @@ export default {
       onwarn: (warning, handler) => {
         // e.g. don't warn on <marquee> elements, cos they're cool
         if (warning.code.includes("a11y")) return;
-        if(warning.code === 'CIRCULAR_DEPENDENCY') return;
+        if (warning.code === "CIRCULAR_DEPENDENCY") return;
 
         // let Rollup handle all other warnings normally
         handler(warning);
       },
+
+      // css: function (css) {
+      //   console.log(css.code); // the concatenated CSS
+      //   console.log(css.map); // a sourcemap
+
+      //   // creates `main.css` and `main.css.map`
+      //   // using a falsy name will default to the bundle name
+      //   // — pass `false` as the second argument if you don't want the sourcemap
+      //   css.write('bundle.css');
+      // },
+      emitCss: true,
       // onwarn: (a, (warning) => {}),
       // enable run-time checks when not in production
       // dev: !production,
@@ -178,6 +189,7 @@ export default {
       //   css.write("bundle.css");
       // },
     }),
+    css({ output: "bundle.css" }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In

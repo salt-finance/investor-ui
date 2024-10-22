@@ -1,8 +1,12 @@
+
+/** @type {import('tailwindcss').Config} */
+
 const plugin = require("tailwindcss/plugin");
+
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./*.html", "./*.js", "./*.svelte"],
+  content: ["./src/**/*.{html,js,svelte}"],
   theme: {
     colors: {
       ...colors,
