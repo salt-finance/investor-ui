@@ -40,15 +40,15 @@ const indexTemplate = `
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon.png" />
-    <link rel="stylesheet" href="/build/bundle.css" />
+    <link rel="shortcut icon" href="<<live-preview-link>>/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="<<live-preview-link>>/apple-icon.png" />
+    <link rel="stylesheet" href="<<live-preview-link>>/build/bundle.css" />
     <link
       rel="stylesheet"
-      href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+      href="<<live-preview-link>>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assets/styles/tailwind.css" />
-    <title>Salt Investor</title>
+    <link rel="stylesheet" href="<<live-preview-link>>/assets/styles/tailwind.css" />
+    <title>Salt Finance Investor</title>
 
     <script>
       if (process === undefined) {
@@ -61,7 +61,7 @@ const indexTemplate = `
   <body class="text-blueGray-700 antialiased">
     <noscript>
       <strong
-        >We're sorry but notus-svelte doesn't work properly without
+        >We're sorry but salt finance doesn't work properly without
         JavaScript enabled. Please enable it to continue.</strong
       >
     </noscript>
