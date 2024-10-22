@@ -15,14 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.4
+      with:
+       node-version: 20.x
 
     - name: Run a yarn or npm command
   # You may pin to the exact commit or the version.
   # uses: Adzz/yarn_command_action@ad5d5595701709c7deecfd9528bd5ed9681d5e8a
       uses: Adzz/yarn_command_action@v2.0.0
       with:
-       node-version: 20
     # Specify whether to use npm or yarn to run the tests. May be npm or yarn only defaults to yarn
        package-manager: npm
     # The command you wish to run e.g. test
