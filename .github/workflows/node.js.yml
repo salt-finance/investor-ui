@@ -16,7 +16,15 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+
+    - name: Run a yarn or npm command
+  # You may pin to the exact commit or the version.
+  # uses: Adzz/yarn_command_action@ad5d5595701709c7deecfd9528bd5ed9681d5e8a
+      uses: Adzz/yarn_command_action@v2.0.0
       with:
-        node-version: 20
-    - run: npm ci
+       node-version: 20
+    # Specify whether to use npm or yarn to run the tests. May be npm or yarn only defaults to yarn
+       package-manager: npm
+    # The command you wish to run e.g. test
+       command: ci
+          
