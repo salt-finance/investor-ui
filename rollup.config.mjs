@@ -1,6 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
-import terser from '@rollup/plugin-terser';
+import terser from "@rollup/plugin-terser";
 import { spawn } from "node:child_process";
 import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
@@ -43,10 +43,12 @@ const indexTemplate = `
 
     <link rel="shortcut icon" href="<<live-preview-link>>/favicon.ico" />
     <link rel="apple-touch-icon" sizes="76x76" href="<<live-preview-link>>/apple-icon.png" />
+    <script defer src="<<live-preview-link>>/build/bundle.min.js"></script>
     <link defer rel="stylesheet" href="<<live-preview-link>>/build/bundle.css" />
     <link rel="preload" defer href="sentry.io">
     <link
       rel="stylesheet"
+      defer
       href="<<live-preview-link>>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
     />
     <link rel="stylesheet"  defer href="<<live-preview-link>>/assets/styles/tailwind.css" />
@@ -57,7 +59,7 @@ const indexTemplate = `
         var process = { env: {<<process-env-status>>} };
       }
     </script>
-    <script defer src="<<live-preview-link>>/build/bundle.min.js"></script>
+
   </head>
 
   <body class="text-blueGray-700 antialiased">

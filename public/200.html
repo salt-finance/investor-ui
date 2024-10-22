@@ -7,10 +7,12 @@
 
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon.png" />
+    <script defer src="/build/bundle.min.js"></script>
     <link defer rel="stylesheet" href="/build/bundle.css" />
     <link rel="preload" defer href="sentry.io">
     <link
       rel="stylesheet"
+      defer
       href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
     />
     <link rel="stylesheet"  defer href="/assets/styles/tailwind.css" />
@@ -21,7 +23,7 @@
         var process = { env: {PRODUCTION:"false",BASE_URL:""} };
       }
     </script>
-    <script defer src="/build/bundle.min.js"></script>
+
   </head>
 
   <body class="text-blueGray-700 antialiased">
