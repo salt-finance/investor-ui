@@ -1,5 +1,5 @@
 <script>
-  import { link } from "svelte-routing";
+  import { link } from 'svelte-spa-router';
   // library for creating dropdown menu appear on click
   import { createPopper } from "@popperjs/core";
 

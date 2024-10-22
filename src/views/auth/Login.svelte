@@ -1,5 +1,5 @@
 <script lang='ts'>
-  import { link } from "svelte-routing";
+  import { link } from 'svelte-spa-router';
 
   // core components
   const github = "../assets/img/github.svg";

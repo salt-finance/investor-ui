@@ -1,17 +1,13 @@
 <script>
-  import { link } from "svelte-routing";
-
-  // core components
+import { link } from "svelte-spa-router";
+import active from 'svelte-spa-router/active';
+// core components
   import NotificationDropdown from "components/Dropdowns/NotificationDropdown.svelte";
   import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
 
   let collapseShow = $state("hidden");
 
-  function toggleCollapseShow(classes) {
-    collapseShow = classes;
-  }
 
- let {location = window.location} = $props() 
 </script>
 
 <nav
@@ -25,7 +21,7 @@
       class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
       type="button"
       aria-label="togglecollapse"
-      onclick={() => toggleCollapseShow('bg-white m-2 py-3 px-6')}
+      onclick={() => collapseShow = 'bg-white m-2 py-3 px-6'}
     >
       <i class="fas fa-bars"></i>
     </button>
@@ -69,7 +65,7 @@
               type="button"
               class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
               aria-label="togglecollapse"
-              onclick={() => toggleCollapseShow('hidden')}
+              onclick={() => collapseShow = 'hidden'}
             >
               <i class="fas fa-times"></i>
             </button>
@@ -101,11 +97,12 @@
         <li class="items-center">
           <a
             use:link
+            use:active
             href="/admin/dashboard"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/dashboard') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+            class="text-xs uppercase py-3 font-bold block"
           >
             <i
-              class="fas fa-tv mr-2 text-sm {location.href.indexOf('/admin/dashboard') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
+              class="fas fa-tv mr-2 text-sm "
             ></i>
             Dashboard
           </a>
@@ -114,11 +111,12 @@
         <li class="items-center">
           <a
             use:link
+            use:active
             href="/admin/settings"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/settings') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+            class="text-xs uppercase py-3 font-bold block"
           >
             <i
-              class="fas fa-tools mr-2 text-sm {location.href.indexOf('/admin/settings') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
+              class="fas fa-tools mr-2 text-sm"
             ></i>
             Settings
           </a>
@@ -127,11 +125,12 @@
         <li class="items-center">
           <a
             use:link
+            use:active
             href="/admin/tables"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/tables') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+            class="text-xs uppercase py-3 font-bold block"
           >
             <i
-              class="fas fa-table mr-2 text-sm {location.href.indexOf('/admin/tables') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
+              class="fas fa-table mr-2 text-sm"
             ></i>
             Tables
           </a>
@@ -140,11 +139,12 @@
         <li class="items-center">
           <a
             use:link
+            use:active
             href="/admin/maps"
-            class="text-xs uppercase py-3 font-bold block {location.href.indexOf('/admin/maps') !== -1 ? 'text-red-500 hover:text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+            class="text-xs uppercase py-3 font-bold block"
           >
             <i
-              class="fas fa-map-marked mr-2 text-sm {location.href.indexOf('/admin/maps') !== -1 ? 'opacity-75' : 'text-blueGray-300'}"
+              class="fas fa-map-marked mr-2 text-sm"
             ></i>
             Maps
           </a>
@@ -165,6 +165,7 @@
         <li class="items-center">
           <a
             use:link
+            
             class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
             href="/auth/login"
           >

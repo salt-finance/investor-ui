@@ -1,6 +1,5 @@
 <script>
-    import { Route, Router } from "svelte-routing";
-    // components for this layout
+  import Router from 'svelte-spa-router';    // components for this layout
     import FooterSmall from "components/Footers/FooterSmall.svelte";
     import AuthNavbar from "components/Navbars/AuthNavbar.svelte";
 // pages for this layout
@@ -9,6 +8,16 @@
 
     const registerBg2 = "../assets/img/register_bg_2.png";
 
+    const routes = {
+    // Exact path
+    '/login': Login,
+
+    // Using named parameters, with last being optional
+    '/register': Register,
+    '*': Login,
+    
+    
+}
 </script>
 
 <div>
@@ -19,9 +28,8 @@
                 class="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
                 style="background-image: url({registerBg2});"
             ></div>
-            <Router url="auth">
-                <Route path="login" component={Login} />
-                <Route path="register" component={Register} />
+            <Router prefix={'/auth'} {routes}>
+        
             </Router>
             <FooterSmall absolute="true" />
         </section>

@@ -1,6 +1,5 @@
 <script>
-    import { Link } from "svelte-routing";
-
+    import { link } from 'svelte-spa-router';
     // core components
     import Footer from "components/Footers/Footer.svelte";
     import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
@@ -620,7 +619,7 @@
                         <h5 class="text-xl font-semibold pb-4 text-center">
                             Login Page
                         </h5>
-                        <Link to="/auth/login">
+                        <a use:link href="/auth/login">
                             <div
                                 class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
                             >
@@ -630,14 +629,14 @@
                                     src={login}
                                 />
                             </div>
-                        </Link>
+                        </a>
                     </div>
 
                     <div class="w-full lg:w-4/12 px-4">
                         <h5 class="text-xl font-semibold pb-4 text-center">
                             Profile Page
                         </h5>
-                        <Link to="/profile">
+                        <a use:link href="/profile">
                             <div
                                 class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
                             >
@@ -647,14 +646,14 @@
                                     src={profile}
                                 />
                             </div>
-                        </Link>
+                        </a>
                     </div>
 
                     <div class="w-full lg:w-4/12 px-4">
                         <h5 class="text-xl font-semibold pb-4 text-center">
                             Landing Page
                         </h5>
-                        <Link to="/landing">
+                        <a use:link href="/landing">
                             <div
                                 class="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150"
                             >
@@ -664,7 +663,7 @@
                                     src={landing}
                                 />
                             </div>
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </div>
