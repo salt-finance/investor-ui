@@ -73,7 +73,6 @@ const indexTemplate = `<!--
         var process = { env: {<<process-env-status>>} };
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
     <script defer src="<<live-preview-link>>/build/bundle.js"></script>
   </head>
 
