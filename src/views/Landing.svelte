@@ -39,7 +39,7 @@
                             </h1>
                             <p class="mt-4 text-lg text-blueGray-200">
                                 This is a simple example of a Landing Page you
-                                can build using Notus Svelte. It features
+                                can build using Salt Finance. It features
                                 multiple CSS components based on the Tailwind
                                 CSS design system.
                             </p>
@@ -170,7 +170,7 @@
                             href="/"
                             class="font-bold text-blueGray-700 mt-8"
                         >
-                            Check Notus Svelte!
+                            Check Salt Finance!
                         </a>
                     </div>
 
