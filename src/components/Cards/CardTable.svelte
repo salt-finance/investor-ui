@@ -11,7 +11,7 @@
   const team1 = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.webp";
   const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
   const team3 = "https://salt-finance.github.io/investor-ui/assets/img/team-3-800x800.webp";
-  const team4 = "https://salt-finance.github.io/investor-ui/assets/img/team-4-470x470.png";
+  const team4 = "https://salt-finance.github.io/investor-ui/assets/img/team-4-470x470.webp";
 
   // can be one of light or dark
   export let color = "light";
