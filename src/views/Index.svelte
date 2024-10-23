@@ -4,17 +4,17 @@
     import Footer from "components/Footers/Footer.svelte";
     import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
 
-    const patternVue = "/assets/img/pattern_svelte.png";
-    const componentBtn = "/assets/img/component-btn.png";
-    const componentProfileCard = "/assets/img/component-profile-card.png";
-    const componentInfoCard = "/assets/img/component-info-card.png";
-    const componentInfo2 = "/assets/img/component-info-2.png";
-    const componentMenu = "/assets/img/component-menu.png";
-    const componentBtnPink = "/assets/img/component-btn-pink.png";
-    const documentation = "/assets/img/documentation.png";
-    const login = "/assets/img/login.jpg";
-    const profile = "/assets/img/profile.jpg";
-    const landing = "/assets/img/landing.jpg";
+    const patternVue = "https://salt-finance.github.io/investor-ui/assets/img/pattern_svelte.png";
+    const componentBtn = "https://salt-finance.github.io/investor-ui/assets/img/component-btn.png";
+    const componentProfileCard = "https://salt-finance.github.io/investor-ui/assets/img/component-profile-card.png";
+    const componentInfoCard = "https://salt-finance.github.io/investor-ui/assets/img/component-info-card.png";
+    const componentInfo2 = "https://salt-finance.github.io/investor-ui/assets/img/component-info-2.png";
+    const componentMenu = "https://salt-finance.github.io/investor-ui/assets/img/component-menu.png";
+    const componentBtnPink = "https://salt-finance.github.io/investor-ui/assets/img/component-btn-pink.png";
+    const documentation = "https://salt-finance.github.io/investor-ui/assets/img/documentation.png";
+    const login = "https://salt-finance.github.io/investor-ui/assets/img/login.jpg";
+    const profile = "https://salt-finance.github.io/investor-ui/assets/img/profile.jpg";
+    const landing = "https://salt-finance.github.io/investor-ui/assets/img/landing.jpg";
     // export let location;
 </script>
 

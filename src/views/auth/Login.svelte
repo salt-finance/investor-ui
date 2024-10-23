@@ -2,8 +2,8 @@
   import { link } from 'svelte-spa-router';
 
   // core components
-  const github = "/assets/img/github.svg";
-  const google = "/assets/img/google.svg";
+  const github = "https://salt-finance.github.io/investor-ui/assets/img/github.svg";
+  const google = "https://salt-finance.github.io/investor-ui/assets/img/google.svg";
   export const location = '';
 </script>
 

@@ -2,16 +2,16 @@
   // core components
   import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
 
-  const bootstrap = "/assets/img/bootstrap.jpg";
-  const angular = "/assets/img/angular.jpg";
-  const sketch = "/assets/img/sketch.jpg";
-  const react = "/assets/img/react.jpg";
-  const vue = "/assets/img/react.jpg";
+  const bootstrap = "https://salt-finance.github.io/investor-ui/assets/img/bootstrap.jpg";
+  const angular = "https://salt-finance.github.io/investor-ui/assets/img/angular.jpg";
+  const sketch = "https://salt-finance.github.io/investor-ui/assets/img/sketch.jpg";
+  const react = "https://salt-finance.github.io/investor-ui/assets/img/react.jpg";
+  const vue = "https://salt-finance.github.io/investor-ui/assets/img/react.jpg";
 
-  const team1 = "/assets/img/team-1-800x800.jpg";
-  const team2 = "/assets/img/team-2-800x800.jpg";
-  const team3 = "/assets/img/team-3-800x800.jpg";
-  const team4 = "/assets/img/team-4-470x470.png";
+  const team1 = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.jpg";
+  const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.jpg";
+  const team3 = "https://salt-finance.github.io/investor-ui/assets/img/team-3-800x800.jpg";
+  const team4 = "https://salt-finance.github.io/investor-ui/assets/img/team-4-470x470.png";
 
   // can be one of light or dark
   export let color = "light";

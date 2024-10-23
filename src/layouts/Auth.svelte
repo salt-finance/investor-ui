@@ -6,7 +6,7 @@
     import Login from "views/auth/Login.svelte";
     import Register from "views/auth/Register.svelte";
 
-    const registerBg2 = "/assets/img/register_bg_2.png";
+    const registerBg2 = "https://salt-finance.github.io/investor-ui/assets/img/register_bg_2.png";
 
     const routes = {
     // Exact path
