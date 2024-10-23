@@ -26,6 +26,7 @@
   <a
     class="text-blueGray-500 block py-1 px-3"
     href="#pablo"
+    aria-labelledby="notifications"
     bind:this="{btnDropdownRef}"
     on:click="{toggleDropdown}"
   >
