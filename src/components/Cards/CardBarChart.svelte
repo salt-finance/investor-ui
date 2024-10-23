@@ -1,9 +1,7 @@
 <script>
   import { onMount } from "svelte";
   // library that creates chart objects in page
-  import { BarController, BarElement, Chart } from "chart.js";
-  import { } from "chart.js/dist";
-
+  import { BarController, BarElement, Chart } from "chart.js"; 
   // init chart
   onMount(async () => {
     let config = {

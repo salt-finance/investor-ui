@@ -4,7 +4,7 @@
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {
     "build": "rollup -c --environment BUILD:development",
-    "build-prod": "rollup -c --environment BUILD:production",
+    "build-prod": "rollup -c --environment BUILD:production --treeshake smallest",
     "dev": "rollup -c -w",
     "start": "sirv public -s",
     "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css --minify",
