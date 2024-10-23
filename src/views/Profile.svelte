@@ -3,7 +3,7 @@
   import Footer from "components/Footers/Footer.svelte";
   import AuthNavbar from "components/Navbars/AuthNavbar.svelte";
 
-  const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.jpg";
+  const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
 </script>
 
 <div>

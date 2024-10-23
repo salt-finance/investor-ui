@@ -4,7 +4,7 @@
 
   // core components
 
-  const image = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.jpg";
+  const image = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.webp";
 
   let dropdownPopoverShow = false;
 
