@@ -51,8 +51,7 @@ const indexTemplate = `
 		<script defer
 			src="<<live-preview-link>>/build/bundle.min.js"></script>
 		<link rel="preload" href="<<live-preview-link>>/assets/styles/tailwind.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/solid.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 		<link rel="preload" href="<<live-preview-link>>/build/bundle.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 		<script>
