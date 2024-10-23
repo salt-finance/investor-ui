@@ -14,7 +14,7 @@
   </div>
   <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
     <form>
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+      <h6 class="text-blueGray-500 text-sm mt-3 mb-6 font-bold uppercase">
         User Information
       </h6>
       <div class="flex flex-wrap">
@@ -86,7 +86,7 @@
 
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+      <h6 class="text-blueGray-500 text-sm mt-3 mb-6 font-bold uppercase">
         Contact Information
       </h6>
       <div class="flex flex-wrap">
@@ -158,7 +158,7 @@
 
       <hr class="mt-6 border-b-1 border-blueGray-300" />
 
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+      <h6 class="text-blueGray-500 text-sm mt-3 mb-6 font-bold uppercase">
         About Me
       </h6>
       <div class="flex flex-wrap">

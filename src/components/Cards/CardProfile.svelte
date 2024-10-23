@@ -25,7 +25,7 @@
             >
               22
             </span>
-            <span class="text-sm text-blueGray-400">Friends</span>
+            <span class="text-sm text-blueGray-500">Friends</span>
           </div>
           <div class="mr-4 p-3 text-center">
             <span
@@ -33,7 +33,7 @@
             >
               10
             </span>
-            <span class="text-sm text-blueGray-400">Photos</span>
+            <span class="text-sm text-blueGray-500">Photos</span>
           </div>
           <div class="lg:mr-4 p-3 text-center">
             <span
@@ -41,7 +41,7 @@
             >
               89
             </span>
-            <span class="text-sm text-blueGray-400">Comments</span>
+            <span class="text-sm text-blueGray-500">Comments</span>
           </div>
         </div>
       </div>
@@ -51,17 +51,17 @@
         Jenna Stones
       </h3>
       <div
-        class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"
+        class="text-sm leading-normal mt-0 mb-2 text-blueGray-500 font-bold uppercase"
       >
-        <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+        <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-500"></i>
         Los Angeles, California
       </div>
       <div class="mb-2 text-blueGray-600 mt-10">
-        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-500"></i>
         Solution Manager - Creative Tim Officer
       </div>
       <div class="mb-2 text-blueGray-600">
-        <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>
+        <i class="fas fa-university mr-2 text-lg text-blueGray-500"></i>
         University of Computer Science
       </div>
     </div>

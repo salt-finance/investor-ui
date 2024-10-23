@@ -688,7 +688,7 @@
                     Open Source
                 </h3>
                 <p
-                    class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-400"
+                    class="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-500"
                 >
                     Since
                     <a
@@ -703,7 +703,7 @@
                     test the quality of the code!
                 </p>
                 <p
-                    class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400"
+                    class="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-500"
                 >
                     Get it free on Github and please help us spread the news
                     with a Star!

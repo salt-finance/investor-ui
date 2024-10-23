@@ -46,7 +46,7 @@
             href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus?ref=ns-auth-navbar"
           >
             <i
-              class="lg:text-blueGray-200 text-blueGray-400 far fa-file-alt text-lg leading-lg mr-2"
+              class="lg:text-blueGray-200 text-blueGray-500 far fa-file-alt text-lg leading-lg mr-2"
            ></i>
             Docs
           </a>
@@ -63,7 +63,7 @@
             target="_blank"
           >
             <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-facebook text-lg leading-lg"
+              class="lg:text-blueGray-200 text-blueGray-500 fab fa-facebook text-lg leading-lg"
            ></i>
             <span class="lg:hidden inline-block ml-2">Share</span>
           </a>
@@ -76,7 +76,7 @@
             target="_blank"
           >
             <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-twitter text-lg leading-lg"
+              class="lg:text-blueGray-200 text-blueGray-500 fab fa-twitter text-lg leading-lg"
            ></i>
             <span class="lg:hidden inline-block ml-2">Tweet</span>
           </a>
@@ -89,7 +89,7 @@
             target="_blank"
           >
             <i
-              class="lg:text-blueGray-200 text-blueGray-400 fab fa-github text-lg leading-lg"
+              class="lg:text-blueGray-200 text-blueGray-500 fab fa-github text-lg leading-lg"
            ></i>
             <span class="lg:hidden inline-block ml-2">Star</span>
           </a>

@@ -343,7 +343,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Ryan Tompson</h5>
                                 <p
-                                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+                                    class="mt-1 text-sm text-blueGray-500 uppercase font-semibold"
                                 >
                                     Web Developer
                                 </p>
@@ -380,7 +380,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Romina Hadid</h5>
                                 <p
-                                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+                                    class="mt-1 text-sm text-blueGray-500 uppercase font-semibold"
                                 >
                                     Marketing Specialist
                                 </p>
@@ -411,7 +411,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Alexa Smith</h5>
                                 <p
-                                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+                                    class="mt-1 text-sm text-blueGray-500 uppercase font-semibold"
                                 >
                                     UI/UX Designer
                                 </p>
@@ -448,7 +448,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Jenna Kardi</h5>
                                 <p
-                                    class="mt-1 text-sm text-blueGray-400 uppercase font-semibold"
+                                    class="mt-1 text-sm text-blueGray-500 uppercase font-semibold"
                                 >
                                     Founder and CEO
                                 </p>
@@ -513,7 +513,7 @@
                             Build something
                         </h2>
                         <p
-                            class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400"
+                            class="text-lg leading-relaxed mt-4 mb-4 text-blueGray-500"
                         >
                             Put the potentially record low maximum sea ice
                             extent tihs year down to low ice. According to the
@@ -532,7 +532,7 @@
                         <h6 class="text-xl mt-5 font-semibold text-white">
                             Excelent Services
                         </h6>
-                        <p class="mt-2 mb-4 text-blueGray-400">
+                        <p class="mt-2 mb-4 text-blueGray-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
@@ -546,7 +546,7 @@
                         <h5 class="text-xl mt-5 font-semibold text-white">
                             Grow your market
                         </h5>
-                        <p class="mt-2 mb-4 text-blueGray-400">
+                        <p class="mt-2 mb-4 text-blueGray-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
@@ -560,7 +560,7 @@
                         <h5 class="text-xl mt-5 font-semibold text-white">
                             Launch time
                         </h5>
-                        <p class="mt-2 mb-4 text-blueGray-400">
+                        <p class="mt-2 mb-4 text-blueGray-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>

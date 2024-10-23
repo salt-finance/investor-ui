@@ -36,7 +36,7 @@
     class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 {dropdownPopoverShow ? 'block':'hidden'}"
   >
     <span
-      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
     >
       Admin Layout
     </span>
@@ -70,7 +70,7 @@
     </a>
     <div class="h-0 mx-4 my-2 border border-solid border-blueGray-100"></div>
     <span
-      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
     >
       Auth Layout
     </span>
@@ -90,7 +90,7 @@
     </a>
     <div class="h-0 mx-4 my-2 border border-solid border-blueGray-100"></div>
     <span
-      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-400"
+      class="text-sm pt-2 pb-0 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-blueGray-500"
     >
       No Layout
     </span>
