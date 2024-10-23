@@ -44,14 +44,6 @@ const indexTemplate = `
     <link rel="shortcut icon" href="<<live-preview-link>>/favicon.ico" />
     <link rel="apple-touch-icon" sizes="76x76" href="<<live-preview-link>>/apple-icon.png" />
     <script defer src="<<live-preview-link>>/build/bundle.min.js"></script>
-    <link defer rel="stylesheet" href="<<live-preview-link>>/build/bundle.css" />
-    <link rel="preconnect" href="https://sentry.io">
-    <link
-      rel="stylesheet"
-      defer
-      href="<<live-preview-link>>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-    />
-    <link rel="stylesheet"  defer href="<<live-preview-link>>/assets/styles/tailwind.css" />
     <title>Salt Finance Investor</title>
 
     <script>
@@ -71,6 +63,13 @@ const indexTemplate = `
     </noscript>
     <div id="app"></div>
   </body>
+   <link defer rel="stylesheet" href="<<live-preview-link>>/build/bundle.css" />
+    <link
+      rel="stylesheet"
+      defer
+      href="<<live-preview-link>>/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+    />
+    <link rel="stylesheet"  defer href="<<live-preview-link>>/assets/styles/tailwind.css" />
 </html>
 `;
 
