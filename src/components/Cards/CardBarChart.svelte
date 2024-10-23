@@ -1,7 +1,8 @@
-<script lang="ts">
+<script>
   import { onMount } from "svelte";
   // library that creates chart objects in page
-  import { Chart } from "chart.js";
+  import { BarController, BarElement, Chart } from "chart.js";
+  import { } from "chart.js/dist";
 
   // init chart
   onMount(async () => {
@@ -24,7 +25,7 @@
             borderColor: "#ed64a6",
             data: [30, 78, 56, 34, 100, 45, 13],
             fill: false,
-            barThickness: 8
+            barThickness: 8,
           },
           {
             label: new Date().getFullYear() - 1,
@@ -32,9 +33,9 @@
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: [27, 68, 86, 74, 10, 4, 87],
-            barThickness: 8
-          }
-        ]
+            barThickness: 8,
+          },
+        ],
       },
       options: {
         maintainAspectRatio: false,
@@ -59,46 +60,46 @@
           position: "bottom",
         },
         scales: {
-          xAxes: [
-            {
-              display: false,
-              scaleLabel: {
-                display: true,
-                labelString: "Month",
-              },
-              gridLines: {
-                borderDash: [2],
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
-            },
-          ],
-          yAxes: [
-            {
+          x: {
+            display: false,
+            scaleLabel: {
               display: true,
-              scaleLabel: {
-                display: false,
-                labelString: "Value",
-              },
-              gridLines: {
-                borderDash: [2],
-                drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
-                zeroLineBorderDash: [2],
-                zeroLineBorderDashOffset: [2],
-              },
+              labelString: "Month",
             },
-          ],
+            gridLines: {
+              borderDash: [2],
+              borderDashOffset: [2],
+              color: "rgba(33, 37, 41, 0.3)",
+              zeroLineColor: "rgba(33, 37, 41, 0.3)",
+              zeroLineBorderDash: [2],
+              zeroLineBorderDashOffset: [2],
+            },
+          },
+
+          y: {
+            display: true,
+            scaleLabel: {
+              display: false,
+              labelString: "Value",
+            },
+            gridLines: {
+              borderDash: [2],
+              drawBorder: false,
+              borderDashOffset: [2],
+              color: "rgba(33, 37, 41, 0.2)",
+              zeroLineColor: "rgba(33, 37, 41, 0.15)",
+              zeroLineBorderDash: [2],
+              zeroLineBorderDashOffset: [2],
+            },
+          },
         },
       },
     };
-    let ctx = document.getElementById("bar-chart").getContext("2d");
-    window.myBar = new Chart(ctx, config);
+    var ctx = document.getElementById("bar-chart");
+
+    Chart.register([BarElement, BarController]);
+
+    new Chart(ctx, config);
   });
 </script>
 
@@ -111,9 +112,7 @@
         <h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
           Performance
         </h6>
-        <h2 class="text-blueGray-700 text-xl font-semibold">
-          Total orders
-        </h2>
+        <h2 class="text-blueGray-700 text-xl font-semibold">Total orders</h2>
       </div>
     </div>
   </div>

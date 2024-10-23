@@ -195,10 +195,10 @@
                                         class="text-red-400 fill-current"
                                     ></polygon>
                                 </svg>
-                                <h4 class="text-xl font-bold text-white">
+                                <h4 class="text-xl font-bold">
                                     Top Notch Services
                                 </h4>
-                                <p class="text-md font-light mt-2 text-white">
+                                <p class="text-md font-light mt-2">
                                     The Arctic Ocean freezes every winter and
                                     much of the sea-ice then thaws every summer,
                                     and that process will continue whatever
