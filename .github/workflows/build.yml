@@ -24,8 +24,6 @@ jobs:
       run: npm i
     - name: Build tailwind
       run: npm run build:tailwind
-    - name: Build fontawesome
-      run: npm run build:fontawesome
     - name: Build project
       run: npm run build-prod
     - name: Upload GitHub Pages artifact

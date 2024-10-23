@@ -7,8 +7,7 @@
     "build-prod": "rollup -c --environment BUILD:production",
     "dev": "rollup -c -w",
     "start": "sirv public -s",
-    "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css",
-    "build:fontawesome": "mkdir -p public/assets/vendor/@fortawesome/fontawesome-free/webfonts && mkdir -p public/assets/vendor/@fortawesome/fontawesome-free/css && cp -a ./node_modules/@fortawesome/fontawesome-free/webfonts public/assets/vendor/@fortawesome/fontawesome-free/ && cp ./node_modules/@fortawesome/fontawesome-free/css/all.min.css public/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css",
+    "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css --minify",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install && npm run build:tailwind && npm run build:fontawesome && npm run dev"
   },
   "devDependencies": {
@@ -25,7 +24,6 @@
     "svelte": "^5.0.5"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.6.0",
     "@popperjs/core": "2.11.8",
     "@tailwindcss/forms": "0.5.9",
     "chart.js": "4.4.5",
