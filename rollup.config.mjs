@@ -29,6 +29,7 @@ const aliases = alias({
       find: "components",
       replacement: path.resolve(projectRootDir, "src/components"),
     },
+    { find: "utils", replacement: path.resolve(projectRootDir, "src/utils") },
     { find: "views", replacement: path.resolve(projectRootDir, "src/views") },
     { find: "assets", replacement: path.resolve(projectRootDir, "src/assets") },
   ],

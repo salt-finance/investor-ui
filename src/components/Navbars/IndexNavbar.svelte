@@ -1,5 +1,5 @@
 <script>
-  import { link } from 'svelte-spa-router';
+  import { link } from "svelte-spa-router";
 
   // core components
   import IndexDropdown from "components/Dropdowns/IndexDropdown.svelte";
@@ -30,26 +30,16 @@
       <button
         class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
         type="button"
-        on:click="{setNavbarOpen}"
+        aria-label="open menu"
+        on:click={setNavbarOpen}
       >
         <i class="fas fa-bars"></i>
       </button>
     </div>
     <div
-      class="lg:flex flex-grow items-center {navbarOpen ? 'block':'hidden'}"
+      class="lg:flex flex-grow items-center {navbarOpen ? 'block' : 'hidden'}"
       id="example-navbar-warning"
     >
-      <ul class="flex flex-col lg:flex-row list-none mr-auto">
-        <li class="flex items-center">
-          <a
-            class="hover:text-blueGray-500 text-blueGray-700 px-3 py-2 flex items-center text-xs uppercase font-bold"
-            href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus?ref=ns-index-navbar"
-          >
-            <i class="text-blueGray-500 far fa-file-alt text-lg leading-lg mr-2"></i>
-            Docs
-          </a>
-        </li>
-      </ul>
       <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
         <li class="flex items-center">
           <IndexDropdown />

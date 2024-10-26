@@ -1,5 +1,5 @@
 <script>
-  import Router from 'svelte-spa-router';
+  import Router from "svelte-spa-router";
   // components for this layout
   import FooterAdmin from "components/Footers/FooterAdmin.svelte";
   import HeaderStats from "components/Headers/HeaderStats.svelte";
@@ -11,23 +11,24 @@
   import Settings from "views/admin/Settings.svelte";
   import Tables from "views/admin/Tables.svelte";
 
-
   const routes = {
-    '/dashboard': Dashboard,
-    '/settings': Settings,
-    '/tables': Tables,
-    '/maps': Maps,
-    '*': Dashboard,   
-}
- </script>
+    "/dashboard": Dashboard,
+    "/settings": Settings,
+    "/tables": Tables,
+    "/maps": Maps,
+    "*": Dashboard,
+  };
+</script>
 
-<div>
-  <Sidebar/>
-  <div class="relative md:ml-64 bg-blueGray-100">
+<div class="h-full">
+  <Sidebar />
+  <div class="relative md:ml-64 bg-blueGray-100 min-h-screen">
     <AdminNavbar />
     <HeaderStats />
-    <div class="px-4 md:px-10 mx-auto w-full -m-24">
-      <Router prefix={'/admin'} {routes} />
+    <div class="px-4 md:px-10 mx-auto w-full h-full">
+      <div class="flex flex-wrap -mt-24 mb-24">
+        <Router prefix={"/admin"} {routes} />
+      </div>
       <FooterAdmin />
     </div>
   </div>
