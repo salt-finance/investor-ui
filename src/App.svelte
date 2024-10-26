@@ -37,6 +37,9 @@
 :global(a.active) {
     color: red;
 }
+:global(*){ 
+  font-family: 'Poppins', 'sans-serif';
+}
 </style>
 
 <Router {routes} />

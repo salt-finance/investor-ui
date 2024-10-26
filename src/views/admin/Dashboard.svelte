@@ -3,7 +3,9 @@
   import CardBarChart from "components/Cards/CardBarChart.svelte";
   import CardLineChart from "components/Cards/CardLineChart.svelte";
   import CardPageVisits from "components/Cards/CardPageVisits.svelte";
+  import CardPieChart from "components/Cards/CardPieChart.svelte";
   import CardSocialTraffic from "components/Cards/CardSocialTraffic.svelte";
+  import CardDoghnutChart from "../../components/Cards/CardDoghnutChart.svelte";
 </script>
 
 <div>
@@ -12,7 +14,13 @@
       <CardLineChart />
     </div>
     <div class="w-full xl:w-4/12 px-4">
+      <CardPieChart />
+    </div>
+    <div class="w-full xl:w-8/12 px-4">
       <CardBarChart />
+    </div>
+    <div class="w-full xl:w-4/12 px-4">
+      <CardDoghnutChart />
     </div>
   </div>
   <div class="flex flex-wrap mt-4">

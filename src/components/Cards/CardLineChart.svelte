@@ -4,10 +4,14 @@
   import {
     CategoryScale,
     Chart,
+    Filler,
+    Legend,
+    LinearScale,
     LineController,
     LineElement,
-    LinearScale,
+    LogarithmicScale,
     PointElement,
+    Tooltip,
   } from "chart.js";
 
   // init chart
@@ -26,83 +30,63 @@
         ],
         datasets: [
           {
-            label: "1",
-            backgroundColor: "#4c51bf",
+            label: "Account 1",
+            fill: true,
+            backgroundColor: "#4c51bfaf",
             borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
-            fill: false,
+            data: [500, 6800, 86000, 74000, 56000, 60000, 87000],
           },
           {
-            label: "2",
-            fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            label: "Account 2",
+            backgroundColor: "rgba(12, 200, 132, 0.7)",
+            borderColor: "rgb(12, 200, 132)",
+            data: [0, 0, -9000, -1400, 99999.34, 67000, 75000],
+            fill: true,
           },
         ],
       },
       options: {
         maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: false,
-          text: "Sales Charts",
-          fontColor: "white",
-        },
-        legend: {
-          labels: {
-            fontColor: "white",
-          },
-          align: "end",
-          position: "bottom",
-        },
-        tooltips: {
+        interaction: {
           mode: "index",
           intersect: false,
         },
-        hover: {
-          mode: "nearest",
-          intersect: true,
-        },
         scales: {
-          x: {
-            ticks: {
-              fontColor: "rgba(255,255,255,.7)",
-            },
-            display: true,
-            scaleLabel: {
-              display: false,
-              labelString: "Month",
-              fontColor: "white",
-            },
-            gridLines: {
-              display: false,
-              borderDash: [2],
-              borderDashOffset: [2],
-              color: "rgba(33, 37, 41, 0.3)",
-              zeroLineColor: "rgba(0, 0, 0, 0)",
-              zeroLineBorderDash: [2],
-              zeroLineBorderDashOffset: [2],
-            },
-          },
+
           y: {
             ticks: {
-              fontColor: "rgba(255,255,255,.7)",
+              // Include a dollar sign in the ticks
+              callback: function (value) {
+                value = new Intl.NumberFormat("en-US", {
+                  notation: value >= 100000 ? "compact" : "standard",
+                  style: "currency",
+                  currency: "ETB",
+                }).format(value);
+                return value;
+              },
             },
-            display: true,
-            scaleLabel: {
-              display: false,
-              labelString: "Value",
-              fontColor: "white",
-            },
-            gridLines: {
-              borderDash: [3],
-              borderDashOffset: [3],
-              drawBorder: false,
-              color: "rgba(255, 255, 255, 0.15)",
-              zeroLineColor: "rgba(33, 37, 41, 0)",
-              zeroLineBorderDash: [2],
-              zeroLineBorderDashOffset: [2],
+          },
+        },
+        plugins: {
+          legend: {
+            align: "end",
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                let label = context.dataset.label || "";
+
+                if (label) {
+                  label += ": ";
+                }
+                if (context.parsed.y !== null) {
+                  label += new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "ETB",
+                  }).format(context.parsed.y);
+                }
+                return label;
+              },
             },
           },
         },
@@ -113,24 +97,32 @@
       LineController,
       LinearScale,
       CategoryScale,
+      LogarithmicScale,
       PointElement,
-      LineElement
+      Filler,
+      LineElement,
+      Tooltip,
+      Legend,
     ]);
+
+    Chart.defaults.color = "#334155";
+    Chart.defaults.font.family = "poppins";
+    Chart.defaults.clip = 100;
 
     new Chart(ctx, config);
   });
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700"
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white"
 >
   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-          Overview
+        <h6 class="uppercase text-blueGray-500 mb-1 text-xs font-semibold">
+          Line Chart
         </h6>
-        <h2 class="text-white text-xl font-semibold">Sales value</h2>
+        <h2 class="text-xl text-blueGray-700 font-semibold">Value over time</h2>
       </div>
     </div>
   </div>
