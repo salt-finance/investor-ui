@@ -43,6 +43,10 @@ const indexTemplate = `
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Salt Finance Investor</title>
     <link rel="shortcut icon" href="<<live-preview-link>>/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
     <link
       rel="apple-touch-icon"
       sizes="76x76"
@@ -76,7 +80,7 @@ const indexTemplate = `
     </script>
   </head>
 
-  <body class="text-blueGray-700 antialiased">
+  <body class="text-slate-700 antialiased">
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(

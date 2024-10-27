@@ -78,9 +78,9 @@
   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-blueGray-500 mb-1 text-xs font-semibold">
+        <h6 class="uppercase text-slate-500 mb-1 text-xs font-semibold">
           Security distribution by category        </h6>
-        <h2 class="text-blueGray-700 text-xl font-semibold">
+        <h2 class="text-slate-700 text-xl font-semibold">
           Pie chart
         </h2>
       </div>

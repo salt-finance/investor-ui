@@ -28,7 +28,7 @@ import active from 'svelte-spa-router/active';
     <!-- Brand -->
     <a
       use:link
-      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
+      class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
       href="/"
     >
       Salt Finance
@@ -48,13 +48,13 @@ import active from 'svelte-spa-router/active';
     >
       <!-- Collapse header -->
       <div
-        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200"
       >
         <div class="flex flex-wrap">
           <div class="w-6/12">
             <a
               use:link
-              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
+              class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
               href="/"
             >
               Salt Finance
@@ -78,7 +78,7 @@ import active from 'svelte-spa-router/active';
           <input
             type="text"
             placeholder="Search"
-            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+            class="border-0 px-3 py-2 h-12 border border-solid border-slate-500 placeholder-slate-300 text-slate-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
           />
         </div>
       </form>
@@ -87,7 +87,7 @@ import active from 'svelte-spa-router/active';
       <hr class="my-4 md:min-w-full" />
       <!-- Heading -->
       <h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+        class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
         Admin Layout Pages
       </h6>
@@ -155,7 +155,7 @@ import active from 'svelte-spa-router/active';
       <hr class="my-4 md:min-w-full" />
       <!-- Heading -->
       <h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+        class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
         Auth Layout Pages
       </h6>
@@ -166,10 +166,10 @@ import active from 'svelte-spa-router/active';
           <a
             use:link
             
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
             href="/auth/login"
           >
-            <i class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"></i>
+            <i class="fas fa-fingerprint text-slate-300 mr-2 text-sm"></i>
             Login
           </a>
         </li>
@@ -177,10 +177,10 @@ import active from 'svelte-spa-router/active';
         <li class="items-center">
           <a
             use:link
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
             href="/auth/register"
           >
-            <i class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>
+            <i class="fas fa-clipboard-list text-slate-300 mr-2 text-sm"></i>
             Register
           </a>
         </li>
@@ -190,7 +190,7 @@ import active from 'svelte-spa-router/active';
       <hr class="my-4 md:min-w-full" />
       <!-- Heading -->
       <h6
-        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+        class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
       >
         No Layout Pages
       </h6>
@@ -200,10 +200,10 @@ import active from 'svelte-spa-router/active';
         <li class="items-center">
           <a
             use:link
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
             href="/landing"
           >
-            <i class="fas fa-newspaper text-blueGray-300 mr-2 text-sm"></i>
+            <i class="fas fa-newspaper text-slate-300 mr-2 text-sm"></i>
             Landing Page
           </a>
         </li>
@@ -211,10 +211,10 @@ import active from 'svelte-spa-router/active';
         <li class="items-center">
           <a
             use:link
-            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+            class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
             href="/profile"
           >
-            <i class="fas fa-user-circle text-blueGray-300 mr-2 text-sm"></i>
+            <i class="fas fa-user-circle text-slate-300 mr-2 text-sm"></i>
             Profile Page
           </a>
         </li>

@@ -6,14 +6,14 @@
 </script>
 
 <footer
-  class="pb-6 {absolute ? 'absolute w-full bottom-0 bg-blueGray-800' : 'relative'}"
+  class="pb-6 {absolute ? 'absolute w-full bottom-0 bg-slate-800' : 'relative'}"
 >
   <div class="container mx-auto px-4">
-    <hr class="mb-6 border-b-1 border-blueGray-600" />
+    <hr class="mb-6 border-b-1 border-slate-600" />
     <div class="flex flex-wrap items-center md:justify-between justify-center">
       <div class="w-full md:w-4/12 px-4">
         <div
-          class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left skiptranslate"
+          class="text-sm text-slate-500 font-semibold py-1 text-center md:text-left skiptranslate"
         >
           Copyright © {date}
         Salt finance 
@@ -25,7 +25,7 @@
           <li>
             <a
               href="https://www.creative-tim.com/presentation?ref=ns-footer-small"
-              class="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
+              class="text-white hover:text-slate-300 text-sm font-semibold block py-1 px-3"
             >
               About Us
             </a>
@@ -33,7 +33,7 @@
           <li>
             <a
               href="http://blog.creative-tim.com?ref=ns-footer-small"
-              class="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
+              class="text-white hover:text-slate-300 text-sm font-semibold block py-1 px-3"
             >
               Blog
             </a>
@@ -41,7 +41,7 @@
           <li>
             <a
               href="https://github.com/creativetimofficial/notus-svelte/blob/main/LICENSE.md?ref=ns-footer-small"
-              class="text-white hover:text-blueGray-300 text-sm font-semibold block py-1 px-3"
+              class="text-white hover:text-slate-300 text-sm font-semibold block py-1 px-3"
             >
               MIT License
             </a>
