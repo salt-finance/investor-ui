@@ -49,8 +49,9 @@
                   label += ": ";
                 }
                 if (context.parsed.y !== null) {
-                  label += new Intl.NumberFormat("en-US", {
+                  label += new Intl.NumberFormat("am-ET", {
                     style: "currency",
+                    currencyDisplay: "name",
                     currency: "ETB",
                   }).format(context.parsed.y);
                 }
@@ -64,9 +65,12 @@
             ticks: {
               // Include a dollar sign in the ticks
               callback: function (value) {
-                value = new Intl.NumberFormat("en-US", {
-                  notation: value >= 100000 ? "compact" : "standard",
+                value = new Intl.NumberFormat("am-ET", {
+                  currencySign: "standard",
+                  notation: Math.abs(value) >= 10000 ? "compact" : "standard",
                   style: "currency",
+                  currencyDisplay: "symbol",
+                  signDisplay: "never",
                   currency: "ETB",
                 }).format(value);
                 return value;

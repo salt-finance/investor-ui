@@ -16,6 +16,7 @@
 <!--   in:blur={{ amount: 30, delay: 50, duration: 1000 }}
  -->
 <div
+class="w-full"
   in:blur={blurTransitionInConfig}
   out:blur={blurTransitionOutConfig}
 >

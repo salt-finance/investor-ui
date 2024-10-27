@@ -56,8 +56,8 @@
         <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-500"></i>
         Los Angeles, California
       </div>
-      <div class="mb-2 text-blueGray-600 mt-10">
-        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-500"></i>
+      <div class="mb-2 text-blueGray-600 mt-10 skiptranslate">
+        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-500 "></i>
         Solution Manager - Salt finance
       </div>
       <div class="mb-2 text-blueGray-600">

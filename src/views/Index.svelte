@@ -25,7 +25,7 @@
     <div class="container mx-auto items-center flex flex-wrap">
         <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div class="pt-32 sm:pt-0">
-                <h2 class="font-semibold text-4xl text-blueGray-600">
+                <h2 class="font-semibold text-4xl text-blueGray-600 skiptranslate">
                     Salt Finance - A beautiful extension for Tailwind CSS.
                 </h2>
                 <p class="mt-4 text-lg leading-relaxed text-blueGray-500">
