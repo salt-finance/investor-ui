@@ -85,14 +85,8 @@ const indexTemplate = `
 
   <body class="text-slate-700 antialiased">
  <script defer type="text/javascript">
-      function googleTranslateElementInit() {
-        document.addEventListener("readystatechange", (event) => {
-          if (document.readyState !== "complete") {
-            console.log(document.readyState);
-            return;
-          } else {
-
-             new google.translate.TranslateElement(
+      function setupGoogleTranslate() {
+        new google.translate.TranslateElement(
           {
             pageLanguage: "en",
             multilanguagePage: false,
@@ -108,10 +102,19 @@ const indexTemplate = `
         google_translate_element
           .querySelector(".goog-te-gadget")
           .appendChild(a);
-           console.log('init now');
-            return;
-          }
-        });
+        return;
+      }
+
+      function googleTranslateElementInit() {
+        if (document.readyState !== "complete") {
+          document.addEventListener("readystatechange", (event) => {
+            if (document.readyState === "complete") {
+              setupGoogleTranslate();
+            }
+          });
+        } else {
+          setupGoogleTranslate();
+        }
       }
     </script>
     <script
