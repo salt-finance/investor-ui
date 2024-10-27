@@ -46,8 +46,8 @@ const indexTemplate = `
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@100..900&display=swap"   as="style"
-      onload="this.onload=null;this.rel='stylesheet'" rel="stylesheet">
+<link       rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@100..900&display=swap"   as="style"
+      onload="this.onload=null;this.rel='stylesheet'" >
     <link
       rel="apple-touch-icon"
       sizes="76x76"
@@ -75,6 +75,8 @@ const indexTemplate = `
     />
 
     <script>
+
+
       if (process === undefined) {
            var process = { env: {<<process-env-status>>} };
          }
@@ -82,9 +84,15 @@ const indexTemplate = `
   </head>
 
   <body class="text-slate-700 antialiased">
-    <script defer type="text/javascript">
+ <script defer type="text/javascript">
       function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
+        document.addEventListener("readystatechange", (event) => {
+          if (document.readyState !== "complete") {
+            console.log(document.readyState);
+            return;
+          } else {
+
+             new google.translate.TranslateElement(
           {
             pageLanguage: "en",
             multilanguagePage: false,
@@ -100,6 +108,10 @@ const indexTemplate = `
         google_translate_element
           .querySelector(".goog-te-gadget")
           .appendChild(a);
+           console.log('init now');
+            return;
+          }
+        });
       }
     </script>
     <script
