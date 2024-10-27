@@ -36,7 +36,7 @@
 <style lang="scss">
   :global {
     * {
-      font-family: "Poppins", "sans-serif";
+      font-family: Poppins, sans-serif;
     }
     a.active {
       color: red;
