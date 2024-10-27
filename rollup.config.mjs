@@ -46,7 +46,8 @@ const indexTemplate = `
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Ethiopic:wght@100..900&display=swap"   as="style"
+      onload="this.onload=null;this.rel='stylesheet'" rel="stylesheet">
     <link
       rel="apple-touch-icon"
       sizes="76x76"
@@ -81,7 +82,7 @@ const indexTemplate = `
   </head>
 
   <body class="text-slate-700 antialiased">
-    <script type="text/javascript">
+    <script defer type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
           {
@@ -103,6 +104,7 @@ const indexTemplate = `
     </script>
     <script
       type="text/javascript"
+      defer
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ></script>
     <noscript>
