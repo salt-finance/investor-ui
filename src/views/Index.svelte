@@ -8,26 +8,64 @@
 </script>
 
 <IndexNavbar />
-
+<img
+  width="500px"
+  height="500px"
+  class="h-screen w-screen fixed object-cover top-0 bg-no-repeat"
+  src={patternVue}
+  alt="..."
+/>
 <!-- svelte-ignore a11y-missing-attribute -->
-<section class="header relative pt-16 items-center flex h-screen max-h-860-px">
-  <div class="container mx-auto items-center flex flex-wrap">
-    <div class="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
-      <div class="pt-32 sm:pt-0">
-        <h2 class="font-semibold text-4xl text-slate-600 skiptranslate">
-          Salt Finance
-        </h2>
-      </div>
+<div class="w-full justify-center flex text-center lg:text-left">
+  <section
+    class="relative flex flex-wrap gap-4 flex-row mt-36 max-w-screen-lg w-11/12 sm:w-10/12 md:w-9/12"
+  >
+    <!-- light card -->
+    <div
+      class="justify-between flex-wrap flex flex-col bg-blue-200 rounded-lg py-20 min-h-500 px-10 flex-auto lg:flex-1 w-full gap-4 glass-effect bg-opacity-80 text-neutral-800"
+    >
+      <h2 class="font-bold text-4xl skiptranslate">Salt Finance</h2>
+      <h4 class="text-neutral-600 text-lg">
+        Get started with your investment journey!
+      </h4>
+      <p>
+        Quod atque, ea, ab maiores delectus vel unde voluptate illum eligendi
+        omnis tempora natus temporibus possimus perferendis nihil odio eos!
+        Suscipit sequi nobis quam numquam sapiente totam dolorem?
+      </p>
+      <button
+        class="bg-blue-500 text-white active:bg-blue-600 py-4 uppercase font-bold rounded-lg outline-none text-center focus:outline-none mt-4 ease-in-out
+         hover:bg-blue-800 transition-all duration-150"
+        type="button"
+      >
+        Get started
+      </button>
     </div>
-  </div>
 
-  <img
-    width="500px"
-    height="500px"
-    class="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860-px"
-    src={patternVue}
-    alt="..."
-  />
-</section>
+    <!-- dark card -->
+    <div
+      class="justify-between flex flex-col gap-4 flex-wrap text-neutral-100
+      bg-opacity-80 glass-effect bg-blue-900 rounded-lg py-20 min-h-500 px-10 w-full flex-1 flex-auto lg:flex-1"
+    >
+      <h2 class="font-bold text-4xl skiptranslate">Salt Finance</h2>
+      <h4 class="text-lg text-neutral-200">
+        Get started with your investment journey!
+      </h4>
+      <p>
+        Quas quidem at quisquam aspernatur ipsam tempora, eligendi veritatis, ea
+        suscipit excepturi, illo facilis! Nihil animi, dignissimos ea optio
+        sequi, non eum pariatur, reprehenderit laboriosam inventore fuga nostrum
+        eius!
+      </p>
+      <button
+        class="bg-white active:bg-blue-600 py-4 rounded-lg font-bold uppercase outline-none border-2 text-blue-500 border-blue-500 focus:outline-none mt-4 ease-linear transition-all duration-150 hover:bg-blue-500
+        text-center hover:text-white"
+        type="button"
+      >
+        Learn more
+      </button>
+    </div>
+  </section>
+</div>
 
 <Footer />
