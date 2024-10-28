@@ -11,3 +11,4 @@ public/*.html
 public/build.map
 public/bundle.css
 public/module/
+public/index.html
