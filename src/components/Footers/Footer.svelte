@@ -5,7 +5,7 @@
 
 <footer class="bg-transparent w-full mt-10 pb-10">
   <div
-    class="mx-auto px-4 w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-lg flex 
+    class="mx-auto px-4 w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-xl flex 
  flex-wrap flex-col items-center shadow glass-effect bg-opacity-70 bg-white rounded-lg p-8 gap-8"
   >
     <div class="w-11/12 lg:w-8/12 px-10 text-center">

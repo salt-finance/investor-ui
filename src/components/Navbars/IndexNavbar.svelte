@@ -13,7 +13,7 @@
 
 <div class="w-full justify-center flex">
   <nav
-    class="z-50  w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-lg flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg shadow fixed glass-effect m-10 rounded-lg bg-opacity-40 bg-white"
+    class="z-50  w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-xl flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg shadow fixed glass-effect m-10 rounded-lg bg-opacity-40 bg-white"
   >
     <div
       class="container px-4 mx-auto flex flex-wrap items-center justify-between transition-all ease-in-out duration-500"

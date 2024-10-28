@@ -2,10 +2,11 @@
   class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-100 border-0"
 >
   <div class="rounded-t bg-white mb-0 px-6 py-6">
-    <div class="text-center flex justify-between">
+    <div class="text-center flex justify-between items-center">
       <h6 class="text-neutral-700 text-xl font-bold">My account</h6>
       <button
-        class="bg-red-400 text-white active:bg-red-500 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        class="bg-emerald-700 text-white active:bg-emerald-600 py-2 px-6 uppercase font-bold rounded-lg outline-none text-sm text-center focus:outline-none ease-in-out
+         hover:bg-emerald-800 transition-all duration-150"
         type="button"
       >
         Settings
@@ -177,7 +178,7 @@
               rows="4"
               value="A beautiful UI Kit and Admin for Svelte & Tailwind CSS. It is Free
                 and Open Source."
-           ></textarea>
+            ></textarea>
           </div>
         </div>
       </div>

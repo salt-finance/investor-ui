@@ -18,7 +18,7 @@
 <!-- svelte-ignore a11y-missing-attribute -->
 <div class="w-full justify-center flex text-center lg:text-left">
   <section
-    class="relative flex flex-wrap gap-4 flex-row mt-36 max-w-screen-lg w-11/12 sm:w-10/12 md:w-9/12"
+    class="relative flex flex-wrap gap-4 flex-row mt-36 max-w-screen-xl w-11/12 sm:w-10/12 md:w-9/12"
   >
     <!-- light card -->
     <div

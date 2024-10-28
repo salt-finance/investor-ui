@@ -2,29 +2,42 @@
   // core components
   import TableDropdown from "components/Dropdowns/TableDropdown.svelte";
 
-  const bootstrap = "https://salt-finance.github.io/investor-ui/assets/img/bootstrap.jpg";
-  const angular = "https://salt-finance.github.io/investor-ui/assets/img/angular.jpg";
-  const sketch = "https://salt-finance.github.io/investor-ui/assets/img/sketch.jpg";
-  const react = "https://salt-finance.github.io/investor-ui/assets/img/react.jpg";
+  const bootstrap =
+    "https://salt-finance.github.io/investor-ui/assets/img/bootstrap.jpg";
+  const angular =
+    "https://salt-finance.github.io/investor-ui/assets/img/angular.jpg";
+  const sketch =
+    "https://salt-finance.github.io/investor-ui/assets/img/sketch.jpg";
+  const react =
+    "https://salt-finance.github.io/investor-ui/assets/img/react.jpg";
   const vue = "https://salt-finance.github.io/investor-ui/assets/img/react.jpg";
 
-  const team1 = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.webp";
-  const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
-  const team3 = "https://salt-finance.github.io/investor-ui/assets/img/team-3-800x800.webp";
-  const team4 = "https://salt-finance.github.io/investor-ui/assets/img/team-4-470x470.webp";
+  const team1 =
+    "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.webp";
+  const team2 =
+    "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
+  const team3 =
+    "https://salt-finance.github.io/investor-ui/assets/img/team-3-800x800.webp";
+  const team4 =
+    "https://salt-finance.github.io/investor-ui/assets/img/team-4-470x470.webp";
 
   // can be one of light or dark
   export let color = "light";
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded {color === 'light' ? 'bg-white' : 'bg-red-800 text-white'}"
+  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg {color ===
+  'light'
+    ? 'bg-emerald-50'
+    : 'bg-emerald-900 text-white'}"
 >
   <div class="rounded-t mb-0 px-4 py-3 border-0">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full px-4 max-w-full flex-grow flex-1">
         <h3
-          class="font-semibold text-lg {color === 'light' ? 'text-neutral-700' : 'text-white'}"
+          class="font-semibold text-lg {color === 'light'
+            ? 'text-neutral-700'
+            : 'text-white'}"
         >
           Card Tables
         </h3>
@@ -35,34 +48,38 @@
     <!-- Projects table -->
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
-        <tr>
+        <tr
+          class="border border-solid {color === 'light'
+            ? 'bg-emerald-50 text-neutral-500 border-emerald-500'
+            : 'bg-emerald-800 text-emerald-50 border-emerald-500'}"
+        >
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left border-color-inherit border-collapse"
           >
             Project
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle  py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
             Budget
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
             Status
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
             Users
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           >
             Completion
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
           ></th>
         </tr>
       </thead>
@@ -72,14 +89,16 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
-            width="48"
-            height="48"
-              src="{bootstrap}"
+              width="48"
+              height="48"
+              src={bootstrap}
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light'
+                ? 'btext-neutral-600'
+                : 'text-white'}"
             >
               Argon Design System
             </span>
@@ -99,22 +118,22 @@
           >
             <div class="flex">
               <img
-                src="{team1}"
+                src={team1}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
               />
               <img
-                src="{team2}"
+                src={team2}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team3}"
+                src={team3}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team4}"
+                src={team4}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
@@ -148,14 +167,16 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
-              src="{angular}"
-               width="48"
-            height="48"
+              src={angular}
+              width="48"
+              height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light'
+                ? 'btext-neutral-600'
+                : 'text-white'}"
             >
               Angular Now UI Kit PRO
             </span>
@@ -176,22 +197,22 @@
           >
             <div class="flex">
               <img
-                src="{team1}"
+                src={team1}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
               />
               <img
-                src="{team2}"
+                src={team2}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team3}"
+                src={team3}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team4}"
+                src={team4}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
@@ -225,14 +246,16 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
-              src="{sketch}"
-               width="48"
-            height="48"
+              src={sketch}
+              width="48"
+              height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light'
+                ? 'btext-neutral-600'
+                : 'text-white'}"
             >
               Black Dashboard Sketch
             </span>
@@ -252,22 +275,22 @@
           >
             <div class="flex">
               <img
-                src="{team1}"
+                src={team1}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
               />
               <img
-                src="{team2}"
+                src={team2}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team3}"
+                src={team3}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team4}"
+                src={team4}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
@@ -301,14 +324,16 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
-              src="{react}"
-               width="48"
-            height="48"
+              src={react}
+              width="48"
+              height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light'
+                ? 'btext-neutral-600'
+                : 'text-white'}"
             >
               React Material Dashboard
             </span>
@@ -328,22 +353,22 @@
           >
             <div class="flex">
               <img
-                src="{team1}"
+                src={team1}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
               />
               <img
-                src="{team2}"
+                src={team2}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team3}"
+                src={team3}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team4}"
+                src={team4}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
@@ -377,14 +402,16 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
-              src="{vue}"
-               width="48"
-            height="48"
+              src={vue}
+              width="48"
+              height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light'
+                ? 'btext-neutral-600'
+                : 'text-white'}"
             >
               React Material Dashboard
             </span>
@@ -405,22 +432,22 @@
           >
             <div class="flex">
               <img
-                src="{team1}"
+                src={team1}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow"
               />
               <img
-                src="{team2}"
+                src={team2}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team3}"
+                src={team3}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />
               <img
-                src="{team4}"
+                src={team4}
                 alt="..."
                 class="w-10 h-10 rounded-full border-2 border-slate-50 shadow -ml-4"
               />

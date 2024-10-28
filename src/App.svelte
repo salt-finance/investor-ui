@@ -47,7 +47,7 @@ Danger - Cornell red - #b91c1c - red-700 -->
       font-family: Poppins, sans-serif;
     }
     a.active {
-      color: red;
+      color: #3B82F6;
     }
     font {
       background-color: inherit !important;

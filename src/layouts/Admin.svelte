@@ -20,16 +20,20 @@
   };
 </script>
 
-<div class="h-full">
+<AdminNavbar />
+
+<div class="h-full flex justify-center">
+  <div
+    class="w-full h-1/3 fixed top-0 bg-gradient-to-br from-blue-700 to-indigo-300"
+  ></div>
   <Sidebar />
-  <div class="relative md:ml-64 bg-slate-100 min-h-screen">
-    <AdminNavbar />
+  <div
+    class="min-h-screen w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-xl flex flex-col top-40 relative"
+  >
     <HeaderStats />
-    <div class="px-4 md:px-10 mx-auto w-full h-full relative">
-      <div class="flex flex-wrap -mt-24 mb-24">
-        <Router prefix={"/admin"} {routes} />
-      </div>
-      <FooterAdmin />
+    <div class="flex flex-wrap mt-8">
+      <Router prefix={"/admin"} {routes} />
     </div>
+    <FooterAdmin />
   </div>
 </div>
