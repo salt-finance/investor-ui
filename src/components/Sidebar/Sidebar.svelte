@@ -31,7 +31,7 @@
       <!-- Brand -->
       <a
         use:link
-        class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
+        class="md:block text-left md:pb-2 text-neutral-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
         href="/"
       >
         Salt Finance
@@ -57,7 +57,7 @@
             <div class="w-6/12">
               <a
                 use:link
-                class="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
+                class="md:block text-left md:pb-2 text-neutral-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0 skiptranslate"
                 href="/"
               >
                 Salt Finance
@@ -81,7 +81,7 @@
             <input
               type="text"
               placeholder="Search"
-              class="border-0 px-3 py-2 h-12 border border-solid border-slate-500 placeholder-slate-300 text-slate-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+              class="border-0 px-3 py-2 h-12 border border-solid border-slate-500 placeholder-slate-300 text-neutral-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
             />
           </div>
         </form>
@@ -90,7 +90,7 @@
         <hr class="my-4 md:min-w-full" />
         <!-- Heading -->
         <h6
-          class="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+          class="md:min-w-full text-neutral-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
         >
           Admin Layout Pages
         </h6>
@@ -155,10 +155,10 @@
             <a
               use:link
               
-              class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
+              class="text-neutral-700 hover:text-neutral-500 text-xs uppercase py-3 font-bold block"
               href="/auth/login"
             >
-              <i class="fas fa-fingerprint text-slate-300 mr-2 text-sm"></i>
+              <i class="fas fa-fingerprint text-neutral-300 mr-2 text-sm"></i>
               Login
             </a>
           </li>
@@ -166,10 +166,10 @@
           <li class="items-center">
             <a
               use:link
-              class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
+              class="text-neutral-700 hover:text-neutral-500 text-xs uppercase py-3 font-bold block"
               href="/auth/register"
             >
-              <i class="fas fa-clipboard-list text-slate-300 mr-2 text-sm"></i>
+              <i class="fas fa-clipboard-list text-neutral-300 mr-2 text-sm"></i>
               Register
             </a>
           </li>
@@ -183,10 +183,10 @@
           <li class="items-center">
             <a
               use:link
-              class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
+              class="text-neutral-700 hover:text-neutral-500 text-xs uppercase py-3 font-bold block"
               href="/landing"
             >
-              <i class="fas fa-newspaper text-slate-300 mr-2 text-sm"></i>
+              <i class="fas fa-newspaper text-neutral-300 mr-2 text-sm"></i>
               Landing Page
             </a>
           </li>
@@ -194,10 +194,10 @@
           <li class="items-center">
             <a
               use:link
-              class="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
+              class="text-neutral-700 hover:text-neutral-500 text-xs uppercase py-3 font-bold block"
               href="/profile"
             >
-              <i class="fas fa-user-circle text-slate-300 mr-2 text-sm"></i>
+              <i class="fas fa-user-circle text-neutral-300 mr-2 text-sm"></i>
               Profile Page
             </a>
           </li>

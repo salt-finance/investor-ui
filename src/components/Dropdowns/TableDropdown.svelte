@@ -24,7 +24,7 @@
 
 <div>
   <a
-    class="text-slate-500 py-1 px-3"
+    class="text-neutral-500 py-1 px-3"
     href="#pablo"
     bind:this="{btnDropdownRef}"
     on:click="{toggleDropdown}"
@@ -37,19 +37,19 @@
   >
     <a
       href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Action
     </a>
     <a
       href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Another action
     </a>
     <a
       href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-slate-700"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Something else here
     </a>

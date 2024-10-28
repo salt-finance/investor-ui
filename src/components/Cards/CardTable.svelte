@@ -24,7 +24,7 @@
     <div class="flex flex-wrap items-center">
       <div class="relative w-full px-4 max-w-full flex-grow flex-1">
         <h3
-          class="font-semibold text-lg {color === 'light' ? 'text-slate-700' : 'text-white'}"
+          class="font-semibold text-lg {color === 'light' ? 'text-neutral-700' : 'text-white'}"
         >
           Card Tables
         </h3>
@@ -37,32 +37,32 @@
       <thead>
         <tr>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Project
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Budget
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Status
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Users
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           >
             Completion
           </th>
           <th
-            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-slate-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
+            class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left {color === 'light' ? 'bg-slate-50 text-neutral-500 border-slate-100' : 'bg-red-700 text-red-200 border-red-600'}"
           ></th>
         </tr>
       </thead>
@@ -79,7 +79,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-slate-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
             >
               Argon Design System
             </span>
@@ -155,7 +155,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-slate-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
             >
               Angular Now UI Kit PRO
             </span>
@@ -232,7 +232,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-slate-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
             >
               Black Dashboard Sketch
             </span>
@@ -308,7 +308,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-slate-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
             >
               React Material Dashboard
             </span>
@@ -384,7 +384,7 @@
               alt="..."
             />
             <span
-              class="ml-3 font-bold {color === 'light' ? 'btext-slate-600' : 'text-white'}"
+              class="ml-3 font-bold {color === 'light' ? 'btext-neutral-600' : 'text-white'}"
             >
               React Material Dashboard
             </span>

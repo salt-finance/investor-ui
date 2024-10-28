@@ -37,7 +37,7 @@
                             <h1 class="text-white font-semibold text-5xl">
                                 Your story starts with us.
                             </h1>
-                            <p class="mt-4 text-lg text-slate-200 skiptranslate">
+                            <p class="mt-4 text-lg text-neutral-200 skiptranslate">
                                 This is a simple example of a Landing Page you
                                 can build using Salt Finance. It features
                                 multiple CSS components based on the Tailwind
@@ -61,7 +61,7 @@
                     y="0"
                 >
                     <polygon
-                        class="text-slate-200 fill-current"
+                        class="text-neutral-200 fill-current"
                         points="2560 0 2560 100 0 100"
                     ></polygon>
                 </svg>
@@ -86,7 +86,7 @@
                                 <h6 class="text-xl font-semibold">
                                     Awarded Agency
                                 </h6>
-                                <p class="mt-2 mb-4 text-slate-500">
+                                <p class="mt-2 mb-4 text-neutral-500">
                                     Divide details about your product or agency
                                     work into parts. A paragraph describing a
                                     feature will be enough.
@@ -108,7 +108,7 @@
                                 <h6 class="text-xl font-semibold">
                                     Free Revisions
                                 </h6>
-                                <p class="mt-2 mb-4 text-slate-500">
+                                <p class="mt-2 mb-4 text-neutral-500">
                                     Keep you user engaged by providing
                                     meaningful information. Remember that by
                                     this time, the user is curious.
@@ -130,7 +130,7 @@
                                 <h6 class="text-xl font-semibold">
                                     Verified Company
                                 </h6>
-                                <p class="mt-2 mb-4 text-slate-500">
+                                <p class="mt-2 mb-4 text-neutral-500">
                                     Write a few lines about each one. A
                                     paragraph describing a feature will be
                                     enough. Keep you user engaged!
@@ -143,7 +143,7 @@
                 <div class="flex flex-wrap items-center mt-32">
                     <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
                         <div
-                            class="text-slate-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
+                            class="text-neutral-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white"
                         >
                             <i class="fas fa-user-friends text-xl"></i>
                         </div>
@@ -151,14 +151,14 @@
                             Working with us is a pleasure
                         </h3>
                         <p
-                            class="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600"
+                            class="text-lg font-light leading-relaxed mt-4 mb-4 text-neutral-600"
                         >
                             Don't let your uses guess by attaching tooltips and
                             popoves to any element. Just make sure you enable
                             them first via JavaScript.
                         </p>
                         <p
-                            class="text-lg font-light leading-relaxed mt-0 mb-4 text-slate-600"
+                            class="text-lg font-light leading-relaxed mt-0 mb-4 text-neutral-600"
                         >
                             The kit comes with three pre-built pages to help you
                             get started faster. You can change the text and
@@ -168,7 +168,7 @@
                         <a
                             use:link
                             href="/"
-                            class="font-bold text-slate-700 mt-8 skiptranslate"
+                            class="font-bold text-neutral-700 mt-8 skiptranslate"
                         >
                             Check Salt Finance!
                         </a>
@@ -252,7 +252,7 @@
                                 A growing company
                             </h3>
                             <p
-                                class="mt-4 text-lg leading-relaxed text-slate-500"
+                                class="mt-4 text-lg leading-relaxed text-neutral-500"
                             >
                                 The extension comes with three pre-built pages
                                 to help you get started faster. You can change
@@ -270,7 +270,7 @@
                                             </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-slate-500">
+                                            <h4 class="text-neutral-500">
                                                 Carefully crafted components
                                             </h4>
                                         </div>
@@ -286,7 +286,7 @@
                                             </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-slate-500">
+                                            <h4 class="text-neutral-500">
                                                 Amazing page examples
                                             </h4>
                                         </div>
@@ -303,7 +303,7 @@
                                             </span>
                                         </div>
                                         <div>
-                                            <h4 class="text-slate-500">
+                                            <h4 class="text-neutral-500">
                                                 Dynamic components
                                             </h4>
                                         </div>
@@ -324,7 +324,7 @@
                             Here are our heroes
                         </h2>
                         <p
-                            class="text-lg leading-relaxed m-4 text-slate-500"
+                            class="text-lg leading-relaxed m-4 text-neutral-500"
                         >
                             According to the National Oceanic and Atmospheric
                             Administration, Ted, Scambos, NSIDClead scentist,
@@ -343,7 +343,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Ryan Tompson</h5>
                                 <p
-                                    class="mt-1 text-sm text-slate-500 uppercase font-semibold"
+                                    class="mt-1 text-sm text-neutral-500 uppercase font-semibold"
                                 >
                                     Web Developer
                                 </p>
@@ -380,7 +380,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Romina Hadid</h5>
                                 <p
-                                    class="mt-1 text-sm text-slate-500 uppercase font-semibold"
+                                    class="mt-1 text-sm text-neutral-500 uppercase font-semibold"
                                 >
                                     Marketing Specialist
                                 </p>
@@ -411,7 +411,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Alexa Smith</h5>
                                 <p
-                                    class="mt-1 text-sm text-slate-500 uppercase font-semibold"
+                                    class="mt-1 text-sm text-neutral-500 uppercase font-semibold"
                                 >
                                     UI/UX Designer
                                 </p>
@@ -448,7 +448,7 @@
                             <div class="pt-6 text-center">
                                 <h5 class="text-xl font-bold">Jenna Kardi</h5>
                                 <p
-                                    class="mt-1 text-sm text-slate-500 uppercase font-semibold"
+                                    class="mt-1 text-sm text-neutral-500 uppercase font-semibold"
                                 >
                                     Founder and CEO
                                 </p>
@@ -500,7 +500,7 @@
                     y="0"
                 >
                     <polygon
-                        class="text-slate-800 fill-current"
+                        class="text-neutral-800 fill-current"
                         points="2560 0 2560 100 0 100"
                     ></polygon>
                 </svg>
@@ -513,7 +513,7 @@
                             Build something
                         </h2>
                         <p
-                            class="text-lg leading-relaxed mt-4 mb-4 text-slate-500"
+                            class="text-lg leading-relaxed mt-4 mb-4 text-neutral-500"
                         >
                             Put the potentially record low maximum sea ice
                             extent tihs year down to low ice. According to the
@@ -525,42 +525,42 @@
                 <div class="flex flex-wrap mt-12 justify-center">
                     <div class="w-full lg:w-3/12 px-4 text-center">
                         <div
-                            class="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+                            class="text-neutral-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
                         >
                             <i class="fas fa-medal text-xl"></i>
                         </div>
                         <h6 class="text-xl mt-5 font-semibold text-white">
                             Excelent Services
                         </h6>
-                        <p class="mt-2 mb-4 text-slate-500">
+                        <p class="mt-2 mb-4 text-neutral-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
                     </div>
                     <div class="w-full lg:w-3/12 px-4 text-center">
                         <div
-                            class="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+                            class="text-neutral-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
                         >
                             <i class="fas fa-poll text-xl"></i>
                         </div>
                         <h5 class="text-xl mt-5 font-semibold text-white">
                             Grow your market
                         </h5>
-                        <p class="mt-2 mb-4 text-slate-500">
+                        <p class="mt-2 mb-4 text-neutral-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
                     </div>
                     <div class="w-full lg:w-3/12 px-4 text-center">
                         <div
-                            class="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
+                            class="text-neutral-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center"
                         >
                             <i class="fas fa-lightbulb text-xl"></i>
                         </div>
                         <h5 class="text-xl mt-5 font-semibold text-white">
                             Launch time
                         </h5>
-                        <p class="mt-2 mb-4 text-slate-500">
+                        <p class="mt-2 mb-4 text-neutral-500">
                             Some quick example text to build on the card title
                             and make up the bulk of the card's content.
                         </p>
@@ -580,14 +580,14 @@
                                     Want to work with us?
                                 </h4>
                                 <p
-                                    class="leading-relaxed mt-1 mb-4 text-slate-500"
+                                    class="leading-relaxed mt-1 mb-4 text-neutral-500"
                                 >
                                     Complete this form and we will get back to
                                     you in 24 hours.
                                 </p>
                                 <div class="relative w-full mb-3 mt-8">
                                     <label
-                                        class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                                        class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                                         for="full-name"
                                     >
                                         Full Name
@@ -595,14 +595,14 @@
                                     <input
                                         id="full-name"
                                         type="text"
-                                        class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder="Full Name"
                                     />
                                 </div>
 
                                 <div class="relative w-full mb-3">
                                     <label
-                                        class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                                        class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                                         for="email"
                                     >
                                         Email
@@ -610,14 +610,14 @@
                                     <input
                                         id="email"
                                         type="email"
-                                        class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         placeholder="Email"
                                     />
                                 </div>
 
                                 <div class="relative w-full mb-3">
                                     <label
-                                        class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                                        class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                                         for="message"
                                     >
                                         Message
@@ -626,7 +626,7 @@
                                         id="message"
                                         rows="4"
                                         cols="80"
-                                        class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                                        class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                                         placeholder="Type a message..."
                                    ></textarea>
                                 </div>

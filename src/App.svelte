@@ -32,8 +32,16 @@
 </script>
 
 <Router {routes} />
-
+<!-- // Base color classes
+Gain - Mint - #10B981 emerald-500
+Loss - Imperial Red - #EF4444 - red-500
+Buy - Yellow Green - #84CC16 - lime-500
+Sell - Xanthous - #EAB308 - yellow-500
+Action - Azure - #3B82F6 - blue-500
+Danger - Cornell red - #b91c1c - red-700 -->
 <style lang="scss">
+
+
   :global {
     * {
       font-family: Poppins, sans-serif;
@@ -80,6 +88,12 @@
       iframe {
         display: none;
       }
+    }
+    .glass-effect {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
   }
 </style>

@@ -84,7 +84,7 @@ const indexTemplate = `
     </script>
   </head>
 
-  <body class="text-slate-700 antialiased">
+  <body class="text-neutral-700 antialiased">
  <script defer type="text/javascript">
       function setupGoogleTranslate() {
         new google.translate.TranslateElement(

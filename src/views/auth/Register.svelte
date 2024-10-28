@@ -12,20 +12,20 @@
       >
         <div class="rounded-t mb-0 px-6 py-6">
           <div class="text-center mb-3">
-            <h6 class="text-slate-500 text-sm font-bold">
+            <h6 class="text-neutral-500 text-sm font-bold">
               Sign up with
             </h6>
           </div>
           <div class="btn-wrapper text-center">
             <button
-              class="bg-white active:bg-slate-50 text-slate-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+              class="bg-white active:bg-slate-50 text-neutral-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
               type="button"
             >
               <img alt="..." class="w-5 mr-1" src="{github}" />
               Github
             </button>
             <button
-              class="bg-white active:bg-slate-50 text-slate-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+              class="bg-white active:bg-slate-50 text-neutral-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
               type="button"
             >
               <img alt="..." class="w-5 mr-1" src="{google}" />
@@ -35,13 +35,13 @@
           <hr class="mt-6 border-b-1 border-slate-300" />
         </div>
         <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <div class="text-slate-500 text-center mb-3 font-bold">
+          <div class="text-neutral-500 text-center mb-3 font-bold">
             <small>Or sign up with credentials</small>
           </div>
           <form>
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                 for="grid-name"
               >
                 Name
@@ -49,14 +49,14 @@
               <input
                 id="grid-name"
                 type="email"
-                class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Name"
               />
             </div>
 
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                 for="grid-email"
               >
                 Email
@@ -64,14 +64,14 @@
               <input
                 id="grid-email"
                 type="email"
-                class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Email"
               />
             </div>
 
             <div class="relative w-full mb-3">
               <label
-                class="block uppercase text-slate-600 text-xs font-bold mb-2"
+                class="block uppercase text-neutral-600 text-xs font-bold mb-2"
                 for="grid-password"
               >
                 Password
@@ -79,7 +79,7 @@
               <input
                 id="grid-password"
                 type="password"
-                class="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder="Password"
               />
             </div>
@@ -89,9 +89,9 @@
                 <input
                   id="customCheckLogin"
                   type="checkbox"
-                  class="form-checkbox border-0 rounded text-slate-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                  class="form-checkbox border-0 rounded text-neutral-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                 />
-                <span class="ml-2 text-sm font-semibold text-slate-600">
+                <span class="ml-2 text-sm font-semibold text-neutral-600">
                   I agree with the
                   <a href="#pablo" on:click={(e) => e.preventDefault()} class="text-red-500">
                     Privacy Policy
