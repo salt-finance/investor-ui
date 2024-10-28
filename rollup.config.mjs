@@ -99,8 +99,7 @@ const indexTemplate = `
         let google_translate_element = document.getElementById("google_translate_element");
     
         if(google_translate_element === null){
-        console.log('none');
-        return;
+         return;
         }
         var a =
           google_translate_element.querySelector(".goog-te-gadget").firstChild;

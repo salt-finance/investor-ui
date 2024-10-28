@@ -9,14 +9,16 @@ export function staggerdTransition(index) {
 }
 
 export const blurTransitionInConfig = {
-  amount: 30,
-  delay: 50,
-  duration: 800,
+  amount: 5,
+  delay: 0,
+  duration: 600,
   easing: (t) => sineOut(t),
 };
 export const blurTransitionOutConfig = {
-  amount: 30,
+  amount: 5,
   delay: 0,
   duration: 300,
   easing: (t) => sineIn(t),
 };
+
+

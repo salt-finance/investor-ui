@@ -72,6 +72,8 @@
             class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
           >
             <img
+            width="48"
+            height="48"
               src="{bootstrap}"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
@@ -147,6 +149,8 @@
           >
             <img
               src="{angular}"
+               width="48"
+            height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
@@ -222,6 +226,8 @@
           >
             <img
               src="{sketch}"
+               width="48"
+            height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
@@ -296,6 +302,8 @@
           >
             <img
               src="{react}"
+               width="48"
+            height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />
@@ -370,6 +378,8 @@
           >
             <img
               src="{vue}"
+               width="48"
+            height="48"
               class="h-12 w-12 bg-white rounded-full border"
               alt="..."
             />

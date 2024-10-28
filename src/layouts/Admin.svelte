@@ -25,7 +25,7 @@
   <div class="relative md:ml-64 bg-slate-100 min-h-screen">
     <AdminNavbar />
     <HeaderStats />
-    <div class="px-4 md:px-10 mx-auto w-full h-full">
+    <div class="px-4 md:px-10 mx-auto w-full h-full relative">
       <div class="flex flex-wrap -mt-24 mb-24">
         <Router prefix={"/admin"} {routes} />
       </div>
