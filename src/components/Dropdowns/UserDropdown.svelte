@@ -37,6 +37,8 @@
       >
         <img
           alt="..."
+          width="48"
+          height="48"
           class="w-full rounded-full align-middle border-none shadow-lg"
           src="{image}"
         />
