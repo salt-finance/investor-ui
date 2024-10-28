@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   // library that creates chart objects in page
-  import { ArcElement, Chart, PieController } from "chart.js";
 
   // init chart
   onMount(async () => {
@@ -55,7 +54,7 @@
                 }
                 if (context.parsed !== null) {
                   label += context.parsed;
-                  label += '%';
+                  label += "%";
                 }
                 return label;
               },
@@ -66,7 +65,15 @@
     };
     var ctx = document.getElementById("pie-chart");
 
-    Chart.register([PieController, ArcElement]);
+    let { Chart, Legend, ArcElement, PieController, Tooltip } = await import(
+      "chart.js"
+    );
+
+    Chart.register([PieController, ArcElement, Tooltip, Legend]);
+
+    Chart.defaults.color = "#334155";
+    Chart.defaults.font.family = "poppins";
+    Chart.defaults.clip = 100;
 
     new Chart(ctx, config);
   });
@@ -79,10 +86,9 @@
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
         <h6 class="uppercase text-slate-500 mb-1 text-xs font-semibold">
-          Security distribution by category        </h6>
-        <h2 class="text-slate-700 text-xl font-semibold">
-          Pie chart
-        </h2>
+          Security distribution by category
+        </h6>
+        <h2 class="text-slate-700 text-xl font-semibold">Pie chart</h2>
       </div>
     </div>
   </div>

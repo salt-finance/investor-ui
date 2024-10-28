@@ -1,11 +1,11 @@
 <script>
   // core components
   import CardBarChart from "components/Cards/CardBarChart.svelte";
+  import CardDoghnutChart from "components/Cards/CardDoghnutChart.svelte";
   import CardLineChart from "components/Cards/CardLineChart.svelte";
   import CardPageVisits from "components/Cards/CardPageVisits.svelte";
   import CardPieChart from "components/Cards/CardPieChart.svelte";
   import CardSocialTraffic from "components/Cards/CardSocialTraffic.svelte";
-  import CardDoghnutChart from "../../components/Cards/CardDoghnutChart.svelte";
 
   import { blur, fly } from "svelte/transition";
   import { blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition } from "utils/animationTools.js";

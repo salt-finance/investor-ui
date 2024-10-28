@@ -5,6 +5,8 @@ import { spawn } from "node:child_process";
 import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
+import { visualizer } from "rollup-plugin-visualizer";
+
 // library that helps you import in svelte with
 // absolute paths, instead of
 // import Component  from "../../../../components/Component.svelte";
@@ -46,14 +48,14 @@ const indexTemplate = `
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link
       rel="apple-touch-icon"
       sizes="76x76"
       href="<<live-preview-link>>/apple-icon.png"
     />
 
-    <script defer src="<<live-preview-link>>/build/bundle.min.js"></script>
+    <script type="module" defer src="<<live-preview-link>>/build/min/main.js"></script>
     <link
       rel="preload"
       href="<<live-preview-link>>/assets/styles/tailwind.css"
@@ -94,6 +96,12 @@ const indexTemplate = `
           },
           "google_translate_element"
         );
+        let google_translate_element = document.getElementById("google_translate_element");
+    
+        if(google_translate_element === null){
+        console.log('none');
+        return;
+        }
         var a =
           google_translate_element.querySelector(".goog-te-gadget").firstChild;
         google_translate_element.querySelector(".goog-te-gadget").innerHTML =
@@ -181,16 +189,17 @@ function serve() {
 
 export default {
   input: `src/main.js`,
+
   output: [
     {
       sourcemap: true,
-      format: "iife",
+      format: "es",
       name: "app",
-      file: "public/build/bundle.js",
+      dir: "public/build/",
     },
     {
-      file: "public/build/bundle.min.js",
-      format: "iife",
+      dir: "public/build/min",
+      format: "es",
       name: "version",
       plugins: [terser()],
     },
@@ -221,6 +230,7 @@ export default {
     watch && livereload("public"),
 
     aliases,
+    visualizer(),
   ],
   watch: {
     clearScreen: false,

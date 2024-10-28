@@ -1,9 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  // library that creates chart objects in page
-  import { ArcElement, Chart, DoughnutController } from "chart.js";
 
-  // init chart
   onMount(async () => {
     let config = {
       type: "doughnut",
@@ -47,7 +44,13 @@
     };
     var ctx = document.getElementById("doughnut-chart");
 
-    Chart.register([DoughnutController, ArcElement]);
+    let { Chart, Legend, ArcElement, DoughnutController, Tooltip } =
+      await import("chart.js");
+    Chart.register([DoughnutController, ArcElement, Tooltip, Legend]);
+
+    Chart.defaults.color = "#334155";
+    Chart.defaults.font.family = "poppins";
+    Chart.defaults.clip = 100;
 
     new Chart(ctx, config);
   });

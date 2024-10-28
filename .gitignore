@@ -6,3 +6,8 @@
 commit.sh
 package-lock.json
 .env
+stats.html
+public/*.html
+public/build.map
+public/bundle.css
+public/module/

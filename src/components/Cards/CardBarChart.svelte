@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   // library that creates chart objects in page
-  import { BarController, BarElement, Chart } from "chart.js";
   // init chart
   onMount(async () => {
     let config = {
@@ -19,7 +18,7 @@
         datasets: [
           {
             label: "Account 1",
-            fill: true,
+            fill: false,
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: [500, 6800, 86000, 74000, 56000, 60000, 87000],
@@ -29,7 +28,7 @@
             backgroundColor: "rgb(12, 200, 132)",
             borderColor: "rgb(12, 200, 132)",
             data: [0, 0, 9000, 1400, 99999.34, 67000, 75000],
-            fill: true,
+            fill: false,
           },
         ],
       },
@@ -86,7 +85,27 @@
     };
     var ctx = document.getElementById("bar-chart");
 
-    Chart.register([BarElement, BarController]);
+    let {
+      CategoryScale,
+      Chart,
+      Legend,
+      LinearScale,
+      BarElement,
+      BarController,
+      Tooltip,
+    } = await import("chart.js");
+    Chart.register([
+      LinearScale,
+      CategoryScale,
+      BarElement,
+      BarController,
+      Tooltip,
+      Legend,
+    ]);
+
+    Chart.defaults.color = "#334155";
+    Chart.defaults.font.family = "poppins";
+    Chart.defaults.clip = 100;
 
     new Chart(ctx, config);
   });

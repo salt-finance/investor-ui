@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {
-    "build": "rollup -c --environment BUILD:development",
+    "build": "rollup -c --environment BUILD:development --treeshake smallest",
     "build-prod": "rollup -c --environment BUILD:production --treeshake smallest",
-    "dev": "rollup -c -w",
+    "dev": "rollup -c -w --treeshake smallest",
     "start": "sirv public -s",
     "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css --minify",
+    "install:clear":"rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install && npm run build:tailwind && npm run build:fontawesome && npm run dev"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.2.2",
+    "rollup-plugin-visualizer": "^5.12.0",
     "svelte": "^5.0.5"
   },
   "dependencies": {

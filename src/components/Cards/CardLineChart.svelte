@@ -1,18 +1,6 @@
 <script>
   import { onMount } from "svelte";
   // library that creates chart objects in page
-  import {
-    CategoryScale,
-    Chart,
-    Filler,
-    Legend,
-    LinearScale,
-    LineController,
-    LineElement,
-    LogarithmicScale,
-    PointElement,
-    Tooltip,
-  } from "chart.js";
 
   // init chart
   onMount(async () => {
@@ -96,11 +84,22 @@
       },
     };
     var ctx = document.getElementById("line-chart");
+    let {
+      CategoryScale,
+      Chart,
+      Filler,
+      Legend,
+      LinearScale,
+      LineController,
+      LineElement,
+      PointElement,
+      Tooltip,
+    } = await import("chart.js");
+
     Chart.register([
       LineController,
       LinearScale,
       CategoryScale,
-      LogarithmicScale,
       PointElement,
       Filler,
       LineElement,
