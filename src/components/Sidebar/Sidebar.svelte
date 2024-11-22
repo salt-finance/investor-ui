@@ -12,14 +12,14 @@
 </script>
 
 <nav
-  class="md:left-0 md:block fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between w-full md:h-full md:w-64 z-10 py-4 px-6 bg-opacity-100 bg-neutral-800 text-white"
+  class="lg:left-0 lg:block h-full lg:top-0 lg:bottom-0 lg:overflow-y-auto lg:flex-row lg:flex-nowrap lg:overflow-hidden shadow-xl flex flex-wrap items-center justify-between  py-4 px-6 bg-opacity-100 bg-neutral-800 text-white"
 >
   <div
-    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
+    class="lg:flex-col lg:items-stretch lg:min-h-full lg:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
   >
     <!-- Toggler -->
     <button
-      class="cursor-pointer md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+      class="cursor-pointer lg:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
       type="button"
       aria-label="togglecollapse"
       onclick={() => (collapseShow = "glass-effect bg-opacity-80 bg-neutral-800 m-2 py-3 px-6")}
@@ -29,13 +29,13 @@
     <!-- Brand -->
     <a
       use:link
-      class="md:block text-left md:pb-2 mr-0 inline-block whitespace-nowrap  uppercase font-bold p-4 px-0 skiptranslate"
+      class="lg:block text-left lg:pb-2 mr-0 inline-block whitespace-nowrap  uppercase font-bold p-4 px-0 skiptranslate"
       href="/"
     >
       Salt Finance
     </a>
     <!-- User -->
-    <ul class="md:hidden items-center flex flex-wrap list-none">
+    <ul class="lg:hidden items-center flex flex-wrap list-none">
       <li class="inline-block relative">
         <NotificationDropdown />
       </li>
@@ -45,18 +45,18 @@
     </ul>
     <!-- Collapse -->
     <div
-      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded {collapseShow}"
+      class="lg:flex lg:flex-col lg:items-stretch lg:opacity-100 lg:relative lg:mt-4 lg:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded {collapseShow}"
       transition:fly={staggerdTransition(1)}
     >
       <!-- Collapse header -->
       <div
-        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-slate-200"
+        class="lg:min-w-full lg:hidden block pb-4 mb-4 border-b border-solid border-slate-200"
       >
         <div class="flex flex-wrap">
           <div class="w-6/12">
             <a
               use:link
-              class="md:block text-left md:pb-2 mr-0 inline-block whitespace-nowrap  uppercase font-bold p-4 px-0 skiptranslate"
+              class="lg:block text-left lg:pb-2 mr-0 inline-block whitespace-nowrap  uppercase font-bold p-4 px-0 skiptranslate"
               href="/"
             >
               Salt Finance
@@ -65,7 +65,7 @@
           <div class="w-6/12 flex justify-end">
             <button
               type="button"
-              class="cursor-pointer md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+              class="cursor-pointer lg:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
               aria-label="togglecollapse"
               onclick={() => (collapseShow = "hidden")}
             >
@@ -75,7 +75,7 @@
         </div>
       </div>
       <!-- Form -->
-      <form class="mt-6 mb-4 md:hidden">
+      <form class="mt-6 mb-4 lg:hidden">
         <div class="mb-3 pt-0">
           <input
             type="text"
@@ -86,16 +86,16 @@
       </form>
 
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-4 lg:min-w-full" />
       <!-- Heading -->
       <h6
-        class="md:min-w-full  uppercase font-bold block pt-1 pb-4 no-underline"
+        class="lg:min-w-full  uppercase font-bold block pt-1 pb-4 no-underline"
       >
         Admin Layout Pages
       </h6>
       <!-- Navigation -->
 
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+      <ul class="lg:flex-col lg:min-w-full flex flex-col list-none">
         <li class="items-center">
           <a
             use:link
@@ -137,12 +137,12 @@
       </ul>
 
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-4 lg:min-w-full" />
       <!-- Heading -->
 
       <!-- Navigation -->
 
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+      <ul class="lg:flex-col lg:min-w-full flex flex-col list-none lg:mb-4">
         <li class="items-center">
           <a
             use:link
@@ -167,10 +167,10 @@
       </ul>
 
       <!-- Divider -->
-      <hr class="my-4 md:min-w-full" />
+      <hr class="my-4 lg:min-w-full" />
       <!-- Navigation -->
 
-      <ul class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+      <ul class="lg:flex-col lg:min-w-full flex flex-col list-none lg:mb-4">
         <li class="items-center">
           <a
             use:link

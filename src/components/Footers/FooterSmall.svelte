@@ -19,35 +19,6 @@
         Salt finance 
         </div>
       </div>
-      <div class="w-full md:w-8/12 px-4">
-        <ul class="flex flex-wrap list-none md:justify-end justify-center">
-      
-          <li>
-            <a
-              href="https://www.creative-tim.com/presentation?ref=ns-footer-small"
-              class="text-white hover:text-neutral-300 text-sm font-semibold block py-1 px-3"
-            >
-              About Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="http://blog.creative-tim.com?ref=ns-footer-small"
-              class="text-white hover:text-neutral-300 text-sm font-semibold block py-1 px-3"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/creativetimofficial/notus-svelte/blob/main/LICENSE.md?ref=ns-footer-small"
-              class="text-white hover:text-neutral-300 text-sm font-semibold block py-1 px-3"
-            >
-              MIT License
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </footer>

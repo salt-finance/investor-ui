@@ -7,41 +7,13 @@
   <div class="container mx-auto px-4">
     <hr class="mb-4 border-b-1 border-slate-200" />
     <div class="flex flex-wrap items-center md:justify-between justify-center">
-      <div class="w-full md:w-4/12 px-4">
+      <div class="w-full px-4">
         <div
-          class="text-sm text-neutral-500 font-semibold py-1 text-center md:text-left skiptranslate"
+          class="text-sm text-neutral-500 font-semibold py-1 text-center skiptranslate"
         >
           Copyright © {date}
           Salt finance
         </div>
-      </div>
-      <div class="w-full md:w-8/12 px-4">
-        <ul class="flex flex-wrap list-none md:justify-end justify-center">
-          <li>
-            <a
-              href="https://www.creative-tim.com/presentation?ref=ns-footer-admin"
-              class="text-neutral-600 hover:text-neutral-800 text-sm font-semibold block py-1 px-3"
-            >
-              About Us
-            </a>
-          </li>
-          <li>
-            <a
-              href="http://blog.creative-tim.com?ref=ns-footer-admin"
-              class="text-neutral-600 hover:text-neutral-800 text-sm font-semibold block py-1 px-3"
-            >
-              Blog
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/creativetimofficial/notus-svelte/blob/main/LICENSE.md?ref=ns-footer-admin"
-              class="text-neutral-600 hover:text-neutral-800 text-sm font-semibold block py-1 px-3"
-            >
-              MIT License
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
   </div>

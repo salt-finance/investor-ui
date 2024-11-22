@@ -1,10 +1,12 @@
 <script>
   // library for creating dropdown menu appear on click
   import { createPopper } from "@popperjs/core";
-
+  import { link } from "svelte-spa-router";
+  import active from "svelte-spa-router/active";
   // core components
 
-  const image = "https://salt-finance.github.io/investor-ui/assets/img/team-1-800x800.webp";
+  const image =
+    "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
 
   let dropdownPopoverShow = false;
 
@@ -28,8 +30,8 @@
   <a
     class="text-neutral-500 block"
     href="#pablo"
-    bind:this="{btnDropdownRef}"
-    on:click="{toggleDropdown}"
+    bind:this={btnDropdownRef}
+    on:click={toggleDropdown}
   >
     <div class="items-center flex">
       <span
@@ -40,39 +42,32 @@
           width="48"
           height="48"
           class="w-full rounded-full align-middle border-none shadow-lg"
-          src="{image}"
+          src={image}
         />
       </span>
     </div>
   </a>
   <div
-    bind:this="{popoverDropdownRef}"
-    class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 {dropdownPopoverShow ? 'block':'hidden'}"
+    bind:this={popoverDropdownRef}
+    class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 {dropdownPopoverShow
+      ? 'block'
+      : 'hidden'}"
   >
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      use:link
+      use:active
+      href="/admin/settings"
+      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent"
     >
-      Action
+      Settings
     </a>
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      use:link
+      href="/"
+      class="text-sm py-2 px-4 font-normal flex justify-between items-center w-full whitespace-nowrap bg-transparent"
     >
-      Another action
+      Logout <i class="fas fa-arrow-right-from-bracket"></i>
     </a>
-    <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
-    >
-      Something else here
-    </a>
-    <div class="h-0 my-2 border border-solid border-slate-100"></div>
-    <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
-      class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
-    >
-      Seprated link
-    </a>
+    <div id="google_translate_element"></div>
   </div>
 </div>

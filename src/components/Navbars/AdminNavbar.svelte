@@ -1,41 +1,55 @@
 <script>
   // core components
   import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
+
+  import { link } from "svelte-spa-router";
+
+  let navbarOpen = false;
+
+  function setNavbarOpen() {
+    navbarOpen = !navbarOpen;
+  }
 </script>
 
 <!-- Navbar -->
-<div class="w-full justify-center flex relative z-10">
+<div class="w-full justify-center flex z-10 sticky top-10">
   <nav
-    class="fixed top-10 w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-xl hidden md:flex flex-col z-50 p-4 shadow glass-effect rounded-lg bg-opacity-40 bg-neutral-800"
+    class="hidden lg:flex flex-col z-50 p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-blue-200 w-full"
   >
     <div
       class="mx-auto w-full items-center flex justify-between md:flex-nowrap flex-wrap"
     >
       <!-- Brand -->
       <a
-        class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
+        class="text-netural-700 text-sm uppercase hidden lg:inline-block font-semibold"
         href="#pablo"
         on:click={(e) => e.preventDefault()}
       >
-        Dashboard
+        Salt Finance
       </a>
-      <!-- Form -->
-      <form
-        class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3"
+      <div
+        class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
       >
-        <div class="relative flex w-full flex-wrap items-stretch">
-          <span
-            class="z-10 h-full leading-snug font-normal absolute text-center text-neutral-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"
-          >
-            <i class="fas fa-search"></i>
-          </span>
-          <input
-            type="text"
-            placeholder="Search here..."
-            class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-          />
-        </div>
-      </form>
+        <a
+          use:link
+          class="text-neutral-700 text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase skiptranslate"
+          href="/"
+        >
+          Salt Finance
+        </a>
+        <button
+          class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+          type="button"
+          aria-label="open menu"
+          on:click={setNavbarOpen}
+        >
+          {#if navbarOpen === false}
+            <i class="fas fa-bars"></i>
+          {:else}
+            <i class="fas fa-close"></i>
+          {/if}
+        </button>
+      </div>
       <!-- User -->
       <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
         <UserDropdown />

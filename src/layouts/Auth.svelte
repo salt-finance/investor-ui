@@ -1,37 +1,47 @@
 <script>
-  import Router from 'svelte-spa-router';    // components for this layout
-    import FooterSmall from "components/Footers/FooterSmall.svelte";
-    import AuthNavbar from "components/Navbars/AuthNavbar.svelte";
-// pages for this layout
-    import Login from "views/auth/Login.svelte";
-    import Register from "views/auth/Register.svelte";
+  import Router from "svelte-spa-router"; // components for this layout
+  // pages for this layout
+  import Login from "views/auth/Login.svelte";
+  import Register from "views/auth/Register.svelte";
+  import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
 
-    const registerBg2 = "https://salt-finance.github.io/investor-ui/assets/img/register_bg_2.png";
-
-    const routes = {
+  import Footer from "components/Footers/Footer.svelte";
+  const patternVue =
+    "https://salt-finance.github.io/investor-ui/assets/img/pattern.svg";
+  const routes = {
     // Exact path
-    '/login': Login,
+    "/login": Login,
 
     // Using named parameters, with last being optional
-    '/register': Register,
-    '*': Login,
-    
-    
-}
+    "/register": Register,
+    "*": Login,
+  };
 </script>
 
 <div>
-    <AuthNavbar />
-    <main>
-        <section class="relative w-full h-full py-40 min-h-screen">
-            <div
-                class="absolute top-0 w-full h-full bg-slate-800 bg-no-repeat bg-full"
-                style="background-image: url({registerBg2});"
-            ></div>
-            <Router prefix={'/auth'} {routes}>
-        
-            </Router>
-            <FooterSmall absolute="true" />
-        </section>
-    </main>
+  <img
+    width="500px"
+    height="500px"
+    class="h-screen w-screen fixed object-cover top-0 bg-no-repeat"
+    src={patternVue}
+    alt="..."
+  />
+  <div class="h-full flex justify-center flex-col w-full items-center relative">
+    <div
+      class="flex flex-col w-full
+min-h-screen
+    xl:max-w-screen-xl"
+    >
+      <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
+        <IndexNavbar />
+      </div>
+      <div class="h-screen justify-between flex flex-col px-4">
+        <div class="w-full justify-center flex text-center lg:text-left mt-24">
+          <Router prefix={"/auth"} {routes}></Router>
+        </div>
+
+        <Footer />
+      </div>
+    </div>
+  </div>
 </div>

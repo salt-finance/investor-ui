@@ -3,13 +3,12 @@
   // components for this layout
   import FooterAdmin from "components/Footers/FooterAdmin.svelte";
   import HeaderStats from "components/Headers/HeaderStats.svelte";
-  import AdminNavbar from "components/Navbars/AdminNavbar.svelte";
-  import Sidebar from "components/Sidebar/Sidebar.svelte";
 // pages for this layout
   import Dashboard from "views/admin/Dashboard.svelte";
   import Maps from "views/admin/Maps.svelte";
   import Settings from "views/admin/Settings.svelte";
   import Tables from "views/admin/Tables.svelte";
+  import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
 
   const routes = {
     "/dashboard": Dashboard,
@@ -20,20 +19,37 @@
   };
 </script>
 
-<AdminNavbar />
+<div
+  class="flex h-screen w-screen flex-col lg:flex-row"
+>
+  <!-- <div class="w-full lg:w-3/12 z-10">
+    <Sidebar />
+  </div> -->
 
-<div class="h-full flex justify-center">
-  <div
-    class="w-full h-1/3 fixed top-0 bg-gradient-to-br from-blue-700 to-indigo-300"
-  ></div>
-  <Sidebar />
-  <div
-    class="min-h-screen w-11/12 sm:w-10/12 md:w-9/12 max-w-screen-xl flex flex-col top-40 relative"
-  >
-    <HeaderStats />
-    <div class="flex flex-wrap mt-8">
-      <Router prefix={"/admin"} {routes} />
+  <div class="h-full flex justify-center w-full
+  relative items-center overflow-hidden overflow-y-scroll">
+    <div
+      class="h-1/3 fixed w-full top-0 bg-gradient-to-br from-blue-700 to-indigo-300"
+    ></div>
+    <div
+      class="flex flex-col w-full
+      absolute
+      top-0  
+    min-h-screen 
+    xl:max-w-screen-xl"
+    >
+    <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
+      <IndexNavbar isLoggedIn={true} />
     </div>
-    <FooterAdmin />
+      <div
+        class="flex flex-col mt-32 px-4"
+      >
+        <HeaderStats />
+        <div class="flex flex-wrap mt-8">
+          <Router prefix={"/admin"} {routes} />
+        </div>
+        <FooterAdmin />
+      </div>
+    </div>
   </div>
 </div>
