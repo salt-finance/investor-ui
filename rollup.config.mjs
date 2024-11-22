@@ -55,7 +55,7 @@ const indexTemplate = `
       href="<<live-preview-link>>/apple-icon.png"
     />
 
-    <script type="module" defer src="<<live-preview-link>>/build/min/main.js"></script>
+    <script type="module" defer src="<<live-preview-link>>/build/main.js"></script>
     <link
       rel="preload"
       href="<<live-preview-link>>/assets/styles/tailwind.css"
