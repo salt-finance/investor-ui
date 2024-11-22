@@ -5,15 +5,17 @@
 
 <footer class="bg-transparent w-full mt-10 pb-4">
   <div
-    class="mx-auto px-4 flex 
+    class="mx-auto px-4 flex
  flex-wrap flex-col items-center shadow glass-effect bg-opacity-80 bg-white rounded-lg p-8 gap-8"
   >
     <div class="w-11/12 lg:w-8/12 px-10 text-center">
-      <ul class="list-unstyled flex flex-wrap flex-col sm:flex-row justify-center sm:justify-between gap-4">
+      <ul
+        class="list-unstyled flex flex-wrap flex-col sm:flex-row justify-center sm:justify-between gap-4"
+      >
         <li>
           <a
             class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
-            href="https://creative-tim.com/terms?ref=ns-footer"
+            href="#"
           >
             Terms & Conditions
           </a>
@@ -21,7 +23,7 @@
         <li>
           <a
             class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
-            href="https://creative-tim.com/privacy?ref=ns-footer"
+            href="#"
           >
             Privacy Policy
           </a>
@@ -29,7 +31,7 @@
         <li>
           <a
             class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
-            href="https://creative-tim.com/contact-us?ref=ns-footer"
+            href="#"
           >
             Contact Us
           </a>
