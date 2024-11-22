@@ -40,7 +40,7 @@ class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white w
         class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
         type="button"
         aria-label="open menu"
-        on:click={setNavbarOpen}
+        onclick={setNavbarOpen}
       >
         {#if navbarOpen === false}
           <i class="fas fa-bars"></i>

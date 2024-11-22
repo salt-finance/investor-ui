@@ -50,7 +50,7 @@ xl:max-w-screen-xl"
               dolorem?
             </p>
             <button
-              on:click={signIn()}
+              onclick={signIn()}
               class="bg-blue-500 text-white active:bg-blue-600 py-4 uppercase font-bold rounded-lg outline-none text-center focus:outline-none mt-4 ease-in-out
          hover:bg-blue-800 transition-all duration-150"
               type="button"
@@ -75,7 +75,7 @@ xl:max-w-screen-xl"
               laboriosam inventore fuga nostrum eius!
             </p>
             <button
-            on:click={() => signUp()}
+            onclick={() => signUp()}
               class="bg-white active:bg-blue-600 py-4 rounded-lg font-bold uppercase outline-none border-2 text-blue-500 border-blue-500 focus:outline-none mt-4 ease-linear transition-all duration-150 hover:bg-blue-500
         text-center hover:text-white"
               type="button"
