@@ -6,6 +6,13 @@
 
   const patternVue =
     "https://salt-finance.github.io/investor-ui/assets/img/pattern.svg";
+
+    function signIn() {
+    push("/admin/dashboard");
+  }
+  function signUp() {
+    push("/auth/register");
+  }
 </script>
 
 <img
@@ -22,14 +29,12 @@
     class="flex flex-col w-full
 xl:max-w-screen-xl"
   >
-  <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
-    <IndexNavbar />
-  </div>
+    <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
+      <IndexNavbar />
+    </div>
     <div class="h-screen justify-between flex flex-col px-4">
       <div class="w-full justify-center flex text-center lg:text-left">
-        <section
-          class="relative flex flex-wrap gap-4 flex-row mt-24"
-        >
+        <section class="relative flex flex-wrap gap-4 flex-row mt-24">
           <!-- light card -->
           <div
             class="justify-between flex-wrap flex flex-col bg-blue-200 rounded-lg py-20 min-h-500 px-10 flex-auto lg:flex-1 w-full gap-4 glass-effect bg-opacity-80 text-neutral-800"
@@ -45,8 +50,7 @@ xl:max-w-screen-xl"
               dolorem?
             </p>
             <button
-            on:click={() =>     push("/admin/dashboard") }
-
+              on:click={signIn()}
               class="bg-blue-500 text-white active:bg-blue-600 py-4 uppercase font-bold rounded-lg outline-none text-center focus:outline-none mt-4 ease-in-out
          hover:bg-blue-800 transition-all duration-150"
               type="button"
@@ -71,6 +75,7 @@ xl:max-w-screen-xl"
               laboriosam inventore fuga nostrum eius!
             </p>
             <button
+            on:click={() => signUp()}
               class="bg-white active:bg-blue-600 py-4 rounded-lg font-bold uppercase outline-none border-2 text-blue-500 border-blue-500 focus:outline-none mt-4 ease-linear transition-all duration-150 hover:bg-blue-500
         text-center hover:text-white"
               type="button"

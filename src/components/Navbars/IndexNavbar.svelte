@@ -10,7 +10,6 @@
 
   let navbarOpen = $state(false);
   function setNavbarOpen() {
-    console.log(navbarOpen);
     navbarOpen = !navbarOpen;
   }
 </script>
