@@ -50,10 +50,10 @@
       <IndexNavbar isLoggedIn={true} />
     </div>
       <div
-        class="flex flex-col mt-32 px-4"
+        class="flex flex-col mt-28 px-4"
       >
         <HeaderStats />
-        <div class="flex flex-wrap mt-8">
+        <div class="flex flex-wrap mt-4">
           <Router prefix={"/admin"} {routes} />
         </div>
         <FooterAdmin />
