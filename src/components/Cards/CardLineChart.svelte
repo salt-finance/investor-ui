@@ -2,34 +2,82 @@
   import { onMount } from "svelte";
   // library that creates chart objects in page
 
+  import { chartColors, createLinearGradient1 } from "utils/chartTools";
+  import { monthsForLocale } from "utils/formatTools";
+
   // init chart
   onMount(async () => {
+    let {
+      CategoryScale,
+      Chart,
+      Filler,
+      Legend,
+      LinearScale,
+      LineController,
+      LineElement,
+      PointElement,
+      Tooltip,
+    } = await import("chart.js");
+
+    var ctx = document.getElementById("line-chart");
+
+    const labels = monthsForLocale();
+    const data = [10, 25, 30, -15, 50, 60, 65, 60, 50, -35, 40].map(
+      (n) => n * 1000
+    );
+
+    const chartColorBase =
+      data[data.length - 1] > data[data.length - 2]
+        ? chartColors.green
+        : chartColors.red;
+
+    var borderFill;
+    var backgroundFill;
+
     var config = {
       type: "line",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: labels,
         datasets: [
           {
             label: "Account 1",
             fill: true,
-            backgroundColor: "#4c51bfaf",
-            borderColor: "#4c51bf",
-            data: [500, 6800, 86000, 74000, 56000, 60000, 87000],
-          },
-          {
-            label: "Account 2",
-            backgroundColor: "rgba(12, 200, 132, 0.7)",
-            borderColor: "rgb(12, 200, 132)",
-            data: [0, 0, -9000, -1400, 99999.34, 67000, 75000],
-            fill: true,
+            backgroundColor: function (context) {
+              const chart = context.chart;
+              const { ctx, chartArea } = chart;
+
+              if (!chartArea) {
+                // This case happens on initial chart load
+                return;
+              }
+              if (backgroundFill == null) {
+                backgroundFill = createLinearGradient1(
+                  ctx,
+                  chartArea,
+                  chartColorBase
+                );
+              }
+              return backgroundFill;
+            },
+            borderColor: function (context) {
+              const chart = context.chart;
+              const { ctx, chartArea } = chart;
+
+              if (!chartArea) {
+                // This case happens on initial chart load
+                return;
+              }
+              if (borderFill == null) {
+                borderFill = createLinearGradient1(
+                  ctx,
+                  chartArea,
+                  chartColorBase,
+                  true
+                );
+              }
+              return borderFill;
+            },
+            data: data,
           },
         ],
       },
@@ -60,6 +108,7 @@
         plugins: {
           legend: {
             align: "end",
+            display: false,
           },
           tooltip: {
             callbacks: {
@@ -83,18 +132,6 @@
         },
       },
     };
-    var ctx = document.getElementById("line-chart");
-    let {
-      CategoryScale,
-      Chart,
-      Filler,
-      Legend,
-      LinearScale,
-      LineController,
-      LineElement,
-      PointElement,
-      Tooltip,
-    } = await import("chart.js");
 
     Chart.register([
       LineController,
@@ -115,16 +152,16 @@
   });
 </script>
 
-<div
-  class="relative flex flex-col min-w-0 break-words w-full"
->
+<div class="relative flex flex-col min-w-0 break-words w-full">
   <div class="rounded-t mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
         <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
-          Line Chart
+         Year to Date
         </h6>
-        <h2 class="text-xl text-neutral-700 font-semibold">Portfolio value over time</h2>
+        <h2 class="text-xl text-neutral-700 font-semibold">
+          Profit / Loss
+        </h2>
       </div>
     </div>
   </div>

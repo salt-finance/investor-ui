@@ -32,7 +32,7 @@
       </div>
       <div class="relative w-auto pl-4 flex-initial">
         <div
-          class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-70 {statIconColor}"
+          class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
         >
           <i class="{statIconName}"></i>
         </div>

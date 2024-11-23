@@ -1,35 +1,71 @@
 <script>
   import { onMount } from "svelte";
+  import {
+    chartColors,
+    createRadialGradient1,
+    createShades,
+    getHover,
+  } from "utils/chartTools";
   // library that creates chart objects in page
 
   // init chart
   onMount(async () => {
+    let { Chart, ArcElement, PieController, Tooltip } = await import(
+      "chart.js/auto"
+    );
+
+    var ctx = document.getElementById("pie-chart");
+
+    const chartColorBase = chartColors.purple;
+    const labels = [
+      "ETFs",
+      "Mutual Funds",
+      "Cash",
+      "Other",
+      "Other",
+      "Other",
+      "7",
+      "8",
+      "9",
+      "10",
+      "ETFs",
+      "Mutual Funds",
+      "Cash",
+      "Other",
+      "Other",
+      "Other",
+      "7",
+      "8",
+      "9",
+      "10",
+    ];
+    const data = [
+      10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+      10, 10,
+    ];
+
+    const colors = createShades(labels.length, chartColorBase);
+
     let config = {
       type: "pie",
       data: {
-        labels: ["ETFs", "Mutual Funds", "Cash"],
+        labels: labels,
         datasets: [
           {
             label: "Portfolio",
             fill: false,
-            backgroundColor: [
-              "#ed64a6",
-              "rgb(54, 162, 235)",
-              "rgb(12, 200, 132)",
-            ],
-            data: [40, 30, 30],
-            hoverOffset: 40,
-          },
-          {
-            label: "%",
-            data: [12, 28, 20, 10, 30],
-            backgroundColor: [
-              "#4c51bf",
-              "#ed64a6",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              "rgb(12, 200, 132)",
-            ],
+            borderColor: "#0000",
+            backgroundColor: function (context) {
+              let c = colors[context.dataIndex];
+              if (!c) {
+                return;
+              }
+              if (context.active) {
+                c = getHover(c);
+              }
+              return createRadialGradient1(context, c);
+            },
+            data: data,
             hoverOffset: 20,
           },
         ],
@@ -38,11 +74,13 @@
         maintainAspectRatio: false,
         layout: {
           padding: {
+            top: 10,
             bottom: 10,
           },
         },
         plugins: {
           legend: {
+            display: false,
             align: "start",
           },
           tooltip: {
@@ -63,25 +101,17 @@
         },
       },
     };
-    var ctx = document.getElementById("pie-chart");
 
-    let { Chart, Legend, ArcElement, PieController, Tooltip } = await import(
-      "chart.js"
-    );
-
-    Chart.register([PieController, ArcElement, Tooltip, Legend]);
-
+    Chart.register([PieController, ArcElement, Tooltip]);
     Chart.defaults.color = "#334155";
     Chart.defaults.font.family = "poppins";
-    Chart.defaults.clip = 100;
+    Chart.defaults.clip = 200;
 
     new Chart(ctx, config);
   });
 </script>
 
-<div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg" 
->
+<div class="relative flex flex-col min-w-0 break-words w-full mb-6 rounded-lg">
   <div class="rounded-t mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">

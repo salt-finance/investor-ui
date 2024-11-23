@@ -22,7 +22,7 @@
   >
     <a
       use:link
-      class="text-neutral-700 text-sm font-bold leading-relaxed inline-block mr-4 whitespace-nowrap uppercase skiptranslate"
+      class="text-neutral-700 text-sm font-bold leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate"
       href="/"
     >
       Salt Finance

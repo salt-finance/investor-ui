@@ -23,25 +23,25 @@
   out:blur={blurTransitionOutConfig}
 >
   <div class="flex flex-row flex-wrap gap-4">
-    <div class="w-full md:w-6/12 xl:w-8/12 flex-shrink bg-white glass-effect rounded-lg bg-opacity-70" in:fly={staggerdTransition(1)}>
+    <div class="w-full md:w-6/12 xl:w-8/12 flex-shrink bg-white glass-effect rounded-lg bg-opacity-80" in:fly={staggerdTransition(1)}>
       <CardLineChart />
     </div>
-    <div class="w-full md:w-5/12 xl:w-3/12 flex-1 bg-white glass-effect rounded-lg bg-opacity-70" in:fly={staggerdTransition(2)}>
+    <div class="w-full md:w-5/12 xl:w-3/12 flex-1 bg-white glass-effect rounded-lg bg-opacity-80" in:fly={staggerdTransition(2)}>
       <CardPieChart />
     </div>
 
-    <div class="w-full md:w-6/12 xl:w-8/12 flex-shrink bg-white glass-effect rounded-lg bg-opacity-70" in:fly={staggerdTransition(3)}>
+    <div class="w-full md:w-6/12 xl:w-8/12 flex-shrink bg-white glass-effect rounded-lg bg-opacity-80" in:fly={staggerdTransition(3)}>
       <CardBarChart />
     </div>
-    <div class="w-full md:w-5/12 xl:w-3/12 flex-1 bg-white glass-effect rounded-lg bg-opacity-70" in:fly={staggerdTransition(4)}>
+    <div class="w-full md:w-5/12 xl:w-3/12 flex-1 bg-white glass-effect rounded-lg bg-opacity-80" in:fly={staggerdTransition(4)}>
       <CardDoghnutChart />
     </div>
   </div>
   <div class="flex flex-wrap mt-4 gap-4" in:fly={staggerdTransition(4)}>
-    <div class="w-full xl:w-8/12 xl:mb-0 bg-white glass-effect rounded-lg bg-opacity-70 flex-shrink">
+    <div class="w-full xl:w-8/12 xl:mb-0 bg-white glass-effect rounded-lg bg-opacity-80 flex-shrink">
       <CardPageVisits />
     </div>
-    <div class="w-full xl:w-3/12 bg-white glass-effect rounded-lg bg-opacity-70 flex-grow" in:fly={staggerdTransition(4)}>
+    <div class="w-full xl:w-3/12 bg-white glass-effect rounded-lg bg-opacity-80 flex-grow" in:fly={staggerdTransition(4)}>
       <CardSocialTraffic />
     </div>
   </div>

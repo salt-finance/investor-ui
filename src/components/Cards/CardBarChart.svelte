@@ -1,34 +1,43 @@
 <script>
   import { onMount } from "svelte";
+  import { monthsForLocale } from "utils/formatTools";
   // library that creates chart objects in page
   // init chart
   onMount(async () => {
+
+    var ctx = document.getElementById("bar-chart");
+    var gradientFill = ctx.getContext("2d").createLinearGradient(0, 200, 0, 400);
+    gradientFill.addColorStop(0, "#4c51bff0");
+    gradientFill.addColorStop(1, "#4c51bf00");
+
+    var gradientFill2 =  ctx.getContext("2d").createLinearGradient(0, 200, 0, 400); 
+
+    gradientFill2.addColorStop(0, "#ed64a6f0");
+    gradientFill2.addColorStop(1, "#ed64a600")
+
+    const labels = monthsForLocale();
+
     let config = {
       type: "bar",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: labels,
         datasets: [
           {
             label: "Account 1",
             fill: false,
-            backgroundColor: "#4c51bf",
+            backgroundColor: gradientFill,
             borderColor: "#4c51bf",
             data: [500, 6800, 86000, 74000, 56000, 60000, 87000],
+            borderRadius: Number.MAX_VALUE,
           },
           {
             label: "Account 2",
-            backgroundColor: "rgb(12, 200, 132)",
+            backgroundColor: gradientFill2,
             borderColor: "rgb(12, 200, 132)",
             data: [0, 0, 9000, 1400, 99999.34, 67000, 75000],
             fill: false,
+            borderRadius: Number.MAX_VALUE,
+
           },
         ],
       },
@@ -83,7 +92,6 @@
         },
       },
     };
-    var ctx = document.getElementById("bar-chart");
 
     let {
       CategoryScale,

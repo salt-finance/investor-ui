@@ -89,7 +89,7 @@ Danger - Cornell red - #b91c1c - red-700 -->
     }
     .glass-effect {
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(15px);
+      backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       // border: 1px solid rgba(255, 255, 255, 0.3);
     }

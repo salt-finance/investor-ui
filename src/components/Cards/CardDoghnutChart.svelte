@@ -1,29 +1,37 @@
 <script>
   import { onMount } from "svelte";
+  import { chartColors, createRadialGradient1, createShades, getHover } from "utils/chartTools";
 
   onMount(async () => {
+    let { Chart, Legend, ArcElement, DoughnutController, Tooltip } =
+      await import("chart.js");
+
+
+    var ctx = document.getElementById("doughnut-chart");
+    const chartColorBase = chartColors.purple;
+    const labels = ["ETFs", "Mutual Funds", "Cash", "Other", "Other", "Other", "7", "8", "9", "10", "ETFs", "Mutual Funds", "Cash", "Other", "Other", "Other", "7", "8", "9", "10"];
+    const data =  [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 10, 10];
+
+    const colors = createShades(labels.length, chartColorBase);
     let config = {
       type: "doughnut",
       data: {
-        labels: [
-          "Security 1",
-          "Security 2",
-          "Security 3",
-          "Security 4",
-          "Security 5",
-        ],
+        labels: labels,
         datasets: [
           {
             label: "% distribution",
-            data: [12, 28, 20, 10, 30],
-            backgroundColor: [
-              "#4c51bf",
-              "#ed64a6",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-              "rgb(12, 200, 132)",
-            ],
-            hoverOffset: 40,
+            data: data,
+            backgroundColor: function (context) {
+              let c = colors[context.dataIndex];
+              if (!c) {
+                return;
+              }
+              if (context.active) {
+                c = getHover(c);
+              }
+              return createRadialGradient1(context, c);
+            },
+            hoverOffset: 20,
           },
         ],
       },
@@ -32,20 +40,19 @@
         responsive: true,
         layout: {
           padding: {
+            top: 10,
             bottom: 10,
           },
         },
         plugins: {
           legend: {
+            display: false,
             align: "start",
           },
         },
       },
     };
-    var ctx = document.getElementById("doughnut-chart");
 
-    let { Chart, Legend, ArcElement, DoughnutController, Tooltip } =
-      await import("chart.js");
     Chart.register([DoughnutController, ArcElement, Tooltip, Legend]);
 
     Chart.defaults.color = "#334155";
@@ -56,8 +63,7 @@
   });
 </script>
 
-<div
-  class="relative flex flex-col min-w-0 break-words w-full">
+<div class="relative flex flex-col min-w-0 break-words w-full">
   <div class="mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
