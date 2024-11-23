@@ -61,6 +61,9 @@
     >
       Settings
     </a>
+
+    <div id="google_translate_element"></div>
+
     <a
       use:link
       href="/"
@@ -68,6 +71,5 @@
     >
       Logout <i class="fas fa-arrow-right-from-bracket"></i>
     </a>
-    <div id="google_translate_element"></div>
   </div>
 </div>

@@ -30,24 +30,48 @@
       use:link
       use:active
       href="/admin/dashboard"
-      class="text-sm px-0 lg:px-4 pb-4 lg:pb-0  block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Dashboard
     </a>
     <a
       use:link
       use:active
-      href="/admin/settings"
-      class="text-sm px-0 lg:px-4  block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      href="/admin/market"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
-      Settings
+      Market
+    </a>
+    <a
+      use:link
+      use:active
+      href="/admin/holdings"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
+    >
+      Holdings
+    </a>
+    <a
+      use:link
+      use:active
+      href="/admin/activity"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
+    >
+      Activity
+    </a>
+    <a
+      use:link
+      use:active
+      href="/admin/portfolio"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
+    >
+      Portfolio
     </a>
   {:else}
     <a
       use:link
       use:active
       href="/auth/login"
-      class="text-sm px-0 lg:px-4 pb-4 lg:pb-0  block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Login
     </a>
@@ -55,7 +79,7 @@
       use:link
       use:active
       href="/auth/register"
-      class="text-sm px-0 lg:px-4  block w-full whitespace-nowrap bg-transparent text-neutral-700"
+      class="text-sm font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Register
     </a>

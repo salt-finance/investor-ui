@@ -4,14 +4,22 @@
   import FooterAdmin from "components/Footers/FooterAdmin.svelte";
   import HeaderStats from "components/Headers/HeaderStats.svelte";
 // pages for this layout
+  import Activity from "views/admin/Activity.svelte";
   import Dashboard from "views/admin/Dashboard.svelte";
+  import Holdings from "views/admin/Holdings.svelte";
   import Maps from "views/admin/Maps.svelte";
+  import Market from "views/admin/Market.svelte";
+  import Portfolio from "views/admin/Portfolio.svelte";
   import Settings from "views/admin/Settings.svelte";
   import Tables from "views/admin/Tables.svelte";
   import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
 
   const routes = {
     "/dashboard": Dashboard,
+    "/holdings": Holdings,
+    "/activity": Activity,
+    "/market": Market,
+    "/portfolio": Portfolio,
     "/settings": Settings,
     "/tables": Tables,
     "/maps": Maps,

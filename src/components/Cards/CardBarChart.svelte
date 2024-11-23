@@ -112,7 +112,7 @@
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words rounded-lg bg-white glass-effect rounded-lg bg-opacity-70"
+  class="relative flex flex-col min-w-0 break-words rounded-lg"
 >
   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
     <div class="flex flex-wrap items-center">
@@ -120,7 +120,7 @@
         <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
           Bar Chart
         </h6>
-        <h2 class="text-neutral-700 text-xl font-semibold">Account value</h2>
+        <h2 class="text-neutral-700 text-xl font-semibold">Portfolio value</h2>
       </div>
     </div>
   </div>

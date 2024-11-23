@@ -19,7 +19,7 @@
   </div>
   <div class="w-full flex-1 hidden md:block ">
     <CardStats
-      statSubtitle="Portfolio diversity"
+      statSubtitle="Portfolio distribution"
       statTitle="2,356"
       statArrow="down"
       statPercent="3.48"
@@ -35,8 +35,8 @@
       statTitle="924"
       statArrow="down"
       statPercent="1.10"
-      statPercentColor="text-orange-500"
-      statDescripiron="Since yesterday"
+      statPercentColor="text-red-500"
+      statDescripiron="Since last year"
       statIconName="fas fa-users"
       statIconColor="bg-indigo-600 text-white"
     />

@@ -15,24 +15,29 @@
 </script>
 
 <nav
-class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white w-full z-10"
+  class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white w-full z-10"
 >
-<div
-  class="px-0 flex items-center justify-center lg:justify-between transition-all ease-in-out duration-500 flex-col lg:flex-row w-full"
->
-  <div class="flex w-full flex-shrink justify-between">
-    <div
-      class="w-full relative flex justify-between lg:w-auto lg:static lg:justify-start items-center"
+  <div
+    class="px-0 flex items-center justify-between transition-all ease-in-out duration-500 flex-wrap w-full flex-grow"
+  >
+    <a
+      use:link
+      class="text-neutral-700 text-sm font-bold leading-relaxed inline-block mr-4 whitespace-nowrap uppercase skiptranslate"
+      href="/"
     >
-      <a
-        use:link
-        class="text-neutral-700 text-sm font-bold leading-relaxed inline-block mr-4 whitespace-nowrap uppercase skiptranslate"
-        href="/"
-      >
-        Salt Finance
-      </a>
+      Salt Finance
+    </a>
+
+    <div
+      class:justify-center={isLoggedIn}
+      class:justify-end={!isLoggedIn}
+      class="overflow-hidden transition-all duration-500 ease-in-out lg:flex items-center order-3 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
+        ? 'h-auto'
+        : 'h-px lg:h-auto'}"
+    >
+      <IndexDropdown {isLoggedIn} />
     </div>
-    <div class="flex flex-row-reverse">
+    <div class="flex flex-shrink justify-between">
       {#if isLoggedIn}
         <UserDropdown />
       {/if}
@@ -50,14 +55,4 @@ class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white w
       </button>
     </div>
   </div>
-  <div class="flex w-full lg:w-auto">
-    <div
-      class="overflow-hidden transition-all duration-500 ease-in-out flex items-center {navbarOpen
-        ? 'h-auto'
-        : 'h-px lg:h-auto'}"
-    >
-      <IndexDropdown {isLoggedIn} />
-    </div>
-  </div>
-</div>
 </nav>

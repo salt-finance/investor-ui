@@ -116,15 +116,15 @@
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-white glass-effect rounded-lg bg-opacity-70"
+  class="relative flex flex-col min-w-0 break-words w-full"
 >
-  <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
+  <div class="rounded-t mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
         <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
           Line Chart
         </h6>
-        <h2 class="text-xl text-neutral-700 font-semibold">Value over time</h2>
+        <h2 class="text-xl text-neutral-700 font-semibold">Portfolio value over time</h2>
       </div>
     </div>
   </div>
