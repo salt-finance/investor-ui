@@ -5,7 +5,7 @@ export const chartColors = {
   red: "hsl(0,100%, 50%)",
   orange: "rgb(255, 159, 64)",
   yellow: "#84CC16",
-  green: "#10B981",
+  green: "hsl(160, 80%, 40%)",
   blue: "hsl(224, 100%, 50%)",
   purple: "hsl(260, 100%, 50%)",
   grey: "rgb(201, 203, 207)",
@@ -39,9 +39,9 @@ export const createShades = (length, chartColorBase) => {
         direction / ratioMultiplier
     ).toPrecision(3);
 
-    const darkenRatio = ((1 / ratioMultiplier) * multiplier).toPrecision(3);
+    const darkenRatio = ((1 / ratioMultiplier) * multiplier * 0.7).toPrecision(3);
     const color = new Color(chartColorBase)
-      .rotate((360 / length) * index)
+      .rotate(360 * Math.sin(index + 1) * index)
       .darken(darkenRatio).saturate(1);
 
     colors.push(color.hslString());
@@ -77,9 +77,9 @@ export const createRadialGradient1 = (context, c1) => {
     centerY,
     r
   );
-  gradient.addColorStop(0, c.opaquer(1).rgbString());
-  gradient.addColorStop(0.85, c.alpha(0.6).rgbString()); 
-  gradient.addColorStop(1, c.alpha(0.6).rgbString());
+  gradient.addColorStop(0, c.rgbString());
+  gradient.addColorStop(0.85, c.alpha(0.7).rgbString()); 
+  gradient.addColorStop(1, c.alpha(0.7).rgbString());
   // gradient.addColorStop(1, c.clearer(0.5).rgbString());
 
   return gradient;

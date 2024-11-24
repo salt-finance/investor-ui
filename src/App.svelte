@@ -10,8 +10,6 @@
   import Index from "./views/Index.svelte";
   import Profile from "./views/Profile.svelte";
 
-
-
   const routes = {
     // Exact path
     "/": Index,
@@ -24,7 +22,8 @@
     "/profile": Profile,
     // Catch-all
     // This is optional, but if present it must be the last
-    "*": Index };
+    "*": Index,
+  };
 </script>
 
 <Router {routes} />
@@ -37,10 +36,8 @@ Sell - Xanthous - #EAB308 - yellow-500
 Action - Azure - #3B82F6 - blue-500
 Danger - Cornell red - #b91c1c - red-700 -->
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&display=swap');
   :global {
-    * {
-      font-family: Poppins, sans-serif;
-    }
     :root {
       interpolate-size: allow-keywords;
     }

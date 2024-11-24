@@ -37,7 +37,7 @@
   <div class="h-full flex justify-center w-full
   relative items-center overflow-hidden overflow-y-scroll">
     <div
-      class="h-1/3 fixed w-full top-0 bg-gradient-to-br from-blue-700 to-blue-300"
+      class="h-2/5 fixed w-full top-0 bg-gradient-to-b from-blue-600 to-transparent"
     ></div>
     <div
       class="flex flex-col w-full

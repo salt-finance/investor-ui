@@ -16,33 +16,9 @@
 
     var ctx = document.getElementById("pie-chart");
 
-    const chartColorBase = chartColors.purple;
-    const labels = [
-      "ETFs",
-      "Mutual Funds",
-      "Cash",
-      "Other",
-      "Other",
-      "Other",
-      "7",
-      "8",
-      "9",
-      "10",
-      "ETFs",
-      "Mutual Funds",
-      "Cash",
-      "Other",
-      "Other",
-      "Other",
-      "7",
-      "8",
-      "9",
-      "10",
-    ];
-    const data = [
-      10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-      10, 10,
-    ];
+    const chartColorBase = chartColors.blue;
+    const labels = ["ETFs", "Bonds", "Mutual Funds", "Cash", "Other"];
+    const data = [10, 40, 25, 15, 5].sort((a, b) => b - a);
 
     const colors = createShades(labels.length, chartColorBase);
 
@@ -75,6 +51,8 @@
         layout: {
           padding: {
             top: 10,
+            left: 10,
+            right: 10,
             bottom: 10,
           },
         },
@@ -115,18 +93,17 @@
   <div class="rounded-t mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
-          Pie chart
-        </h6>
-        <h2 class="text-neutral-700 text-xl font-semibold">
+
+        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
           Portfolio distribution by category
-        </h2>
+        </h6>
+        <h2 class="text-neutral-700 text-4xl font-light">Spread</h2>
+     
+     
       </div>
     </div>
   </div>
-  <div class="p-4 flex-auto">
-    <div class="relative h-350-px">
-      <canvas id="pie-chart"></canvas>
-    </div>
+  <div class="relative h-48 lg:h-72 xl:h-80">
+    <canvas id="pie-chart" class="absolute top-0"></canvas>
   </div>
 </div>

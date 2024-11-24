@@ -1,37 +1,37 @@
 <script>
   import { onMount } from "svelte";
-  import { chartColors, createRadialGradient1, createShades, getHover } from "utils/chartTools";
-
+  import { chartColors, createRadialGradient1 } from "utils/chartTools";
+  let major = 0;
   onMount(async () => {
     let { Chart, Legend, ArcElement, DoughnutController, Tooltip } =
       await import("chart.js");
 
-
     var ctx = document.getElementById("doughnut-chart");
-    const chartColorBase = chartColors.purple;
-    const labels = ["ETFs", "Mutual Funds", "Cash", "Other", "Other", "Other", "7", "8", "9", "10", "ETFs", "Mutual Funds", "Cash", "Other", "Other", "Other", "7", "8", "9", "10"];
-    const data =  [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 20, 10, 10];
 
-    const colors = createShades(labels.length, chartColorBase);
+    const labels = ["Profit", "Loss"];
+    const factor = 10 - Math.random() * 10;
+    major = Math.floor(100 - 10 * factor);
+
+    const data = [major, 100 - major];
+    const colors = [major > 50 ? chartColors.green : chartColors.red, "#fff0"];
     let config = {
       type: "doughnut",
       data: {
         labels: labels,
         datasets: [
           {
-            label: "% distribution",
+            label: "% of Trades",
             data: data,
+            borderColor: "#fff0",
             backgroundColor: function (context) {
               let c = colors[context.dataIndex];
               if (!c) {
                 return;
               }
-              if (context.active) {
-                c = getHover(c);
-              }
+
               return createRadialGradient1(context, c);
             },
-            hoverOffset: 20,
+            hoverOffset: 0,
           },
         ],
       },
@@ -41,6 +41,8 @@
         layout: {
           padding: {
             top: 10,
+            left: 10,
+            right: 10,
             bottom: 10,
           },
         },
@@ -49,11 +51,14 @@
             display: false,
             align: "start",
           },
+          tooltip: {
+            dipslay: false,
+          },
         },
       },
     };
 
-    Chart.register([DoughnutController, ArcElement, Tooltip, Legend]);
+    Chart.register([DoughnutController, ArcElement, Legend]);
 
     Chart.defaults.color = "#334155";
     Chart.defaults.font.family = "poppins";
@@ -65,20 +70,21 @@
 
 <div class="relative flex flex-col min-w-0 break-words w-full">
   <div class="mb-0 px-4 py-3">
-    <div class="flex flex-wrap items-center">
-      <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
-          Doughnut Chart
-        </h6>
-        <h2 class="text-neutral-700 text-xl font-semibold">
-          Portfolio distribution
-        </h2>
-      </div>
+    <div class="w-full max-w-full flex-grow flex-1">
+      <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
+        Average return on investment
+      </h6>
+      <h2 class="text-neutral-700 text-4xl font-light">ROI</h2>
     </div>
   </div>
-  <div class="p-4 flex-auto">
-    <div class="relative h-350-px">
-      <canvas id="doughnut-chart"></canvas>
-    </div>
+  <div class="relative h-48 lg:h-72 xl:h-80 flex place-items-center">
+    <h3
+      class:text-emerald-500={major > 50}
+      class:text-red-500={0 < major && major < 50}
+      class="text-xl md:text-3xl xl:text-5xl font-extrabold text-center w-full font-serif"
+    >
+      {major}%
+    </h3>
+    <canvas id="doughnut-chart" class="absolute top-0"></canvas>
   </div>
 </div>

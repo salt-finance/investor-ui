@@ -1,21 +1,21 @@
 <script>
   import { onMount } from "svelte";
+  import { chartColors, createLinearGradient1 } from "utils/chartTools";
   import { monthsForLocale } from "utils/formatTools";
   // library that creates chart objects in page
   // init chart
   onMount(async () => {
-
     var ctx = document.getElementById("bar-chart");
-    var gradientFill = ctx.getContext("2d").createLinearGradient(0, 200, 0, 400);
-    gradientFill.addColorStop(0, "#4c51bff0");
-    gradientFill.addColorStop(1, "#4c51bf00");
-
-    var gradientFill2 =  ctx.getContext("2d").createLinearGradient(0, 200, 0, 400); 
-
-    gradientFill2.addColorStop(0, "#ed64a6f0");
-    gradientFill2.addColorStop(1, "#ed64a600")
 
     const labels = monthsForLocale();
+    var chartColorBase = chartColors.blue;
+  
+
+    var backgroundFill;
+    var backgroundFill2;
+
+
+
 
     let config = {
       type: "bar",
@@ -25,27 +25,35 @@
           {
             label: "Account 1",
             fill: false,
-            backgroundColor: gradientFill,
-            borderColor: "#4c51bf",
+            backgroundColor: backgroundFill,
+            borderColor: "#fff0",
             data: [500, 6800, 86000, 74000, 56000, 60000, 87000],
             borderRadius: Number.MAX_VALUE,
           },
           {
             label: "Account 2",
-            backgroundColor: gradientFill2,
-            borderColor: "rgb(12, 200, 132)",
+            backgroundColor: backgroundFill,
+            borderColor: "#fff0",
             data: [0, 0, 9000, 1400, 99999.34, 67000, 75000],
             fill: false,
             borderRadius: Number.MAX_VALUE,
-
           },
         ],
       },
       options: {
         maintainAspectRatio: false,
         responsive: true,
+        layout: {
+          padding: {
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: 10,
+          },
+        },
         plugins: {
           legend: {
+            display: false,
             align: "start",
           },
           tooltip: {
@@ -115,26 +123,40 @@
     Chart.defaults.font.family = "poppins";
     Chart.defaults.clip = 100;
 
-    new Chart(ctx, config);
+    
+    const chart = Chart(context, config);
+
+
+    console.log(context);
+    console.log(chart);
+    if (!chart) {
+      // This case happens on initial chart load
+      return;
+    }
+    
+    const { context, chartArea } = chart;
+    if (!chartArea) {
+      // This case happens on initial chart load
+      return;
+    }
+    if (backgroundFill == null) {
+      backgroundFill = createLinearGradient1(ctx, chartArea, chartColorBase);
+    }
   });
 </script>
 
-<div
-  class="relative flex flex-col min-w-0 break-words rounded-lg"
->
+<div class="relative flex flex-col min-w-0 break-words rounded-lg">
   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-semibold">
-          Bar Chart
+        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
+          Performance vs Previous year
         </h6>
-        <h2 class="text-neutral-700 text-xl font-semibold">Portfolio value</h2>
+        <h2 class="text-neutral-700 text-4xl font-light">Comparison</h2>
       </div>
     </div>
   </div>
-  <div class="p-4 flex-auto">
-    <div class="relative h-350-px">
-      <canvas id="bar-chart"></canvas>
-    </div>
+  <div class="relative h-48 lg:h-72 xl:h-80">
+    <canvas id="bar-chart" class="absolute top-0"></canvas>
   </div>
 </div>

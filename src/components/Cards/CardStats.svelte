@@ -26,7 +26,7 @@
         <h5 class="text-neutral-500 uppercase font-bold text-xs">
           {statSubtitle}
         </h5>
-        <span class="font-semibold text-xl text-neutral-700">
+        <span class="font-extrabold text-xl text-neutral-700 font-serif">
           {statTitle}
         </span>
       </div>
