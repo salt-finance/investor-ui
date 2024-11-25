@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import typescript from '@rollup/plugin-typescript';
 import terser from "@rollup/plugin-terser";
 import { spawn } from "node:child_process";
 import css from "rollup-plugin-css-only";
@@ -25,7 +26,7 @@ const basePath = production ? "/investor-ui" : "";
 
 // configure aliases for absolute imports
 const aliases = alias({
-  resolve: [".svelte", ".js"], //optional, by default this will just look for .js files or folders
+  resolve: [".svelte", ".js", ".ts"], //optional, by default this will just look for .js files or folders
   entries: [
     {
       find: "components",

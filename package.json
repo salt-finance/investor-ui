@@ -8,7 +8,7 @@
     "dev": "rollup -c -w --treeshake smallest",
     "start": "sirv public -s",
     "build:tailwind": "tailwind build -i public/assets/styles/index.css -o public/assets/styles/tailwind.css --minify",
-    "install:clear":"rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install",
+    "install:clear": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install && npm run build:tailwind && npm run build:fontawesome && npm run dev"
   },
   "devDependencies": {
@@ -16,9 +16,10 @@
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^22.9.3",
     "autoprefixer": "10.4.20",
     "postcss": "^8.4.47",
-    "rollup": "^4.24.0",
+    "rollup": "^4.27.4",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-svelte": "^7.2.2",
@@ -26,9 +27,12 @@
     "svelte": "5.0.5"
   },
   "dependencies": {
+    "@kurkle/color": "^0.3.4",
     "@popperjs/core": "2.11.8",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@tailwindcss/forms": "0.5.9",
     "chart.js": "4.4.6",
+    "rollup-plugin-dts": "^6.1.1",
     "sirv-cli": "3.0.0",
     "svelte-spa-router": "4.0.1",
     "tailwindcss": "^3.4.14"
