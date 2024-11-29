@@ -81,7 +81,7 @@
     };
 
     Chart.register([PieController, ArcElement, Tooltip]);
-    Chart.defaults.color = "#334155";
+    Chart.defaults.color = "#999";
     Chart.defaults.font.family = "poppins";
     Chart.defaults.clip = 200;
 
@@ -94,10 +94,9 @@
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
 
-        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
-          Portfolio distribution by category
+        <h6 class="uppercase mb-1 text-xs font-extrabold">          Portfolio distribution by category
         </h6>
-        <h2 class="text-neutral-700 text-4xl font-light">Spread</h2>
+        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">Spread</h2>
      
      
       </div>

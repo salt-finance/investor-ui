@@ -63,15 +63,11 @@
             label: "Account 1",
             fill: true,
             pointStyle: false,
-            cubicInterpolationMode: "monotone",
+            // cubicInterpolationMode: "monotone",
             data: data,
-            tension: 0.1,
             backgroundColor: function (context) {
               const chart = context.chart;
               const { ctx, chartArea } = chart;
-
-              
-              
 
               if (!chartArea) {
                 // This case happens on initial chart load
@@ -95,12 +91,7 @@
                 return;
               }
               if (borderFill == null) {
-                borderFill = createLinearGradient1(
-                  ctx,
-                  chartArea,
-                  chartColorBase,
-                  true
-                );
+                borderFill = chartColorBase;
               }
               return borderFill;
             },
@@ -178,7 +169,7 @@
       Legend,
     ]);
 
-    Chart.defaults.color = "#334155";
+    Chart.defaults.color = "#999";
     Chart.defaults.font.family = "poppins";
     Chart.defaults.clip = 100;
 
@@ -210,10 +201,12 @@
   <div class="rounded-t mb-0 px-4 py-3">
     <div class="flex flex-wrap items-center">
       <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
+        <h6 class="uppercase mb-1 text-xs font-extrabold">
           Account value over time
         </h6>
-        <h2 class="text-neutral-700 text-4xl font-light">Performance</h2>
+        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">
+          Performance
+        </h2>
       </div>
     </div>
   </div>

@@ -42,9 +42,9 @@ const indexTemplate = `
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Salt Finance Investor</title>
+    <meta; charset="utf-8" />
+    <meta; name="viewport"; content="width=device-width,initial-scale=1" />
+    <title>Salt; Finance; Investor</title>
     <link rel="shortcut icon" href="<<live-preview-link>>/favicon.ico" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +85,7 @@ const indexTemplate = `
     </script>
   </head>
 
-  <body class="text-neutral-700 antialiased">
+  <body class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-b from-blue-300 dark:from-indigo-700 to-white dark:to-neutral-900">
  <script defer type="text/javascript">
       function setupGoogleTranslate() {
         new google.translate.TranslateElement(
@@ -135,11 +135,9 @@ const indexTemplate = `
         enabled. Please enable it to continue.
       </strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" class=""></div>
   </body>
-</html>
-
-`;
+</html>`;
 
 const processEnv =
   "PRODUCTION:" + `"${production}",` + "BASE_URL:" + `"${basePath}"`;

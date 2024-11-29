@@ -14,7 +14,6 @@
     // Exact path
     "/": Index,
     // Using named parameters, with last being optional
-    "/admin/*": Admin,
     "/auth": Auth,
     "/auth/*": Auth,
     "/admin": Admin,
@@ -25,8 +24,8 @@
     "*": Index,
   };
 </script>
+    <Router {routes} />
 
-<Router {routes} />
 
 <!-- // Base color classes
 Gain - Mint - #10B981 emerald-500

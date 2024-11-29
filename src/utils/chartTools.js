@@ -78,7 +78,7 @@ export const createRadialGradient1 = (context, c1) => {
     r
   );
   gradient.addColorStop(0, c.rgbString());
-  gradient.addColorStop(0.85, c.alpha(0.7).rgbString()); 
+  gradient.addColorStop(0.85, c.alpha(0.7).rgbString());
   gradient.addColorStop(1, c.alpha(0.7).rgbString());
   // gradient.addColorStop(1, c.clearer(0.5).rgbString());
 
@@ -99,8 +99,8 @@ export const createLinearGradient1 = (ctx, chartArea, c1, reverse) => {
     width = chartWidth;
     height = chartHeight;
     gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-    gradient.addColorStop(reverse ? 1 :0, c.rgbString());
-    gradient.addColorStop(reverse ? 0 : 1, c.alpha(0.2).rgbString());
+    gradient.addColorStop(reverse ? 1 :0, c.alpha(0.4).rgbString());
+    gradient.addColorStop(reverse ? 0 : 1, c.alpha(0).rgbString());
   }
 
   return gradient;

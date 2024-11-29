@@ -18,19 +18,19 @@
 </script>
 
 <div
-  class="relative flex flex-col min-w-0 break-words bg-white glass-effect rounded-lg bg-opacity-80 xl:mb-0 shadow-lg h-full"
+  class="relative flex flex-col min-w-0 break-words bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40 glass-effect rounded-lg xl:mb-0 shadow-lg h-full"
 >
   <div class="flex-auto flex flex-col p-4 justify-between">
-    <div class="flex flex-wrap">
-      <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-        <h5 class="text-neutral-500 uppercase font-bold text-xs">
+    <div class="flex flex-wrap gap-2">
+      <div class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex">
+        <h5 class="uppercase font-bold text-sm">
           {statSubtitle}
         </h5>
-        <span class="font-extrabold text-xl text-neutral-700 font-serif">
+        <span class="font-light text-xl md:text-2xl">
           {statTitle}
         </span>
       </div>
-      <div class="relative w-auto pl-4 flex-initial">
+      <div class="relative w-auto flex-initial">
         <div
           class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
         >
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <p class="text-sm text-neutral-500 mt-4">
+    <p class="text-sm  mt-4">
       <span class="mr-2 {statPercentColor}">
         <i
           class="{statArrow === 'up' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'}"

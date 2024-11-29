@@ -1,6 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {chartColors, createLinearGradient1} from "../../utils/chartTools";
+    import {chartColors} from "../../utils/chartTools";
     import {monthsForLocale} from "../../utils/formatTools";
     import {ChartConfiguration, ChartItem} from "chart.js";
 
@@ -26,7 +26,7 @@
                         borderColor: chartColors.red,
                         hoverBorderColor: chartColors.red,
                         data: [5000, 6800, 86000, 74000, 56000, 60000, 87000, 99999.34, 67000, 75000, 120000],
-                        borderRadius: 5,
+                        borderRadius: 5
                     },
                     {
                         label: "Last year",
@@ -34,28 +34,28 @@
                         borderColor: "#fff0",
                         data: [2000, 5000, 9000, 14000, 99999.34, 67000, 75000, 80000, 85000, 50000, 100000],
                         fill: false,
-                        borderRadius: 5,
-                    },
-                ],
+                        borderRadius: 5
+                    }
+                ]
             },
             options: {
                 interaction: {
                     mode: "index",
-                    intersect: false,
+                    intersect: false
                 },
                 layout: {
                     padding: {
                         top: 10,
                         left: 10,
                         right: 10,
-                        bottom: 10,
-                    },
+                        bottom: 10
+                    }
                 },
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         display: false,
-                        align: "start",
+                        align: "start"
                     },
                     tooltip: {
                         callbacks: {
@@ -69,13 +69,13 @@
                                     label += new Intl.NumberFormat("am-ET", {
                                         style: "currency",
                                         currencyDisplay: "name",
-                                        currency: "ETB",
+                                        currency: "ETB"
                                     }).format(context.parsed.y);
                                 }
                                 return label;
-                            },
-                        },
-                    },
+                            }
+                        }
+                    }
                 },
                 responsive: true,
                 scales: {
@@ -91,15 +91,15 @@
                                     style: "currency",
                                     currencyDisplay: "symbol",
                                     signDisplay: "never",
-                                    currency: "ETB",
+                                    currency: "ETB"
                                 }).format(val);
                                 return value;
-                            },
-                        },
-                    },
-                },
+                            }
+                        }
+                    }
+                }
             },
-            type: "bar",
+            type: "bar"
         };
 
         let {
@@ -109,7 +109,7 @@
             LinearScale,
             BarElement,
             BarController,
-            Tooltip,
+            Tooltip
         } = await import("chart.js");
         Chart.register([
             LinearScale,
@@ -117,10 +117,10 @@
             BarElement,
             BarController,
             Tooltip,
-            Legend,
+            Legend
         ]);
 
-        Chart.defaults.color = "#334155";
+        Chart.defaults.color = "#999";
         Chart.defaults.font.family = "poppins";
         Chart.defaults.clip = 100;
 
@@ -148,10 +148,9 @@
     <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
         <div class="flex flex-wrap items-center">
             <div class="relative w-full max-w-full flex-grow flex-1">
-                <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
-                    Performance vs Previous year
+                <h6 class="uppercase mb-1 text-xs font-extrabold"> Performance vs Previous year
                 </h6>
-                <h2 class="text-neutral-700 text-4xl font-light">Comparison</h2>
+                <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">Comparison</h2>
             </div>
         </div>
     </div>

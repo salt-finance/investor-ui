@@ -13,7 +13,7 @@
     major = Math.floor(100 - 10 * factor);
 
     const data = [major, 100 - major];
-    const colors = [major > 50 ? chartColors.green : chartColors.red, "#fff0"];
+    const colors = [major > 50 ? chartColors.green : chartColors.red, "#fff3"];
     let config = {
       type: "doughnut",
       data: {
@@ -24,6 +24,9 @@
             data: data,
             borderColor: "#fff0",
             backgroundColor: function (context) {
+              if(context.dataIndex == 1){
+                return colors[context.dataIndex];
+              }
               let c = colors[context.dataIndex];
               if (!c) {
                 return;
@@ -60,7 +63,7 @@
 
     Chart.register([DoughnutController, ArcElement, Legend]);
 
-    Chart.defaults.color = "#334155";
+    Chart.defaults.color = "#999";
     Chart.defaults.font.family = "poppins";
     Chart.defaults.clip = 100;
 
@@ -71,17 +74,17 @@
 <div class="relative flex flex-col min-w-0 break-words w-full">
   <div class="mb-0 px-4 py-3">
     <div class="w-full max-w-full flex-grow flex-1">
-      <h6 class="uppercase text-neutral-500 mb-1 text-xs font-black">
+      <h6 class="uppercase mb-1 text-xs font-extrabold">
         Average return on investment
       </h6>
-      <h2 class="text-neutral-700 text-4xl font-light">ROI</h2>
+      <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">ROI</h2>
     </div>
   </div>
   <div class="relative h-48 lg:h-72 xl:h-80 flex place-items-center">
     <h3
       class:text-emerald-500={major > 50}
       class:text-red-500={0 < major && major < 50}
-      class="text-xl md:text-3xl xl:text-5xl font-extrabold text-center w-full font-serif"
+      class="text-xl md:text-3xl xl:text-5xl font-extralight text-center w-full"
     >
       {major}%
     </h3>

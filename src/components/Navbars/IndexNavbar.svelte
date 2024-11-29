@@ -15,14 +15,14 @@
 </script>
 
 <nav
-  class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white w-full z-10"
+  class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white dark:bg-neutral-950 dark:bg-opacity-40 w-full z-10"
 >
   <div
     class="px-0 flex items-center justify-between transition-all ease-in-out duration-500 flex-wrap w-full flex-grow"
   >
     <a
       use:link
-      class="text-blue-700 text-xl font-extrabold tracking-wide font-serif leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate"
+      class="text-2xl tracking-wide font-light leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate"
       href="/"
     >
       Salt
