@@ -20,10 +20,10 @@
 <div
   class="relative flex flex-col min-w-0 break-words bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40 glass-effect rounded-lg xl:mb-0 shadow-lg h-full"
 >
-  <div class="flex-auto flex flex-col p-4 justify-between">
+  <div class="flex-auto flex flex-col p-4 justify-between gap-2">
     <div class="flex flex-wrap gap-2">
       <div class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex">
-        <h5 class="uppercase font-bold text-sm">
+        <h5 class="uppercase font-bold">
           {statSubtitle}
         </h5>
         <span class="font-light text-xl md:text-2xl">
@@ -38,8 +38,8 @@
         </div>
       </div>
     </div>
-    <p class="text-sm  mt-4">
-      <span class="mr-2 {statPercentColor}">
+    <p>
+      <span class="mr-2 font-bold text-lg {statPercentColor}">
         <i
           class="{statArrow === 'up' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'}"
         ></i>

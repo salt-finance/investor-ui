@@ -24,10 +24,10 @@
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
-                        <h6 class="uppercase mb-1 text-xs font-extrabold">
-                            Account value over time
+                        <h6 class="uppercase mb-1 font-extrabold">
+                            Total value over time
                         </h6>
-                        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">
+                        <h2 class="text-neutral-500 dark:text-neutral-200 text-4xl font-extralight">
                             Performance
                         </h2>
                     </div>
@@ -40,9 +40,9 @@
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
-                        <h6 class="uppercase mb-1 text-xs font-extrabold"> Portfolio distribution by category
+                        <h6 class="uppercase mb-1 font-extrabold"> Portfolio distribution by category
                         </h6>
-                        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">Spread</h2>
+                        <h2 class="text-neutral-500 dark:text-neutral-200 text-4xl font-extralight">Spread</h2>
                     </div>
                 </div>
                 <CardPieChart/>
@@ -54,9 +54,9 @@
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
-                        <h6 class="uppercase mb-1 text-xs font-extrabold"> Performance vs Previous year
+                        <h6 class="uppercase mb-1 font-extrabold"> Performance vs Previous year
                         </h6>
-                        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">Comparison</h2>
+                        <h2 class="text-neutral-500 dark:text-neutral-200 text-4xl font-extralight">Comparison</h2>
                     </div>
                 </div>
                 <CardBarChart/>
@@ -67,10 +67,10 @@
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
-                        <h6 class="uppercase mb-1 text-xs font-extrabold">
-                            Average return on investment
+                        <h6 class="uppercase mb-1 font-extrabold">
+                            Average profit to loss ratio
                         </h6>
-                        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">ROI</h2>
+                        <h2 class="text-neutral-500 dark:text-neutral-200 text-4xl font-extralight">Profit/Loss</h2>
                     </div>
                 </div>
                 <CardDoghnutChart/>

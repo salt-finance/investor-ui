@@ -7,26 +7,26 @@
 <div class="flex flex-wrap flex-row gap-4">
   <div class="w-full flex-1">
     <CardStats
-      statSubtitle="Portfolio value"
-      statTitle="350,897"
+      statSubtitle="value"
+      statTitle="350,897 Birr"
       statArrow="up"
       statPercent="3.48"
       statPercentColor="text-emerald-500"
       statDescripiron="Since last month"
       statIconName="fa fa-line-chart"
-      statIconColor="bg-indigo-600 text-white"
+      statIconColor="bg-primary-600 text-white"
     />
   </div>
   <div class="w-full hidden md:block flex-1">
     <CardStats
-      statSubtitle="Portfolio distribution"
+      statSubtitle="Spread"
       statTitle="2,356"
       statArrow="down"
       statPercent="3.48"
       statPercentColor="text-red-500"
       statDescripiron="Since last week"
       statIconName="fa fa-pie-chart"
-      statIconColor="bg-indigo-600 text-white"
+      statIconColor="bg-primary-600 text-white"
     />
   </div>
   <div class="w-full hidden lg:block flex-1">
@@ -38,7 +38,7 @@
       statPercentColor="text-red-500"
       statDescripiron="Since last year"
       statIconName="fas fa-users"
-      statIconColor="bg-indigo-600 text-white"
+      statIconColor="bg-primary-600 text-white"
     />
   </div>
   <div class="w-full hidden lg:block flex-1">
@@ -50,7 +50,7 @@
       statPercentColor="text-emerald-500"
       statDescripiron="Since last month"
       statIconName="fas fa-percent"
-      statIconColor="bg-indigo-600 text-white"
+      statIconColor="bg-primary-600 text-white"
     />
   </div>
 </div>
