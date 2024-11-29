@@ -71,23 +71,14 @@
   });
 </script>
 
-<div class="relative flex flex-col min-w-0 break-words w-full">
-  <div class="mb-0 px-4 py-3">
-    <div class="w-full max-w-full flex-grow flex-1">
-      <h6 class="uppercase mb-1 text-xs font-extrabold">
-        Average return on investment
-      </h6>
-      <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">ROI</h2>
-    </div>
-  </div>
+
   <div class="relative h-48 lg:h-72 xl:h-80 flex place-items-center">
     <h3
       class:text-emerald-500={major > 50}
       class:text-red-500={0 < major && major < 50}
-      class="text-xl md:text-3xl xl:text-5xl font-extralight text-center w-full"
+      class="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-extralight text-center w-full"
     >
       {major}%
     </h3>
     <canvas id="doughnut-chart" class="absolute top-0"></canvas>
   </div>
-</div>

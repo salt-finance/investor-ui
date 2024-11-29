@@ -1,8 +1,9 @@
-<script lang="ts">
+<script>
     import {onMount} from "svelte";
     import {chartColors} from "../../utils/chartTools";
     import {monthsForLocale} from "../../utils/formatTools";
-    import {ChartConfiguration, ChartItem} from "chart.js";
+
+
 
     // library that creates chart objects in page
     // init chart
@@ -15,7 +16,7 @@
 
         // let backgroundFill;
 
-        let config: ChartConfiguration = {
+        let config = {
             data: {
                 labels: labels,
                 datasets: [
@@ -83,7 +84,7 @@
                         ticks: {
                             // Include a dollar sign in the ticks
                             callback: function (value) {
-                                const val = value as number;
+                                const val = value;
 
                                 value = new Intl.NumberFormat("am-ET", {
                                     currencySign: "standard",
@@ -125,7 +126,7 @@
         Chart.defaults.clip = 100;
 
 
-        const chart = new Chart(render as ChartItem, config);
+        const chart = new Chart(render, config);
         if (!chart) {
             // This case happens on initial chart load
             return;
@@ -144,17 +145,8 @@
     });
 </script>
 
-<div class="relative flex flex-col min-w-0 break-words rounded-lg">
-    <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-        <div class="flex flex-wrap items-center">
-            <div class="relative w-full max-w-full flex-grow flex-1">
-                <h6 class="uppercase mb-1 text-xs font-extrabold"> Performance vs Previous year
-                </h6>
-                <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">Comparison</h2>
-            </div>
-        </div>
-    </div>
-    <div class="relative h-48 lg:h-72 xl:h-80">
-        <canvas id="bar-chart" class="absolute top-0"></canvas>
-    </div>
+
+<div class="relative h-48 lg:h-72 xl:h-80">
+    <canvas id="bar-chart" class="absolute top-0"></canvas>
 </div>
+

@@ -5,7 +5,7 @@
 
 <!-- Header -->
 <div class="flex flex-wrap flex-row gap-4">
-  <div class="w-full lg:w-3/12 flex-shrink ">
+  <div class="w-full flex-1">
     <CardStats
       statSubtitle="Portfolio value"
       statTitle="350,897"
@@ -17,7 +17,7 @@
       statIconColor="bg-indigo-600 text-white"
     />
   </div>
-  <div class="w-full flex-1 hidden md:block ">
+  <div class="w-full hidden md:block flex-1">
     <CardStats
       statSubtitle="Portfolio distribution"
       statTitle="2,356"
@@ -29,7 +29,7 @@
       statIconColor="bg-indigo-600 text-white"
     />
   </div>
-  <div class="w-full hidden lg:block  lg:w-3/12 flex-shrink ">
+  <div class="w-full hidden lg:block flex-1">
     <CardStats
       statSubtitle="SALES"
       statTitle="924"
@@ -41,7 +41,7 @@
       statIconColor="bg-indigo-600 text-white"
     />
   </div>
-  <div class="w-full flex-1 hidden lg:block ">
+  <div class="w-full hidden lg:block flex-1">
     <CardStats
       statSubtitle="PERFORMANCE"
       statTitle="49.65%"

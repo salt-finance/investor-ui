@@ -22,7 +22,6 @@ export const dateTimeFormat = (date, options = defaultOptions) => {
 const monthFormat = new Intl.DateTimeFormat(locale, {
   calendar: "ethiopic",
   month: "long",
-  year: "numeric"
 }).format;
 export const monthsForLocale = () => {
   const currentMonth = new Date(Date.now());

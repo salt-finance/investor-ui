@@ -197,20 +197,7 @@
   });
 </script>
 
-<div class="relative flex flex-col min-w-0 break-words w-full">
-  <div class="rounded-t mb-0 px-4 py-3">
-    <div class="flex flex-wrap items-center">
-      <div class="relative w-full max-w-full flex-grow flex-1">
-        <h6 class="uppercase mb-1 text-xs font-extrabold">
-          Account value over time
-        </h6>
-        <h2 class="text-neutral-700 dark:text-neutral-200 text-4xl font-light">
-          Performance
-        </h2>
-      </div>
-    </div>
-  </div>
+
   <div class="relative h-48 lg:h-72 xl:h-80">
     <canvas id="line-chart" class="absolute top-0"></canvas>
   </div>
-</div>

@@ -78,8 +78,8 @@ export const createRadialGradient1 = (context, c1) => {
     r
   );
   gradient.addColorStop(0, c.rgbString());
-  gradient.addColorStop(0.85, c.alpha(0.7).rgbString());
-  gradient.addColorStop(1, c.alpha(0.7).rgbString());
+  gradient.addColorStop(0.8, c.alpha(0.9).rgbString());
+  gradient.addColorStop(1, c.alpha(0.6).rgbString());
   // gradient.addColorStop(1, c.clearer(0.5).rgbString());
 
   return gradient;
