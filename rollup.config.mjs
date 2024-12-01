@@ -2,11 +2,11 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from '@rollup/plugin-typescript';
 import terser from "@rollup/plugin-terser";
-import { spawn } from "node:child_process";
+import {spawn} from "node:child_process";
 import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
-import { visualizer } from "rollup-plugin-visualizer";
+import {visualizer} from "rollup-plugin-visualizer";
 
 // library that helps you import in svelte with
 // absolute paths, instead of
@@ -16,7 +16,8 @@ import { visualizer } from "rollup-plugin-visualizer";
 import alias from "@rollup/plugin-alias";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import {fileURLToPath} from "url";
+
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
 const production = process.env.BUILD === "production";
@@ -26,16 +27,13 @@ const basePath = production ? "/investor-ui" : "";
 
 // configure aliases for absolute imports
 const aliases = alias({
-  resolve: [".svelte", ".js", ".ts"], //optional, by default this will just look for .js files or folders
-  entries: [
-    {
-      find: "components",
-      replacement: path.resolve(projectRootDir, "src/components"),
-    },
-    { find: "utils", replacement: path.resolve(projectRootDir, "src/utils") },
-    { find: "views", replacement: path.resolve(projectRootDir, "src/views") },
-    { find: "assets", replacement: path.resolve(projectRootDir, "src/assets") },
-  ],
+    resolve: [".svelte", ".js", ".ts"], //optional, by default this will just look for .js files or folders
+    entries: [{
+        find: "components", replacement: path.resolve(projectRootDir, "src/components"),
+    }, {find: "utils", replacement: path.resolve(projectRootDir, "src/utils")}, {
+        find: "views",
+        replacement: path.resolve(projectRootDir, "src/views")
+    }, {find: "assets", replacement: path.resolve(projectRootDir, "src/assets")},],
 });
 
 const indexTemplate = `
@@ -49,6 +47,8 @@ const indexTemplate = `
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=dark_mode,light_mode,night_sight_auto" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link
       rel="apple-touch-icon"
@@ -86,7 +86,8 @@ const indexTemplate = `
   </head>
 
   <body class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-b from-blue-300 dark:from-indigo-700 to-white dark:to-neutral-900">
- <script defer type="text/javascript">
+  <!--- Google translate-->
+    <script defer type="text/javascript">
       function setupGoogleTranslate() {
         new google.translate.TranslateElement(
           {
@@ -124,6 +125,8 @@ const indexTemplate = `
         }
       }
     </script>
+    
+    
     <script
       type="text/javascript"
       defer
@@ -136,101 +139,80 @@ const indexTemplate = `
       </strong>
     </noscript>
     <div id="app" class=""></div>
+    <script>
+  
+</script>
   </body>
 </html>`;
 
-const processEnv =
-  "PRODUCTION:" + `"${production}",` + "BASE_URL:" + `"${basePath}"`;
+const processEnv = "PRODUCTION:" + `"${production}",` + "BASE_URL:" + `"${basePath}"`;
 
 console.log("build args");
 console.table(processEnv);
 
-fs.writeFileSync(
-  "./public/index.html",
-  indexTemplate
+fs.writeFileSync("./public/index.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
-    .replace(/<<live-preview-link>>/g, basePath)
-);
-fs.writeFileSync(
-  "./public/200.html",
-  indexTemplate
+    .replace(/<<live-preview-link>>/g, basePath));
+fs.writeFileSync("./public/200.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
-    .replace(/<<live-preview-link>>/g, basePath)
-);
-fs.writeFileSync(
-  "./public/404.html",
-  indexTemplate
+    .replace(/<<live-preview-link>>/g, basePath));
+fs.writeFileSync("./public/404.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
-    .replace(/<<live-preview-link>>/g, basePath)
-);
+    .replace(/<<live-preview-link>>/g, basePath));
 
 function serve() {
-  let server;
+    let server;
 
-  function toExit() {
-    if (server) server.kill(0);
-  }
+    function toExit() {
+        if (server) server.kill(0);
+    }
 
-  return {
-    writeBundle() {
-      if (server) return;
-      server = spawn("npm", ["run", "start", "--", "--dev"], {
-        stdio: ["ignore", "inherit", "inherit"],
-        shell: true,
-      });
+    return {
+        writeBundle() {
+            if (server) return;
+            server = spawn("npm", ["run", "start", "--", "--dev"], {
+                stdio: ["ignore", "inherit", "inherit"], shell: true
+            });
 
-      process.on("SIGTERM", toExit);
-      process.on("exit", toExit);
-    },
-  };
+            process.on("SIGTERM", toExit);
+            process.on("exit", toExit);
+        },
+    };
+}
+
+function buildTailwind() {
+    console.log('buildTailwind');
 }
 
 export default {
-  input: `src/main.js`,
+    input: `src/main.js`,
 
-  output: [
-    {
-      sourcemap: true,
-      format: "es",
-      name: "app",
-      dir: "public/build/",
+    output: [{
+        sourcemap: true, format: "es", name: "app", dir: "public/build/",
+    }, {
+        dir: "public/build/min", format: "es", name: "version", plugins: [terser()],
+    },],
+
+    plugins: [svelte({
+        onwarn: (warning, handler) => {
+            // e.g. don't warn on <marquee> elements, cos they're cool
+            if (warning.code.includes("a11y")) return;
+            if (warning.code === "CIRCULAR_DEPENDENCY") return;
+
+            // let Rollup handle all other warnings normally
+            handler(warning);
+        },
+
+        emitCss: true,
+    }), css({output: "bundle.css"}), resolve({
+        browser: true, dedupe: ["svelte"],
+    }), commonjs(),
+
+        watch && serve(),
+
+        watch && livereload("public"), watch && buildTailwind(),
+
+        aliases, visualizer(),], watch: {
+        clearScreen: false,
     },
-    {
-      dir: "public/build/min",
-      format: "es",
-      name: "version",
-      plugins: [terser()],
-    },
-  ],
-
-  plugins: [
-    svelte({
-      onwarn: (warning, handler) => {
-        // e.g. don't warn on <marquee> elements, cos they're cool
-        if (warning.code.includes("a11y")) return;
-        if (warning.code === "CIRCULAR_DEPENDENCY") return;
-
-        // let Rollup handle all other warnings normally
-        handler(warning);
-      },
-
-      emitCss: true,
-    }),
-    css({ output: "bundle.css" }),
-    resolve({
-      browser: true,
-      dedupe: ["svelte"],
-    }),
-    commonjs(),
-
-    watch && serve(),
-
-    watch && livereload("public"),
-
-    aliases,
-    visualizer(),
-  ],
-  watch: {
-    clearScreen: false,
-  },
 };

@@ -30,7 +30,7 @@
       use:link
       use:active
       href="/admin/dashboard"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent"
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent"
     >
       Dashboard
     </a>
@@ -38,7 +38,7 @@
       use:link
       use:active
       href="/admin/market"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
     >
       Market
     </a>
@@ -46,7 +46,7 @@
       use:link
       use:active
       href="/admin/holdings"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
     >
       Holdings
     </a>
@@ -54,7 +54,7 @@
       use:link
       use:active
       href="/admin/activity"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
     >
       Activity
     </a>
@@ -62,7 +62,7 @@
       use:link
       use:active
       href="/admin/portfolio"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
     >
       Portfolio
     </a>
@@ -71,7 +71,7 @@
       use:link
       use:active
       href="/auth/login"
-      class="text-sm font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
     >
       Login
     </a>
@@ -79,7 +79,7 @@
       use:link
       use:active
       href="/auth/register"
-      class="text-sm font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent "
+      class="font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent "
     >
       Register
     </a>

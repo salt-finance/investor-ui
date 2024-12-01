@@ -4,9 +4,9 @@ import plugin = require( "tailwindcss/plugin");
 
 
 module.exports = {
+    darkMode: ['selector', '.dark'],
     content: ["./src/**/*.{html,js,svelte}", "./rollup.config.mjs"],
     theme: {
-
         fontFamily: {
             sans: ["Dm Sans", "ui-sans-serif", "system-ui"],
             serif: ["Libre Bodoni", "ui-serif", "Georgia"],
