@@ -35,7 +35,7 @@
     }
 
     function routeLoaded(event) {
-        currentRouteTitle = event.detail.name.toString().toLowerCase();
+        currentRouteTitle = event.detail.route.replace("/", "");
         hideRouteTitle = false;
         // setTimeout(() => hideRouteTitle = false, 1000);
     }
