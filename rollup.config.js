@@ -1,4 +1,5 @@
 import commonjs from "@rollup/plugin-commonjs";
+import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from '@rollup/plugin-typescript';
 import terser from "@rollup/plugin-terser";
@@ -7,6 +8,8 @@ import css from "rollup-plugin-css-only";
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
 import {visualizer} from "rollup-plugin-visualizer";
+import sveltePreprocess from 'svelte-preprocess';
+
 
 // library that helps you import in svelte with
 // absolute paths, instead of
@@ -24,6 +27,8 @@ const production = process.env.BUILD === "production";
 const watch = process.env.ROLLUP_WATCH;
 const projectRootDir = path.resolve(__dirname);
 const basePath = production ? "/investor-ui" : "";
+const bundlePrefix = production ? "/build/min" : "/build";
+
 
 // configure aliases for absolute imports
 const aliases = alias({
@@ -35,6 +40,7 @@ const aliases = alias({
         replacement: path.resolve(projectRootDir, "src/views")
     }, {find: "assets", replacement: path.resolve(projectRootDir, "src/assets")},],
 });
+
 
 const indexTemplate = `
 <!DOCTYPE html>
@@ -56,7 +62,7 @@ const indexTemplate = `
       href="<<live-preview-link>>/apple-icon.png"
     />
 
-    <script type="module" defer src="<<live-preview-link>>/build/main.js"></script>
+    <script type="module" defer src="<<live-preview-link>><<bundle-prefix>>/main.js"></script>
     <link
       rel="preload"
       href="<<live-preview-link>>/assets/styles/tailwind.css"
@@ -153,12 +159,16 @@ console.table(processEnv);
 
 fs.writeFileSync("./public/index.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
-    .replace(/<<live-preview-link>>/g, basePath));
+    .replace(/<<live-preview-link>>/g, basePath)
+    .replace(/<<bundle-prefix>>/g, bundlePrefix)
+);
 fs.writeFileSync("./public/200.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
+    .replace(/<<bundle-prefix>>/g, bundlePrefix)
     .replace(/<<live-preview-link>>/g, basePath));
 fs.writeFileSync("./public/404.html", indexTemplate
     .replace("<<process-env-status>>", processEnv)
+    .replace(/<<bundle-prefix>>/g, bundlePrefix)
     .replace(/<<live-preview-link>>/g, basePath));
 
 function serve() {
@@ -181,39 +191,47 @@ function serve() {
     };
 }
 
-function buildTailwind() {
-    console.log('buildTailwind');
-}
 
 export default {
-    input: `src/main.js`,
+    input: `src/main.ts`,
 
     output: [{
         sourcemap: true, format: "es", name: "app", dir: "public/build/",
     }, {
-        dir: "public/build/min", format: "es", name: "version", plugins: [terser()],
+        dir: "public/build/min", sourcemap: true, format: "es", name: "version", plugins: [terser()],
     },],
 
-    plugins: [svelte({
-        onwarn: (warning, handler) => {
-            // e.g. don't warn on <marquee> elements, cos they're cool
-            if (warning.code.includes("a11y")) return;
-            if (warning.code === "CIRCULAR_DEPENDENCY") return;
+    plugins: [
 
-            // let Rollup handle all other warnings normally
-            handler(warning);
-        },
+        svelte({
+            preprocess: sveltePreprocess({sourceMap: !production}),
+            onwarn: (warning, handler) => {
+                // e.g. don't warn on <marquee> elements, cos they're cool
+                if (warning.code.includes("a11y")) return;
+                if (warning.code === "CIRCULAR_DEPENDENCY") return;
 
-        emitCss: true,
-    }), css({output: "bundle.css"}), resolve({
-        browser: true, dedupe: ["svelte"],
-    }), commonjs(),
+                // let Rollup handle all other warnings normally
+                handler(warning);
+            },
+
+            emitCss: true,
+        }),
+
+        css({output: "bundle.css"}),
+        resolve({
+            browser: true, dedupe: ["svelte"],
+        }), commonjs(), typescript({
+            sourceMap: !production,
+            inlineSources: !production
+        }), json(),
 
         watch && serve(),
 
-        watch && livereload("public"), watch && buildTailwind(),
+        watch && livereload("public"),
 
-        aliases, visualizer(),], watch: {
+        aliases, visualizer(),],
+
+    watch: {
         clearScreen: false,
     },
 };

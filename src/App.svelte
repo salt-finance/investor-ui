@@ -1,5 +1,5 @@
 <!-- App.svelte -->
-<script>
+<script lang="ts">
     // Admin Layout
     import Admin from "./layouts/Admin.svelte";
     // Auth Layout

@@ -1,11 +1,11 @@
 /** @type {import("tailwindcss").Config} */
 
-import plugin = require( "tailwindcss/plugin");
+import plugin from "tailwindcss/plugin";
 
 
 module.exports = {
-    darkMode: ['selector', '.dark'],
-    content: ["./src/**/*.{html,js,svelte}", "./rollup.config.mjs"],
+    darkMode: ["selector", ".dark"],
+    content: ["./src/**/*.{html,js,svelte}", "./rollup.config.js"],
     theme: {
         fontFamily: {
             sans: ["Dm Sans", "ui-sans-serif", "system-ui"],

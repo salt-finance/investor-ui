@@ -1,6 +1,8 @@
 <script>
     // make dynamic date to be added to footer
     let date = new Date().getFullYear();
+    import {version} from "../../../package.json";
+    
 </script>
 
 <footer class="block py-4">
@@ -12,7 +14,7 @@
                         class="font-semibold py-1 text-center skiptranslate"
                 >
                     Copyright © {date}
-                    Salt finance
+                    Salt finance @ {version}
                 </div>
             </div>
         </div>
