@@ -26,7 +26,7 @@
     };
 </script>
 
-<div>
+<div class="relative">
     <a
             class="block"
             href="#pablo"
@@ -49,7 +49,7 @@
     </a>
     <div
             bind:this={popoverDropdownRef}
-            class="z-50 py-2 list-none text-left rounded min-w-48 glass-effect dark:bg-opacity-75  {dropdownPopoverShow
+            class="z-50 py-2 list-none text-left rounded min-w-48 glass-effect dark:bg-opacity-90 bg-opacity-95  {dropdownPopoverShow
       ? 'block'
       : 'hidden'}"
     >

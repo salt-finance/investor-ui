@@ -3,6 +3,14 @@
     import {fly} from "svelte/transition";
     import {staggerdTransition} from "../../utils/animationTools.js";
 
+    import {Security} from "../../models/security";
+
+    const d: Security[] = [];
+
+
+    d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "#"));
+
+    console.table(d);
 
     const data = [{
         "Security Name | Ticker <br /> Security Type": "Ethio Telecom | <strong>ETC</strong> <br /> Common Stock",
