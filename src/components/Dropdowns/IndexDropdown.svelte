@@ -1,87 +1,88 @@
 <script>
-  import { link } from "svelte-spa-router";
-  import active from "svelte-spa-router/active";
-// library for creating dropdown menu appear on click
-  import { createPopper } from "@popperjs/core";
-  let { isLoggedIn = false } = $props();
+    import {link} from "svelte-spa-router";
+    import active from "svelte-spa-router/active";
+    // library for creating dropdown menu appear on click
+    import {createPopper} from "@popperjs/core";
 
-  // core components
-  let dropdownPopoverShow = false;
+    let {isLoggedIn = false} = $props();
 
-  let btnDropdownRef;
-  let popoverDropdownRef;
+    // core components
+    let dropdownPopoverShow = false;
 
-  const toggleDropdown = (event) => {
-    event.preventDefault();
-    if (dropdownPopoverShow) {
-      dropdownPopoverShow = false;
-    } else {
-      dropdownPopoverShow = true;
-      createPopper(btnDropdownRef, popoverDropdownRef, {
-        placement: "bottom-start",
-      });
-    }
-  };
+    let btnDropdownRef;
+    let popoverDropdownRef;
+
+    const toggleDropdown = (event) => {
+        event.preventDefault();
+        if (dropdownPopoverShow) {
+            dropdownPopoverShow = false;
+        } else {
+            dropdownPopoverShow = true;
+            createPopper(btnDropdownRef, popoverDropdownRef, {
+                placement: "bottom-start",
+            });
+        }
+    };
 </script>
 
-<div class="flex flex-col lg:flex-row">
-  {#if isLoggedIn}
-    <a
-      use:link
-      use:active
-      href="/admin/dashboard"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent"
-    >
-      Dashboard
-    </a>
-    <a
-      use:link
-      use:active
-      href="/admin/market"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
-    >
-      Market
-    </a>
-    <a
-      use:link
-      use:active
-      href="/admin/holdings"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
-    >
-      Holdings
-    </a>
-    <a
-      use:link
-      use:active
-      href="/admin/activity"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
-    >
-      Activity
-    </a>
-    <a
-      use:link
-      use:active
-      href="/admin/portfolio"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
-    >
-      Portfolio
-    </a>
-  {:else}
-    <a
-      use:link
-      use:active
-      href="/auth/login"
-      class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
-    >
-      Login
-    </a>
-    <a
-      use:link
-      use:active
-      href="/auth/register"
-      class="font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent "
-    >
-      Register
-    </a>
-  {/if}
+<div class="flex flex-col lg:flex-row capitalize">
+    {#if isLoggedIn}
+        <a
+                use:link
+                use:active
+                href="/admin/dashboard"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent"
+        >
+            dashboard
+        </a>
+        <a
+                use:link
+                use:active
+                href="/admin/market"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+        >
+            market
+        </a>
+        <a
+                use:link
+                use:active
+                href="/admin/holdings"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+        >
+            holdings
+        </a>
+        <a
+                use:link
+                use:active
+                href="/admin/activity"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+        >
+            activity
+        </a>
+        <a
+                use:link
+                use:active
+                href="/admin/portfolio"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+        >
+            portfolio
+        </a>
+    {:else}
+        <a
+                use:link
+                use:active
+                href="/auth/login"
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+        >
+            Login
+        </a>
+        <a
+                use:link
+                use:active
+                href="/auth/register"
+                class="font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent "
+        >
+            Register
+        </a>
+    {/if}
 </div>

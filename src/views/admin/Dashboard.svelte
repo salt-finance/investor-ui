@@ -6,6 +6,8 @@
     import CardPageVisits from "components/Cards/CardPageVisits.svelte";
     import CardPieChart from "components/Cards/CardPieChart.svelte";
     import CardSocialTraffic from "components/Cards/CardSocialTraffic.svelte";
+    import Holdings from "./Holdings.svelte";
+    import Activity from "./Activity.svelte";
 
     import {blur, fly} from "svelte/transition";
     import {blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition,} from "utils/animationTools.js";
@@ -19,7 +21,7 @@
         out:blur={blurTransitionOutConfig}
 >
     <div class="flex flex-row flex-wrap gap-4">
-        <div class="w-full  md:w-9/12 flex-3 bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80"
+        <div class="w-full  md:w-9/12 flex-3  glass-effect rounded-lg"
              in:fly={staggerdTransition(1)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
@@ -78,12 +80,11 @@
         </div>
     </div>
     <div class="flex flex-wrap mt-4 gap-4" in:fly={staggerdTransition(4)}>
-        <div class="w-full xl:w-8/12 xl:mb-0 bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40 glass-effect rounded-lg bg-opacity-80 flex-shrink">
-            <CardPageVisits/>
+        <div class="w-full">
+            <Activity/>
         </div>
-        <div class="w-full xl:w-3/12 bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80 flex-grow"
-             in:fly={staggerdTransition(4)}>
-            <CardSocialTraffic/>
+        <div class="w-full">
+            <Holdings/>
         </div>
     </div>
 </div>

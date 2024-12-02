@@ -87,9 +87,10 @@ const indexTemplate = `
 
   <body class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-b from-blue-300 dark:from-indigo-700 to-white dark:to-neutral-900">
   <!--- Google translate-->
+  
     <script defer type="text/javascript">
-      function setupGoogleTranslate() {
-        new google.translate.TranslateElement(
+      async function setupGoogleTranslate(){
+       new google.translate.TranslateElement(
           {
             pageLanguage: "en",
             multilanguagePage: false,
