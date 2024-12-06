@@ -10,7 +10,7 @@
 
     d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/ETC.webp"));
     d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/CBE.webp"));
-    d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/EIC.webp"));
+    d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/EMC.webp"));
     d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/EEU.webp"));
     d.push(new Security("Ethio Telecom", "ETC", "id", "description", "sector", "ECMA", 5300, 5000, 5230, 5200, 30, 0.4, 5200, 5300, 5241, 400, 400000, 12, 0.12, "https://salt-finance.github.io/investor-ui/assets/img/Icons/ET.webp"));
 
@@ -42,7 +42,7 @@
         "": `<img  width="48"
                 height="48"
                 class="rounded-full align-middle border-none" src=${d[2].logoUrl} />`,
-        "Security Name | Ticker <br /> Security Type": "Ethiopian Insurance Corporation | <strong>EIC</strong> <br /> Common Stock",
+        "Security Name | Ticker <br /> Security Type": "Ethiopian Mineral Corporation | <strong>EMC</strong> <br /> Common Stock",
         "Market Value (Birr) <br/> Cost Basis": "5,040.00 <br /> 4,620.00",
         "Quantity": "18",
         "Price (Birr)": "280.00",
