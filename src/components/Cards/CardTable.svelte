@@ -38,8 +38,8 @@
                         class="glass-effect uppercase whitespace-nowrap font-semibold text-left"
 
                 >
-                    {#each columns as item}
-                        <th class="p-4">
+                    {#each columns as item, index}
+                        <th class="py-4 pl-4 {index > 2 ? 'hidden lg:table-cell' : ''}">
                             {@html item}
                         </th>
                     {/each}
@@ -53,16 +53,17 @@
 
                 {#each rows as row}
                     <tr class="hover:glass-effect cursor-pointer">
-                        {#each row as item}
+                        {#each row as item, index}
                             <td
-                                    class="p-4"
+
+                                    class="py-4 pl-4 {index > 2 ? 'hidden lg:table-cell' : ''}"
                             >
                                 {@html item}
                             </td>
                         {/each}
 
                         <td
-                                class="p-4 text-right"
+                                class="py-4 text-right px-4"
                         >
                             <TableDropdown/>
                         </td>
