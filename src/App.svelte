@@ -1,7 +1,7 @@
 <!-- App.svelte -->
 <script lang="ts">
     // Admin Layout
-    import Admin from "./layouts/Admin.svelte";
+    import Admin from "./layouts/Dashboard.svelte";
     // Auth Layout
     import Auth from "./layouts/Auth.svelte";
 

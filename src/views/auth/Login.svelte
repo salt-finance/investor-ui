@@ -8,7 +8,7 @@
   export const location = "";
 
   function signIn() {
-    push("/admin/dashboard");
+    push("/Dashboard/dashboard");
   }
 </script>
 
