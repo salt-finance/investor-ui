@@ -17,5 +17,5 @@ export default defineConfig({
             "views": path.resolve(__dirname, "src/views")
         }
     },
-    plugins: [svelte(), cssInjectedByJsPlugin()]
+    plugins: [svelte(), cssInjectedByJsPlugin({dev: {enableDev: false}})]
 });

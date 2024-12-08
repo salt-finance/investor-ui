@@ -102,6 +102,11 @@
                     },
                 },
                 scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
                     y: {
                         ticks: {
                             // Include a dollar sign in the ticks

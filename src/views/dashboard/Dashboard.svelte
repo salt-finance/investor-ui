@@ -20,8 +20,8 @@
         in:blur={blurTransitionInConfig}
         out:blur={blurTransitionOutConfig}
 >
-    <div class="flex flex-row flex-wrap gap-4">
-        <div class="w-full  md:w-9/12 flex-3  glass-effect rounded-lg"
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-8">
+        <div class="w-full glass-effect rounded-lg md:col-span-5 col-span-3 lg:col-span-6"
              in:fly={staggerdTransition(1)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
@@ -37,7 +37,7 @@
                 <CardLineChart/>
             </div>
         </div>
-        <div class="w-full md:w-3/12 flex-1 bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40 glass-effect rounded-lg bg-opacity-80"
+        <div class="col-span-3 md:col-span-3 lg:col-span-2 w-full bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40 glass-effect rounded-lg bg-opacity-80"
              in:fly={staggerdTransition(2)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="w-full md:w-9/12 flex-shrink bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80"
+        <div class="md:col-span-5 col-span-3 lg:col-span-6 w-full bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80"
              in:fly={staggerdTransition(3)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
@@ -64,7 +64,7 @@
                 <CardBarChart/>
             </div>
         </div>
-        <div class="w-full md:w-3/12 flex-1 bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80"
+        <div class="col-span-3 md:col-span-3 lg:col-span-2 w-full bg-white bg-opacity-80 dark:bg-neutral-950 dark:bg-opacity-40  glass-effect rounded-lg bg-opacity-80"
              in:fly={staggerdTransition(4)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
