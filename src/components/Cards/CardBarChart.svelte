@@ -4,7 +4,6 @@
     import {monthsForLocale} from "../../utils/formatTools";
 
 
-
     // library that creates chart objects in page
     // init chart
     onMount(async () => {
@@ -104,21 +103,17 @@
         };
 
         let {
-            CategoryScale,
             Chart,
-            Legend,
-            LinearScale,
             BarElement,
             BarController,
             Tooltip
-        } = await import("chart.js");
+        } = await import(
+            "chart.js/auto"
+            );
         Chart.register([
-            LinearScale,
-            CategoryScale,
             BarElement,
             BarController,
             Tooltip,
-            Legend
         ]);
 
         Chart.defaults.color = "#999";

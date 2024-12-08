@@ -8,8 +8,8 @@
     "vite": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:tailwind": "tailwind build -i index.css -o public/tailwind.css --minify",
-    "build:tailwind-dev": "tailwind build -i index.css -o public/tailwind.css --watch",
+    "build:tailwind": "tailwind build -i index.css -o dist/tailwind.css --minify",
+    "build:tailwind-dev": "tailwind build -i index.css -o dist/tailwind.css --minify --watch",
     "install:clear": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf public/build && npm install && npm run build:tailwind && npm run build:fontawesome && npm run dev",
     "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
@@ -18,14 +18,16 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.0",
     "@tsconfig/svelte": "^5.0.4",
     "autoprefixer": "^10.4.20",
+    "npm-run-all": "*",
     "postcss": "^8.4.49",
+    "sass-embedded": "^1.82.0",
     "svelte": "^5.2.7",
     "svelte-check": "^4.1.0",
     "tailwindcss": "^3.4.16",
     "tslib": "^2.8.1",
     "typescript": "~5.6.2",
     "vite": "^6.0.1",
-    "npm-run-all": "*"
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "dependencies": {
     "@kurkle/color": "^0.3.4",

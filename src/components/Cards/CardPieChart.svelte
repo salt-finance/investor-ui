@@ -1,94 +1,97 @@
 <script>
-  import { onMount } from "svelte";
-  import {
-    chartColors,
-    createRadialGradient1,
-    createShades,
-    getHover,
-  } from "utils/chartTools";
-  // library that creates chart objects in page
+    import {onMount} from "svelte";
+    import {
+        chartColors,
+        createRadialGradient1,
+        createShades,
+        getHover,
+    } from "utils/chartTools";
+    import {Tooltip} from "chart.js";
+    // library that creates chart objects in page
 
-  // init chart
-  onMount(async () => {
-    let { Chart, ArcElement, PieController, Tooltip } = await import(
-      "chart.js/auto"
-    );
+    // init chart
+    onMount(async () => {
 
-    var ctx = document.getElementById("pie-chart");
 
-    const chartColorBase = chartColors.blue;
-    const labels = ["ETFs", "Bonds", "Mutual Funds", "Cash", "Other"];
-    const data = [10, 40, 25, 15, 5].sort((a, b) => b - a);
+        var ctx = document.getElementById("pie-chart");
 
-    const colors = createShades(labels.length, chartColorBase);
+        const chartColorBase = chartColors.blue;
+        const labels = ["ETFs", "Bonds", "Mutual Funds", "Cash", "Other"];
+        const data = [10, 40, 25, 15, 5].sort((a, b) => b - a);
 
-    let config = {
-      type: "pie",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Portfolio",
-            fill: false,
-            borderColor: "#0000",
-            backgroundColor: function (context) {
-              let c = colors[context.dataIndex];
-              if (!c) {
-                return;
-              }
-              if (context.active) {
-                c = getHover(c);
-              }
-              return createRadialGradient1(context, c);
+        const colors = createShades(labels.length, chartColorBase);
+
+        let config = {
+            type: "pie",
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: "Portfolio",
+                        fill: false,
+                        borderColor: "#0000",
+                        backgroundColor: function (context) {
+                            let c = colors[context.dataIndex];
+                            if (!c) {
+                                return;
+                            }
+                            if (context.active) {
+                                c = getHover(c);
+                            }
+                            return createRadialGradient1(context, c);
+                        },
+                        data: data,
+                        hoverOffset: 20,
+                    },
+                ],
             },
-            data: data,
-            hoverOffset: 20,
-          },
-        ],
-      },
-      options: {
-        maintainAspectRatio: false,
-        layout: {
-          padding: {
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 10,
-          },
-        },
-        plugins: {
-          legend: {
-            display: false,
-            align: "start",
-          },
-          tooltip: {
-            callbacks: {
-              label: function (context) {
-                let label = context.dataset.label || "";
-                if (label) {
-                  label += ": ";
-                }
-                if (context.parsed !== null) {
-                  label += context.parsed;
-                  label += "%";
-                }
-                return label;
-              },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        top: 10,
+                        left: 10,
+                        right: 10,
+                        bottom: 10,
+                    },
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                        align: "start",
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || "";
+                                if (label) {
+                                    label += ": ";
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed;
+                                    label += "%";
+                                }
+                                return label;
+                            },
+                        },
+                    },
+                },
             },
-          },
-        },
-      },
-    };
+        };
 
-    Chart.register([PieController, ArcElement, Tooltip]);
-    Chart.defaults.color = "#999";
-    Chart.defaults.font.family = "poppins";
-    Chart.defaults.clip = 200;
+        let {Chart, ArcElement, PieController, Tooltip} = await import(
+            "chart.js/auto"
+            );
 
-    new Chart(ctx, config);
-  });
+        Chart.register([PieController, ArcElement, Tooltip]);
+        Chart.defaults.color = "#999";
+        Chart.defaults.font.family = "poppins";
+        Chart.defaults.clip = 200;
+
+        new Chart(ctx, config);
+    });
 </script>
 
-  <div class="relative h-48 lg:h-72 xl:h-80">
-    <canvas id="pie-chart" class="absolute top-0"></canvas>
-  </div>
+<div class="relative h-48 lg:h-72 xl:h-80">
+    <canvas class="absolute top-0" id="pie-chart"></canvas>
+</div>

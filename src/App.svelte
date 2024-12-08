@@ -33,8 +33,6 @@ Sell - Xanthous - #EAB308 - yellow-500
 Action - Azure - #3B82F6 - blue-500
 Danger - Cornell red - #b91c1c - red-700 -->
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&display=swap');
-
   :global {
     :root {
       interpolate-size: allow-keywords;
@@ -54,8 +52,7 @@ Danger - Cornell red - #b91c1c - red-700 -->
     }
 
     .goog-te-gadget {
-      width: 100%;
-      border: none !important;
+
 
       img {
         display: none !important;
@@ -88,13 +85,6 @@ Danger - Cornell red - #b91c1c - red-700 -->
       iframe {
         display: none;
       }
-    }
-
-    .glass-effect {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-
-      // border: 1px solid rgba(255, 255, 255, 0.3);
     }
   }
 </style>

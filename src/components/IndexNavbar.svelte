@@ -27,7 +27,7 @@
     >
         <span class="flex items-center">
         <a
-                class="text-2xl tracking-wide font-light leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
+                class="text-2xl tracking-wide font-extralight leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
                 href="/"
                 use:link
         >

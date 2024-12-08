@@ -21,37 +21,40 @@ export default app;
 
 
 // After page is translated, ensure the title is reset to english version.
-// const targetNode = document.body;
-// const config = {
-//     subtree: true,
-//     characterDataOldValue: true
-// };
-// const callback = (_, observer) => {
-//     const googleTranslateElement = document.getElementById(
-//         "google_translate_element"
-//     );
-//     document.title = "Salt finance investor";
-//
-//     if (googleTranslateElement != null) {
-//         function translateOnClick() {
-//             observer.observe(targetNode, config);
-//         }
-//
-//         observer.disconnect();
-//         googleTranslateElement.removeEventListener("click", () => translateOnClick());
-//         googleTranslateElement.addEventListener("click", () => translateOnClick());
-//     }
-// };
-// const observer = new MutationObserver(callback);
-// observer.observe(targetNode, config);
-//
-// window.onload = (e) => {
-//     const elements = Array.from(document
-//         .querySelectorAll("svg").values());
-//     const elem = elements
-//         ?.filter((e) => e?.classList?.value?.toLowerCase()?.includes("vip"));
-//
-//     elem?.map((e) => {
-//         e.parentElement.style.visibility = "hidden";
-//     });
-// };
+const targetNode = document.body;
+const config = {
+    subtree: true,
+    characterDataOldValue: true
+};
+const callback = (_: any, observer: { observe: (arg0: HTMLElement, arg1: { subtree: boolean; characterDataOldValue: boolean; }) => void; disconnect: () => void; }) => {
+    const googleTranslateElement = document.getElementById(
+        "google_translate_element"
+    );
+    document.title = "Salt finance investor";
+
+    if (googleTranslateElement != null) {
+        function translateOnClick() {
+            observer.observe(targetNode, config);
+        }
+
+        observer.disconnect();
+        googleTranslateElement.removeEventListener("click", () => translateOnClick());
+        googleTranslateElement.addEventListener("click", () => translateOnClick());
+    }
+};
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
+
+window.onload = (e) => {
+    const elements = Array.from(document
+        .querySelectorAll("svg").values());
+    const elem = elements
+        ?.filter((e) => e?.classList?.value?.toLowerCase()?.includes("vip"));
+
+    elem?.map((e) => {
+        if (e.parentElement == null) {
+            return;
+        }
+        e.parentElement.style.visibility = "hidden";
+    });
+};
