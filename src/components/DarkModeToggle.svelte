@@ -53,7 +53,7 @@
 </script>
 <button
         aria-label="open menu"
-        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block outline-none focus:outline-none"
+        class="text-xl leading-none px-3 py-1 rounded block outline-none hover:text-blue-500"
         onclick={() => setTheme()}
         type="button"
 >

@@ -9,4 +9,8 @@
     .glass-effect {
         @apply dark:bg-opacity-40 dark:bg-neutral-950 bg-white bg-opacity-80
     }
+
+    a {
+        @apply hover:text-blue-600 hover:underline underline-offset-8
+    }
 }

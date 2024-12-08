@@ -6,7 +6,7 @@
 
     import UserDropdown from "components/Dropdowns/UserDropdown.svelte";
 
-    import DarkModeToggle from "../DarkModeToggle.svelte";
+    import DarkModeToggle from "./DarkModeToggle.svelte";
 
 
     let {isLoggedIn = false} = $props();
@@ -20,16 +20,16 @@
 </script>
 
 <nav
-        class="flex flex-col p-4 shadow glass-effect rounded-lg bg-opacity-80 bg-white dark:bg-neutral-950 dark:bg-opacity-40 w-full z-10"
+        class="flex flex-col p-4 glass-effect rounded-lg bg-opacity-80 bg-white dark:bg-neutral-950 dark:bg-opacity-40 w-full z-10"
 >
     <div
             class="px-0 flex items-center justify-between transition-all ease-in-out duration-500 flex-wrap w-full flex-grow"
     >
         <span class="flex items-center">
         <a
-                use:link
-                class="text-2xl tracking-wide font-light leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate"
+                class="text-2xl tracking-wide font-light leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
                 href="/"
+                use:link
         >
             Salt
         </a>
@@ -37,11 +37,11 @@
 
     </span>
         <div
-                class:justify-center={isLoggedIn}
-                class:justify-end={!isLoggedIn}
                 class="overflow-hidden transition-all duration-500 ease-in-out lg:flex items-center order-3 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
         ? 'h-auto'
         : 'h-px lg:h-auto'}"
+                class:justify-center={isLoggedIn}
+                class:justify-end={!isLoggedIn}
         >
             <IndexDropdown {isLoggedIn}/>
         </div>
@@ -50,15 +50,15 @@
                 <UserDropdown/>
             {/if}
             <button
-                    class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-                    type="button"
                     aria-label="open menu"
+                    class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
                     onclick={setNavbarOpen}
+                    type="button"
             >
                 {#if navbarOpen === false}
-                    <i class="fas fa-bars"></i>
+                    <span class="material-symbols-outlined skiptranslate">menu</span>
                 {:else}
-                    <i class="fas fa-close"></i>
+                    <span class="material-symbols-outlined skiptranslate">close</span>
                 {/if}
             </button>
 

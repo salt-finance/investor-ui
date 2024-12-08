@@ -1,14 +1,13 @@
 <!-- App.svelte -->
 <script lang="ts">
     // Admin Layout
-    import Admin from "./layouts/Dashboard.svelte";
+    import Dashboard from "./layouts/DashboardLayout.svelte";
     // Auth Layout
-    import Auth from "./layouts/Auth.svelte";
+    import Auth from "./layouts/AuthLayout.svelte";
 
     // No Layout Pages
     import Router from "svelte-spa-router";
     import Index from "./views/Index.svelte";
-    import Profile from "./views/Profile.svelte";
 
     const routes = {
         // Exact path
@@ -16,12 +15,11 @@
         // Using named parameters, with last being optional
         "/auth": Auth,
         "/auth/*": Auth,
-        "/admin": Admin,
-        "/admin/*": Admin,
-        "/profile": Profile,
+        "/dashboard": Dashboard,
+        "/dashboard/*": Dashboard,
         // Catch-all
         // This is optional, but if present it must be the last
-        "*": Index,
+        "*": Index
     };
 </script>
 <Router {routes}/>

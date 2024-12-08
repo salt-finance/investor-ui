@@ -1,15 +1,12 @@
-<script>
+<script lang="ts">
     // make dynamic date to be added to footer
-
     let date = new Date().getFullYear();
-
-
+    import {version} from "../../package.json";
 </script>
-
 <footer class="bg-transparent w-full mt-10 pb-4">
     <div
             class="mx-auto px-4 flex
- flex-wrap flex-col items-center shadow glass-effect bg-opacity-80 bg-white rounded-lg p-8 gap-8"
+ flex-wrap flex-col items-center glass-effect rounded-lg p-8 gap-8"
     >
         <div class="w-11/12 lg:w-8/12 px-10 text-center">
             <ul
@@ -17,7 +14,7 @@
             >
                 <li>
                     <a
-                            class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
+                            class="font-semibold block pb-2 text-sm"
                             href="#"
                     >
                         Terms & Conditions
@@ -25,7 +22,7 @@
                 </li>
                 <li>
                     <a
-                            class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
+                            class="font-semibold block pb-2 text-sm"
                             href="#"
                     >
                         Privacy Policy
@@ -33,7 +30,7 @@
                 </li>
                 <li>
                     <a
-                            class="text-neutral-700 hover:text-neutral-800 font-semibold block pb-2 text-sm"
+                            class="font-semibold block pb-2 text-sm"
                             href="#"
                     >
                         Contact Us
@@ -43,8 +40,8 @@
         </div>
         <hr class="block border-neutral-700 w-11/12 lg:w-8/12"/>
         <div class="flex flex-wrap items-center md:justify-between justify-center">
-            <div class="text-sm text-neutral-700 font-semibold skiptranslate">
-                Copyright © {date} Salt Finance
+            <div class="text-sm  font-semibold skiptranslate">
+                Copyright © {date} Salt Finance @ {version}
             </div>
         </div>
     </div>

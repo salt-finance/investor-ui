@@ -1,21 +1,20 @@
 <script lang="ts">
     import Router, {location} from "svelte-spa-router";
     // components for this layout
-    import FooterAdmin from "../components/Footers/FooterAdmin.svelte";
+    import FooterAdmin from "../components/Footer.svelte";
     import HeaderStats from "../components/Headers/HeaderStats.svelte";
     // pages for this layout
-    import Activity from "../views/Dashboard/Activity.svelte";
-    import Dashboard from "../views/Dashboard/Dashboard.svelte";
-    import Holdings from "../views/Dashboard/Holdings.svelte";
-    import Maps from "../views/Dashboard/Maps.svelte";
-    import Market from "../views/Dashboard/Market.svelte";
-    import Portfolio from "../views/Dashboard/Portfolio.svelte";
-    import Settings from "../views/Dashboard/Settings.svelte";
-    import Tables from "../views/Dashboard/Tables.svelte";
-    import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
+    import Activity from "../views/dashboard/Activity.svelte";
+    import Dashboard from "../views/dashboard/Dashboard.svelte";
+    import Maps from "../views/dashboard/Maps.svelte";
+    import Market from "../views/dashboard/Market.svelte";
+    import Portfolio from "../views/dashboard/Portfolio.svelte";
+    import Settings from "../views/dashboard/Settings.svelte";
+    import Tables from "views/dashboard/Tables.svelte";
+    import IndexNavbar from "components/IndexNavbar.svelte";
+    import Holdings from "views/dashboard/Holdings.svelte";
 
     const routes = {
-        "/dashboard": Dashboard,
         "/holdings": Holdings,
         "/activity": Activity,
         "/market": Market,
@@ -27,18 +26,11 @@
     };
 
     let currentRouteTitle = $state();
-    let hideRouteTitle = $state(true);
 
-    function routeLoading(event) {
-        currentRouteTitle = undefined;
-        hideRouteTitle = true;
-    }
-
-    function routeLoaded(event) {
-        currentRouteTitle = event.detail.route.replace("/", "");
-        hideRouteTitle = false;
-        // setTimeout(() => hideRouteTitle = false, 1000);
-    }
+    location.subscribe((val) => {
+        var crumbs = val.split("/");
+        currentRouteTitle = crumbs.at(crumbs.length - 1);
+    });
 
 
 </script>
@@ -70,15 +62,14 @@
             >
                 <HeaderStats/>
                 {#if currentRouteTitle !== undefined}
-                                        <span class="capitalize my-6 text-3xl font-extralight {hideRouteTitle
-      ? 'invisible'   : ''}">
+                                        <span class="capitalize my-6 text-3xl font-extralight">
                 {currentRouteTitle}
                 </span>
                 {/if}
                 <div class="flex flex-wrap">
-                    <Router on:routeLoaded={routeLoaded}
-                            on:routeLoading={routeLoading}
-                            prefix={"/admin"} {routes}/>
+                    <Router
+
+                            prefix={"/dashboard"} {routes}/>
                 </div>
                 <FooterAdmin/>
             </div>

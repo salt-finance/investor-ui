@@ -80,11 +80,10 @@
         </div>
     </div>
     <div class="flex flex-wrap mt-4 gap-4" in:fly={staggerdTransition(4)}>
-        <div class="w-full">
-            <Activity/>
-        </div>
-        <div class="w-full">
-            <Holdings/>
-        </div>
+
+        <Activity/>
+
+        <Holdings/>
+
     </div>
 </div>

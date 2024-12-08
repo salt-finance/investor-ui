@@ -5,7 +5,7 @@ import plugin from "tailwindcss/plugin";
 
 module.exports = {
     darkMode: ["selector", ".dark"],
-    content: ["./src/**/*.{html,js,svelte}", "./rollup.config.js"],
+    content: ["./src/**/*.{html,ts,js,svelte}", "./index.html"],
     theme: {
         fontFamily: {
             sans: ["Dm Sans", "ui-sans-serif", "system-ui"],
@@ -85,7 +85,8 @@ module.exports = {
         }
     },
     variants: ["responsive", "group-hover", "focus-within", "first", "last", "odd", "even", "hover", "focus", "active", "visited", "disabled"],
-    plugins: [require("@tailwindcss/forms"),
+    plugins: [
+        require("@tailwindcss/forms"),
 
         plugin(function ({addComponents, theme}) {
 
@@ -96,40 +97,43 @@ module.exports = {
                 xl: "1280px",
                 "2xl": "1536px"
             });
-            addComponents([{
-                ".container": {width: "100%"}
-            }, {
-                [`@media (min-width: ${screens.sm}})`]: {
-                    ".container": {
-                        "max-width": "640px"
+            addComponents([
+                {
+                    ".container": {width: "100%"}
+                }, {
+                    [`@media (min-width: ${screens.sm}})`]: {
+                        ".container": {
+                            "max-width": "640px"
+                        }
+                    }
+                }, {
+                    [`@media (min-width: ${screens.md})`]: {
+                        ".container": {
+                            "max-width": "768px"
+                        }
+                    }
+                }, {
+                    [`@media (min-width: ${screens.lg})`]: {
+                        ".container": {
+                            "max-width": "1024px"
+                        }
+                    }
+                }, {
+                    [`@media (min-width: ${screens.xl})`]: {
+                        ".container": {
+                            "max-width": "1280px"
+                        }
+                    }
+                }, {
+                    [`@media (min-width: ${screens["2xl"]})`]: {
+                        ".container": {
+                            "max-width": "1280px"
+                        }
                     }
                 }
-            }, {
-                [`@media (min-width: ${screens.md})`]: {
-                    ".container": {
-                        "max-width": "768px"
-                    }
-                }
-            }, {
-                [`@media (min-width: ${screens.lg})`]: {
-                    ".container": {
-                        "max-width": "1024px"
-                    }
-                }
-            }, {
-                [`@media (min-width: ${screens.xl})`]: {
-                    ".container": {
-                        "max-width": "1280px"
-                    }
-                }
-            }, {
-                [`@media (min-width: ${screens["2xl"]})`]: {
-                    ".container": {
-                        "max-width": "1280px"
-                    }
-                }
-            }]);
+            ]);
 
 
-        })]
+        })
+    ]
 };

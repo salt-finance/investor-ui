@@ -48,7 +48,7 @@
             <div
                     class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
             >
-                <i class="{statIconName}"></i>
+                <i class="material-symbols-outlined">{statIconName}</i>
             </div>
         </div>
 

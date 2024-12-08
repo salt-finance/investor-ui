@@ -68,7 +68,7 @@
             I agree with the
             <a
               href="#pablo"
-              on:click={(e) => e.preventDefault()}
+              onclick={(e) => e.preventDefault()}
               class="text-red-500"
             >
               Privacy Policy

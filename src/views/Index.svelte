@@ -1,14 +1,14 @@
 <script>
     // core components
-    import Footer from "components/Footers/Footer.svelte";
+    import Footer from "components/Footer.svelte";
     import {push} from "svelte-spa-router";
-    import IndexNavbar from "../components/Navbars/IndexNavbar.svelte";
+    import IndexNavbar from "components/IndexNavbar.svelte";
 
     const patternVue =
         "https://salt-finance.github.io/investor-ui/assets/img/pattern.svg";
 
     function signIn() {
-        push("/Dashboard/dashboard");
+        push("/dashboard/dashboard");
     }
 
     function signUp() {
@@ -24,7 +24,7 @@
         alt="..."
 />
 
-<!-- svelte-ignore a11y-missing-attribute -->
+<!-- svelte-ignore a11y_missing_attribute -->
 <div class="h-full flex justify-center flex-col w-full items-center relative">
     <div
             class="flex flex-col w-full

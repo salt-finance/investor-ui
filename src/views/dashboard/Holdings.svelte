@@ -4,7 +4,6 @@
     import {staggerdTransition} from "../../utils/animationTools.js";
 
     import {Security} from "../../models/security";
-    import Collapse from "../../components/Collapse/Collapse.svelte";
 
     const d: Security[] = [];
 
@@ -89,8 +88,7 @@
     ];
 </script>
 
-<div class="w-full" in:fly={staggerdTransition(1)}>
+<div class="w-full z-2" in:fly={staggerdTransition(1)}>
     <CardTable {data} title={'holdings'}/>
-    <Collapse></Collapse>
 </div>
 

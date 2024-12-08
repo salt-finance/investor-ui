@@ -25,45 +25,45 @@
     };
 </script>
 
-<div class="flex flex-col lg:flex-row capitalize">
+<div class="flex flex-col lg:flex-row capitalize lg:space-x-4 space-y-4 lg:space-y-0 py-2">
     {#if isLoggedIn}
         <a
                 use:link
                 use:active
-                href="/admin/dashboard"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent"
+                href="/dashboard"
+                class="font-semibold block"
         >
             dashboard
         </a>
         <a
                 use:link
                 use:active
-                href="/admin/market"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+                href="/dashboard/market"
+                class="font-semibold block"
         >
             market
         </a>
         <a
                 use:link
                 use:active
-                href="/admin/holdings"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+                href="/dashboard/holdings"
+                class="font-semibold block"
         >
             holdings
         </a>
         <a
                 use:link
                 use:active
-                href="/admin/activity"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+                href="/dashboard/activity"
+                class="font-semibold block"
         >
             activity
         </a>
         <a
                 use:link
                 use:active
-                href="/admin/portfolio"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+                href="/dashboard/portfolio"
+                class="font-semibold block"
         >
             portfolio
         </a>
@@ -72,7 +72,7 @@
                 use:link
                 use:active
                 href="/auth/login"
-                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap bg-transparent "
+                class="font-semibold px-0 lg:px-4 pb-4 lg:pb-0 block w-full whitespace-nowrap"
         >
             Login
         </a>
@@ -80,7 +80,7 @@
                 use:link
                 use:active
                 href="/auth/register"
-                class="font-semibold px-0 lg:px-4 block w-full whitespace-nowrap bg-transparent "
+                class="font-semibold px-0 lg:px-4 block w-full whitespace-nowrap"
         >
             Register
         </a>
