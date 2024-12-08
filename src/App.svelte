@@ -37,11 +37,7 @@ Danger - Cornell red - #b91c1c - red-700 -->
     :root {
       interpolate-size: allow-keywords;
     }
-
-    a.active {
-      color: #3b82f6;
-    }
-
+    
     font {
       background-color: inherit !important;
       box-shadow: none !important;
