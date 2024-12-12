@@ -20,7 +20,7 @@
 </script>
 
 <nav
-        class="flex flex-col p-4 glass-effect rounded-lg bg-opacity-80 bg-white dark:bg-neutral-950 dark:bg-opacity-40 w-full z-10"
+        class="flex flex-col p-4 glass-effect rounded-lg w-full z-10"
 >
     <div
             class="px-0 flex items-center justify-between transition-all ease-in-out duration-500 flex-wrap w-full flex-grow"

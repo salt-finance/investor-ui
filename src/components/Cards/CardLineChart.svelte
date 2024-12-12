@@ -83,23 +83,23 @@
                                 borderFill = chartColorBase;
                             }
                             return borderFill;
-                        },
-                    },
-                ],
+                        }
+                    }
+                ]
             },
             options: {
                 maintainAspectRatio: false,
                 interaction: {
                     mode: "index",
-                    intersect: false,
+                    intersect: false
                 },
                 layout: {
                     padding: {
                         top: 10,
                         left: 10,
                         right: 10,
-                        bottom: 10,
-                    },
+                        bottom: 10
+                    }
                 },
                 scales: {
                     x: {
@@ -117,17 +117,17 @@
                                     style: "currency",
                                     currencyDisplay: "symbol",
                                     signDisplay: "never",
-                                    currency: "ETB",
+                                    currency: "ETB"
                                 }).format(value);
                                 return value;
-                            },
-                        },
-                    },
+                            }
+                        }
+                    }
                 },
                 plugins: {
                     legend: {
                         align: "end",
-                        display: false,
+                        display: false
                     },
                     tooltip: {
                         callbacks: {
@@ -141,15 +141,15 @@
                                     label += new Intl.NumberFormat("am-ET", {
                                         style: "currency",
                                         currencyDisplay: "name",
-                                        currency: "ETB",
+                                        currency: "ETB"
                                     }).format(context.parsed.y);
                                 }
                                 return label;
-                            },
-                        },
-                    },
-                },
-            },
+                            }
+                        }
+                    }
+                }
+            }
         };
 
         let {
@@ -157,7 +157,7 @@
             Filler,
             LineController,
             LineElement,
-            PointElement,
+            PointElement
         } = await import(
             "chart.js/auto"
             );
@@ -187,8 +187,8 @@
             backgroundFill = null;
             chartColorBase =
                 data[data.length - 1] >= data[data.length - 2]
-                    ? chartColors.green
-                    : chartColors.red;
+                ? chartColors.green
+                : chartColors.red;
             chart.update();
         };
 

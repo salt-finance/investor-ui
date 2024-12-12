@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="bg-gradient-to-b from-blue-300 dark:from-indigo-700 to-neutral-300 dark:to-neutral-900"
+      style="height: auto">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -10,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 </head>
-<body class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-b from-blue-300 dark:from-indigo-700 to-white dark:to-neutral-900">
+<body class="text-neutral-700 dark:text-neutral-300 antialiased">
 <div id="app"></div>
 
 <script type="module" src="/src/main.ts"></script>
@@ -29,7 +30,7 @@
                 pageLanguage: "en",
                 multilanguagePage: false,
                 includedLanguages: "am,en",
-                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
             },
             "google_translate_element"
         );
@@ -55,7 +56,8 @@
                     setupGoogleTranslate();
                 }
             });
-        } else {
+        }
+        else {
             setupGoogleTranslate();
         }
     }

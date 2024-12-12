@@ -14,7 +14,8 @@ export default defineConfig({
             "components": path.resolve(__dirname, "src/components"),
             "utils": path.resolve(__dirname, "src/utils"),
             "models": path.resolve(__dirname, "src/models"),
-            "views": path.resolve(__dirname, "src/views")
+            "views": path.resolve(__dirname, "src/views"),
+            "@": path.resolve(__dirname, "src/")
         }
     },
     plugins: [svelte(), cssInjectedByJsPlugin({dev: {enableDev: false}})]
