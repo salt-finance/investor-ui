@@ -16,10 +16,11 @@
         event.preventDefault();
         if (dropdownPopoverShow) {
             dropdownPopoverShow = false;
-        } else {
+        }
+        else {
             dropdownPopoverShow = true;
             createPopper(btnDropdownRef, popoverDropdownRef, {
-                placement: "bottom-start",
+                placement: "bottom-start"
             });
         }
     };
@@ -58,14 +59,6 @@
                 class="font-semibold block"
         >
             activity
-        </a>
-        <a
-                use:link
-                use:active
-                href="/dashboard/portfolio"
-                class="font-semibold block"
-        >
-            portfolio
         </a>
     {:else}
         <a
