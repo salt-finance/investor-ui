@@ -30,7 +30,7 @@
     ];
 </script>
 
-<div class="w-full z-3" in:fly={staggerdTransition(1)}>
+<div class="w-full z-3" in:fly|global={staggerdTransition(1)}>
     <CardTable {data} title={'Activity'}/>
 </div>
 

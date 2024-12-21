@@ -5,10 +5,10 @@
 
   // core components
 
-  let dropdownPopoverShow = false;
+  let dropdownPopoverShow = $state(false);
 
-  let btnDropdownRef;
-  let popoverDropdownRef;
+  let btnDropdownRef = $state();
+  let popoverDropdownRef = $state();
 
   const toggleDropdown = (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@
     class="lg:text-white lg:hover:text-neutral-200 text-neutral-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
     href="#pablo"
     bind:this="{btnDropdownRef}"
-    on:click="{toggleDropdown}"
+    onclick={toggleDropdown}
   >
     Demo Pages
   </a>

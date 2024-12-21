@@ -4,7 +4,7 @@
     import type {ChartConfiguration} from "chart.js";
 
 
-    let major = 0;
+    let major = $state(0);
     onMount(async () => {
 
 

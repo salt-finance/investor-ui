@@ -1,15 +1,19 @@
-<script>
+<script lang="ts">
   import BreadCrumb from "./Breadcrumb.svelte";
   import BreadcCrumbItem from "./BreadcrumbItem.svelte";
   let path = window.location.pathname.split("/");
-  export let name = "";
+  interface Props {
+    name?: string;
+  }
+
+  let { name = "" }: Props = $props();
   let pathName = name;
 </script>
 
 <BreadCrumb listClasses="breadcrumb-links breadcrumb-dark">
   <BreadcCrumbItem key="home">
     <a href="/">
-      <i class="fas fa-home" />
+      <i class="fas fa-home"></i>
     </a>
   </BreadcCrumbItem>
   {#each path as name, index}

@@ -11,13 +11,13 @@
 
 <div
   class="flex flex-wrap"
-  out:blur={blurTransitionOutConfig}
-  in:blur={blurTransitionInConfig}
+  out:blur|global={blurTransitionOutConfig}
+  in:blur|global={blurTransitionInConfig}
 >
-  <div class="w-full mb-12 px-4" in:fly={staggerdTransition(0)}>
+  <div class="w-full mb-12 px-4" in:fly|global={staggerdTransition(0)}>
     <CardTable />
   </div>
-  <div class="w-full mb-12 px-4" in:fly={staggerdTransition(2)}>
+  <div class="w-full mb-12 px-4" in:fly|global={staggerdTransition(2)}>
     <CardTable color="dark" />
   </div>
 </div>

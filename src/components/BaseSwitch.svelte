@@ -1,10 +1,20 @@
-<script>
-  // export let value = [];
-  export let type = "";
-  export let onText = "Yes";
-  export let offText = "No";
-  let baseClass = "custom-toggle-";
-  export let model = "";
+<script lang="ts">
+  
+  let baseClass = $state("custom-toggle-");
+  interface Props {
+    // export let value = [];
+    type?: string;
+    onText?: string;
+    offText?: string;
+    model?: string;
+  }
+
+  let {
+    type = "",
+    onText = "Yes",
+    offText = "No",
+    model = ""
+  }: Props = $props();
   if (type) {
     baseClass = baseClass + type;
   }
@@ -19,5 +29,5 @@
   <span
     class="custom-toggle-slider rounded-circle"
     data-label-off={offText}
-    data-label-on={onText} />
+    data-label-on={onText}></span>
 </label>

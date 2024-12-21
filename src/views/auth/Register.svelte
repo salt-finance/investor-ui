@@ -181,7 +181,7 @@
                     <div class="flex flex-wrap gap-y-4">
                         {#each pages as page, index }
 
-                            {#if (index > 0) && (index < pages.length - 1) }
+                            {#if (index > 0) && (index < pages.length - 1)}
                                 <div class="w-full lg:w-1/2">
                                     <h3 class="text-2xl mb-2">{page.title}</h3>
                                     {#each page.questions as question, index }

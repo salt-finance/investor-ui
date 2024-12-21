@@ -4,10 +4,10 @@
 
     // core components
 
-    let dropdownPopoverShow = false;
+    let dropdownPopoverShow = $state(false);
 
-    let btnDropdownRef;
-    let popoverDropdownRef;
+    let btnDropdownRef = $state();
+    let popoverDropdownRef = $state();
 
     const toggleDropdown = (event) => {
         event.preventDefault();

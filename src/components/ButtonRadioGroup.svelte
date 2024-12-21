@@ -1,7 +1,11 @@
-<script>
-  export let options = []; //'Radio options. Should be an array of objects {value: "", label: ""}',
-  export let value = ""; //'Radio value'
-  export let buttonClasses = ""; //'Inner button css classes'
+<script lang="ts">
+  interface Props {
+    options?: any; //'Radio options. Should be an array of objects {value: "", label: ""}',
+    value?: string; //'Radio value'
+    buttonClasses?: string; //'Inner button css classes'
+  }
+
+  let { options = [], value = "", buttonClasses = "" }: Props = $props();
   let model = {
     prop: "value",
     event: "change"

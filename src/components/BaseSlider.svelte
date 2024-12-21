@@ -1,11 +1,23 @@
-<script>
-  export let value = 10; //'slider value'
-  export let disabled = false; //'whether the slider is disabled'
-  export let start = 0; //'[noUi Slider start](https://refreshless.com/nouislider/slider-options/#section-start)'
-  export let connect = [true, false]; //'[noUi Slider connect](https://refreshless.com/nouislider/slider-options/#section-connect)'
-  export let min = 0;
-  export let max = 100;
-  export let className = "";
+<script lang="ts">
+  interface Props {
+    value?: number; //'slider value'
+    disabled?: boolean; //'whether the slider is disabled'
+    start?: number; //'[noUi Slider start](https://refreshless.com/nouislider/slider-options/#section-start)'
+    connect?: any; //'[noUi Slider connect](https://refreshless.com/nouislider/slider-options/#section-connect)'
+    min?: number;
+    max?: number;
+    className?: string;
+  }
+
+  let {
+    value = 10,
+    disabled = false,
+    start = 0,
+    connect = [true, false],
+    min = 0,
+    max = 100,
+    className = ""
+  }: Props = $props();
 </script>
 
 <style>

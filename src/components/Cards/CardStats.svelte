@@ -1,20 +1,37 @@
-<script>
-    // core components
+<script lang="ts">
 
-    export let statSubtitle = "Traffic";
-    export let statTitle = "350,897";
+
     // The value must match one of these strings
-    // "up" or "down"
-    export let statArrow = "up";
-    export let statPercent;
+
     // can be any of the text color utilities
-    // from tailwindcss
-    export let statPercentColor = "text-emerald-500";
-    export let statDescripiron = "Since last month";
-    export let statIconName = "far fa-chart-bar";
+
     // can be any of the background color utilities
-    // from tailwindcssp
-    export let statIconColor = "bg-red-500";
+
+    interface Props {
+        // core components
+        statSubtitle?: string;
+        statTitle?: string;
+        // "up" or "down"
+        statArrow?: string;
+        statPercent?: any;
+        // from tailwindcss
+        statPercentColor?: string;
+        statDescripiron?: string;
+        statIconName?: string;
+        // from tailwindcssp
+        statIconColor?: string;
+    }
+
+    let {
+        statSubtitle = "Traffic",
+        statTitle = "350,897",
+        statArrow = "up",
+        statPercent,
+        statPercentColor = "text-emerald-500",
+        statDescripiron = "Since last month",
+        statIconName = "far fa-chart-bar",
+        statIconColor = "bg-red-500"
+    }: Props = $props();
 </script>
 
 <div

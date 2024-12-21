@@ -46,7 +46,7 @@
     <!-- Collapse -->
     <div
       class="lg:flex lg:flex-col lg:items-stretch lg:opacity-100 lg:relative lg:mt-4 lg:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded {collapseShow}"
-      transition:fly={staggerdTransition(1)}
+      transition:fly|global={staggerdTransition(1)}
     >
       <!-- Collapse header -->
       <div

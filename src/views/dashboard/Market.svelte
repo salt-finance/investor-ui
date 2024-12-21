@@ -4,7 +4,7 @@
     import {blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition,} from "utils/animationTools.js";
 </script>
 
-<div in:fly={staggerdTransition(1)} class="w-full">
+<div in:fly|global={staggerdTransition(1)} class="w-full">
     <CardTable title={'Market'}/>
 </div>
 

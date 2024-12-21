@@ -1,23 +1,53 @@
-<script>
-  export let className = "";
-  export let headerClasses = "";
-  export let bodyClasses = "";
-  export let footerClasses = "";
 
-  export let gradient = "";
-  export let shadow = "";
-  export let shadowSize = "";
-  export let type = "";
-  export let hover = false;
-  export let imgTop = false;
-  export let imgBottom = false;
-  export let imgSrc = "";
-  export let alt = "";
-  export let background = "";
+<script lang="ts">
 
-  export let noBody = false; //Whether card should have wrapper body class
 
-  let {slots} = $props();
+
+  interface Props {
+    className?: string;
+    headerClasses?: string;
+    bodyClasses?: string;
+    footerClasses?: string;
+    gradient?: string;
+    shadow?: string;
+    shadowSize?: string;
+    type?: string;
+    hover?: boolean;
+    imgTop?: boolean;
+    imgBottom?: boolean;
+    imgSrc?: string;
+    alt?: string;
+    background?: string;
+    noBody?: boolean; //Whether card should have wrapper body class
+    slots: any;
+    image?: import('svelte').Snippet;
+    header?: import('svelte').Snippet;
+    children?: import('svelte').Snippet;
+    footer?: import('svelte').Snippet;
+  }
+
+  let {
+    className = "",
+    headerClasses = "",
+    bodyClasses = "",
+    footerClasses = "",
+    gradient = "",
+    shadow = "",
+    shadowSize = "",
+    type = "",
+    hover = false,
+    imgTop = false,
+    imgBottom = false,
+    imgSrc = "",
+    alt = "",
+    background = "",
+    noBody = false,
+    slots,
+    image,
+    header,
+    children,
+    footer
+  }: Props = $props();
 </script>
 
 <style>
@@ -39,31 +69,31 @@
     {/if}
   {/if}
   {#if imgTop !== false}
-    <slot name="image">
+    {#if image}{@render image()}{:else}
       <img {alt} src={imgSrc} class="card-img-top" />
-    </slot>
+    {/if}
   {/if}
   {#if slots.header}
     <div class="card-header  {headerClasses}">
-      <slot name="header" />
+      {@render header?.()}
     </div>
   {/if}
   {#if !noBody}
     <div class="card-body {bodyClasses}">
-      <slot />
+      {@render children?.()}
     </div>
   {/if}
   {#if noBody}
-    <slot />
+    {@render children?.()}
   {/if}
   {#if slots.footer}
     <div class="card-footer {footerClasses}">
-      <slot name="footer" />
+      {@render footer?.()}
     </div>
   {/if}
   {#if imgBottom !== false}
-    <slot name="image">
+    {#if image}{@render image()}{:else}
       <img {alt} src={imgSrc} class="card-img-bottom" />
-    </slot>
+    {/if}
   {/if}
 </div>

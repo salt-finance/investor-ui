@@ -11,16 +11,16 @@
     import {blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition} from "utils/animationTools.js";
 </script>
 
-<!--   in:blur={{ amount: 30, delay: 50, duration: 1000 }}
+<!--   in:blur|global={{ amount: 30, delay: 50, duration: 1000 }}
  -->
 <div
         class="w-full"
-        in:blur={blurTransitionInConfig}
-        out:blur={blurTransitionOutConfig}
+        in:blur|global={blurTransitionInConfig}
+        out:blur|global={blurTransitionOutConfig}
 >
     <div class="grid gap-4 grid-cols-1 md:grid-cols-8">
         <div class="w-full glass-effect rounded-lg md:col-span-5 col-span-3 lg:col-span-6"
-             in:fly={staggerdTransition(1)}>
+             in:fly|global={staggerdTransition(1)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="col-span-3 md:col-span-3 lg:col-span-2 w-full  glass-effect rounded-lg"
-             in:fly={staggerdTransition(2)}>
+             in:fly|global={staggerdTransition(2)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
@@ -50,7 +50,7 @@
         </div>
 
         <div class="md:col-span-5 col-span-3 lg:col-span-6 w-full   glass-effect rounded-lg"
-             in:fly={staggerdTransition(3)}>
+             in:fly|global={staggerdTransition(3)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-span-3 md:col-span-3 lg:col-span-2 w-ful glass-effect rounded-lg"
-             in:fly={staggerdTransition(4)}>
+             in:fly|global={staggerdTransition(4)}>
             <div class="relative flex flex-col min-w-0 break-words w-full h-full">
                 <div class="mb-0 px-4 py-3">
                     <div class="w-full max-w-full flex-grow flex-1">
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-wrap mt-4 gap-4" in:fly={staggerdTransition(4)}>
+    <div class="flex flex-wrap mt-4 gap-4" in:fly|global={staggerdTransition(4)}>
 
         <Activity/>
 

@@ -1,6 +1,11 @@
-<script>
-  export let value = ""; //'Checked value'
-  export let buttonClasses = ""; //'Inner button css classes'
+<script lang="ts">
+  interface Props {
+    value?: string; //'Checked value'
+    buttonClasses?: string; //'Inner button css classes'
+    children?: import('svelte').Snippet;
+  }
+
+  let { value = "", buttonClasses = "", children }: Props = $props();
   let model = {
     prop: "value",
     event: "change"
@@ -17,6 +22,6 @@
 <div class="btn-group-toggle" data-toggle="buttons">
        <label for="" class="btn {value ? "active" : ''} {buttonClasses}">
               <input type="checkbox" checked="" autocomplete="off" model="model">
-              <slot></slot>
+              {@render children?.()}
        </label>
 </div>

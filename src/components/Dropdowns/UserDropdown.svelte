@@ -8,10 +8,10 @@
     const image =
         "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
 
-    let dropdownPopoverShow = false;
+    let dropdownPopoverShow = $state(false);
 
-    let btnDropdownRef;
-    let popoverDropdownRef;
+    let btnDropdownRef = $state();
+    let popoverDropdownRef = $state();
 
     const toggleDropdown = (event) => {
         event.preventDefault();
@@ -31,7 +31,7 @@
             class="block"
             href="#pablo"
             bind:this={btnDropdownRef}
-            on:click={toggleDropdown}
+            onclick={toggleDropdown}
     >
         <div class="items-center flex">
       <span

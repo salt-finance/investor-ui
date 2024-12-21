@@ -1,11 +1,25 @@
-<script>
-  // export let tag = "span";
-  export let pill = false;
-  export let circle = false;
-  export let icon = "";
-  export let variant = "default";
-  export let size = "";
-  export let className = "";
+<script lang="ts">
+  
+  interface Props {
+    // export let tag = "span";
+    pill?: boolean;
+    circle?: boolean;
+    icon?: string;
+    variant?: string;
+    size?: string;
+    className?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let {
+    pill = false,
+    circle = false,
+    icon = "",
+    variant = "default",
+    size = "",
+    className = "",
+    children
+  }: Props = $props();
 </script>
 
 <span
@@ -13,9 +27,9 @@
   {pill === true ? 'badge-pill' : ''}
   {variant !== 'default' ? `badge-${variant}` : ""} badge"
   {size}>
-  <slot>
+  {#if children}{@render children()}{:else}
     {#if icon}
-      <i class={icon} />
+      <i class={icon}></i>
     {/if}
-  </slot>
+  {/if}
 </span>

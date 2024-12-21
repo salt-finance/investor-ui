@@ -1,6 +1,10 @@
-<script>
-  export let target = ""; // 'Button target element'
-  export let toggled = false; // 'Whether button is toggled'
+<script lang="ts">
+  interface Props {
+    target?: string; // 'Button target element'
+    toggled?: boolean; // 'Whether button is toggled'
+  }
+
+  let { target = "", toggled = false }: Props = $props();
 </script>
 
 <button
@@ -11,5 +15,5 @@
   aria-controls="target"
   aria-expanded="toggled"
   aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon" />
+  <span class="navbar-toggler-icon"></span>
 </button>

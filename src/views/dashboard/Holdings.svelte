@@ -88,7 +88,7 @@
     ];
 </script>
 
-<div class="w-full z-2" in:fly={staggerdTransition(1)}>
+<div class="w-full z-2" in:fly|global={staggerdTransition(1)}>
     <CardTable {data} title={'holdings'}/>
 </div>
 

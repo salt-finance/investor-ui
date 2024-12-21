@@ -4,10 +4,10 @@
 
   // core components
 
-  let dropdownPopoverShow = false;
+  let dropdownPopoverShow = $state(false);
 
-  let btnDropdownRef;
-  let popoverDropdownRef;
+  let btnDropdownRef = $state();
+  let popoverDropdownRef = $state();
 
   const toggleDropdown = (event) => {
     event.preventDefault();
@@ -28,7 +28,7 @@
     href="#pablo"
     aria-labelledby="notifications"
     bind:this="{btnDropdownRef}"
-    on:click="{toggleDropdown}"
+    onclick={toggleDropdown}
   >
     <i class="fas fa-bell"></i>
   </a>
@@ -37,26 +37,26 @@
     class="bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 {dropdownPopoverShow ? 'block':'hidden'}"
   >
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
+      href="#pablo" onclick={(e) => e.preventDefault()}
       class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Action
     </a>
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
+      href="#pablo" onclick={(e) => e.preventDefault()}
       class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Another action
     </a>
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
+      href="#pablo" onclick={(e) => e.preventDefault()}
       class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Something else here
     </a>
     <div class="h-0 my-2 border border-solid border-slate-100"></div>
     <a
-      href="#pablo" on:click={(e) => e.preventDefault()}
+      href="#pablo" onclick={(e) => e.preventDefault()}
       class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-neutral-700"
     >
       Seprated link
