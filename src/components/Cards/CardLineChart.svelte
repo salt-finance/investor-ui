@@ -2,8 +2,8 @@
     import {onMount} from "svelte";
     // library that creates chart objects in page
 
-    import {chartColors, createLinearGradient1} from "utils/chartTools";
-    import {dateTimeFormat} from "utils/formatTools";
+    import {chartColors, createLinearGradient} from "utils/chartTools.ts";
+    import {dateTimeFormat} from "utils/formatTools.ts";
     // init chart
     onMount(async () => {
 
@@ -63,7 +63,7 @@
                                 return;
                             }
                             if (backgroundFill == null) {
-                                backgroundFill = createLinearGradient1(
+                                backgroundFill = createLinearGradient(
                                     ctx,
                                     chartArea,
                                     chartColorBase
@@ -89,6 +89,7 @@
             },
             options: {
                 maintainAspectRatio: false,
+
                 interaction: {
                     mode: "index",
                     intersect: false
@@ -104,11 +105,23 @@
                 scales: {
                     x: {
                         grid: {
+                            color: "#9992",
+                            display: false
+                        },
+                        border: {
                             display: false
                         }
                     },
                     y: {
+                        border: {
+                            display: false
+                        },
+
+                        grid: {
+                            color: "#9992"
+                        },
                         ticks: {
+
                             // Include a dollar sign in the ticks
                             callback: function (value) {
                                 value = new Intl.NumberFormat("am-ET", {
@@ -199,5 +212,5 @@
 
 
 <div class="relative h-48 lg:h-72 xl:h-80">
-    <canvas id="line-chart" class="absolute top-0"></canvas>
+    <canvas class="absolute top-0" id="line-chart"></canvas>
 </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {chartColors, createLinearGradient2} from "utils/chartTools";
-    import {monthsForLocale} from "utils/formatTools";
+    import {chartColors, createLinearGradientTwo} from "utils/chartTools";
+    import {monthsForLocale} from "utils/formatTools.ts";
     import type {ChartConfiguration, ChartItem} from "chart.js";
 
 
@@ -33,7 +33,7 @@
                                 return;
                             }
                             if (backgroundFill == null) {
-                                backgroundFill = createLinearGradient2(
+                                backgroundFill = createLinearGradientTwo(
                                     ctx,
                                     chartArea,
                                     chartColorBase
@@ -41,8 +41,8 @@
                             }
                             return backgroundFill;
                         },
-                     
-                        data: [5000, 6800, 86000, 74000, 56000, 60000, 87000, 99999.34, 67000, 75000, 120000],
+
+                        data: [5000, 6800, 86000, 74000, 56000, 60000, 87000, 99999.34, 67000, 75000, 120000, 130000],
                         borderRadius: 5
                     },
                     {
@@ -56,14 +56,14 @@
                                 return;
                             }
 
-                            return createLinearGradient2(
+                            return createLinearGradientTwo(
                                 ctx,
                                 chartArea,
                                 chartColors.orange
                             );
                         },
                         borderColor: "#fff0",
-                        data: [2000, 5000, 9000, 14000, 99999.34, 67000, 75000, 80000, 85000, 50000, 100000],
+                        data: [2000, 5000, 9000, 14000, 99999.34, 67000, 75000, 80000, 85000, 50000, 100000, 150000],
                         fill: false,
                         borderRadius: 5
                     }
@@ -117,9 +117,20 @@
                     x: {
                         grid: {
                             display: false
+                        },
+                        border: {
+                            display: false
                         }
                     },
                     y: {
+                        animate: true,
+                        border: {
+                            display: false
+                        },
+                        grid: {
+                            color: "#9992"
+                        },
+
 
                         ticks: {
                             // Include a dollar sign in the ticks
@@ -181,7 +192,7 @@
 </script>
 
 
-<div class="relative h-48 lg:h-72 xl:h-80">
+<div class="relative h-48 lg:h-72 xl:h-80 ">
     <canvas class="absolute top-0" id="bar-chart"></canvas>
 </div>
 

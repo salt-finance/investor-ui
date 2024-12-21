@@ -12,9 +12,26 @@
      * of JS in `.svelte` files.
      */
     "allowJs": true,
+    "allowImportingTsExtensions": true,
     "checkJs": true,
     "isolatedModules": true,
-    "moduleDetection": "force"
+    "paths": {
+      "components/*": [
+        "src/components/*"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "models/*": [
+        "src/models/*"
+      ],
+      "views/*": [
+        "src/components/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",

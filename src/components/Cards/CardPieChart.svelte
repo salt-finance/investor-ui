@@ -2,12 +2,11 @@
     import {onMount} from "svelte";
     import {
         chartColors,
-        createRadialGradient1,
+        createRadialGradient,
         createShades,
-        getHover,
-    } from "utils/chartTools";
-    import {Tooltip} from "chart.js";
-    // library that creates chart objects in page
+        getHover
+    } from "utils/chartTools.ts";
+
 
     // init chart
     onMount(async () => {
@@ -38,12 +37,12 @@
                             if (context.active) {
                                 c = getHover(c);
                             }
-                            return createRadialGradient1(context, c);
+                            return createRadialGradient(context, c);
                         },
                         data: data,
-                        hoverOffset: 20,
-                    },
-                ],
+                        hoverOffset: 20
+                    }
+                ]
             },
             options: {
                 maintainAspectRatio: false,
@@ -52,13 +51,13 @@
                         top: 10,
                         left: 10,
                         right: 10,
-                        bottom: 10,
-                    },
+                        bottom: 10
+                    }
                 },
                 plugins: {
                     legend: {
                         display: false,
-                        align: "start",
+                        align: "start"
                     },
                     tooltip: {
                         callbacks: {
@@ -72,11 +71,11 @@
                                     label += "%";
                                 }
                                 return label;
-                            },
-                        },
-                    },
-                },
-            },
+                            }
+                        }
+                    }
+                }
+            }
         };
 
         let {Chart, ArcElement, PieController, Tooltip} = await import(

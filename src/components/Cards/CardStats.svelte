@@ -13,7 +13,7 @@
     export let statDescripiron = "Since last month";
     export let statIconName = "far fa-chart-bar";
     // can be any of the background color utilities
-    // from tailwindcss
+    // from tailwindcssp
     export let statIconColor = "bg-red-500";
 </script>
 
@@ -22,7 +22,7 @@
 >
     <div class="flex-auto flex p-4 justify-between gap-2">
         <div class="flex flex-col gap-2">
-            <div class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-between">
+            <div class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-top">
                 <h5 class="uppercase font-bold">
                     {statSubtitle}
                 </h5>
@@ -33,10 +33,11 @@
 
             {#if statPercent !== undefined}
                 <p class="flex gap-2 items-center">
-      <span class="text-sm font-bold {statPercentColor}">
-        <i
-                class="{statArrow === 'up' ? 'fas fa-arrow-up' : 'fas fa-arrow-down'} mr-2"
-        ></i>
+      <span class="text-sm font-bold gap-1 inline-flex align-item-center line-clamp-1 {statPercentColor}">
+          <span class="material-symbols-outlined text-sm skiptranslate">
+                {statArrow === 'up' ? 'trending_up' : 'trending_down'}
+                </span>
+
           {statPercent}%
       </span>
                     <span class="whitespace-nowrap text-xs">{statDescripiron}</span>

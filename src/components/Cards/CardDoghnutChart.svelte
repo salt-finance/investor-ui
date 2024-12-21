@@ -1,12 +1,14 @@
-<script>
+<script lang="ts">
     import {onMount} from "svelte";
-    import {chartColors, createRadialGradient1} from "utils/chartTools";
+    import {chartColors, createRadialGradient, type AnyObject} from "utils/chartTools.ts";
+    import type {ChartConfiguration} from "chart.js";
+
 
     let major = 0;
     onMount(async () => {
 
 
-        var ctx = document.getElementById("doughnut-chart");
+        var ctx = document.getElementById("doughnut-chart") as HTMLCanvasElement;
 
         const labels = ["Profit", "Loss"];
         const factor = 10 - Math.random() * 10;
@@ -14,7 +16,7 @@
 
         const data = [major, 100 - major];
         const colors = [major > 50 ? chartColors.green : chartColors.red, "#fff3"];
-        let config = {
+        let config: ChartConfiguration = {
             type: "doughnut",
             data: {
                 labels: labels,
@@ -23,8 +25,9 @@
                         label: "% of Trades",
                         data: data,
                         borderColor: "#fff0",
-                        backgroundColor: function (context) {
-                            if (context.dataIndex == 1) {
+                        backgroundColor: function (context: AnyObject) {
+
+                            if (context.dataIndex === 1) {
                                 return colors[context.dataIndex];
                             }
                             let c = colors[context.dataIndex];
@@ -32,11 +35,11 @@
                                 return;
                             }
 
-                            return createRadialGradient1(context, c);
+                            return createRadialGradient(context, c);
                         },
-                        hoverOffset: 0,
-                    },
-                ],
+                        hoverOffset: 0
+                    }
+                ]
             },
             options: {
                 maintainAspectRatio: false,
@@ -46,22 +49,22 @@
                         top: 10,
                         left: 10,
                         right: 10,
-                        bottom: 10,
-                    },
+                        bottom: 10
+                    }
                 },
                 plugins: {
                     legend: {
                         display: false,
-                        align: "start",
+                        align: "start"
                     },
                     tooltip: {
-                        dipslay: false,
-                    },
-                },
-            },
+                        enabled: false
+                    }
+                }
+            }
         };
 
-        let {Chart, ArcElement, DoughnutController} = await import(
+        const {Chart, ArcElement, DoughnutController} = await import(
             "chart.js/auto"
             );
         Chart.register([DoughnutController, ArcElement]);
@@ -78,7 +81,7 @@
 <div class="relative h-48 lg:h-72 xl:h-80 flex place-items-center">
     <h3
             class:text-emerald-500={major > 50}
-            class:text-red-500={0 < major && major < 50}
+            class:text-red-500={major > 0 && major < 50}
             class="text-xl md:text-3xl lg:text-4xl xl:text-5xl font-extralight text-center w-full"
     >
         {major}%
