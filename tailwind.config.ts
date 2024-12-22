@@ -1,139 +1,98 @@
-/** @type {import("tailwindcss").Config} */
+import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
-import plugin from "tailwindcss/plugin";
-
-
-module.exports = {
-    darkMode: ["selector", ".dark"],
-    content: ["./src/**/*.{html,ts,js,svelte}", "./index.html"],
-    theme: {
-        fontFamily: {
-            sans: ["Dm Sans", "ui-sans-serif", "system-ui"],
-            serif: ["Libre Bodoni", "ui-serif", "Georgia"],
-            body: ["\"Dm Sans\"", "ui-sans-serif"]
-        }, extend: {
-            colors: {
-                primary: {
-                    "50": "hsl(140, 5%, 95%)",
-                    "100": "hsl(140, 15%, 90%)",
-                    "200": "hsl(140, 25%, 85%)",
-                    "300": "hsl(140, 35%, 75%)",
-                    "400": "hsl(140, 45%, 65%)",
-                    "500": "hsl(140, 55%, 55%)",
-                    "600": "hsl(140, 65%, 45%)",
-                    "700": "hsl(140, 75%, 35%)",
-                    "800": "hsl(140, 85%, 25%)",
-                    "900": "hsl(140, 95%, 15%)",
-                    "950": "hsl(140, 100%, 5%)"
-                },
-                secondary: {
-                    "50": "hsl(58, 5%, 95%)",
-                    "100": "hsl(58, 15%, 90%)",
-                    "200": "hsl(58, 25%, 85%)",
-                    "300": "hsl(58, 35%, 75%)",
-                    "400": "hsl(58, 45%, 65%)",
-                    "500": "hsl(58, 55%, 55%)",
-                    "600": "hsl(58, 65%, 45%)",
-                    "700": "hsl(58, 75%, 35%)",
-                    "800": "hsl(58, 85%, 25%)",
-                    "900": "hsl(58, 95%, 15%)",
-                    "950": "hsl(58, 100%, 5%)"
-                }
-
-            },
-            minHeight: {
-                "screen-75": "75vh"
-            }, fontSize: {
-                55: "55rem"
-            }, opacity: {
-                80: ".8"
-            }, zIndex: {
-                2: 2, 3: 3
-            }, inset: {
-                "-100": "-100%",
-                "-225-px": "-225px",
-                "-160-px": "-160px",
-                "-150-px": "-150px",
-                "-94-px": "-94px",
-                "-50-px": "-50px",
-                "-29-px": "-29px",
-                "-20-px": "-20px",
-                "25-px": "25px",
-                "40-px": "40px",
-                "95-px": "95px",
-                "145-px": "145px",
-                "195-px": "195px",
-                "210-px": "210px",
-                "260-px": "260px"
-            }, height: {
-                "95-px": "95px", "70-px": "70px", "350-px": "350px", "500-px": "500px", "600-px": "600px"
-            }, maxHeight: {
-                "860-px": "860px"
-            }, maxWidth: {
-                "100-px": "100px",
-                "120-px": "120px",
-                "150-px": "150px",
-                "180-px": "180px",
-                "200-px": "200px",
-                "210-px": "210px",
-                "580-px": "580px"
-            }, minWidth: {
-                "140-px": "140px", 48: "12rem"
-            }, backgroundSize: {
-                full: "100%"
-            }
-        }
+const config: Config = {
+  darkMode: ["selector", ".dark"],
+  content: ["./src/**/*.{html,js,svelte,ts}", "./index.html"],
+  safelist: ["dark"],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
     },
-    variants: ["responsive", "group-hover", "focus-within", "first", "last", "odd", "even", "hover", "focus", "active", "visited", "disabled"],
-    plugins: [
-        require("@tailwindcss/forms"),
 
-        plugin(function ({addComponents, theme}) {
-
-            const screens = theme("screens", {
-                sm: "640px",
-                md: "768px",
-                lg: "1024px",
-                xl: "1280px",
-                "2xl": "1536px"
-            });
-            addComponents([
-                {
-                    ".container": {width: "100%"}
-                }, {
-                    [`@media (min-width: ${screens.sm}})`]: {
-                        ".container": {
-                            "max-width": "640px"
-                        }
-                    }
-                }, {
-                    [`@media (min-width: ${screens.md})`]: {
-                        ".container": {
-                            "max-width": "768px"
-                        }
-                    }
-                }, {
-                    [`@media (min-width: ${screens.lg})`]: {
-                        ".container": {
-                            "max-width": "1024px"
-                        }
-                    }
-                }, {
-                    [`@media (min-width: ${screens.xl})`]: {
-                        ".container": {
-                            "max-width": "1280px"
-                        }
-                    }
-                }, {
-                    [`@media (min-width: ${screens["2xl"]})`]: {
-                        ".container": {
-                            "max-width": "1280px"
-                        }
-                    }
-                }
-            ]);
-
-
-        })
-    ]
+    extend: {
+      colors: {
+        border: "hsl(var(--border) / <alpha-value>)",
+        input: "hsl(var(--input) / <alpha-value>)",
+        ring: "hsl(var(--ring) / <alpha-value>)",
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
+        primary: {
+          DEFAULT: "hsl(var(--primary) / <alpha-value>)",
+          foreground: "hsl(var(--primary-foreground) / <alpha-value>)",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary) / <alpha-value>)",
+          foreground: "hsl(var(--secondary-foreground) / <alpha-value>)",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+          foreground: "hsl(var(--accent-foreground) / <alpha-value>)",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+          foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          foreground: "hsl(var(--card-foreground) / <alpha-value>)",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      borderRadius: {
+        xl: "calc(var(--radius) + 4px)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["Dm Sans", "ui-sans-serif", "system-ui"],
+        serif: ["Libre Bodoni", "ui-serif", "Georgia"],
+        body: ['"Dm Sans"', "ui-sans-serif"],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--bits-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--bits-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
+      },
+    },
+  },
+  plugins: [tailwindcssAnimate],
 };
+
+export default config;

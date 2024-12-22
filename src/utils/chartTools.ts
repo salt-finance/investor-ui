@@ -1,5 +1,5 @@
-import {Color} from "@kurkle/color";
-import {Chart, type ChartArea} from "chart.js";
+import * as kurkle from "@kurkle/color";
+import { Chart, type ChartArea, type Color } from "chart.js";
 
 
 export type AnyObject = Record<string, any>;
@@ -17,7 +17,7 @@ export const chartColors = {
 };
 
 export const getHover = (color: string) => {
-    return new Color(color).lighten(0.3).saturate(1).rgbString();
+    return new kurkle.Color(color).lighten(0.3).saturate(1).rgbString();
 };
 
 /*
@@ -28,7 +28,7 @@ export const getHover = (color: string) => {
 
  */
 
-export function createShades(length: number, chartColorBase: string): string[] {
+export const createShades = (length: number, chartColorBase: string): string[] => {
     let colors: string[] = [];
     for (let index = 0; index < length; index++) {
         // Darken then lighten color by 1/ratioMultplier increments.
@@ -45,7 +45,7 @@ export function createShades(length: number, chartColorBase: string): string[] {
         );
 
         const darkenRatio = Math.round(((1 / ratioMultiplier) * multiplier * 0.5));
-        const color = new Color(chartColorBase)
+        const color = new kurkle.Color(chartColorBase)
             .rotate(360 * Math.sin(index + 1) * index)
             .darken(darkenRatio).saturate(1);
 
@@ -54,17 +54,17 @@ export function createShades(length: number, chartColorBase: string): string[] {
     return colors;
 }
 
-export function createRadialGradient(context: any, color: string) {
+export const createRadialGradient = (context: any, color: string): Color | undefined => {
     const chart: Chart = context?.chart;
 
     if (!chart) {
         // This case happens on initial chart load
-        return null;
+        return;
     }
 
     const chartArea = chart.chartArea;
     if (!chartArea) {
-        return null;
+        return;
     }
     const centerX = (chartArea.left + chartArea.right) / 2;
     const centerY = (chartArea.top + chartArea.bottom) / 2;
@@ -73,7 +73,7 @@ export function createRadialGradient(context: any, color: string) {
         (chartArea.bottom - chartArea.top) / 2
     );
     const ctx = chart.ctx;
-    const c = new Color(color);
+    const c = new kurkle.Color(color);
     const gradient: CanvasGradient = ctx.createRadialGradient(
         centerX,
         centerY,
@@ -91,12 +91,12 @@ export function createRadialGradient(context: any, color: string) {
     return gradient;
 };
 
-export const createLinearGradient = (ctx: AnyObject, chartArea: ChartArea, c1: string, reverse: boolean): CanvasGradient => {
+export const createLinearGradient = (ctx: AnyObject, chartArea: ChartArea, c1: string, reverse?: boolean): CanvasGradient => {
     reverse ??= false;
     let gradient: CanvasGradient;
 
 
-    const c = new Color(c1);
+    const c = new kurkle.Color(c1);
 
 
     // Create the gradient because this is either the first render
@@ -110,13 +110,13 @@ export const createLinearGradient = (ctx: AnyObject, chartArea: ChartArea, c1: s
     return gradient;
 };
 
-export function createLinearGradientTwo(ctx: AnyObject, chartArea: ChartArea, color: string, reverse: boolean) {
+export const createLinearGradientTwo = (ctx: AnyObject, chartArea: ChartArea, color: string, reverse?: boolean): CanvasGradient => {
     reverse ??= false;
     let width, height, gradient;
     const chartWidth = chartArea.right - chartArea.left;
     const chartHeight = chartArea.bottom - chartArea.top;
 
-    const c = new Color(color);
+    const c = new kurkle.Color(color);
 
     if (!gradient || width !== chartWidth || height !== chartHeight) {
         // Create the gradient because this is either the first render

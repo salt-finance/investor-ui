@@ -1,8 +1,20 @@
 <script lang="ts">
-    import {replace} from "svelte-spa-router";
+  import { replace } from "svelte-spa-router";
 
 
-    const pages = [
+    interface question<T> {
+        title: string,
+        value?:T,
+        placeholder?: string
+    }
+
+    interface page<T>{
+        title: string,
+        subtitle?: string,
+        questions: question<T>[]
+    }
+
+    const pages:page<string>[] = [
         {
             title: "Get started", subtitle: "Confirm your email address to continue",
             questions: [

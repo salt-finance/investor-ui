@@ -19,8 +19,7 @@
 <div>
   <div class="media media-comment">
     <img
-      alt="Image placeholder"
-      rounded="circle"
+      alt="Placeholder"
       class="avatar avatar-lg media-comment-avatar"
       src={userImage} />
     <div class="media-body">

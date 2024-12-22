@@ -1,10 +1,10 @@
 /** Dispatch event on click outside of node */
-export function clickOutside(node) {
+export function clickOutside(node: Node) {
 
-    const handleClick = event => {
-        if (node && !node.contains(event.target) && !event.defaultPrevented) {
+    const handleClick = (event: Event) => {
+        if (node && !node.contains(event.target! as Node) && !event.defaultPrevented) {
             node.dispatchEvent(
-                new CustomEvent('click_outside', node)
+                new CustomEvent('click_outside', event)
             )
         }
     }

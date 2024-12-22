@@ -1,83 +1,107 @@
-<script lang="ts">
-    // core components
-    import TableDropdown from "../../components/Dropdowns/TableDropdown.svelte";
-
-    // can be one of light or dark
-    const security = {"Security Name | Ticker": "Ethio Telecom | ETC", "Price": "1200.00", "Market Cap": "300M"};
-
-    let {data, title = "Table"}: {
-        data: Record<string, any>[],
-        title: string
-    } = $props();
-
-
-    const columns = data !== undefined ? Object.keys(data[0]) : [];
-    const rows = data !== undefined ? data.map((element) => Object.values(element)) : [];
-
+<script module>
+  export type TableColumn<T> = {
+    key: keyof T;
+    header: string;
+    sortable?: boolean;
+    type?: "image" | "action";
+    action?: (event: Event) => any;
+  };
 </script>
 
-<div
-        class="flex flex-col w-full rounded-lg glass-effect"
->
-    <div class="rounded-t mb-0 border-0 p-6">
-        <h3
-                class="font-semibold text-lg capitalize"
+<script lang="ts" generics="T">
+  import type { Snippet } from "svelte";
+
+  // Props
+  let { data, columns, title, actionSnippet, sortIndex = 0 } = $props<{
+    data: any[];
+    columns: TableColumn<T>[];
+    title: string;
+
+    actionSnippet?: Snippet<TableColumn<T>[]>;
+    sortIndex?: number;
+  }>();
+  
+
+  // State
+  let sortedColumn = $state<keyof any | null>(null);
+  let sortDirection = $state<"asc" | "desc">("asc");
+
+  // Sort function
+  function sortData(column: keyof any) {
+    if (sortedColumn === column) {
+      sortDirection = sortDirection === "asc" ? "desc" : "asc";
+    } else {
+      sortedColumn = column;
+      sortDirection = "asc";
+    }
+
+    data = [...data].sort((a, b) => {
+      if (a[column] < b[column]) return sortDirection === "asc" ? -1 : 1;
+      if (a[column] > b[column]) return sortDirection === "asc" ? 1 : -1;
+      return 0;
+    });
+    
+  }
+
+  sortData(columns[sortIndex]?.key);
+</script>
+
+<div class="flex flex-col w-full rounded-lg glass-effect">
+  <div class="rounded-t mb-0 border-0 p-6">
+    <h3 class="font-semibold text-lg capitalize">
+      {title}
+      {#if data.length > 0}
+        ({data.length})
+      {/if}
+    </h3>
+  </div>
+  {#if data.length > 0}
+    <table class="items-center w-full bg-transparent border-collapse">
+      <thead>
+        <tr
+          class="glass-effect uppercase whitespace-nowrap font-semibold text-left"
         >
-            {title}
-            {#if rows.length > 0}
-                ({rows.length})
-            {/if}
-        </h3>
-    </div>
-    <div class="block w-full overflow-x-auto pb-6">
-        <!-- Projects table -->
-        {#if columns.length > 0}
-            <table class="items-center w-full bg-transparent border-collapse">
-                <thead>
-                <tr
-                        class="glass-effect uppercase whitespace-nowrap font-semibold text-left"
-
-                >
-                    {#each columns as item, index}
-                        <th class="py-4 pl-4 {index > 2 ? 'hidden lg:table-cell' : ''}">
-                            {@html item}
-                        </th>
-                    {/each}
-                    <th
-                            class="whitespace-nowrap font-semibold text-left"
-                    ></th>
-                </tr>
-                </thead>
-                <tbody>
-
-
-                {#each rows as row}
-                    <tr class="hover:glass-effect cursor-pointer">
-                        {#each row as item, index}
-                            <td
-
-                                    class="py-4 pl-4 {index > 2 ? 'hidden lg:table-cell' : ''}"
-                            >
-                                {@html item}
-                            </td>
-                        {/each}
-
-                        <td
-                                class="py-4 text-right px-4"
-                        >
-                            <TableDropdown/>
-                        </td>
-                    </tr>
-
-                {/each}
-
-                </tbody>
-            </table>
-        {:else }
-            <span class="p-6">
-            No results found.
-            </span>
-
-        {/if}
-    </div>
+          {#each columns as column}
+            <th
+              class="py-4 pl-4"
+              class:sortable={column.sortable}
+              onclick={(e) => column.sortable && sortData(column.key)}
+            >
+              {column.header}
+              {#if column.sortable && sortedColumn === column.key}
+                <span class="sort-indicator">
+                  {sortDirection === "asc" ? "↑" : "↓"}
+                </span>
+              {/if}
+            </th>
+          {/each}
+        </tr>
+      </thead>
+      <tbody>
+        {#each data as row}
+          <tr class="hover:glass-effect cursor-pointer">
+            {#each columns as column}
+              <td class="py-4 pl-4">
+                {#if column.type === "image"}
+                  <img
+                    width="48"
+                    height="48"
+                    class="rounded-full align-middle border-none"
+                    src={row[column.key]}
+                    alt="logo"
+                  />
+                {:else if column.type === "action" && actionSnippet}
+                  {@render actionSnippet(row)}
+                {:else}
+                  {row[column.key] ?? "--"}
+                {/if}
+              </td>
+            {/each}
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  {:else}
+    <span class="p-6"> No results found. </span>
+  {/if}
 </div>

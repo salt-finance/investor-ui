@@ -1,18 +1,20 @@
-<script>
-    import {onMount} from "svelte";
+<script lang="ts">
+  import type { ChartConfiguration, ScriptableContext } from "chart.js";
+    import { onMount } from "svelte";
+    import type { AnyObject } from "utils/chartTools";
     import {
-        chartColors,
-        createRadialGradient,
-        createShades,
-        getHover
-    } from "utils/chartTools.ts";
+      chartColors,
+      createRadialGradient,
+      createShades,
+      getHover
+    } from "utils/chartTools";
 
 
     // init chart
     onMount(async () => {
 
 
-        var ctx = document.getElementById("pie-chart");
+        const ctx = document.getElementById("pie-chart") as HTMLCanvasElement;
 
         const chartColorBase = chartColors.blue;
         const labels = ["ETFs", "Bonds", "Mutual Funds", "Cash", "Other"];
@@ -20,7 +22,7 @@
 
         const colors = createShades(labels.length, chartColorBase);
 
-        let config = {
+        const config:ChartConfiguration = {
             type: "pie",
             data: {
                 labels: labels,
@@ -29,7 +31,7 @@
                         label: "Portfolio",
                         fill: false,
                         borderColor: "#0000",
-                        backgroundColor: function (context) {
+                        backgroundColor: function (context:ScriptableContext<'bar'>, options: AnyObject) {
                             let c = colors[context.dataIndex];
                             if (!c) {
                                 return;
@@ -61,7 +63,7 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: function (context) {
+                            label: function (context:AnyObject) {
                                 let label = context.dataset.label || "";
                                 if (label) {
                                     label += ": ";

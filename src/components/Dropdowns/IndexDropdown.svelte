@@ -1,29 +1,10 @@
-<script>
-    import {link} from "svelte-spa-router";
+<script lang="ts">
+    import { link } from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     // library for creating dropdown menu appear on click
-    import {createPopper} from "@popperjs/core";
 
     let {isLoggedIn = false} = $props();
 
-    // core components
-    let dropdownPopoverShow = false;
-
-    let btnDropdownRef;
-    let popoverDropdownRef;
-
-    const toggleDropdown = (event) => {
-        event.preventDefault();
-        if (dropdownPopoverShow) {
-            dropdownPopoverShow = false;
-        }
-        else {
-            dropdownPopoverShow = true;
-            createPopper(btnDropdownRef, popoverDropdownRef, {
-                placement: "bottom-start"
-            });
-        }
-    };
 </script>
 
 <div class="flex flex-col lg:flex-row capitalize lg:space-x-4 space-y-4 lg:space-y-0 py-2">

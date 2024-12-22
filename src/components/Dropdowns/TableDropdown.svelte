@@ -1,21 +1,22 @@
-<script>
+<script lang="ts">
     // library for creating dropdown menu appear on click
-    import {createPopper} from "@popperjs/core";
+    import { createPopper } from "@popperjs/core";
 
     // core components
 
     let dropdownPopoverShow = $state(false);
 
-    let btnDropdownRef = $state();
-    let popoverDropdownRef = $state();
+    let btnDropdownRef:Element|undefined = $state();
+    let popoverDropdownRef:HTMLElement|undefined = $state();
+    let {value} = $props();
 
-    const toggleDropdown = (event) => {
+    const toggleDropdown = (event: Event) => {
         event.preventDefault();
         if (dropdownPopoverShow) {
             dropdownPopoverShow = false;
         } else {
             dropdownPopoverShow = true;
-            createPopper(btnDropdownRef, popoverDropdownRef, {
+            createPopper(btnDropdownRef!, popoverDropdownRef!, {
                 placement: "bottom-start",
             });
         }
@@ -39,19 +40,21 @@
                 onclick={(e) => e.preventDefault()}
                 class="hover:bg-blue-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
         >
-            View tearsheet
+            View tearsheet for {value?.symbol}
         </button>
         <button
                 onclick={(e) => e.preventDefault()}
                 class="hover:bg-lime-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
         >
-            Buy
+            Buy {value?.symbol}
         </button>
+        {#if value?.owned}
         <button
                 onclick={(e) => e.preventDefault()}
                 class="hover:bg-yellow-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
         >
-            Sell
+            Sell {value?.symbol}
         </button>
+        {/if}
     </div>
 </div>

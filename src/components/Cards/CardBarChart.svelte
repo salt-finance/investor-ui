@@ -1,8 +1,8 @@
 <script lang="ts">
-    import {onMount} from "svelte";
-    import {chartColors, createLinearGradientTwo} from "utils/chartTools";
-    import {monthsForLocale} from "utils/formatTools.ts";
-    import type {ChartConfiguration, ChartItem} from "chart.js";
+    import type { ChartConfiguration } from "chart.js";
+    import { onMount } from "svelte";
+    import { chartColors, createLinearGradientTwo } from "utils/chartTools";
+    import { monthsForLocale } from "utils/formatTools";
 
 
     // library that creates chart objects in page

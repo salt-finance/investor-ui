@@ -173,8 +173,7 @@
             </label>
             <textarea
               id="grid-about-me"
-              type="text"
-              class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+               class="border-0 px-3 py-3 placeholder-slate-300 text-neutral-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
               rows="4"
               value="A beautiful UI Kit and Admin for Svelte & Tailwind CSS. It is Free
                 and Open Source."

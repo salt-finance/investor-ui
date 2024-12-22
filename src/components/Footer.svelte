@@ -1,7 +1,7 @@
 <script lang="ts">
     // make dynamic date to be added to footer
     let date = new Date().getFullYear();
-    import {version} from "../../package.json";
+    import { version } from "../../package.json";
 </script>
 <footer class="bg-transparent w-full mt-10 pb-4">
     <div
@@ -15,7 +15,7 @@
                 <li>
                     <a
                             class="font-semibold block pb-2 text-sm"
-                            href="#"
+                            href="/"
                     >
                         Terms & Conditions
                     </a>
@@ -23,7 +23,7 @@
                 <li>
                     <a
                             class="font-semibold block pb-2 text-sm"
-                            href="#"
+                            href="/"
                     >
                         Privacy Policy
                     </a>
@@ -31,7 +31,7 @@
                 <li>
                     <a
                             class="font-semibold block pb-2 text-sm"
-                            href="#"
+                            href="/"
                     >
                         Contact Us
                     </a>

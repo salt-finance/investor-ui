@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
     // library for creating dropdown menu appear on click
-    import {createPopper} from "@popperjs/core";
-    import {link} from "svelte-spa-router";
+    import { createPopper } from "@popperjs/core";
+    import { link } from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     // core components
 
@@ -10,16 +10,16 @@
 
     let dropdownPopoverShow = $state(false);
 
-    let btnDropdownRef = $state();
-    let popoverDropdownRef = $state();
+    let btnDropdownRef:Element|undefined = $state();
+    let popoverDropdownRef:HTMLElement|undefined = $state();
 
-    const toggleDropdown = (event) => {
+    const toggleDropdown = (event: Event) => {
         event.preventDefault();
         if (dropdownPopoverShow) {
             dropdownPopoverShow = false;
         } else {
             dropdownPopoverShow = true;
-            createPopper(btnDropdownRef, popoverDropdownRef, {
+            createPopper(btnDropdownRef!, popoverDropdownRef!, {
                 placement: "bottom-end",
             });
         }

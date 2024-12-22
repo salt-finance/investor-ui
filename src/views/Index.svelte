@@ -1,11 +1,9 @@
-<script>
+<script lang='ts'>
     // core components
     import Footer from "components/Footer.svelte";
-    import {push} from "svelte-spa-router";
     import IndexNavbar from "components/IndexNavbar.svelte";
+    import { push } from "svelte-spa-router";
 
-    const patternVue =
-        "https://salt-finance.github.io/investor-ui/assets/img/pattern.svg";
 
     function signIn() {
         push("/auth/login");
@@ -68,7 +66,7 @@ xl:max-w-screen-xl"
                         <button
                                 class="bg-blue-500 text-white active:bg-blue-600 py-4 uppercase font-bold rounded-lg outline-none text-center focus:outline-none mt-4 ease-in-out
          hover:bg-blue-800 transition-all duration-150"
-                                onclick={signIn()}
+                                onclick={() => signIn()}
                                 type="button"
                         >
                             Login

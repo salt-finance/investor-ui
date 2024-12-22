@@ -1,18 +1,16 @@
 <script lang="ts">
-    import Router, {location} from "svelte-spa-router";
+    import Router, { location } from "svelte-spa-router";
     // components for this layout
-    import FooterAdmin from "../components/Footer.svelte";
-    import HeaderStats from "../components/Headers/HeaderStats.svelte";
-    // pages for this layout
-    import Activity from "../views/dashboard/Activity.svelte";
-    import Dashboard from "../views/dashboard/Dashboard.svelte";
-    import Maps from "../views/dashboard/Maps.svelte";
-    import Market from "../views/dashboard/Market.svelte";
-    import Portfolio from "../views/dashboard/Portfolio.svelte";
-    import Settings from "../views/dashboard/Settings.svelte";
-    import Tables from "views/dashboard/Tables.svelte";
+    import FooterAdmin from "components/Footer.svelte";
+    import HeaderStats from "components/Headers/HeaderStats.svelte";
+// pages for this layout
     import IndexNavbar from "components/IndexNavbar.svelte";
+    import Activity from "views/dashboard/Activity.svelte";
+    import Dashboard from "views/dashboard/Dashboard.svelte";
     import Holdings from "views/dashboard/Holdings.svelte";
+    import Market from "views/dashboard/Market.svelte";
+    import Portfolio from "views/dashboard/Portfolio.svelte";
+    import Settings from "views/dashboard/Settings.svelte";
 
     const routes = {
         "/holdings": Holdings,
@@ -20,8 +18,6 @@
         "/market": Market,
         "/portfolio": Portfolio,
         "/settings": Settings,
-        "/tables": Tables,
-        "/maps": Maps,
         "*": Dashboard
     };
 
@@ -54,7 +50,7 @@
     min-h-screen 
     xl:max-w-screen-xl"
         >
-            <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
+            <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-20">
                 <IndexNavbar isLoggedIn={true}/>
             </div>
             <div
@@ -66,7 +62,7 @@
                 {currentRouteTitle}
                 </span>
                 {/if}
-                <div class="flex flex-wrap">
+                <div class="flex flex-wrap z-10">
                     <Router
 
                             prefix={"/dashboard"} {routes}/>

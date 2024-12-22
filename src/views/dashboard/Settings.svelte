@@ -3,7 +3,7 @@
   import CardProfile from "components/Cards/CardProfile.svelte";
   import CardSettings from "components/Cards/CardSettings.svelte";
   import { blur, fly } from "svelte/transition";
-  import { blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition } from "utils/animationTools.js";
+  import { blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition } from "utils/animationTools";
 </script>
 
 <div

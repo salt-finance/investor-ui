@@ -1,25 +1,31 @@
+import { fromJson, fromJsonList } from "models/parser";
 export class Security {
+  static fromJson = (json: Record<string, any>) => fromJson<iSecurity>(json);
+  static fromJsonList = (jsonList: Record<string, any>[]) =>
+    fromJsonList<iSecurity>(jsonList);
+}
 
-
-    constructor(public name?: string,
-                public symbol?: string,
-                public id?: string,
-                public description?: string,
-                public sector?: string,
-                public exchange?: string,
-                public yearHigh?: number,
-                public yearLow?: number,
-                public dayHigh?: number,
-                public dayLow?: number,
-                public dayChange?: number,
-                public dayChangePercent?: number,
-                public openPrice?: number,
-                public closePrice?: number,
-                public price?: number,
-                public volume?: number,
-                public marketCap?: number,
-                public earningsPerShare?: number,
-                public priceToEarningsPerShare?: number,
-                public logoUrl?: string) {
-    }
+export interface iSecurity {
+  closePrice?: number;
+  dayChange?: number;
+  dayChangePercent?: number;
+  dayHigh?: number;
+  dayLow?: number;
+  description?: string;
+  earningsPerShare?: number;
+  exchange?: string;
+  id?: string;
+  owned: boolean;
+  logoUrl?: string;
+  marketCap?: number;
+  name?: string;
+  openPrice?: number;
+  price?: number;
+  priceToEarningsPerShare?: number;
+  sector?: string;
+  symbol?: string;
+  type? : string,
+  volume?: number;
+  yearHigh?: number;
+  yearLow?: number;
 }

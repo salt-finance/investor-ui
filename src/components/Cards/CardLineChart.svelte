@@ -1,13 +1,14 @@
-<script>
-    import {onMount} from "svelte";
-    // library that creates chart objects in page
+<script lang='ts'>
+  import type { ChartConfiguration } from "chart.js";
+  import { onMount } from "svelte";
+// library that creates chart objects in page
 
-    import {chartColors, createLinearGradient} from "utils/chartTools.ts";
-    import {dateTimeFormat} from "utils/formatTools.ts";
+    import { chartColors, createLinearGradient, type AnyObject } from "utils/chartTools";
+    import { dateTimeFormat } from "utils/formatTools";
     // init chart
     onMount(async () => {
 
-        var ctx = document.getElementById("line-chart");
+        let ctx = document.getElementById("line-chart") as HTMLCanvasElement;
 
         // var labels = monthsForLocale();
         // var data = [10, 25, 30, -15, 50, 60, 65, 60, 50, -35, 40, 60].map(
@@ -16,13 +17,11 @@
         const startDate = Date.now();
         var latestValue = 4500;
 
-        const generateData = (length, startingValue = 450000) => {
+        const generateData = (length:number, startingValue = 450000) => {
             latestValue = startingValue;
 
             return [...Array(length).keys()].map(() => {
-                var factor = Math.sin(100000 * Math.random() * Math.random()).toFixed(
-                    1
-                );
+                let factor:number = Math.sin(100000 * Math.random() * Math.random());
                 var value = latestValue;
 
                 value = Math.floor(latestValue + factor * 5000);
@@ -40,10 +39,10 @@
             .reverse();
         var chartColorBase = chartColors.grey;
 
-        var borderFill;
-        var backgroundFill;
+        let borderFill:string|undefined;
+        let backgroundFill:CanvasGradient|undefined;
 
-        var config = {
+        const config:ChartConfiguration = {
             type: "line",
             data: {
                 labels: labels,
@@ -54,7 +53,7 @@
                         pointStyle: false,
                         // cubicInterpolationMode: "monotone",
                         data: data,
-                        backgroundColor: function (context) {
+                        backgroundColor: function (context:AnyObject) {
                             const chart = context.chart;
                             const {ctx, chartArea} = chart;
 
@@ -62,7 +61,7 @@
                                 // This case happens on initial chart load
                                 return;
                             }
-                            if (backgroundFill == null) {
+                            if (backgroundFill === undefined) {
                                 backgroundFill = createLinearGradient(
                                     ctx,
                                     chartArea,
@@ -71,7 +70,7 @@
                             }
                             return backgroundFill;
                         },
-                        borderColor: function (context) {
+                        borderColor: function (context:AnyObject) {
                             const chart = context.chart;
                             const {ctx, chartArea} = chart;
 
@@ -124,6 +123,7 @@
 
                             // Include a dollar sign in the ticks
                             callback: function (value) {
+                                value = value as number;
                                 value = new Intl.NumberFormat("am-ET", {
                                     currencySign: "standard",
                                     notation: Math.abs(value) >= 10000 ? "compact" : "standard",
@@ -187,7 +187,7 @@
         Chart.defaults.clip = 100;
 
         const chart = new Chart(ctx, config);
-        const setData = (date) => {
+        const setData = (date:Date) => {
             var values = generateData(2, latestValue);
 
             var value = values[1];
@@ -196,8 +196,8 @@
             labels.push(label);
             data.push(value);
 
-            borderFill = null;
-            backgroundFill = null;
+            borderFill = undefined;
+            backgroundFill = undefined;
             chartColorBase =
                 data[data.length - 1] >= data[data.length - 2]
                 ? chartColors.green

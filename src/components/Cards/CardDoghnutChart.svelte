@@ -1,6 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {chartColors, createRadialGradient, type AnyObject} from "utils/chartTools.ts";
+    import {chartColors, createRadialGradient, type AnyObject} from "utils/chartTools";
     import type {ChartConfiguration} from "chart.js";
 
 

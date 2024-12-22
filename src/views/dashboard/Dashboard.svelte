@@ -4,11 +4,11 @@
     import CardDoghnutChart from "components/Cards/CardDoghnutChart.svelte";
     import CardLineChart from "components/Cards/CardLineChart.svelte";
     import CardPieChart from "components/Cards/CardPieChart.svelte";
-    import Holdings from "./Holdings.svelte";
     import Activity from "./Activity.svelte";
+    import Holdings from "./Holdings.svelte";
 
-    import {blur, fly} from "svelte/transition";
-    import {blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition} from "utils/animationTools.js";
+    import { blur, fly } from "svelte/transition";
+    import { blurTransitionInConfig, blurTransitionOutConfig, staggerdTransition } from "utils/animationTools";
 </script>
 
 <!--   in:blur|global={{ amount: 30, delay: 50, duration: 1000 }}
