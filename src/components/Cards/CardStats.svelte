@@ -35,7 +35,7 @@
 </script>
 
 <div
-        class="relative flex flex-col min-w-0 break-words glass-effect rounded-lg xl:mb-0  h-full"
+        class="relative flex flex-col min-w-0 break-words glass-effect xl:mb-0  h-full"
 >
     <div class="flex-auto flex p-4 justify-between gap-2">
         <div class="flex flex-col gap-2">

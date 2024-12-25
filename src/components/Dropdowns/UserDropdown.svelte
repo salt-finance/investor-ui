@@ -1,7 +1,7 @@
 <script lang="ts">
     // library for creating dropdown menu appear on click
-    import { createPopper } from "@popperjs/core";
-    import { link } from "svelte-spa-router";
+    import {createPopper} from "@popperjs/core";
+    import {link} from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     // core components
 
@@ -10,17 +10,18 @@
 
     let dropdownPopoverShow = $state(false);
 
-    let btnDropdownRef:Element|undefined = $state();
-    let popoverDropdownRef:HTMLElement|undefined = $state();
+    let btnDropdownRef: Element | undefined = $state();
+    let popoverDropdownRef: HTMLElement | undefined = $state();
 
     const toggleDropdown = (event: Event) => {
         event.preventDefault();
         if (dropdownPopoverShow) {
             dropdownPopoverShow = false;
-        } else {
+        }
+        else {
             dropdownPopoverShow = true;
             createPopper(btnDropdownRef!, popoverDropdownRef!, {
-                placement: "bottom-end",
+                placement: "bottom-end"
             });
         }
     };
@@ -62,7 +63,7 @@
             Settings
         </a>
 
-        <div id="google_translate_element"></div>
+        <div id="googleTranslateElement"></div>
 
         <a
                 use:link

@@ -1,12 +1,12 @@
 <script lang="ts">
     // make dynamic date to be added to footer
     let date = new Date().getFullYear();
-    import { version } from "../../package.json";
+    import {version} from "../../package.json";
 </script>
 <footer class="bg-transparent w-full mt-10 pb-4">
     <div
             class="mx-auto px-4 flex
- flex-wrap flex-col items-center glass-effect rounded-lg p-8 gap-8"
+ flex-wrap flex-col items-center glass-effect p-8 gap-8"
     >
         <div class="w-11/12 lg:w-8/12 px-10 text-center">
             <ul

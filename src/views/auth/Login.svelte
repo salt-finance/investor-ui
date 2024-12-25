@@ -14,11 +14,11 @@
 </script>
 
 <div class="text-left flex content-center items-center w-full flex-col">
-    <span class=" my-6 text-2xl lg:text-4xl lg:font-extralight w-1/3">
+    <span class=" my-6 text-2xl lg:text-4xl lg:font-extralight w-1/3 motion-preset-blur-down-lg motion-duration-500">
         Login
       </span>
 
-    <div class="relative flex flex-wrap gap-y-4 glass-effect w-1/3 px-8 py-6 font-normal min-h-500">
+    <div class="relative flex flex-wrap gap-y-4 glass-effect w-1/3 px-8 py-6 font-normal min-h-500 motion-preset-blur-up-lg motion-duration-500">
         <form class="flex flex-col justify-between w-full">
             <div class="relative w-full mb-3">
                 <label

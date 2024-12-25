@@ -6,7 +6,7 @@
     const columns: TableColumn<Record<string, any>>[] = [
     
     { key: "Date", header: "Date", sortable: true },
-    { key: "Transaction", header: "Transaction", sortable: true },
+    { key: "Transaction", header: "Description", sortable: true },
     { key: "name", header: "Security | Ticker", sortable: true },
     { key: "Quantity", header: "Quantity (Shares)", sortable: true },
     { key: "Price", header: "Price (Etb)", sortable: true },
