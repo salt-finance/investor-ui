@@ -1,11 +1,10 @@
 import type {Config} from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
-import flowbitePlugin from "flowbite/plugin";
 
 
 const config: Config = {
     darkMode: ["selector", ".dark"],
-    content: ["./src/**/*.{html,js,svelte,ts}", "./index.html", "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"],
+    content: ["./src/**/*.{html,js,svelte,ts}", "./index.html"],
     safelist: ["dark"],
     theme: {
         container: {
@@ -94,7 +93,7 @@ const config: Config = {
             }
         }
     },
-    plugins: [tailwindcssAnimate, require("tailwindcss-motion"), flowbitePlugin]
+    plugins: [tailwindcssAnimate, require("tailwindcss-motion")]
 };
 
 export default config;
