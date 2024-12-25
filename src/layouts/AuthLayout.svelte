@@ -40,7 +40,7 @@
                 {#if currentRouteTitle !== undefined}
                     <span class="capitalize my-0 mt-4 text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">{currentRouteTitle}</span>
                 {/if}
-                <div class="flex flex-wrap z-10 flex-shrink">
+                <div class="flex flex-wrap z-10 flex-grow">
                     <Router prefix={"/auth"} {routes}></Router>
                 </div>
             </div>

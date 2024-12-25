@@ -48,7 +48,7 @@
                 {#if currentRouteTitle !== undefined}
                     <span class="capitalize text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">{currentRouteTitle}</span>
                 {/if}
-                <div class="flex flex-wrap z-10">
+                <div class="flex flex-wrap z-10 flex-grow">
                     <Router
 
                             prefix={"/dashboard"} {routes}/>
