@@ -14,33 +14,56 @@
                 href="/dashboard"
                 use:link
                 use:active
-                class="font-semibold block"
+                class="font-semibold inline-flex gap-1 hover:no-underline"
         >
-            dashboard
+            <span class="material-symbols-outlined skiptranslate">
+                dashboard
+            </span>
+            <p>
+                dashboard
+            </p>
+
         </a>
         <a
                 use:link
                 use:active
                 href="/dashboard/market"
-                class="font-semibold block"
+                class="font-semibold inline-flex gap-1 hover:no-underline"
         >
-            market
+               <span class="material-symbols-outlined skiptranslate">
+                storefront
+            </span>
+            <p>
+                market
+            </p>
+
+
         </a>
         <a
                 use:link
                 use:active
                 href="/dashboard/holdings"
-                class="font-semibold block"
+                class="font-semibold inline-flex gap-1 hover:no-underline"
         >
-            holdings
+              <span class="material-symbols-outlined skiptranslate">
+                category
+            </span>
+            <p>
+                holdings
+            </p>
         </a>
         <a
                 use:link
                 use:active
                 href="/dashboard/activity"
-                class="font-semibold block"
+                class="font-semibold inline-flex gap-1 hover:no-underline"
         >
-            activity
+                <span class="material-symbols-outlined skiptranslate">
+                swap_horiz
+            </span>
+            <p>
+                activity
+            </p>
         </a>
     {:else}
         <a
