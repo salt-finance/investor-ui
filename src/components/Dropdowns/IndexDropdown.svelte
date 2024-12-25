@@ -7,14 +7,14 @@
 
 </script>
 
-<div class="flex flex-col lg:flex-row capitalize lg:space-x-4 space-y-4 lg:space-y-0 py-2">
+<div class="flex flex-col gap-x-10 lg:flex-row capitalize py-2">
     {#if isLoggedIn}
         <a
 
                 href="/dashboard"
                 use:link
                 use:active
-                class="font-semibold inline-flex gap-1 hover:no-underline"
+                class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
         >
             <span class="material-symbols-outlined skiptranslate">
                 dashboard
@@ -28,7 +28,7 @@
                 use:link
                 use:active
                 href="/dashboard/market"
-                class="font-semibold inline-flex gap-1 hover:no-underline"
+                class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
         >
                <span class="material-symbols-outlined skiptranslate">
                 storefront
@@ -43,7 +43,7 @@
                 use:link
                 use:active
                 href="/dashboard/holdings"
-                class="font-semibold inline-flex gap-1 hover:no-underline"
+                class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
         >
               <span class="material-symbols-outlined skiptranslate">
                 category
@@ -56,7 +56,7 @@
                 use:link
                 use:active
                 href="/dashboard/activity"
-                class="font-semibold inline-flex gap-1 hover:no-underline"
+                class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
         >
                 <span class="material-symbols-outlined skiptranslate">
                 swap_horiz
