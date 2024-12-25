@@ -23,7 +23,7 @@
         class="flex flex-col p-4 glass-effect z-10"
 >
     <div
-            class="px-0 flex items-center justify-between transition-all ease-in-out duration-500 flex-wrap w-full flex-grow"
+            class="px-0 flex items-center justify-between transition-all ease-in-out duration-200 flex-wrap w-full flex-grow"
     >
         <span class="flex items-center">
         <a
@@ -37,7 +37,7 @@
 
     </span>
         <div
-                class="overflow-hidden transition-all duration-500 ease-in-out lg:flex items-center order-3 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
+                class="overflow-hidden transition-all duration-200 ease-in-out lg:flex items-center order-3 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
         ? 'h-auto'
         : 'h-px lg:h-auto'}"
                 class:justify-center={isLoggedIn}

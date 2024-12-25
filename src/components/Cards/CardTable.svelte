@@ -10,6 +10,7 @@
 
 <script lang="ts" generics="T">
     import type {Snippet} from "svelte";
+    import {MediaQuery} from "svelte/reactivity";
 
     // Props
     let {data, columns, title, actionSnippet, sortIndex = 0} = $props<{
@@ -25,6 +26,7 @@
     // State
     let sortedColumn = $state<keyof any | null>(null);
     let sortDirection = $state<"asc" | "desc">("asc");
+
 
     // Sort function
     function sortData(column: keyof any) {
@@ -91,7 +93,7 @@
                                 <img
                                         width="48"
                                         height="48"
-                                        class="rounded-full align-middle border-none"
+                                        class="rounded-full align-middle border-none max-w-fit"
                                         src={row[column.key]}
                                         alt="logo"
                                 />

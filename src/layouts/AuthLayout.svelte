@@ -1,5 +1,5 @@
 <script>
-    import Router from "svelte-spa-router"; // components for this layout
+    import Router, {location} from "svelte-spa-router"; // components for this layout
     // pages for this layout
     import Login from "views/auth/Login.svelte";
     import Register from "views/auth/Register.svelte";
@@ -17,19 +17,32 @@
         "/register": Register,
         "*": Login
     };
+
+
+    let currentRouteTitle = $state();
+
+    location.subscribe((val) => {
+        currentRouteTitle = undefined;
+        var crumbs = val.split("/");
+        currentRouteTitle = crumbs.at(crumbs.length - 1);
+    });
 </script>
 
 
-<div class="max-h-screen flex justify-center flex-col w-full items-center relative">
-    <div
-            class="flex flex-col w-full xl:max-w-screen-xl"
-    >
-        <div class="px-4 fixed top-4 w-full xl:max-w-screen-xl mb-4 z-10">
+<div class="flex w-screen flex-col lg:flex-row content-center">
+    <div class="flex justify-center w-full">
+
+        <div class="fixed top-4 mb-4 z-20 xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0">
             <IndexNavbar/>
         </div>
-        <div class="h-screen justify-between flex flex-col px-4">
-            <div class="w-full justify-center flex text-center lg:text-left mt-24">
-                <Router prefix={"/auth"} {routes}></Router>
+        <div class="xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0 flex flex-col justify-between gap-4 py-20 min-h-screen">
+            <div class="flex flex-col justify-end w-full gap-4 flex-grow">
+                {#if currentRouteTitle !== undefined}
+                    <span class="capitalize my-0 mt-4 text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">{currentRouteTitle}</span>
+                {/if}
+                <div class="flex flex-wrap z-10 flex-shrink">
+                    <Router prefix={"/auth"} {routes}></Router>
+                </div>
             </div>
 
             <Footer/>

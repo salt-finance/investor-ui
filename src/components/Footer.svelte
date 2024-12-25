@@ -3,7 +3,7 @@
     let date = new Date().getFullYear();
     import {version} from "../../package.json";
 </script>
-<footer class="bg-transparent w-full mt-10 pb-4">
+<footer class="bg-transparent w-full">
     <div
             class="mx-auto px-4 flex
  flex-wrap flex-col items-center glass-effect p-8 gap-8"

@@ -1,20 +1,20 @@
 <script lang="ts">
-  import { replace } from "svelte-spa-router";
+    import {replace} from "svelte-spa-router";
 
 
     interface question<T> {
         title: string,
-        value?:T,
+        value?: T,
         placeholder?: string
     }
 
-    interface page<T>{
+    interface page<T> {
         title: string,
         subtitle?: string,
         questions: question<T>[]
     }
 
-    const pages:page<string>[] = [
+    const pages: page<string>[] = [
         {
             title: "Get started", subtitle: "Confirm your email address to continue",
             questions: [
@@ -155,7 +155,7 @@
 <div
         class="text-left flex content-center justify-center w-full flex-col"
 >
-        <span class=" mt-6 mb-2 text-2xl lg:text-4xl lg:font-extralight">
+        <span class="mt-0 mb-2 text-2xl lg:text-4xl lg:font-extralight">
         Create an investment account
       </span>
     <span class="lg:text-xl mb-6">

@@ -32,36 +32,30 @@
 
 </script>
 
-<div
-        class="flex h-screen w-screen flex-col lg:flex-row content-center"
->
-    <!-- <div class="w-full lg:w-3/12 z-10">
-      <Sidebar />
-    </div> -->
+<div class="flex flex-col lg:flex-row content-center">
 
-    <div class="flex justify-center w-full min-h-fit px-4">
+    <div class="flex justify-center w-full min-h-fit">
         <div class="fixed top-4 mb-4 z-20 xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0">
             <IndexNavbar isLoggedIn={true}/>
         </div>
 
-        <div class="flex flex-col xl:max-w-screen-xl pt-28 w-full min-h-fit">
+        <div class="xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0 flex flex-col justify-between gap-4 py-20 min-h-screen">
 
 
-            <div
-                    class="flex flex-col mt-4">
+            <div class="flex flex-col justify-end w-full gap-4 flex-grow pt-8">
+
                 <HeaderStats/>
                 {#if currentRouteTitle !== undefined}
-                                        <span class="capitalize my-6 text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">
-                {currentRouteTitle}
-                </span>
+                    <span class="capitalize text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">{currentRouteTitle}</span>
                 {/if}
                 <div class="flex flex-wrap z-10">
                     <Router
 
                             prefix={"/dashboard"} {routes}/>
                 </div>
-                <FooterAdmin/>
             </div>
+            <FooterAdmin/>
+
         </div>
     </div>
 </div>
