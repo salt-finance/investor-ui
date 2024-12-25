@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Router, {location} from "svelte-spa-router"; // components for this layout
     // pages for this layout
     import Login from "views/auth/Login.svelte";
@@ -26,6 +26,8 @@
         var crumbs = val.split("/");
         currentRouteTitle = crumbs.at(crumbs.length - 1);
     });
+
+
 </script>
 
 
@@ -36,12 +38,12 @@
             <IndexNavbar/>
         </div>
         <div class="xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0 flex flex-col justify-between gap-4 py-20 min-h-screen">
-            <div class="flex flex-col justify-end w-full gap-4 flex-grow">
+            <div class="flex flex-col justify-end w-full gap-4 flex-grow ">
                 {#if currentRouteTitle !== undefined}
                     <span class="capitalize my-0 mt-4 text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500">{currentRouteTitle}</span>
                 {/if}
-                <div class="flex flex-wrap z-10 flex-grow">
-                    <Router prefix={"/auth"} {routes}></Router>
+                <div class="flex flex-wrap z-10 flex-grow motion-translate-y-in-[20%] motion-opacity-in-[0%] motion-duration-[1.00s]/translate motion-duration-[1.00s]/opacity motion-ease-spring-bouncier">
+                    <Router restoreScrollState={true} prefix={"/auth"} {routes}></Router>
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { link } from "svelte-spa-router";
+    import {link} from "svelte-spa-router";
     import active from "svelte-spa-router/active";
     // library for creating dropdown menu appear on click
 
@@ -10,9 +10,10 @@
 <div class="flex flex-col lg:flex-row capitalize lg:space-x-4 space-y-4 lg:space-y-0 py-2">
     {#if isLoggedIn}
         <a
+
+                href="/dashboard"
                 use:link
                 use:active
-                href="/dashboard"
                 class="font-semibold block"
         >
             dashboard

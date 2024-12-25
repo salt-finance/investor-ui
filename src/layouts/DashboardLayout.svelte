@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Router, {location} from "svelte-spa-router";
+    import Router, {location, type RouteDefinition} from "svelte-spa-router";
     // components for this layout
     import FooterAdmin from "components/Footer.svelte";
     import HeaderStats from "components/Headers/HeaderStats.svelte";
@@ -19,6 +19,7 @@
         "/portfolio": Portfolio,
         "/settings": Settings,
         "*": Dashboard
+
     };
 
     let currentRouteTitle = $state();
@@ -28,6 +29,9 @@
         var crumbs = val.split("/");
         currentRouteTitle = crumbs.at(crumbs.length - 1);
     });
+
+
+    const onNav = (e: any) => console.log(e);
 
 
 </script>
@@ -50,7 +54,7 @@
                 {/if}
                 <div class="flex flex-wrap z-10 flex-grow">
                     <Router
-
+                            restoreScrollState={false}
                             prefix={"/dashboard"} {routes}/>
                 </div>
             </div>
