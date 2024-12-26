@@ -16,7 +16,7 @@
 
 <dialog bind:this={dialogRef}>
     <div
-            class="w-full max-w-96 glass-effect bg-opacity-80 flex flex-col border-0 overflow-hidden mx-auto"
+            class="w-full max-w-96 glass-effect bg-opacity-80 dark:bg-opacity-90 flex flex-col border-0 overflow-hidden mx-auto"
     >
         <!--      HEADER-->
         <div
