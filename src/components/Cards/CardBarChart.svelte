@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { ChartConfiguration } from "chart.js";
-    import { onMount } from "svelte";
-    import { chartColors, createLinearGradientTwo } from "utils/chartTools";
-    import { monthsForLocale } from "utils/formatTools";
+    import type {ChartConfiguration} from "chart.js";
+    import {onMount} from "svelte";
+    import {chartColors, createLinearGradientTwo} from "utils/chartTools";
+    import {currencyFormat, monthsForLocale} from "utils/formatTools";
 
 
     // library that creates chart objects in page
@@ -101,11 +101,9 @@
                                     label += ": ";
                                 }
                                 if (context.parsed.y !== null) {
-                                    label += new Intl.NumberFormat("am-ET", {
-                                        style: "currency",
-                                        currencyDisplay: "name",
-                                        currency: "ETB"
-                                    }).format(context.parsed.y);
+                                    label += currencyFormat({
+                                        currencyDisplay: "name"
+                                    })(context.parsed.y);
                                 }
                                 return label;
                             }
@@ -135,15 +133,10 @@
                         ticks: {
                             // Include a dollar sign in the ticks
                             callback: function (value) {
-                                value = parseInt(value.toString());
-                                value = new Intl.NumberFormat("am-ET", {
-                                    currencySign: "standard",
-                                    notation: Math.abs(value) > 10000 ? "compact" : "standard",
-                                    style: "currency",
-                                    currencyDisplay: "symbol",
-                                    signDisplay: "never",
-                                    currency: "ETB"
-                                }).format(value);
+                                value = value as number;
+                                value = currencyFormat({
+                                    notation: Math.abs(value) >= 10000 ? "compact" : "standard"
+                                })(value);
                                 return value;
                             }
                         }

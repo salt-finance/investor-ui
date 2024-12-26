@@ -1,13 +1,24 @@
+// const locale = "en-US";
 const locale = "am-ET";
 const defaultOptions: Intl.DateTimeFormatOptions = {
-    calendar: "ethiopic",
-    year: "numeric",
-    month: "2-digit",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true
+    calendar: "ethiopic", year: "numeric", month: "2-digit", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: true
 };
+
+const defaultCurrencyOptions: Intl.NumberFormatOptions = {
+    currencySign: "standard", notation: "standard", style: "currency", currencyDisplay: "symbol", signDisplay: "never", currency: "ETB"
+};
+
+
+export const decimalFormat = (options?: Intl.NumberFormatOptions) => new Intl.NumberFormat(locale, {
+    style: "decimal",
+    minimumFractionDigits: 2,
+    ...options
+}).format;
+
+export const currencyFormat = (options?: Intl.NumberFormatOptions) => new Intl.NumberFormat(locale, {
+    ...defaultCurrencyOptions,
+    ...options
+}).format;
 export const dateTimeFormat = (date: number, options = defaultOptions) => {
     const parts = new Intl.DateTimeFormat(locale, options)
         .formatToParts(date)
@@ -20,14 +31,11 @@ export const dateTimeFormat = (date: number, options = defaultOptions) => {
 };
 
 const monthFormat = new Intl.DateTimeFormat(locale, {
-    calendar: "ethiopic",
-    month: "long"
+    calendar: "ethiopic", month: "long"
 }).format;
 export const monthsForLocale = () => {
     const currentMonth = new Date(Date.now());
-    return [...Array(currentMonth.getMonth() + 1).keys()].map((m) =>
-        monthFormat(new Date(Date.now()).setMonth(m))
-    );
+    return [...Array(currentMonth.getMonth() + 1).keys()].map((m) => monthFormat(new Date(Date.now()).setMonth(m)));
 };
 
 

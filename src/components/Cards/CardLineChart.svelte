@@ -1,10 +1,10 @@
 <script lang='ts'>
-  import type { ChartConfiguration } from "chart.js";
-  import { onMount } from "svelte";
-// library that creates chart objects in page
+    import type {ChartConfiguration} from "chart.js";
+    import {onMount} from "svelte";
+    // library that creates chart objects in page
 
-    import { chartColors, createLinearGradient, type AnyObject } from "utils/chartTools";
-    import { dateTimeFormat } from "utils/formatTools";
+    import {chartColors, createLinearGradient, type AnyObject} from "utils/chartTools";
+    import {currencyFormat, dateTimeFormat} from "utils/formatTools";
     // init chart
     onMount(async () => {
 
@@ -17,11 +17,11 @@
         const startDate = Date.now();
         var latestValue = 4500;
 
-        const generateData = (length:number, startingValue = 450000) => {
+        const generateData = (length: number, startingValue = 450000) => {
             latestValue = startingValue;
 
             return [...Array(length).keys()].map(() => {
-                let factor:number = Math.sin(100000 * Math.random() * Math.random());
+                let factor: number = Math.sin(100000 * Math.random() * Math.random());
                 var value = latestValue;
 
                 value = Math.floor(latestValue + factor * 5000);
@@ -39,10 +39,10 @@
             .reverse();
         var chartColorBase = chartColors.grey;
 
-        let borderFill:string|undefined;
-        let backgroundFill:CanvasGradient|undefined;
+        let borderFill: string | undefined;
+        let backgroundFill: CanvasGradient | undefined;
 
-        const config:ChartConfiguration = {
+        const config: ChartConfiguration = {
             type: "line",
             data: {
                 labels: labels,
@@ -53,7 +53,7 @@
                         pointStyle: false,
                         // cubicInterpolationMode: "monotone",
                         data: data,
-                        backgroundColor: function (context:AnyObject) {
+                        backgroundColor: function (context: AnyObject) {
                             const chart = context.chart;
                             const {ctx, chartArea} = chart;
 
@@ -70,7 +70,7 @@
                             }
                             return backgroundFill;
                         },
-                        borderColor: function (context:AnyObject) {
+                        borderColor: function (context: AnyObject) {
                             const chart = context.chart;
                             const {ctx, chartArea} = chart;
 
@@ -124,14 +124,10 @@
                             // Include a dollar sign in the ticks
                             callback: function (value) {
                                 value = value as number;
-                                value = new Intl.NumberFormat("am-ET", {
-                                    currencySign: "standard",
-                                    notation: Math.abs(value) >= 10000 ? "compact" : "standard",
-                                    style: "currency",
-                                    currencyDisplay: "symbol",
-                                    signDisplay: "never",
-                                    currency: "ETB"
-                                }).format(value);
+                                value = currencyFormat({
+                                    notation: Math.abs(value) >= 10000 ? "compact" : "standard"
+                                })(value);
+
                                 return value;
                             }
                         }
@@ -151,11 +147,11 @@
                                     label += ": ";
                                 }
                                 if (context.parsed.y !== null) {
-                                    label += new Intl.NumberFormat("am-ET", {
-                                        style: "currency",
-                                        currencyDisplay: "name",
-                                        currency: "ETB"
-                                    }).format(context.parsed.y);
+                                    label += currencyFormat({
+                                        currencyDisplay: "name"
+                                    })(context.parsed.y);
+
+
                                 }
                                 return label;
                             }
@@ -187,7 +183,7 @@
         Chart.defaults.clip = 100;
 
         const chart = new Chart(ctx, config);
-        const setData = (date:Date) => {
+        const setData = (date: Date) => {
             var values = generateData(2, latestValue);
 
             var value = values[1];

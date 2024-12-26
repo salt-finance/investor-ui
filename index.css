@@ -38,9 +38,10 @@ dialog {
     }
 }
 
-.icon-btn {
-    @apply w-10 h-10 font-black text-white hover:text-black
+button {
+    user-select: none;
 }
+
 
 /*[popover] {*/
 /*    !*@apply hidden*!*/
@@ -55,7 +56,42 @@ dialog {
 /*    }*/
 /*}*/
 
+
 @layer components {
+    .dark-light-bg {
+        @apply bg-amber-400 dark:bg-indigo-600
+    }
+
+
+    .btn-wide {
+        @apply py-4 rounded-lg font-bold uppercase text-center text-white
+    }
+
+    .btn-buy {
+        @apply btn-wide bg-lime-600 hover:bg-lime-800
+    }
+
+    .btn-sell {
+        @apply btn-wide bg-yellow-600 hover:bg-yellow-800
+    }
+
+    .dark-light-border {
+        @apply border-neutral-950 dark:border-neutral-300
+    }
+
+    .close-icon {
+        @apply w-10 h-10 font-black text-white hover:text-black
+    }
+
+    .btn-icon {
+        &:not([disabled]) {
+            @apply hover:dark-light-bg hover:border-none hover:text-white
+        }
+
+        @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none
+
+    }
+
 
     .glass-effect {
         backdrop-filter: blur(10px);
@@ -64,7 +100,7 @@ dialog {
     }
 
     .icon-bg {
-        @apply bg-amber-400 dark:bg-indigo-600 text-neutral-700 dark:text-neutral-300
+        @apply dark-light-bg text-neutral-700 dark:text-neutral-300
     }
 
     .dark-light-text {

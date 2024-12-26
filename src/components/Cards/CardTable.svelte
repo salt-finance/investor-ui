@@ -1,16 +1,18 @@
-<script module lang="ts">
+<script lang="ts" module>
     export type TableColumn<T> = {
         key: keyof T;
         header: string;
         sortable?: boolean;
         type?: "image" | "action";
+        format?: "currency" | "number" | "date";
         action?: (event: Event) => any;
     };
 </script>
 
-<script lang="ts" generics="T">
+<script generics="T" lang="ts">
     import type {Snippet} from "svelte";
-    import {MediaQuery} from "svelte/reactivity";
+    import {currencyFormat} from "utils/formatTools";
+
 
     // Props
     let {data, columns, title, actionSnippet, sortIndex = 0} = $props<{
@@ -53,7 +55,7 @@
     sortData(columns[sortIndex]?.key);
 </script>
 
-<div class="flex flex-col w-full glass-effect">
+<div class="flex flex-col w-full glass-effect overflow-x-hidden lg:overflow-visible">
     <div class="rounded-t mb-0 border-0 p-6">
         <h3 class="font-semibold text-lg capitalize">
             {title}
@@ -99,6 +101,8 @@
                                 />
                             {:else if column.type === "action" && actionSnippet}
                                 {@render actionSnippet(row)}
+                            {:else if column.format === "currency"}
+                                {currencyFormat()(row[column.key] ?? 0)}
                             {:else}
                                 {row[column.key] ?? "--"}
                             {/if}

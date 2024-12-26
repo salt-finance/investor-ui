@@ -16,15 +16,20 @@
 
     data.push(...sec);
 
+    import {MediaQuery} from "svelte/reactivity";
+    import {currencyFormat} from "utils/formatTools.js";
+
+    let mobile = new MediaQuery("max-width: 1024px");
+
 
     // Column definitions
     const columns: TableColumn<iSecurity>[] = [
         {key: "logoUrl", header: "", sortable: false, type: "image"},
         {key: "name", header: "Security Name", sortable: true},
         {key: "symbol", header: "Ticker", sortable: true},
-        {key: "price", header: "Price", sortable: true},
-        {key: "yearHigh", header: "52W High", sortable: true},
-        {key: "dayChange", header: "Gain/Loss(Etb)", sortable: true},
+        {key: "price", header: "Price", sortable: true, format: "currency"},
+        {key: "yearHigh", header: "52W High", sortable: true, format: "currency"},
+        {key: "dayChange", header: "Gain/Loss", sortable: true, format: "currency"},
         {key: "dayChangePercent", header: "Gain/Loss(%)", sortable: true},
         {key: "type", header: "Type", sortable: true},
         {key: "sector", header: "Sector", sortable: true},
@@ -42,7 +47,46 @@
 {/snippet}
 <div class="w-full z-3" in:fly|global={staggerdTransition(1)}>
 
-    <CardTable {actionSnippet} {columns} {data} sortIndex={2} title="Holdings"/>
+    {#if mobile.current}
+        <h3 class="font-semibold text-lg capitalize">
+            Holdings
+            {#if data.length > 0}
+                ({data.length})
+            {/if}
+        </h3>
 
+        <div class="flex flex-col glass-effect">
+            {#each data as security}
+                <div class="flex w-full justify-between p-4">
+                    <div class="flex gap-2">
+                        <img
+                                width="48"
+                                height="48"
+                                class="rounded-full align-middle border-none max-w-fit object-cover"
+                                src={security.logoUrl}
+                                alt="logo"
+                        />
+                        <div class="flex flex-col">
+                            <span>{security.name} <b>{security.symbol}</b></span>
+                            <span>{currencyFormat()(security.price ?? 0)}</span>
+
+                        </div>
+
+                    </div>
+                    {@render actionSnippet(security)}
+                </div>
+
+
+            {/each}
+        </div>
+
+
+    {:else}
+        <CardTable {actionSnippet} {columns} {data} sortIndex={2} title="Holdings"/>
+
+    {/if}
+    <div>
+
+    </div>
 
 </div>
