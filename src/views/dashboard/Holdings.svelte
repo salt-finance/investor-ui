@@ -58,11 +58,11 @@
         <div class="flex flex-col glass-effect">
             {#each data as security}
                 <div class="flex w-full justify-between p-4">
-                    <div class="flex gap-2">
+                    <div class="flex gap-2 items-center">
                         <img
                                 width="48"
                                 height="48"
-                                class="rounded-full align-middle border-none max-w-fit object-cover"
+                                class="rounded-full align-middle border-none max-w-fit object-cover h-min"
                                 src={security.logoUrl}
                                 alt="logo"
                         />
