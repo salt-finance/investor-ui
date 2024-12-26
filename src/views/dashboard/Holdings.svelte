@@ -48,7 +48,7 @@
 <div class="w-full z-3" in:fly|global={staggerdTransition(1)}>
 
     {#if mobile.current}
-        <h3 class="font-semibold text-lg capitalize">
+        <h3 class="font-semibold text-lg capitalize mb-2">
             Holdings
             {#if data.length > 0}
                 ({data.length})
