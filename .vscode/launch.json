@@ -1,37 +1,35 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        
-        {
-            "command": "npm run dev",
-            "name": "start",
-            "request": "launch",
-            "internalConsoleOptions": "neverOpen",
-            "type": "node-terminal",
-        },
-        {
-            "command": "npm run check",
-            "name": "check",
-            "request": "launch",
-            "trace": false,
-            "internalConsoleOptions": "neverOpen",
-            "type": "node-terminal"
-        },
-
-    ],
-    "compounds": [
-        {
-            "name": "Debug",
-            "stopAll": true,
-            "presentation": {
-                "hidden": false,
-                "group": "DebugGrop",
-                "order": 1
-            },
-            "configurations": ["start",  "check"]
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "npm run dev",
+      "name": "start",
+      "request": "launch",
+      "internalConsoleOptions": "neverOpen",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run check",
+      "name": "check",
+      "request": "launch",
+      "trace": false,
+      "internalConsoleOptions": "neverOpen",
+      "type": "node-terminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug",
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "DebugGrop",
+        "order": 1
+      },
+      "configurations": ["start", "check"]
+    }
+  ]
 }

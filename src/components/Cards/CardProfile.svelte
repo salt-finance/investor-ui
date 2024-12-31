@@ -1,8 +1,3 @@
-<script>
-  // core components
-  const team2 = "https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp";
-</script>
-
 <div
   class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16"
 >
@@ -12,7 +7,7 @@
         <div class="relative">
           <img
             alt="..."
-            src="{team2}"
+            src={team2}
             class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
           />
         </div>
@@ -47,7 +42,9 @@
       </div>
     </div>
     <div class="text-center mt-12">
-      <h3 class="text-xl font-semibold leading-normal mb-2 text-neutral-700 mb-2">
+      <h3
+        class="text-xl font-semibold leading-normal mb-2 text-neutral-700 mb-2"
+      >
         Jenna Stones
       </h3>
       <div
@@ -57,7 +54,7 @@
         Los Angeles, California
       </div>
       <div class="mb-2 text-neutral-600 mt-10 skiptranslate">
-        <i class="fas fa-briefcase mr-2 text-lg text-neutral-500 "></i>
+        <i class="fas fa-briefcase mr-2 text-lg text-neutral-500"></i>
         Solution Manager - Salt finance
       </div>
       <div class="mb-2 text-neutral-600">
@@ -74,7 +71,11 @@
             records all of his own music, giving it a warm, intimate feel with a
             solid groove structure. An artist of considerable range.
           </p>
-          <a href="#pablo" onclick={(e) => e.preventDefault()} class="font-normal text-red-500">
+          <a
+            href="#pablo"
+            onclick={(e) => e.preventDefault()}
+            class="font-normal text-red-500"
+          >
             Show more
           </a>
         </div>
@@ -82,3 +83,9 @@
     </div>
   </div>
 </div>
+
+<script lang="ts">
+  // core components
+  const team2 =
+    'https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp';
+</script>

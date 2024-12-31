@@ -6,13 +6,11 @@
 
 ## Salt Investor UI is the investor portal for the salt investment platform built on svelte.
 
-
 ### Description
 
-
-
 ### Brand colors
- ``` css
+
+```css
 --uranian-blue: #add7f6;
 --jordy-blue: #87bfff;
 --chefchaouen-blue: #3f8efc;

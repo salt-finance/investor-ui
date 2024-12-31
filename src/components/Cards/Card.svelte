@@ -1,8 +1,49 @@
+<div
+  class="{className}
+  {gradient !== '' ? `bg-gradient-${gradient}` : ''}
+  {shadow ? `shadow` : ''}
+  {type !== '' ? `bg-${type}` : ''}
+  {shadowSize !== '' ? `shadow-${shadowSize}` : ''}
+  {hover ? `card-lift--hover` : ''} {background === 'true'
+    ? 'bg-candy'
+    : ''} card"
+>
+  {#if imgTop === false && imgBottom === false}
+    {#if imgSrc !== ''}
+      <img src={imgSrc} {alt} class="card-img" />
+    {/if}
+  {/if}
+  {#if imgTop !== false}
+    {#if image}{@render image()}{:else}
+      <img {alt} src={imgSrc} class="card-img-top" />
+    {/if}
+  {/if}
+  {#if slots.header}
+    <div class="card-header {headerClasses}">
+      {@render header?.()}
+    </div>
+  {/if}
+  {#if !noBody}
+    <div class="card-body {bodyClasses}">
+      {@render children?.()}
+    </div>
+  {/if}
+  {#if noBody}
+    {@render children?.()}
+  {/if}
+  {#if slots.footer}
+    <div class="card-footer {footerClasses}">
+      {@render footer?.()}
+    </div>
+  {/if}
+  {#if imgBottom !== false}
+    {#if image}{@render image()}{:else}
+      <img {alt} src={imgSrc} class="card-img-bottom" />
+    {/if}
+  {/if}
+</div>
 
 <script lang="ts">
-
-
-
   interface Props {
     className?: string;
     headerClasses?: string;
@@ -27,20 +68,20 @@
   }
 
   let {
-    className = "",
-    headerClasses = "",
-    bodyClasses = "",
-    footerClasses = "",
-    gradient = "",
-    shadow = "",
-    shadowSize = "",
-    type = "",
+    className = '',
+    headerClasses = '',
+    bodyClasses = '',
+    footerClasses = '',
+    gradient = '',
+    shadow = '',
+    shadowSize = '',
+    type = '',
     hover = false,
     imgTop = false,
     imgBottom = false,
-    imgSrc = "",
-    alt = "",
-    background = "",
+    imgSrc = '',
+    alt = '',
+    background = '',
     noBody = false,
     slots,
     image,
@@ -52,48 +93,6 @@
 
 <style>
   .bg-candy {
-    background: #262A33!important;
+    background: #262a33 !important;
   }
 </style>
-
-<div
-  class="{className}
-  {gradient !== '' ? `bg-gradient-${gradient}` : ''}
-  {shadow ? `shadow` : ''}
-  {type !== '' ? `bg-${type}` : ''}
-  {shadowSize !== '' ? `shadow-${shadowSize}` : ''}
-  {hover ? `card-lift--hover` : ''} {background === "true" ? "bg-candy" : ""} card">
-  {#if imgTop === false && imgBottom === false}
-    {#if imgSrc !== ""}
-      <img src={imgSrc} alt={alt} class="card-img">
-    {/if}
-  {/if}
-  {#if imgTop !== false}
-    {#if image}{@render image()}{:else}
-      <img {alt} src={imgSrc} class="card-img-top" />
-    {/if}
-  {/if}
-  {#if slots.header}
-    <div class="card-header  {headerClasses}">
-      {@render header?.()}
-    </div>
-  {/if}
-  {#if !noBody}
-    <div class="card-body {bodyClasses}">
-      {@render children?.()}
-    </div>
-  {/if}
-  {#if noBody}
-    {@render children?.()}
-  {/if}
-  {#if slots.footer}
-    <div class="card-footer {footerClasses}">
-      {@render footer?.()}
-    </div>
-  {/if}
-  {#if imgBottom !== false}
-    {#if image}{@render image()}{:else}
-      <img {alt} src={imgSrc} class="card-img-bottom" />
-    {/if}
-  {/if}
-</div>

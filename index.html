@@ -1,69 +1,65 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Salt Finance Investor</title>
-    <link rel="shortcut icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" href="/favicon.ico" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body
+    class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-t from-15% to-100% dark:from-15% dark:to-100% from-amber-50 to-amber-300 dark:from-black dark:to-indigo-700 h-screen"
+  >
+    <div id="app"></div>
 
-</head>
-<body class="text-neutral-700 dark:text-neutral-300 antialiased bg-gradient-to-t from-15% to-100% dark:from-15% dark:to-100% from-amber-50 to-amber-300 dark:from-black dark:to-indigo-700 h-screen">
-<div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
 
-<script type="module" src="/src/main.ts"></script>
+    <!--- Google translate-->
+    <script
+      type="text/javascript"
+      defer
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
 
-<!--- Google translate-->
-<script
-        type="text/javascript"
-        defer
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-></script>
-
-<script defer type="text/javascript">
-    async function setupGoogleTranslate() {
+    <script defer type="text/javascript">
+      async function setupGoogleTranslate() {
         new google.translate.TranslateElement(
-            {
-                pageLanguage: "en",
-                multilanguagePage: false,
-                includedLanguages: "am,en",
-                layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
-            },
-            "googleTranslateElement"
+          {
+            pageLanguage: 'en',
+            multilanguagePage: false,
+            includedLanguages: 'am,en',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+          },
+          'googleTranslateElement'
         );
-        let googleTranslateElement = document.getElementById("googleTranslateElement");
+        let googleTranslateElement = document.getElementById(
+          'googleTranslateElement'
+        );
 
         if (googleTranslateElement === null) {
-            return;
+          return;
         }
         let a =
-            googleTranslateElement.querySelector(".goog-te-gadget").firstChild;
-        googleTranslateElement.querySelector(".goog-te-gadget").innerHTML =
-            "";
-        googleTranslateElement
-            .querySelector(".goog-te-gadget")
-            .appendChild(a);
+          googleTranslateElement.querySelector('.goog-te-gadget').firstChild;
+        googleTranslateElement.querySelector('.goog-te-gadget').innerHTML = '';
+        googleTranslateElement.querySelector('.goog-te-gadget').appendChild(a);
         return;
-    }
+      }
 
-    function googleTranslateElementInit() {
-        if (document.readyState !== "complete") {
-            document.addEventListener("readystatechange", (event) => {
-                if (document.readyState === "complete") {
-                    setupGoogleTranslate();
-                }
-            });
+      function googleTranslateElementInit() {
+        if (document.readyState !== 'complete') {
+          document.addEventListener('readystatechange', (event) => {
+            if (document.readyState === 'complete') {
+              setupGoogleTranslate();
+            }
+          });
+        } else {
+          setupGoogleTranslate();
         }
-        else {
-            setupGoogleTranslate();
-        }
-    }
-</script>
-<link
-        rel="stylesheet"
-        href="/index.css"
-/>
-</body>
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </body>
 </html>
