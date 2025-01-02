@@ -46,9 +46,17 @@ const monthFormat = new Intl.DateTimeFormat(locale, {
   calendar: 'ethiopic',
   month: 'long'
 }).format;
-export const monthsForLocale = () => {
-  const currentMonth = new Date(Date.now());
-  return [...Array(currentMonth.getMonth() + 1).keys()].map((m) =>
-    monthFormat(new Date(Date.now()).setMonth(m))
-  );
+export const yearToDateMonths = () => {
+  const currentMonth:number = parseInt(Intl.DateTimeFormat(locale, {
+    calendar: 'ethiopic',
+    month: 'numeric'
+  }).format(Date.now()));
+
+  
+// Shift by 3 months to match
+  return [...Array(currentMonth - 1).keys()].map((m) => monthFormat(new Date(Date.now()).setMonth(m - 3)));
+};
+export const monthsInYear = () => {
+// Shift by 3 months to match
+  return [...Array(12).keys()].map((m) => monthFormat(new Date(Date.now()).setMonth(m - 3)));
 };

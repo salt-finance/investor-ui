@@ -18,7 +18,7 @@
           >
         {/if}
         <div class="flex flex-wrap z-10 flex-grow">
-          <Router restoreScrollState={false} prefix={'/dashboard'} {routes} />
+          <Router restoreScrollState={false} {routes} />
         </div>
       </div>
       <FooterAdmin />
@@ -40,10 +40,11 @@
   import Settings from 'views/dashboard/Settings.svelte';
 
   const routes = {
-    '/holdings': Holdings,
-    '/activity': Activity,
-    '/market': Market,
-    '/settings': Settings,
+    '/dashboard/holdings': Holdings,
+    '/dashboard/activity': Activity,
+    '/dashboard/market': Market,
+    '/dashboard/settings': Settings,
+    // '/': Dashboard,
     '*': Dashboard
   };
 

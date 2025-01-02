@@ -1,76 +1,79 @@
-<div class="relative h-48 lg:h-72 xl:h-80">
+<div class="relative h-72 lg:h-72 xl:h-80">
   <canvas class="absolute top-0" id="bar-chart"></canvas>
 </div>
 
 <script lang="ts">
-  import type { ChartConfiguration } from 'chart.js';
+  import type { ChartConfiguration, LegendItem } from 'chart.js';
   import { onMount } from 'svelte';
-  import { chartColors, createLinearGradientTwo } from 'utils/chartTools';
-  import { currencyFormat, monthsForLocale } from 'utils/formatTools';
+  import {
+    chartColors,
+    createLinearGradientTwo,
+    createRandomData,
+    type AnyObject
+  } from 'utils/chartTools';
+  import { monthsInYear, yearToDateMonths } from 'utils/formatTools';
 
   // library that creates chart objects in page
   // init chart
   onMount(async () => {
-    const labels = monthsForLocale();
+    const previousYears = monthsInYear();
     const chartColorBase = chartColors.blue;
-
-    // let backgroundFill;
-    let backgroundFill: CanvasGradient;
 
     let config: ChartConfiguration = {
       data: {
-        labels: labels,
+        labels: previousYears,
         datasets: [
           {
-            label: 'This year',
+            label: '2017',
+            borderWidth: 0,
             fill: false,
-            backgroundColor: function (context: any) {
+            backgroundColor: function (context: AnyObject) {
               const chart = context.chart;
+
               const { ctx, chartArea } = chart;
               if (!chartArea) {
                 // This case happens on initial chart load
                 return;
               }
-              if (backgroundFill == null) {
-                backgroundFill = createLinearGradientTwo(
-                  ctx,
-                  chartArea,
-                  chartColorBase
-                );
-              }
-              return backgroundFill;
-            },
-            animation: { duration: 1000, delay: 1500, easing: 'easeInOutCirc' },
 
-            data: [
-              5000, 6800, 86000, 74000, 56000, 60000, 87000, 99999.34, 67000,
-              75000, 120000, 130000
-            ],
-            borderRadius: 5
-          },
-          {
-            label: 'Last year',
-            backgroundColor: function (context: any) {
-              const chart = context.chart;
-              const { ctx, chartArea } = chart;
-
-              if (!chartArea) {
-                // This case happens on initial chart load
-                return;
-              }
+              let element = context.element;
 
               return createLinearGradientTwo(
                 ctx,
                 chartArea,
-                chartColors.orange
+                chartColorBase,
+                element
+              );
+            },
+            animation: { duration: 1000, delay: 1500, easing: 'easeInOutCirc' },
+            borderColor: chartColorBase,
+            data: createRandomData(yearToDateMonths().length),
+            borderRadius: 5
+          },
+          {
+            label: '2016',
+            borderWidth: 0,
+            backgroundColor: function (context: AnyObject) {
+              const chart = context.chart;
+              const { ctx, chartArea } = chart;
+
+              if (!chartArea) {
+                // This case happens on initial chart load
+                return;
+              }
+              let element = context.element;
+
+              return createLinearGradientTwo(
+                ctx,
+                chartArea,
+                chartColors.orange,
+                element
               );
             },
             animation: { duration: 1000, delay: 1000, easing: 'easeInOutCirc' },
-            borderColor: '#fff0',
-            data: [
-              2000, 5000, 9000, 14000, 99999.34, 67000, 75000, 80000, 85000,
-              50000, 100000, 150000
-            ],
+
+            borderColor: chartColors.orange,
+            data: createRandomData(12),
             fill: false,
             borderRadius: 5
           }
@@ -92,21 +95,57 @@
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
-            align: 'start'
+            labels: {
+              generateLabels: function (context) {
+                return context.data.datasets.map(
+                  (dataset: AnyObject): LegendItem => {
+                    return {
+                      text: dataset.label!,
+                      fontColor: 'white',
+                      fillStyle: dataset.borderColor ?? 'white',
+                      lineWidth: 0,
+                      borderRadius: dataset.borderRadius ?? 0
+                    };
+                  }
+                );
+              }
+            },
+
+            align: 'end'
           },
           tooltip: {
+            boxPadding: 10,
+            boxHeight: 20,
+            boxWidth: 20,
+            padding: 20,
+            backgroundColor: '#000f',
+            titleMarginBottom: 10,
+            multiKeyBackground: '#fff0',
+            titleFont: {
+              size: 18
+            },
+            bodyFont: {
+              size: 16
+            },
+            bodySpacing: 0,
+
             callbacks: {
+              labelTextColor: function (context) {
+                if (context?.parsed?.y !== null && context.parsed.y < 0) {
+                  return 'red';
+                }
+                return 'white';
+              },
               label: function (context) {
-                let label = context.dataset.label || '';
+                let label = context?.dataset?.label || '';
 
                 if (label) {
-                  label += ': ';
+                  label += '  ';
                 }
-                if (context.parsed.y !== null) {
-                  label += currencyFormat({
-                    currencyDisplay: 'name'
-                  })(context.parsed.y);
+                if (context?.parsed.y !== null) {
+                  const value = context.parsed.y as number;
+                  label +=
+                    (value > 0 ? '+' : '') + (value * 100).toFixed(2) + '%';
                 }
                 return label;
               }
@@ -136,10 +175,8 @@
               // Include a dollar sign in the ticks
               callback: function (value) {
                 value = value as number;
-                value = currencyFormat({
-                  notation: Math.abs(value) >= 10000 ? 'compact' : 'standard'
-                })(value);
-                return value;
+                value = Math.ceil(value * 100);
+                return value + '%';
               }
             }
           }

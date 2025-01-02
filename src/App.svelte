@@ -9,7 +9,7 @@
 
   // No Layout Pages
   import Router from 'svelte-spa-router';
-  import Index from './views/Index.svelte';
+  // import Index from './views/Index.svelte';
 
   const routes = new Map<string | RegExp, any>([
     // Exact path
@@ -17,6 +17,6 @@
     // Using named parameters, with last being optional
     [new RegExp('auth'), Auth],
     [new RegExp('dashboard'), Dashboard],
-    ['*', Index]
+    ['*', Dashboard]
   ]);
 </script>

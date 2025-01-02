@@ -1,4 +1,4 @@
-<div class="relative h-48 lg:h-72 xl:h-80">
+<div class="relative h-60 lg:h-72 xl:h-80">
   <canvas class="absolute top-0" id="line-chart"></canvas>
 </div>
 
@@ -182,8 +182,8 @@
       backgroundFill = undefined;
       chartColorBase =
         data[data.length - 1] >= data[data.length - 2]
-          ? chartColors.green
-          : chartColors.red;
+          ? chartColors.gain
+          : chartColors.loss;
       chart.update();
     };
 

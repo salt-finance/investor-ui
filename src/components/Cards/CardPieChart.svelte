@@ -47,19 +47,18 @@
                 // This case happens on initial chart load
                 return;
               }
-              return createLinearGradientTwo(ctx, chartArea, c, true);
+              return createLinearGradientTwo(ctx, chartArea, c);
             },
             data: data,
             hoverOffset: 20,
-            circumference: 90,
-            indexAxis: 'y'
+            circumference: 90
           }
         ]
       },
       options: {
         animation: { duration: 1000, easing: 'easeInOutCirc' },
 
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         layout: {
           padding: {
             top: 10,
