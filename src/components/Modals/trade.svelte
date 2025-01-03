@@ -33,10 +33,14 @@
     </div>
     <div class="py-12 px-4 text-center flex flex-col justify-center">
       <div class="flex gap-4 justify-center mb-2">
-        <button class="text-base btn-icon" onclick={() => quantity++}>
-          +
-        </button>
-
+     
+        <button
+        disabled={quantity === 0}
+        class="text-base btn-icon"
+        onclick={() => (quantity > 0 ? quantity-- : null)}
+      >
+        -
+      </button>
         <input
           class="text-3xl select-none bg-transparent text-center max-w-16"
           bind:value={quantity}
@@ -46,13 +50,11 @@
           pattern="\d*"
         />
 
-        <button
-          disabled={quantity === 0}
-          class="text-base btn-icon"
-          onclick={() => (quantity > 0 ? quantity-- : null)}
-        >
-          -
+        <button class="text-base btn-icon" onclick={() => quantity++}>
+          +
         </button>
+
+       
       </div>
 
       Shares to {buy ? 'buy' : 'sell'}
