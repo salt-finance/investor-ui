@@ -73,7 +73,7 @@
   const scrollOffset = 100;
 
   function toggleNavSize() {
-    if (navRef.clientHeight + scrollOffset > body.scrollTop) {
+    if (navRef.clientHeight - scrollOffset > body.scrollTop) {
       // don't hide if there's no overlap yet.
       navRef.classList.remove(hideClasses);
       return;
