@@ -5,7 +5,7 @@
 <script lang="ts">
   import type { ChartConfiguration, ScriptableContext } from 'chart.js';
   import { onMount } from 'svelte';
-  import type { AnyObject } from 'utils/chartTools';
+  import { type AnyObject, defaultConfigs } from 'utils/chartTools';
   import {
     chartColors,
     createLinearGradientTwo,
@@ -23,7 +23,7 @@
 
     const colors = createShades(labels.length, chartColorBase);
 
-    const config: ChartConfiguration<'pie'> = {
+    const config: ChartConfiguration = {
       type: 'pie',
       data: {
         labels: labels,
@@ -56,29 +56,29 @@
         ]
       },
       options: {
-        animation: { duration: 1000, easing: 'easeInOutCirc' },
-
-        maintainAspectRatio: true,
-        layout: {
-          padding: {
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 10
-          }
+        ...defaultConfigs,
+        interaction: {
+          mode: 'index',
+          intersect: true
         },
+        maintainAspectRatio: true,
+        scales: {},
         plugins: {
+          ...defaultConfigs?.plugins,
           legend: {
-            display: false,
-            align: 'start'
+            display: false
           },
           tooltip: {
+            ...defaultConfigs?.plugins?.tooltip,
+
+            bodyFont: {
+              size: 14,
+              weight: 'bold'
+            },
             callbacks: {
               label: function (context: AnyObject) {
-                let label = context.dataset.label || '';
-                if (label) {
-                  label += ': ';
-                }
+                let label = '';
+
                 if (context.parsed !== null) {
                   label += context.parsed;
                   label += '%';

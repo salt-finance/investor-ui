@@ -10,7 +10,8 @@
   import {
     chartColors,
     createLinearGradient,
-    type AnyObject
+    type AnyObject,
+    defaultConfigs
   } from 'utils/chartTools';
   import { currencyFormat, dateTimeFormat } from 'utils/formatTools';
   // init chart
@@ -88,38 +89,12 @@
         ]
       },
       options: {
-        maintainAspectRatio: false,
+        ...defaultConfigs,
 
-        interaction: {
-          mode: 'index',
-          intersect: false
-        },
-        layout: {
-          padding: {
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 10
-          }
-        },
         scales: {
-          x: {
-            grid: {
-              color: '#9992',
-              display: false
-            },
-            border: {
-              display: false
-            }
-          },
+          ...defaultConfigs?.scales,
           y: {
-            border: {
-              display: false
-            },
-
-            grid: {
-              color: '#9992'
-            },
+            ...defaultConfigs?.scales?.y,
             ticks: {
               // Include a dollar sign in the ticks
               callback: function (value) {
@@ -135,17 +110,14 @@
         },
         plugins: {
           legend: {
-            align: 'end',
             display: false
           },
           tooltip: {
+            ...defaultConfigs?.plugins?.tooltip,
             callbacks: {
               label: function (context) {
-                let label = context.dataset.label || '';
+                let label = '';
 
-                if (label) {
-                  label += ': ';
-                }
                 if (context.parsed.y !== null) {
                   label += currencyFormat({
                     currencyDisplay: 'name'

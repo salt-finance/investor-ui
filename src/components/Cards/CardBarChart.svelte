@@ -9,9 +9,14 @@
     chartColors,
     createLinearGradientTwo,
     createRandomData,
+    defaultConfigs,
     type AnyObject
   } from 'utils/chartTools';
-  import { monthsInYear, yearToDateMonths } from 'utils/formatTools';
+  import {
+    currencyFormat,
+    monthsInYear,
+    yearToDateMonths
+  } from 'utils/formatTools';
 
   // library that creates chart objects in page
   // init chart
@@ -80,55 +85,28 @@
         ]
       },
       options: {
-        interaction: {
-          mode: 'index',
-          intersect: false
-        },
-        layout: {
-          padding: {
-            top: 10,
-            left: 10,
-            right: 10,
-            bottom: 10
+        ...defaultConfigs,
+
+        scales: {
+          ...defaultConfigs?.scales,
+          y: {
+            ...defaultConfigs?.scales?.y,
+            ticks: {
+              // Include a dollar sign in the ticks
+              callback: function (value) {
+                value = value as number;
+                value = Math.ceil(value * 100);
+                return value + '%';
+              }
+            }
           }
         },
-        maintainAspectRatio: false,
         plugins: {
           legend: {
-            labels: {
-              generateLabels: function (context) {
-                return context.data.datasets.map(
-                  (dataset: AnyObject): LegendItem => {
-                    return {
-                      text: dataset.label!,
-                      fontColor: 'white',
-                      fillStyle: dataset.borderColor ?? 'white',
-                      lineWidth: 0,
-                      borderRadius: dataset.borderRadius ?? 0
-                    };
-                  }
-                );
-              }
-            },
-
-            align: 'end'
+            ...defaultConfigs?.plugins?.legend
           },
           tooltip: {
-            boxPadding: 10,
-            boxHeight: 20,
-            boxWidth: 20,
-            padding: 20,
-            backgroundColor: '#000f',
-            titleMarginBottom: 10,
-            multiKeyBackground: '#fff0',
-            titleFont: {
-              size: 18
-            },
-            bodyFont: {
-              size: 16
-            },
-            bodySpacing: 0,
-
+            ...defaultConfigs?.plugins?.tooltip,
             callbacks: {
               labelTextColor: function (context) {
                 if (context?.parsed?.y !== null && context.parsed.y < 0) {
@@ -148,35 +126,6 @@
                     (value > 0 ? '+' : '') + (value * 100).toFixed(2) + '%';
                 }
                 return label;
-              }
-            }
-          }
-        },
-        responsive: true,
-        scales: {
-          x: {
-            grid: {
-              display: false
-            },
-            border: {
-              display: false
-            }
-          },
-          y: {
-            animate: true,
-            border: {
-              display: false
-            },
-            grid: {
-              color: '#9992'
-            },
-
-            ticks: {
-              // Include a dollar sign in the ticks
-              callback: function (value) {
-                value = value as number;
-                value = Math.ceil(value * 100);
-                return value + '%';
               }
             }
           }

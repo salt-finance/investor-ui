@@ -1,5 +1,11 @@
 import { Color as kColor } from '@kurkle/color';
-import { Chart, type ChartArea, type Color } from 'chart.js';
+import {
+  Chart,
+  type ChartArea,
+  type ChartOptions,
+  type Color,
+  type LegendItem
+} from 'chart.js';
 
 export type AnyObject = Record<string, any>;
 
@@ -282,4 +288,84 @@ export const createRandomData = (
       return multiplier;
     })
     .toArray();
+};
+
+export const defaultConfigs: ChartOptions = {
+  animation: { duration: 1000, easing: 'easeInOutCirc' },
+
+  interaction: {
+    mode: 'index',
+    intersect: false
+  },
+  layout: {
+    padding: {
+      top: 10,
+      left: 10,
+      right: 10,
+      bottom: 10
+    }
+  },
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      labels: {
+        generateLabels: function (context) {
+          return context.data.datasets.map((dataset: AnyObject): LegendItem => {
+            return {
+              text: dataset.label!,
+              fontColor: 'white',
+              fillStyle: dataset.borderColor ?? 'white',
+              lineWidth: 0,
+              borderRadius: dataset.borderRadius ?? 0
+            };
+          });
+        }
+      },
+
+      align: 'end'
+    },
+    tooltip: {
+      boxPadding: 10,
+      boxHeight: 20,
+      boxWidth: 20,
+      borderWidth: 2,
+      borderColor: '#fffa',
+      padding: 20,
+      backgroundColor: '#000e',
+      titleMarginBottom: 10,
+      // multiKeyBackground: '#fff0',
+      titleFont: {
+        size: 16,
+        weight: 'normal'
+      },
+      bodyFont: {
+        size: 14,
+        weight: 'bold'
+      },
+      displayColors: true,
+      caretSize: 5,
+      cornerRadius: 10,
+      bodySpacing: 0
+    }
+  },
+  responsive: true,
+  scales: {
+    x: {
+      grid: {
+        display: false
+      },
+      border: {
+        display: false
+      }
+    },
+    y: {
+      animate: true,
+      border: {
+        display: false
+      },
+      grid: {
+        color: '#9992'
+      }
+    }
+  }
 };
