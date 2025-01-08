@@ -1,4 +1,7 @@
-<nav class="flex flex-col p-4 glass-effect z-10">
+<nav
+  bind:this={navRef}
+  class="flex flex-col p-4 glass-effect z-10 transition duration-500"
+>
   <div
     class="px-0 flex items-center justify-between transition-all ease-in-out duration-200 flex-wrap w-full flex-grow"
   >
@@ -50,6 +53,7 @@
   import UserDropdown from 'components/Dropdowns/UserDropdown.svelte';
 
   import DarkModeToggle from './DarkModeToggle.svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   let { isLoggedIn = false } = $props();
 
@@ -58,4 +62,43 @@
   function setNavbarOpen() {
     navbarOpen = !navbarOpen;
   }
+
+  let scrollY = $state(0);
+
+  let body = document.querySelector('body')!;
+
+  let navRef: HTMLElement;
+
+  const hideClasses = '-translate-y-full';
+  const scrollOffset = 100;
+
+  function toggleNavSize() {
+    if (navRef.clientHeight + scrollOffset > body.scrollTop) {
+      // don't hide if there's no overlap yet.
+      navRef.classList.remove(hideClasses);
+      return;
+    }
+
+    if (Math.abs(scrollY - body.scrollTop) < scrollOffset) {
+      return;
+    }
+
+    if (scrollY - body.scrollTop < 0) {
+      // User is scrolling up hide it;
+      navRef.classList.add(hideClasses);
+    } else {
+      // User is scrolling down show it;
+      navRef.classList.remove(hideClasses);
+    }
+    scrollY = body.scrollTop;
+  }
+
+  onMount(() => {
+    body!.addEventListener('scroll', toggleNavSize);
+  });
+
+  onDestroy(() => {
+    body.removeEventListener('scroll', toggleNavSize);
+  });
+  // Listen to media query changes, or currentTheme changes to auto update styles.
 </script>

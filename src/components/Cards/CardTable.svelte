@@ -15,7 +15,7 @@
         >
           {#each columns as column}
             <th
-              class="py-4 pl-4"
+              class="py-4 pl-4 {column.headerClasses}"
               class:sortable={column.sortable}
               onclick={() => column.sortable && sortData(column.key)}
             >
@@ -33,7 +33,7 @@
         {#each data as row}
           <tr class="cursor-pointer">
             {#each columns as column}
-              <td class="py-4 pl-4">
+              <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}
                   <img
                     width="48"
@@ -65,6 +65,8 @@
     key: keyof T;
     header: string;
     sortable?: boolean;
+    headerClasses?: string;
+    bodyClasses?: string;
     type?: 'image' | 'action';
     format?: 'currency' | 'number' | 'date';
     action?: (event: Event) => any;

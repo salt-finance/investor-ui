@@ -41,7 +41,12 @@
   let mobile = new MediaQuery('max-width: 1024px');
 
   const columns: TableColumn<Record<string, any>>[] = [
-    { key: 'Date', header: 'Date', sortable: true },
+    {
+      key: 'Date',
+      header: 'Date',
+      sortable: true,
+      bodyClasses: 'whitespace-nowrap'
+    },
     { key: 'Transaction', header: 'Description', sortable: true },
     { key: 'name', header: 'Security | Ticker', sortable: true },
     { key: 'Quantity', header: 'Quantity (Shares)', sortable: true },
