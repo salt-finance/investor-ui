@@ -415,8 +415,6 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         },
         ticks: {
           color: isDark ? whiteText : blackText,
-          maxRotation: 0,
-
           font: {
             // weight: "bold",
             size: 14,
@@ -433,7 +431,7 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         },
         ticks: {
           color: isDark ? whiteText : blackText,
-          maxRotation: 0,
+
           font: {
             weight: "bold",
             size: 14,
