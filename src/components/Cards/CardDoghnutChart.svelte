@@ -4,7 +4,7 @@
     <h3
             class:text-emerald-500={major > 50}
             class:text-red-500={major > 0 && major <= 50}
-            class="text-3xl md:text-4xl lg:text-5xl md:font-extralight text-center select-none pb-2 w-full"
+            class="text-3xl md:text-4xl xl:text-5xl md:font-extralight text-center select-none pb-2 w-full"
     >
         {major}%
     </h3>
@@ -19,14 +19,11 @@
     import {chartColors, createLinearGradientTwo} from "utils/chartTools";
     import {theme} from "@/store/theme";
 
-    let major = 0;
-
-    // const ctx = document.getElementById("doughnut-chart") as HTMLCanvasElement;
 
     const labels = ["Profit", "Loss"];
     const factor = 10 - Math.random() * 10;
-    major = Math.floor(100 - 10 * factor);
-    // major = 100;
+    const major = Math.floor(100 - 10 * factor);
+
 
     const data = [major, 100 - major];
     const colors = [major > 50 ? chartColors.gain : chartColors.loss, "#fff0"];
@@ -42,6 +39,42 @@
             // This case happens on initial chart load
             return;
         }
+        chart.update();
+    });
+
+    const options = (m: MediaQuery) => {
+        return {
+            maintainAspectRatio: false,
+            responsive: true,
+            rotation: m.current ? -90 : 0,
+            aspectRatio: m.current ? 2 : 1,
+            circumference: m.current ? 180 : 360,
+
+            layout: {
+                padding: 0
+            },
+            plugins: {
+                legend: {
+                    display: false
+
+                },
+                tooltip: {
+                    enabled: false
+                }
+            }
+        };
+    };
+
+
+    $effect(() => {
+        mobile.current;
+
+        if (!chart) {
+            // This case happens on initial chart load
+            return;
+        }
+        chart.options = options(mobile);
+
         chart.update();
     });
     onMount(async () => {
@@ -96,27 +129,8 @@
                         hoverOffset: 0
                     }
                 ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                rotation: mobile.current ? -90 : 0,
-                aspectRatio: mobile.current ? 2 : 1,
-                circumference: mobile.current ? 180 : 360,
-
-                layout: {
-                    padding: 0
-                },
-                plugins: {
-                    legend: {
-                        display: false,
-                        align: "start"
-                    },
-                    tooltip: {
-                        enabled: false
-                    }
-                }
             }
+
         };
 
         const {Chart, ArcElement, DoughnutController} = await import(
@@ -125,6 +139,8 @@
         Chart.register([DoughnutController, ArcElement]);
 
         chart = new Chart<"doughnut">("doughnut-chart", config);
+        chart.options = options(mobile);
+        chart.update();
 
     });
 

@@ -128,9 +128,10 @@
                     fill: true,
                     pointStyle: false,
                     // cubicInterpolationMode: "monotone",
-                    tension: 0.5,
+                    tension: 0.6,
                     data: data,
-                    animation: {duration: 1000, delay: 200, easing: "easeInOutCirc"},
+                    // animation: false,
+                    animation: defaultConfigs().animation,
                     backgroundColor: function (context: AnyObject) {
                         const chart = context.chart;
                         const {ctx, chartArea} = chart;

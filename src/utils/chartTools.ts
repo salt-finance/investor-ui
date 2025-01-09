@@ -311,7 +311,7 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
   const whiteLine = white.clone().alpha(0.2).rgbString();
 
   return {
-    animation: { duration: 1000, easing: "easeInOutCirc" },
+    animation: { duration: 500, easing: "easeInSine" },
 
     interaction: {
       mode: "index",
@@ -358,9 +358,9 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         borderWidth: 2,
         borderColor: "#fffa",
         padding: 20,
-        backgroundColor: "#000c",
+        backgroundColor: "#000d",
         titleMarginBottom: 10,
-        multiKeyBackground: "#ff0",
+
         titleFont: {
           size: 16,
           weight: "normal",
@@ -406,6 +406,7 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
     responsive: true,
     scales: {
       x: {
+        animate: false,
         grid: {
           color: isDark ? whiteLine : blackLine,
         },
@@ -423,7 +424,7 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         },
       },
       y: {
-        animate: true,
+        animate: false,
         border: {
           display: false,
         },

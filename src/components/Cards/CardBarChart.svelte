@@ -113,7 +113,7 @@
                             element
                         );
                     },
-                    animation: {duration: 1000, delay: 1500, easing: "easeInOutCirc"},
+                    animation: {...defaultConfigs().animation},
                     borderColor: chartColorBase,
                     data: createRandomData(yearToDateMonths().length),
                     borderRadius: 5
@@ -138,10 +138,10 @@
                             element
                         );
                     },
-                    animation: {duration: 1000, delay: 1000, easing: "easeInOutCirc"},
+                    animation: {...defaultConfigs().animation},
 
                     borderColor: chartColors.orange,
-                    data: createRandomData(13),
+                    data: createRandomData(12),
                     fill: false,
                     borderRadius: 5
                 }
