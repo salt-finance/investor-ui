@@ -16,6 +16,7 @@
   // init chart
   onMount(async () => {
     const ctx = document.getElementById('pie-chart') as HTMLCanvasElement;
+    const baseConfig = defaultConfigs(true);
 
     const chartColorBase = chartColors.blue;
     const labels = ['ETFs', 'Bonds', 'Mutual Funds', 'Cash', 'Other'];
@@ -30,7 +31,10 @@
         datasets: [
           {
             label: 'Portfolio',
-            borderColor: '#0000',
+            borderWidth: 0,
+            borderColor: function (context: ScriptableContext<'doughnut'>) {
+              return colors[context.dataIndex];
+            },
             backgroundColor: function (context: ScriptableContext<'doughnut'>) {
               let c = colors[context.dataIndex];
               if (!c) {
@@ -56,7 +60,7 @@
         ]
       },
       options: {
-        ...defaultConfigs,
+        ...baseConfig,
         interaction: {
           mode: 'index',
           intersect: true
@@ -64,18 +68,19 @@
         maintainAspectRatio: true,
         scales: {},
         plugins: {
-          ...defaultConfigs?.plugins,
+          ...baseConfig?.plugins,
           legend: {
             display: false
           },
           tooltip: {
-            ...defaultConfigs?.plugins?.tooltip,
+            ...baseConfig?.plugins?.tooltip,
 
             bodyFont: {
               size: 14,
               weight: 'bold'
             },
             callbacks: {
+              ...baseConfig?.plugins?.tooltip?.callbacks,
               label: function (context: AnyObject) {
                 let label = '';
 
@@ -100,6 +105,6 @@
     Chart.defaults.font.family = 'poppins';
     Chart.defaults.clip = 200;
 
-    new Chart<'pie'>(ctx, config);
+    new Chart<'pie'>(ctx, config as ChartConfiguration<'pie'>);
   });
 </script>

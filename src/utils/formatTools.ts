@@ -47,16 +47,23 @@ const monthFormat = new Intl.DateTimeFormat(locale, {
   month: 'long'
 }).format;
 export const yearToDateMonths = () => {
-  const currentMonth:number = parseInt(Intl.DateTimeFormat(locale, {
-    calendar: 'ethiopic',
-    month: 'numeric'
-  }).format(Date.now()));
+  const currentMonth: number = parseInt(
+    Intl.DateTimeFormat(locale, {
+      calendar: 'ethiopic',
+      month: 'numeric'
+    }).format(Date.now())
+  );
 
-  
-// Shift by 3 months to match
-  return [...Array(currentMonth - 1).keys()].map((m) => monthFormat(new Date(Date.now()).setMonth(m - 3)));
+  // Shift by 3 months to match
+  return [...Array(currentMonth - 1).keys()].map((m) =>
+    monthFormat(new Date(Date.now()).setMonth(m - 3, m - 10))
+  );
 };
 export const monthsInYear = () => {
-// Shift by 3 months to match
-  return [...Array(12).keys()].map((m) => monthFormat(new Date(Date.now()).setMonth(m - 3)));
+  // Shift by 3 months to match
+
+  return [...Array(12).keys()].map((m) => {
+    // OFfset by 3 months and 10 Days (Sep, 10)
+    return monthFormat(new Date(Date.now()).setMonth(m - 3, m - 10));
+  });
 };

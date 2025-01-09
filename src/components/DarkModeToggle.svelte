@@ -27,6 +27,7 @@
 
 <script lang="ts">
   import { MediaQuery } from 'svelte/reactivity';
+  import { theme } from '@/store/theme';
 
   let systemDark = new MediaQuery('prefers-color-scheme: dark');
 
@@ -34,6 +35,7 @@
 
   $effect(() => {
     // Listen to media query changes, or currentTheme changes to auto update styles.
+
     if (currentTheme === 'auto') {
       document.body.classList.toggle('dark', systemDark.current);
     } else if (currentTheme === 'dark') {
@@ -41,6 +43,8 @@
     } else {
       document.body.classList.toggle('dark', false);
     }
+
+    theme.set(currentTheme);
   });
 
   function setTheme() {

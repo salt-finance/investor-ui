@@ -52,7 +52,7 @@
 
   location.subscribe((val) => {
     currentRouteTitle = undefined;
-    var crumbs = val.split('/');
+    let crumbs = val.split('/');
     currentRouteTitle = crumbs.at(crumbs.length - 1);
   });
 </script>
