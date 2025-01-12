@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;400;600;700;800&family=Libre+Bodoni:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=cancel,category,close,dark_mode,dashboard,leaderboard,light_mode,menu,money,more_vert,night_sight_auto,pie_chart,speed,storefront,swap_horiz,trending_down,trending_up');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=backspace,cancel,category,close,dark_mode,dashboard,leaderboard,light_mode,menu,money,more_vert,night_sight_auto,north,pie_chart,search,speed,storefront,swap_horiz,trending_down,trending_up');
 
 @tailwind base;
 @tailwind components;
@@ -106,6 +106,13 @@ div[data-popper-arrow] {
     }
 }
 
+
+.navbar-fixed {
+    position: fixed;
+    max-width: inherit;
+    margin: inherit;
+}
+
 @keyframes motion-hide-scale {
     100% {
         transform: scale(0);
@@ -190,10 +197,14 @@ div[data-popper-arrow] {
         @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none;
     }
 
+    .card {
+        @apply dark:bg-neutral-900 rounded-xl bg-white border border-black dark:border-white border-opacity-15 dark:border-opacity-15;
+    }
+
     .glass-effect {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        @apply dark:bg-opacity-40 dark:bg-neutral-900 bg-white rounded-2xl bg-opacity-40 border border-black dark:border-white border-opacity-15 dark:border-opacity-15 box-content;
+        @apply card dark:bg-opacity-40  bg-opacity-40 box-content  rounded-2xl;
     }
 
     .icon-bg {
@@ -223,7 +234,7 @@ div[data-popper-arrow] {
     }
 
     .primary-input {
-        @apply rounded dark:bg-neutral-700 dark-light-text;
+        @apply rounded-xl dark:bg-opacity-40 dark:bg-neutral-900  dark-light-text px-4;
     }
 
     a {

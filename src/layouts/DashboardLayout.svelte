@@ -1,13 +1,13 @@
-<div class="flex flex-col lg:flex-row content-center">
-  <div class="flex justify-center w-full min-h-fit">
-    <div
-      class="fixed top-4 mb-4 z-20 xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0"
-    >
+<div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap">
+  <div
+    class="flex justify-center w-full min-h-fit xl:max-w-screen-2xl relative px-5"
+  >
+    <div class="navbar-fixed top-4 w-full z-20 px-5">
       <IndexNavbar isLoggedIn={true} />
     </div>
 
     <div
-      class="xl:max-w-screen-xl max-w-full w-full px-4 xl:px-0 flex flex-col justify-between gap-4 py-20 min-h-screen"
+      class=" w-full xl:px-0 flex flex-col justify-between gap-4 pt-20 pb-10 min-h-screen"
     >
       <div class="flex flex-col justify-end w-full gap-4 flex-grow pt-8">
         <HeaderStats />
