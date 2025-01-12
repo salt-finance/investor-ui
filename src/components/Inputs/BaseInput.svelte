@@ -3,7 +3,7 @@
     <label class="mb-2 block" for={id}>{label}</label>
   {/if}
   <div
-    class="flex w-full gap-2 max-w-fit card px-3 items-center justify-center content-center"
+    class="flex w-full gap-2 max-w-fit card bg-opacity-50 px-3 items-center justify-center content-center"
   >
     {#if prependIcon !== undefined}
       <i

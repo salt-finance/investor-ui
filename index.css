@@ -166,7 +166,7 @@ div[data-popper-arrow] {
     }
 
     .dark-light-bg {
-        @apply bg-amber-400 dark:bg-indigo-600;
+        @apply bg-indigo-400 dark:bg-indigo-600;
     }
 
     .btn-wide {
@@ -204,11 +204,11 @@ div[data-popper-arrow] {
     .glass-effect {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        @apply card dark:bg-opacity-40  bg-opacity-40 box-content  rounded-2xl;
+        @apply card dark:bg-opacity-40  bg-opacity-50 box-content;
     }
 
     .icon-bg {
-        @apply dark-light-bg text-neutral-700 dark:text-neutral-300;
+        @apply dark-light-bg text-neutral-900 dark:text-neutral-300;
     }
 
     .dark-light-text {
@@ -243,7 +243,7 @@ div[data-popper-arrow] {
                 @apply underline;
             }
 
-            @apply text-amber-700 dark:text-blue-300;
+            @apply text-indigo-500 dark:text-blue-300;
         }
 
         &:hover {
@@ -252,7 +252,7 @@ div[data-popper-arrow] {
             }
         }
 
-        @apply hover:text-amber-700 dark:hover:text-blue-300 hover:underline underline-offset-8;
+        @apply hover:text-indigo-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
     }
 
     .goog-te-gadget {
