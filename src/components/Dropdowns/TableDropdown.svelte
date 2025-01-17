@@ -17,9 +17,12 @@
     >
       <button
         class="hover:bg-blue-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
-        onclick={(e) => e.preventDefault()}
+        onclick={(e) => {
+          e.preventDefault();
+          tearsheetModal?.show();
+        }}
       >
-        View tearsheet for {value?.symbol}
+        View security details
       </button>
       <button
         class="hover:bg-emerald-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
@@ -50,6 +53,7 @@
 </div>
 
 <Trade bind:this={tradeModal} {buy} {value} />
+<Tearsheet bind:this={tearsheetModal} security={value} />
 
 <script lang="ts">
   // library for creating dropdown menu appear on click
@@ -62,10 +66,12 @@
   import Trade from 'components/Modals/trade.svelte';
 
   import type { SvelteComponent } from 'svelte';
+  import Tearsheet from 'components/Modals/Tearsheet.svelte';
 
   // core components
 
   let dropdownPopoverShow = $state(false);
+  let tearsheetModal: SvelteComponent;
 
   let btnDropdownRef: Element | undefined = $state();
   let buy = $state(true);

@@ -3,22 +3,39 @@
     "title": "Financial Services",
     "description": "The financial Services sector encompasses institutions that are pivotal facilitators of investment and insurance services. It contains commercial banks, microfinance institutions, insurance companies, and other financial institutions.",
     "totalGainLoss": 12,
-    "securities": 3
+    "id": "1",
+    "securities": [
+      "2",
+      "6"
+    ]
   },
   {
     "title": "Energy and Connectivity",
     "description": "The Energy and Connectivity sector contains companies that focus on expanding access to electricity, improving connectivity, and fostering innovation. It includes companies that work on telecommunications, energy and technology.",
+    "securities": [
+      "1",
+      "4"
+    ],
+    "id": "2",
     "totalGainLoss": -12
   },
   {
     "title": "Transport and Logistics",
     "description": "The transport and logistics sector contains companies that play a pivotal role in facilitating domestic and international trade. It contains transportation companies and logitstics companies.",
     "totalGainLoss": 10,
-    "securities": 3
+    "id": "3",
+    "securities": [
+      "5",
+      "8"
+    ]
   },
   {
     "title": "Manufacturing",
     "description": "The manufacturing sector contains companies leveraging Ethiopia's abundant natural resources, cost-effective utilities, and available labor force, for sustainable and accelerated growth.",
-    "securities": 3
+    "securities": [
+      "3",
+      "7"
+    ],
+    "id": "4"
   }
 ]

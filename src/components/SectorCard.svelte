@@ -11,6 +11,7 @@
   {/if}
 
   <button
+    onclick={() => push(`/dashboard/sector/${sector.id}`)}
     class="text-left underline-offset-4 underline text-indigo-500 dark:text-blue-300"
   >
     View securites<span
@@ -40,7 +41,7 @@
         <span class="material-symbols-outlined skiptranslate text-sm">
           category
         </span>
-        {sector.securities.toString()}
+        {sector.securities.length.toString()}
       </span>
     {/if}
   </span>
@@ -48,6 +49,7 @@
 
 <script lang="ts">
   import type { iSector } from 'models/sector';
+  import { push } from 'svelte-spa-router';
 
   let { sector } = $props<{
     sector: iSector;

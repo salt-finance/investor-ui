@@ -11,13 +11,13 @@
     >
       <div class="flex flex-col justify-end w-full gap-4 flex-grow pt-8">
         <HeaderStats />
-        {#if currentRouteTitle !== undefined}
-          <span
-            class="capitalize text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500"
-            >{currentRouteTitle}</span
-          >
-        {/if}
-        <div class="flex flex-wrap z-10 flex-grow">
+        <!--{#if currentRouteTitle !== undefined}-->
+        <!--  <span-->
+        <!--    class="capitalize text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500"-->
+        <!--    >{currentRouteTitle}</span-->
+        <!--  >-->
+        <!--{/if}-->
+        <div class="flex flex-wrap z-10 flex-grow flex-col content-start">
           <Router restoreScrollState={false} {routes} />
         </div>
       </div>
@@ -27,7 +27,7 @@
 </div>
 
 <script lang="ts">
-  import Router, { location } from 'svelte-spa-router';
+  import Router from 'svelte-spa-router';
   // components for this layout
   import FooterAdmin from 'components/Footer.svelte';
   import HeaderStats from 'components/Headers/HeaderStats.svelte';
@@ -38,21 +38,23 @@
   import Holdings from 'views/dashboard/Holdings.svelte';
   import Market from 'views/dashboard/Market.svelte';
   import Settings from 'views/dashboard/Settings.svelte';
+  import SectorDetail from 'views/dashboard/market/SectorDetail.svelte';
 
   const routes = {
     '/dashboard/holdings': Holdings,
     '/dashboard/activity': Activity,
     '/dashboard/market': Market,
     '/dashboard/settings': Settings,
+    '/dashboard/sector/:sectorId': SectorDetail,
     // '/': Dashboard,
     '*': Dashboard
   };
 
-  let currentRouteTitle = $state();
-
-  location.subscribe((val) => {
-    currentRouteTitle = undefined;
-    let crumbs = val.split('/');
-    currentRouteTitle = crumbs.at(crumbs.length - 1);
-  });
+  // let currentRouteTitle = $state();
+  //
+  // location.subscribe((val) => {
+  //   currentRouteTitle = undefined;
+  //   let crumbs = val.split('/');
+  //   currentRouteTitle = crumbs.at(crumbs.length - 1);
+  // });
 </script>

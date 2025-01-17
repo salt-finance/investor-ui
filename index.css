@@ -139,8 +139,16 @@ div[data-popper-arrow] {
 }
 
 @layer components {
+
+
+    .page-title {
+        @apply text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500;
+    }
+
     dialog {
         place-content: center;
+        place-items: center;
+        @apply h-screen;
 
         &[open] {
             display: flex;
@@ -170,11 +178,15 @@ div[data-popper-arrow] {
     }
 
     .btn-wide {
-        @apply py-4 rounded-lg font-bold uppercase text-center text-white;
+        @apply py-4 rounded-lg font-bold text-center text-white;
     }
 
     .btn-buy {
         @apply btn-wide bg-emerald-600 hover:bg-emerald-800;
+    }
+
+    .btn-tearsheet {
+        @apply btn-wide dark-light-bg hover:bg-indigo-800;
     }
 
     .btn-sell {

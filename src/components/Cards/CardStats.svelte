@@ -1,5 +1,5 @@
 <div
-  class="relative flex flex-col min-w-0 break-words glass-effect xl:mb-0 h-full"
+  class="relative flex flex-col w-full min-w-0 break-words glass-effect xl:mb-0 h-full"
 >
   <div class="flex-auto flex p-4 justify-between gap-2">
     <div class="flex flex-col gap-2">
@@ -29,13 +29,16 @@
         </p>
       {/if}
     </div>
-    <div class="relative w-auto flex-initial items-center flex">
-      <div
-        class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
-      >
-        <i class="material-symbols-outlined skiptranslate">{statIconName}</i>
+
+    {#if statIconName !== undefined}
+      <div class="relative w-auto flex-initial items-center flex">
+        <div
+          class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
+        >
+          <i class="material-symbols-outlined skiptranslate">{statIconName}</i>
+        </div>
       </div>
-    </div>
+    {/if}
   </div>
 </div>
 
@@ -68,7 +71,7 @@
     statPercent,
     statPercentColor = 'text-emerald-500',
     statDescripiron = 'Since last month',
-    statIconName = 'far fa-chart-bar',
+    statIconName,
     statIconColor = 'bg-red-500'
   }: Props = $props();
 </script>

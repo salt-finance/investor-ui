@@ -10,5 +10,6 @@ export interface iSector {
   title: string;
   description?: string;
   totalGainLoss?: number;
-  securities?: number;
+  securities: string[];
+  id: string;
 }

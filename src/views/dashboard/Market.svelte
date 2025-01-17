@@ -1,9 +1,13 @@
 <div class="w-full" in:fly|global={staggerdTransition(1)}>
-  <BaseInput
-    baseClass="md:justify-self-end"
-    placeholder="Search"
-    prependIcon="search"
-  ></BaseInput>
+  <div class="flex w-full justify-between">
+    <span class="page-title"> Market </span>
+    <BaseInput
+      baseClass="md:justify-self-end"
+      placeholder="Search stock"
+      prependIcon="search"
+    ></BaseInput>
+  </div>
+
   <h2 class="text-xl my-4">Sectors</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 flex-wrap">
     {#each sectors as sector}
