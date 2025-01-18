@@ -110,7 +110,7 @@
         <div class="p-4 col-span-1 lg:col-span-2 glass-effect">
           <span class="font-semibold block text-lg">Details</span>
           <span>{security.description}</span>
-          <hr class="opacity-50 my-4" />
+          <hr class="my-4 opacity-20 bg-neutral-800 h-[2px]" />
 
           <div class="flex flex-col gap-4">
             <div class="flex w-full justify-between select-none flex-wrap">
