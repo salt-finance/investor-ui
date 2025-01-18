@@ -1,5 +1,5 @@
 <div class="relative h-48 lg:h-72 xl:h-80">
-  <canvas class="absolute top-0" id="pie-chart"></canvas>
+  <canvas class="absolute bottom-0" id="pie-chart"></canvas>
 </div>
 
 <script lang="ts">
@@ -65,6 +65,13 @@
           mode: 'index',
           intersect: true
         },
+        layout: {
+          autoPadding: false,
+          padding: {
+            top: 20,
+            right: 0
+          }
+        },
         maintainAspectRatio: true,
         scales: {},
         plugins: {
@@ -103,7 +110,6 @@
     Chart.register([PieController, ArcElement, Tooltip]);
     Chart.defaults.color = '#999';
     Chart.defaults.font.family = 'poppins';
-    Chart.defaults.clip = 200;
 
     new Chart<'pie'>(ctx, config as ChartConfiguration<'pie'>);
   });

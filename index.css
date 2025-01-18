@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;400;600;700;800&family=Libre+Bodoni:wght@400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=backspace,cancel,category,close,dark_mode,dashboard,leaderboard,light_mode,menu,money,more_vert,night_sight_auto,north,pie_chart,search,speed,storefront,swap_horiz,trending_down,trending_up');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=backspace,cancel,category,close,dark_mode,dashboard,leaderboard,light_mode,menu,money,more_vert,night_sight_auto,north_east,pie_chart,search,speed,storefront,swap_horiz,trending_down,trending_up');
 
 @tailwind base;
 @tailwind components;
@@ -138,7 +138,16 @@ div[data-popper-arrow] {
     animation-name: motion-hide-scale;
 }
 
+.h-inherit {
+    height: inherit;
+}
+
 @layer components {
+
+
+    .body-colors {
+        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br to-neutral-200 from-blue-600 from-0% to-15%  dark:to-neutral-900 dark:from-blue-700 dark:bg-black selection:bg-blue-500 selection:text-white
+    }
 
 
     .page-title {
@@ -174,7 +183,7 @@ div[data-popper-arrow] {
     }
 
     .dark-light-bg {
-        @apply bg-indigo-400 dark:bg-indigo-600;
+        @apply bg-blue-600 dark:bg-blue-600;
     }
 
     .btn-wide {
@@ -186,7 +195,7 @@ div[data-popper-arrow] {
     }
 
     .btn-tearsheet {
-        @apply btn-wide dark-light-bg hover:bg-indigo-800;
+        @apply btn-wide dark-light-bg hover:bg-blue-800;
     }
 
     .btn-sell {
@@ -198,7 +207,7 @@ div[data-popper-arrow] {
     }
 
     .close-icon {
-        @apply w-10 h-10 font-black text-white hover:text-black;
+        @apply w-10 h-10 font-black text-white hover:text-opacity-50;
     }
 
     .btn-icon {
@@ -210,7 +219,7 @@ div[data-popper-arrow] {
     }
 
     .card {
-        @apply dark:bg-neutral-900 rounded-xl bg-white border border-black dark:border-white border-opacity-15 dark:border-opacity-15;
+        @apply dark:bg-slate-950 rounded-xl bg-slate-50 border border-black dark:border-white border-opacity-15 dark:border-opacity-15;
     }
 
     .glass-effect {
@@ -255,7 +264,7 @@ div[data-popper-arrow] {
                 @apply underline;
             }
 
-            @apply text-indigo-500 dark:text-blue-300;
+            @apply text-blue-500 dark:text-blue-300;
         }
 
         &:hover {
@@ -264,7 +273,7 @@ div[data-popper-arrow] {
             }
         }
 
-        @apply hover:text-indigo-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
+        @apply hover:text-blue-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
     }
 
     .goog-te-gadget {

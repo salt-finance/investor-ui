@@ -1,11 +1,10 @@
-<div class="relative h-60 lg:h-72 xl:h-80">
-  <canvas class="absolute top-0" id="line-chart"></canvas>
+<div class="relative h-inherit">
+  <canvas bind:this={chartCanvas} class="absolute top-0"></canvas>
 </div>
 
 <script lang="ts">
   import type { Chart, ChartConfiguration } from 'chart.js';
-  import { onDestroy, onMount } from 'svelte';
-  // library that creates chart objects in page
+  import { onDestroy } from 'svelte';
 
   import {
     chartColors,
@@ -19,7 +18,7 @@
 
   let isDark = $state(false);
 
-  let chart: Chart;
+  let chart: Chart | undefined;
 
   const startDate = Date.now();
   var latestValue = 4500;
@@ -38,7 +37,7 @@
     });
   };
 
-  var defaultLength = 15;
+  var defaultLength = 10;
   var data = generateData(defaultLength).reverse();
 
   var labels = [...Array(defaultLength).keys()]
@@ -157,40 +156,60 @@
     }
   };
 
-  onMount(async () => {
-    let ctx = document.getElementById('line-chart') as HTMLCanvasElement;
+  const setData = (date: Date) => {
+    var values = generateData(2, latestValue);
+
+    var value = values[1];
+
+    var label = dateTimeFormat(date.getTime());
+    labels.push(label);
+    data.push(value);
+
+    borderFill = undefined;
+    backgroundFill = undefined;
+    chartColorBase =
+      data[data.length - 1] >= data[data.length - 2]
+        ? chartColors.gain
+        : chartColors.loss;
+    chart?.update();
+  };
+
+  let a: NodeJS.Timeout | undefined;
+
+  let chartCanvas: HTMLCanvasElement;
+
+  export async function show() {
+    console.log('mount');
 
     let { Chart, Filler, LineController, LineElement, PointElement } =
       await import('chart.js/auto');
 
     Chart.register([LineController, PointElement, Filler, LineElement]);
 
-    chart = new Chart(ctx, config);
+    console.log(chart?.attached);
+
+    chart = new Chart(chartCanvas, config);
 
     chart.options = options(defaultConfigs(isDark));
     chart.update();
+    a = setInterval(() => setData(new Date(Date.now())), 5000);
+    console.log(a);
+  }
 
-    const setData = (date: Date) => {
-      var values = generateData(2, latestValue);
+  export async function destroy() {
+    unsubscribe();
+    if (a !== undefined) {
+      clearInterval(a);
+      a = undefined;
+    }
 
-      var value = values[1];
+    console.log('cahrt destroy');
 
-      var label = dateTimeFormat(date.getTime());
-      labels.push(label);
-      data.push(value);
+    chart?.destroy();
+    chart = undefined;
+  }
 
-      borderFill = undefined;
-      backgroundFill = undefined;
-      chartColorBase =
-        data[data.length - 1] >= data[data.length - 2]
-          ? chartColors.gain
-          : chartColors.loss;
-      chart.update();
-    };
-
-    let a = () => setInterval(() => setData(new Date(Date.now())), 5000);
-    a();
+  onDestroy(() => {
+    destroy();
   });
-
-  onDestroy(unsubscribe);
 </script>

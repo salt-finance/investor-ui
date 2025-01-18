@@ -1,5 +1,5 @@
 <div class="w-full" in:fly|global={staggerdTransition(1)}>
-  <div class="flex w-full justify-between">
+  <div class="flex w-full justify-between items-center">
     <span class="page-title"> Market </span>
     <BaseInput
       baseClass="md:justify-self-end"

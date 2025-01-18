@@ -12,12 +12,13 @@
 
   <button
     onclick={() => push(`/dashboard/sector/${sector.id}`)}
-    class="text-left underline-offset-4 underline text-indigo-500 dark:text-blue-300"
+    class="text-left text-indigo-500 dark:text-blue-300 hover:text-blue-500 flex items-center"
   >
-    View securites<span
-      class="material-symbols-outlined skiptranslate text-sm hidden ml-2"
+    <span class="underline-offset-4 underline"> View securites </span>
+    <span
+      class="material-symbols-outlined skiptranslate ml-2 duration-200 text-sm"
     >
-      north</span
+      north_east</span
     >
   </button>
 

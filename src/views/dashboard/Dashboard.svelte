@@ -16,7 +16,9 @@
             </h2>
           </div>
         </div>
-        <CardLineChart />
+        <div class="h-60 lg:h-72 xl:h-80 m-4 grid">
+          <CardLineChart bind:this={lineChart} />
+        </div>
       </div>
     </div>
     <div
@@ -57,7 +59,9 @@
             </h2>
           </div>
         </div>
-        <CardBarChart />
+        <div class="h-60 lg:h-72 xl:h-80 p-4">
+          <CardBarChart />
+        </div>
       </div>
     </div>
     <div
@@ -100,4 +104,11 @@
 
   import { fly } from 'svelte/transition';
   import { staggerdTransition } from 'utils/animationTools';
+  import { onMount, type SvelteComponent } from 'svelte';
+
+  let lineChart: SvelteComponent;
+
+  onMount(async () => {
+    lineChart.show();
+  });
 </script>

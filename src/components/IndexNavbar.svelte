@@ -1,4 +1,7 @@
-<nav bind:this={navRef} class="flex flex-col p-4 glass-effect z-10">
+<nav
+  bind:this={navRef}
+  class="flex flex-col p-4 glass-effect z-10 transition-transform"
+>
   <div
     class="px-0 flex items-center justify-between flex-wrap w-full flex-grow"
   >

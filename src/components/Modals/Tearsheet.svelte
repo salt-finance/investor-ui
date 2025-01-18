@@ -1,11 +1,11 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full h-5/6 max-h-screen xl:max-w-screen-lg glass-effect border-0 dark:bg-opacity-75 bg-opacity-75 flex flex-col sm:m-16 overflow-hidden {closing
+    class="w-full h-fit max-h-[90%] xl:max-w-screen-xl bg-neutral-200 dark:bg-neutral-900 rounded-xl border-0 flex flex-col sm:mx-16 overflow-hidden {closing
       ? 'motion-hide'
       : 'motion-preset-expand motion-duration-300'}"
   >
     <!--      HEADER-->
-    <div class="p-4 text-white flex justify-between items-center dark-light-bg">
+    <div class="p-4 flex justify-between items-center text-white dark-light-bg">
       <div class="flex flex-col">
         <span class="font-semibold text-lg"
           >Security Details | {security?.symbol}</span
@@ -31,7 +31,7 @@
           />
           <div>
             <span class="text-lg font-semibold mr-2">{security?.name}</span>
-            <p>{security?.exchange}:{security?.symbol}</p>
+            <p>{security?.exchange} : {security?.symbol}</p>
           </div>
         </div>
         <div class="flex gap-4 items-end">
@@ -60,7 +60,7 @@
       <!--Security body-->
 
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 w-full flex-wrap">
-        <div class="col-span-1 lg:col-span-3">
+        <div class="col-span-1 lg:col-span-3 flex flex-col">
           <div class="flex gap-2 w-full flex-wrap md:flex-nowrap">
             <div class="card p-4 w-full gap-2 flex flex-col">
               Open Price
@@ -93,8 +93,8 @@
             </div>
           </div>
 
-          <div class="card p-4 mt-2">
-            <CardLineChart />
+          <div class="card mt-2 p-4 flex-grow grid">
+            <CardLineChart bind:this={lineChart} />
           </div>
         </div>
 
@@ -105,14 +105,8 @@
 
           <div class="flex flex-col gap-4">
             <div class="flex w-full justify-between">
-              Closed before
-              <span class="font-semibold">
-                {currencyFormat()(security.closePrice ?? 0)}
-              </span>
-            </div>
-            <div class="flex w-full justify-between">
               Day Range
-              <span class="font-semibold text-right">
+              <span class="font-semibold text-right text-sm">
                 {currencyFormat()(security.dayLow ?? 0)} - {currencyFormat()(
                   security.dayHigh ?? 0
                 )}
@@ -121,7 +115,7 @@
 
             <div class="flex w-full justify-between">
               Earnings per share
-              <span class="font-semibold whitespace-nowrap">
+              <span class="font-semibold whitespace-nowrap text-sm">
                 {currencyFormat({
                   notation:
                     Math.abs(security.earningsPerShare) >= 10000
@@ -132,13 +126,13 @@
             </div>
             <div class="flex w-full justify-between">
               Main Exchange
-              <span class="font-semibold whitespace-nowrap">
+              <span class="font-semibold whitespace-nowrap text-sm">
                 {security.exchange}
               </span>
             </div>
             <div class="flex w-full justify-between">
               Market Capitalization
-              <span class="font-semibold">
+              <span class="font-semibold text-sm">
                 {currencyFormat({
                   notation:
                     Math.abs(security.marketCap) >= 10000
@@ -149,8 +143,13 @@
             </div>
 
             <div class="flex w-full justify-between">
+              Previous close <span class="font-semibold text-sm">
+                {currencyFormat()(security.closePrice ?? 0)}
+              </span>
+            </div>
+            <div class="flex w-full justify-between">
               Price to Earning Ratio
-              <span class="font-semibold whitespace-nowrap">
+              <span class="font-semibold whitespace-nowrap text-sm">
                 {decimalFormat({
                   notation:
                     Math.abs(security.priceToEarningsPerShare) >= 10000
@@ -159,15 +158,16 @@
                 })(security.priceToEarningsPerShare ?? 0)}
               </span>
             </div>
+
             <div class="flex w-full justify-between">
               Sector
-              <span class="font-semibold whitespace-nowrap">
+              <span class="font-semibold whitespace-nowrap text-sm">
                 {security.sector}
               </span>
             </div>
             <div class="flex w-full justify-between">
               Volume
-              <span class="font-semibold whitespace-nowrap">
+              <span class="font-semibold whitespace-nowrap text-sm">
                 {currencyFormat({
                   notation:
                     Math.abs(security.volume) >= 10000 ? 'compact' : 'standard'
@@ -176,7 +176,7 @@
             </div>
             <div class="flex w-full justify-between">
               Year Range
-              <span class="font-semibold text-right">
+              <span class="font-semibold text-right text-sm">
                 {currencyFormat()(security.yearLow ?? 0)} - {currencyFormat()(
                   security.yearHigh ?? 0
                 )}
@@ -196,7 +196,7 @@
   import type { iSecurity } from 'models/security';
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
   import Trade from 'components/Modals/trade.svelte';
-  import type { SvelteComponent } from 'svelte';
+  import { type SvelteComponent } from 'svelte';
 
   let tradeModal: SvelteComponent;
   let buy = $state(true);
@@ -208,6 +208,7 @@
 
   function hide(e: Event) {
     e.preventDefault();
+    lineChart?.destroy();
     closing = true;
     setTimeout(() => {
       dialogRef?.close();
@@ -215,7 +216,10 @@
     }, 500);
   }
 
+  let lineChart: SvelteComponent;
+
   export function show() {
     dialogRef?.showModal();
+    lineChart.show();
   }
 </script>

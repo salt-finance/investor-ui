@@ -1,4 +1,4 @@
-import { Color as kColor } from "@kurkle/color";
+import { Color as kColor } from '@kurkle/color';
 import {
   Chart,
   type ChartArea,
@@ -7,21 +7,21 @@ import {
   type LegendItem,
   type TooltipItem,
   type TooltipLabelStyle,
-  type TooltipModel,
-} from "chart.js";
+  type TooltipModel
+} from 'chart.js';
 
 export type AnyObject = Record<string, any>;
 
 // Colors defined should have 100% saturation and 50% lightness as they will be rotated hue wise.
 export const chartColors = {
-  orange: "rgb(255, 159, 64)",
-  yellow: "#FFC914",
-  blue: "hsl(224, 100%, 50%)",
-  purple: "hsl(260, 100%, 50%)",
-  grey: "rgb(201, 203, 207)",
+  orange: 'rgb(255, 159, 64)',
+  yellow: '#FFC914',
+  blue: 'hsl(224, 100%, 50%)',
+  purple: 'hsl(260, 100%, 50%)',
+  grey: 'rgb(201, 203, 207)',
 
-  loss: "#EF4444",
-  gain: "#10B981",
+  loss: '#EF4444',
+  gain: '#10B981'
 };
 
 export const getHover = (color: string) => {
@@ -38,7 +38,7 @@ export const getHover = (color: string) => {
 
 export const createShades = (
   length: number,
-  chartColorBase: string,
+  chartColorBase: string
 ): string[] => {
   let colors: string[] = [];
   for (let index = 0; index < length; index++) {
@@ -52,7 +52,7 @@ export const createShades = (
     const multiplier = Math.abs(
       ratioMultiplierMod * direction -
         indexInSubGroup -
-        direction / ratioMultiplier,
+        direction / ratioMultiplier
     );
 
     const darkenRatio = Math.round((1 / ratioMultiplier) * multiplier * 0.5);
@@ -68,7 +68,7 @@ export const createShades = (
 
 export const createRadialGradient = (
   context: any,
-  color: string,
+  color: string
 ): Color | undefined => {
   const chart: Chart = context?.chart;
 
@@ -85,7 +85,7 @@ export const createRadialGradient = (
   const centerY = (chartArea.top + chartArea.bottom) / 2;
   const r = Math.min(
     (chartArea.right - chartArea.left) / 2,
-    (chartArea.bottom - chartArea.top) / 2,
+    (chartArea.bottom - chartArea.top) / 2
   );
   const ctx = chart.ctx;
   const c = new kColor(color);
@@ -95,7 +95,7 @@ export const createRadialGradient = (
     0,
     centerX,
     centerY,
-    r,
+    r
   );
 
   gradient.addColorStop(0.4, c.clone().lighten(0.5).rgbString());
@@ -109,7 +109,7 @@ export const createLinearGradient = (
   ctx: AnyObject,
   chartArea: ChartArea,
   c1: string,
-  reverse?: boolean,
+  reverse?: boolean
 ): CanvasGradient => {
   reverse ??= false;
   let gradient: CanvasGradient;
@@ -131,7 +131,7 @@ export const createLinearGradientTwo = (
   chartArea: ChartArea,
   color: string,
   element?: AnyObject,
-  barChart: boolean = true,
+  barChart: boolean = true
 ): CanvasGradient => {
   let gradient: CanvasGradient;
 
@@ -148,7 +148,7 @@ export const createLinearGradientTwo = (
       0,
       chartArea.bottom,
       chartArea.right,
-      0,
+      0
     );
   }
 
@@ -161,23 +161,23 @@ export const createLinearGradientTwo = (
   let gradientMap = [
     { color: lighter, stop: 0 },
     { color: base, stop: 0.4 },
-    { color: base, stop: 1 },
+    { color: base, stop: 1 }
   ];
   // Positive chart
   if (chartArea.bottom - elementBase <= 1.0) {
     gradientMap = [
       {
         color: base,
-        stop: 0,
+        stop: 0
       },
       {
         color: base,
-        stop: 0.9,
+        stop: 0.9
       },
       {
         color: lighter,
-        stop: 1,
-      },
+        stop: 1
+      }
     ];
   }
   // Negative Chart
@@ -185,16 +185,16 @@ export const createLinearGradientTwo = (
     gradientMap = [
       {
         color: base,
-        stop: 1,
+        stop: 1
       },
       {
         color: base,
-        stop: 0.2,
+        stop: 0.2
       },
       {
         color: darker,
-        stop: 0,
-      },
+        stop: 0
+      }
     ];
   }
 
@@ -207,16 +207,16 @@ export const createLinearGradientTwo = (
     gradientMap = [
       {
         color: base,
-        stop: 0,
+        stop: 0
       },
       {
         color: base,
-        stop: 0.3,
+        stop: 0.3
       },
       {
         color: lighter,
-        stop: 0.5,
-      },
+        stop: 0.5
+      }
     ];
 
     if (element?.$context.raw < 0) {
@@ -224,16 +224,16 @@ export const createLinearGradientTwo = (
       gradientMap = [
         {
           color: darker,
-          stop: 0.5,
+          stop: 0.5
         },
         {
           color: base,
-          stop: 0.7,
+          stop: 0.7
         },
         {
           color: base,
-          stop: 1,
-        },
+          stop: 1
+        }
       ];
     }
   }
@@ -248,7 +248,7 @@ export const createRandomData = (
   length: number,
   max: number = 0.3,
   min: number = 0.05,
-  negativeFactor: number = 0.5,
+  negativeFactor: number = 0.5
 ): number[] => {
   return Array(length)
     .keys()
@@ -256,10 +256,10 @@ export const createRandomData = (
       const digits = 4;
       const rand = parseFloat(
         Math.random().toLocaleString([], {
-          style: "decimal",
-          roundingMode: "ceil",
-          maximumFractionDigits: digits,
-        }),
+          style: 'decimal',
+          roundingMode: 'ceil',
+          maximumFractionDigits: digits
+        })
       );
 
       const clamp = Math.min(Math.max(rand, min), max);
@@ -301,8 +301,8 @@ export const createRandomData = (
 };
 
 export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
-  const black = new kColor("black");
-  const white = new kColor("white");
+  const black = new kColor('black');
+  const white = new kColor('white');
 
   const blackText = black.clone().alpha(0.5).rgbString();
   const whiteText = white.clone().alpha(0.7).rgbString();
@@ -311,19 +311,17 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
   const whiteLine = white.clone().alpha(0.2).rgbString();
 
   return {
-    animation: { duration: 500, easing: "easeInSine" },
+    animation: { duration: 500, easing: 'easeInSine' },
 
     interaction: {
-      mode: "index",
-      intersect: false,
+      mode: 'index',
+      intersect: false
     },
     layout: {
+      autoPadding: false,
       padding: {
-        top: 10,
-        left: 10,
-        right: 10,
-        bottom: 10,
-      },
+        right: 0
+      }
     },
     maintainAspectRatio: false,
     plugins: {
@@ -334,20 +332,20 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
               (dataset: AnyObject): LegendItem => {
                 return {
                   text: dataset.label!,
-                  fillStyle: dataset.borderColor ?? "white",
+                  fillStyle: dataset.borderColor ?? 'white',
                   fontColor: isDark ? whiteText : blackText,
                   lineWidth: 0,
-                  borderRadius: dataset.borderRadius ?? 0,
+                  borderRadius: dataset.borderRadius ?? 0
                 };
-              },
+              }
             );
           },
           font: {
-            weight: "bold",
-          },
+            weight: 'bold'
+          }
         },
 
-        align: "end",
+        align: 'end'
       },
       tooltip: {
         boxPadding: 15,
@@ -356,18 +354,18 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         titleSpacing: 40,
 
         borderWidth: 2,
-        borderColor: "#fffa",
+        borderColor: '#fffa',
         padding: 20,
-        backgroundColor: "#000d",
+        backgroundColor: '#000d',
         titleMarginBottom: 10,
 
         titleFont: {
           size: 16,
-          weight: "normal",
+          weight: 'normal'
         },
         bodyFont: {
           size: 14,
-          weight: "bold",
+          weight: 'bold'
         },
         // usePointStyle: true,
 
@@ -378,66 +376,65 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
         callbacks: {
           labelColor: function (
             this: TooltipModel<any>,
-            context: TooltipItem<any>,
+            context: TooltipItem<any>
           ): TooltipLabelStyle {
             let color =
               context.dataset.borderColor !== undefined &&
-              typeof context.dataset.borderColor === "function"
+              typeof context.dataset.borderColor === 'function'
                 ? context.dataset.borderColor(context, {})
-                : (context.dataset.borderColor ?? "white");
+                : (context.dataset.borderColor ?? 'white');
 
             return {
               borderColor: color,
               borderRadius: 10,
               borderWidth: 5,
-              backgroundColor: color,
+              backgroundColor: color
             };
           },
 
           labelTextColor: function (context) {
             if (context?.parsed?.y !== null && context.parsed.y < 0) {
-              return "red";
+              return 'red';
             }
-            return "white";
-          },
-        },
-      },
+            return 'white';
+          }
+        }
+      }
     },
     responsive: true,
     scales: {
       x: {
         animate: false,
         grid: {
-          color: isDark ? whiteLine : blackLine,
+          color: isDark ? whiteLine : blackLine
         },
         border: {
-          display: false,
+          display: false
         },
         ticks: {
           color: isDark ? whiteText : blackText,
           font: {
             // weight: "bold",
-            size: 14,
-          },
-        },
+            size: 14
+          }
+        }
       },
       y: {
         animate: false,
         border: {
-          display: false,
+          display: false
         },
         grid: {
-          color: isDark ? whiteLine : blackLine,
+          color: isDark ? whiteLine : blackLine
         },
         ticks: {
           color: isDark ? whiteText : blackText,
 
           font: {
-            weight: "bold",
-            size: 14,
-          },
-        },
-      },
-    },
+            size: 14
+          }
+        }
+      }
+    }
   };
 };
