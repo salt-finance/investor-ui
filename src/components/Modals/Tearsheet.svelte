@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full h-fit max-h-[95%] lg:max-w-screen-lg card bg-neutral-900 rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
+    class="w-full h-fit max-h-[95%] lg:max-w-screen-lg card bg-neutral-200 dark:bg-neutral-900 rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
       ? 'motion-hide'
       : 'motion-preset-expand'}"
   >
