@@ -30,10 +30,11 @@ Danger - Cornell red - #b91c1c - red-700 */
 
 .material-symbols-outlined {
     user-select: none;
+    font-size: inherit;
+
     font-variation-settings: 'FILL' 1,
     'wght' 400,
-    'GRAD' 200,
-    'opsz' 48;
+    'GRAD' 200
 }
 
 /*@font-face {*/
@@ -156,8 +157,9 @@ div[data-popper-arrow] {
 
     dialog {
         place-content: center;
-        place-items: center;
         @apply h-screen;
+
+        @apply place-items-end md:place-items-start;
 
         &[open] {
             display: flex;
@@ -212,14 +214,18 @@ div[data-popper-arrow] {
 
     .btn-icon {
         &:not([disabled]) {
-            @apply hover:dark-light-bg hover:border-none hover:text-white;
+            @apply bg-blue-500 hover:bg-blue-900 text-white;
         }
 
         @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none;
     }
 
     .card {
-        @apply dark:bg-slate-950 rounded-xl bg-slate-50 border border-black dark:border-white border-opacity-15 dark:border-opacity-15;
+        @apply dark:bg-slate-950 rounded-xl bg-slate-50 border border-white/80 dark:border-white/30 border-opacity-15 dark:border-opacity-15;
+    }
+
+    .glass-on-glass {
+        @apply glass-effect bg-opacity-20 bg-blue-100 dark:bg-slate-900 dark:bg-opacity-60;
     }
 
     .glass-effect {

@@ -1,6 +1,6 @@
 <button
   aria-label="open menu"
-  class="text-xl leading-none px-3 py-1 rounded block outline-none hover:text-blue-500"
+  class="text-xl md:text-2xl lg:text-2xl ml-2 flex items-center leading-none rounded outline-none hover:text-blue-500"
   onclick={() => setTheme()}
   type="button"
 >

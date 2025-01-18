@@ -6,7 +6,9 @@
       use:active
       class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
     >
-      <span class="material-symbols-outlined skiptranslate"> dashboard </span>
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        dashboard
+      </span>
       <p>dashboard</p>
     </a>
     <a
@@ -15,7 +17,9 @@
       href="/dashboard/market"
       class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
     >
-      <span class="material-symbols-outlined skiptranslate"> storefront </span>
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        storefront
+      </span>
       <p>market</p>
     </a>
     <a
@@ -24,7 +28,9 @@
       href="/dashboard/holdings"
       class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
     >
-      <span class="material-symbols-outlined skiptranslate"> category </span>
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        category
+      </span>
       <p>holdings</p>
     </a>
     <a
@@ -33,7 +39,9 @@
       href="/dashboard/activity"
       class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
     >
-      <span class="material-symbols-outlined skiptranslate"> swap_horiz </span>
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        swap_horiz
+      </span>
       <p>activity</p>
     </a>
   {:else}

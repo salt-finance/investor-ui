@@ -1,12 +1,14 @@
 <div
   class="relative flex flex-col w-full min-w-0 break-words glass-effect xl:mb-0 h-full"
 >
-  <div class="flex-auto flex p-4 justify-between gap-2">
+  <div
+    class="flex-auto flex p-4 justify-between gap-2 flex-wrap-reverse md:flex-nowrap"
+  >
     <div class="flex flex-col gap-2">
       <div
         class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-top"
       >
-        <h5 class="uppercase font-bold">
+        <h5 class="uppercase font-bold text-sm">
           {statSubtitle}
         </h5>
         <span class="font-extralight text-xl md:text-2xl">
@@ -15,7 +17,7 @@
       </div>
 
       {#if statPercent !== undefined}
-        <p class="flex gap-2 items-center">
+        <p class="flex gap-2 items-center flex-wrap md:flex-nowrap">
           <span
             class="text-sm font-bold gap-1 inline-flex align-item-center line-clamp-1 {statPercentColor}"
           >
@@ -31,7 +33,7 @@
     </div>
 
     {#if statIconName !== undefined}
-      <div class="relative w-auto flex-initial items-center flex">
+      <div class="relative w-auto flex-initial items-center">
         <div
           class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
         >

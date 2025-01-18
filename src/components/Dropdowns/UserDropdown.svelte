@@ -6,14 +6,10 @@
     onclick={toggleDropdown}
   >
     <div class="items-center flex">
-      <span
-        class="w-12 h-12 inline-flex items-center justify-center rounded-full"
-      >
+      <span class="inline-flex items-center justify-center rounded-full">
         <img
           alt="..."
-          width="48"
-          height="48"
-          class="w-full rounded-full align-middle border-none"
+          class="w-10 rounded-full align-middle border-none aspect-square"
           src={image}
         />
       </span>

@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full h-fit max-h-[90%] xl:max-w-screen-xl bg-neutral-200 dark:bg-neutral-900 rounded-xl border-0 flex flex-col sm:mx-16 overflow-hidden {closing
+    class="w-full h-fit max-h-[95%] lg:max-w-screen-lg glass-effect rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
       ? 'motion-hide'
       : 'motion-preset-expand motion-duration-300'}"
   >
@@ -22,7 +22,9 @@
     <!--    BODY -->
     <div class="p-4 flex flex-col gap-4 h-full overflow-y-scroll">
       <!--      Security Title-->
-      <div class="flex justify-between flex-wrap gap-4">
+      <div
+        class="flex justify-between flex-wrap gap-4 dark:bg-opacity-70 glass-effect p-4 order-2 md:order-none sticky md:top-0 bottom-0 z-10"
+      >
         <div class="flex items-center gap-4">
           <img
             class="rounded-full border-none aspect-square items-center h-20"
@@ -34,9 +36,9 @@
             <p>{security?.exchange} : {security?.symbol}</p>
           </div>
         </div>
-        <div class="flex gap-4 items-end">
+        <div class="flex gap-4 md:items-end w-full md:max-w-fit">
           <button
-            class="btn-buy p-2 px-4"
+            class="btn-buy p-2 px-4 w-full"
             onclick={(e) => {
               e.preventDefault();
               buy = true;
@@ -46,7 +48,7 @@
             Buy
           </button>
           <button
-            class="btn-sell p-2 px-4"
+            class="btn-sell p-2 px-4 w-full"
             onclick={(e) => {
               e.preventDefault();
               buy = false;
@@ -62,7 +64,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 w-full flex-wrap">
         <div class="col-span-1 lg:col-span-3 flex flex-col">
           <div class="flex gap-2 w-full flex-wrap md:flex-nowrap">
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-on-glass p-4 w-full gap-2 flex flex-col">
               Open Price
               <span class="text-xl">
                 {currencyFormat({
@@ -71,7 +73,7 @@
                 })(security.price)}
               </span>
             </div>
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-on-glass p-4 w-full gap-2 flex flex-col">
               Market Cap
               <span class="text-xl">
                 {currencyFormat({
@@ -82,7 +84,7 @@
                 })(security.marketCap)}
               </span>
             </div>
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-on-glass p-4 w-full gap-2 flex flex-col">
               Volume
               <span class="text-xl">
                 {currencyFormat({
@@ -93,7 +95,7 @@
             </div>
           </div>
 
-          <div class="card mt-2 p-4 flex-grow grid">
+          <div class="glass-on-glass mt-2 p-4 flex-grow grid h-60 lg:h-auto">
             <CardLineChart bind:this={lineChart} />
           </div>
         </div>
@@ -104,18 +106,18 @@
           <hr class="opacity-50 my-4" />
 
           <div class="flex flex-col gap-4">
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Day Range
-              <span class="font-semibold text-right text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat()(security.dayLow ?? 0)} - {currencyFormat()(
                   security.dayHigh ?? 0
                 )}
               </span>
             </div>
 
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Earnings per share
-              <span class="font-semibold whitespace-nowrap text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat({
                   notation:
                     Math.abs(security.earningsPerShare) >= 10000
@@ -124,15 +126,15 @@
                 })(security.earningsPerShare ?? 0)}
               </span>
             </div>
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Main Exchange
-              <span class="font-semibold whitespace-nowrap text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {security.exchange}
               </span>
             </div>
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Market Capitalization
-              <span class="font-semibold text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat({
                   notation:
                     Math.abs(security.marketCap) >= 10000
@@ -142,14 +144,15 @@
               </span>
             </div>
 
-            <div class="flex w-full justify-between">
-              Previous close <span class="font-semibold text-sm">
+            <div class="flex w-full justify-between select-none flex-wrap">
+              Previous close
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat()(security.closePrice ?? 0)}
               </span>
             </div>
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Price to Earning Ratio
-              <span class="font-semibold whitespace-nowrap text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {decimalFormat({
                   notation:
                     Math.abs(security.priceToEarningsPerShare) >= 10000
@@ -159,24 +162,24 @@
               </span>
             </div>
 
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Sector
-              <span class="font-semibold whitespace-nowrap text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {security.sector}
               </span>
             </div>
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Volume
-              <span class="font-semibold whitespace-nowrap text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat({
                   notation:
                     Math.abs(security.volume) >= 10000 ? 'compact' : 'standard'
                 })(security.volume ?? 0)}
               </span>
             </div>
-            <div class="flex w-full justify-between">
+            <div class="flex w-full justify-between select-none flex-wrap">
               Year Range
-              <span class="font-semibold text-right text-sm">
+              <span class="font-semibold text-right text-sm select-text">
                 {currencyFormat()(security.yearLow ?? 0)} - {currencyFormat()(
                   security.yearHigh ?? 0
                 )}

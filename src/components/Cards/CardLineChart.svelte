@@ -103,6 +103,10 @@
     };
   };
   const unsubscribe = theme.subscribe(() => {
+    updateDarkLight();
+  });
+
+  function updateDarkLight() {
     isDark = document.body.classList.contains('dark');
     if (!chart) {
       // This case happens on initial chart load
@@ -111,7 +115,7 @@
 
     chart.options = options(defaultConfigs(isDark));
     chart.update();
-  });
+  }
 
   const config: ChartConfiguration = {
     type: 'line',
@@ -124,7 +128,7 @@
           fill: true,
           pointStyle: false,
           // cubicInterpolationMode: "monotone",
-          tension: 0.6,
+          tension: 0.1,
           data: data,
           // animation: false,
           animation: defaultConfigs().animation,
@@ -179,21 +183,17 @@
   let chartCanvas: HTMLCanvasElement;
 
   export async function show() {
-    console.log('mount');
-
     let { Chart, Filler, LineController, LineElement, PointElement } =
       await import('chart.js/auto');
 
     Chart.register([LineController, PointElement, Filler, LineElement]);
 
-    console.log(chart?.attached);
-
     chart = new Chart(chartCanvas, config);
 
     chart.options = options(defaultConfigs(isDark));
     chart.update();
+    updateDarkLight();
     a = setInterval(() => setData(new Date(Date.now())), 5000);
-    console.log(a);
   }
 
   export async function destroy() {
