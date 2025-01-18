@@ -13,10 +13,10 @@
   >
     <div data-popper-arrow></div>
     <div
-      class="glass-effect bg-opacity-100 shadow-none text-base z-50 flex flex-col text-left rounded min-w-48"
+      class="card bg-opacity-100 shadow-none text-base z-50 flex flex-col text-left rounded min-w-48"
     >
       <button
-        class="hover:bg-blue-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
+        class="hover:dark-light-bg hover:text-white py-2 px-4 whitespace-nowrap text-left"
         onclick={(e) => {
           e.preventDefault();
           tearsheetModal?.show();

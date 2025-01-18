@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full h-fit max-h-[95%] lg:max-w-screen-lg card bg-neutral-200 dark:bg-neutral-900 rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
+    class="w-full h-fit max-h-full lg:max-w-screen-lg body-colors bg-gradient-to-b from-10% to-40% rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
       ? 'motion-hide'
       : 'motion-preset-expand'}"
   >
@@ -25,10 +25,10 @@
     </div>
 
     <!--    BODY -->
-    <div class="p-4 flex flex-col gap-4 h-full overflow-y-scroll">
+    <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
       <!--      Security Title-->
       <div
-        class="flex justify-between flex-wrap gap-4 card p-4 order-2 md:order-none sticky md:top-0 bottom-0 z-10"
+        class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:-top-1 bottom-0 z-10 glass-effect"
       >
         <div class="flex items-center gap-4">
           <img
@@ -69,7 +69,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 w-full flex-wrap">
         <div class="col-span-1 lg:col-span-3 flex flex-col">
           <div class="flex gap-2 w-full flex-wrap md:flex-nowrap">
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-effect p-4 w-full gap-2 flex flex-col">
               Open Price
               <span class="text-xl">
                 {currencyFormat({
@@ -78,7 +78,7 @@
                 })(security.price)}
               </span>
             </div>
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-effect p-4 w-full gap-2 flex flex-col">
               Market Cap
               <span class="text-xl">
                 {currencyFormat({
@@ -89,7 +89,7 @@
                 })(security.marketCap)}
               </span>
             </div>
-            <div class="card p-4 w-full gap-2 flex flex-col">
+            <div class="glass-effect p-4 w-full gap-2 flex flex-col">
               Volume
               <span class="text-xl">
                 {currencyFormat({
@@ -100,14 +100,14 @@
             </div>
           </div>
 
-          <div class="card mt-2 flex-grow grid h-96 lg:h-auto">
+          <div class="glass-effect mt-2 flex-grow grid h-96 lg:h-auto">
             <div class="m-4 h-[95%]">
               <CardLineChart bind:this={lineChart} />
             </div>
           </div>
         </div>
 
-        <div class="card p-4 col-span-1 lg:col-span-2">
+        <div class="p-4 col-span-1 lg:col-span-2 glass-effect">
           <span class="font-semibold block text-lg">Details</span>
           <span>{security.description}</span>
           <hr class="opacity-50 my-4" />

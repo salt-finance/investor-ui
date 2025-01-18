@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full max-w-96 glass-effect dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
+    class="w-full max-w-96 glass-effect shadow-inner dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
       ? 'motion-hide'
       : 'motion-preset-expand motion-duration-300'}"
   >
@@ -40,7 +40,7 @@
       <div class="flex gap-4 justify-center mb-2">
         <button
           disabled={quantity === 0}
-          class="text-base btn-icon rounded-full"
+          class="text-base btn-icon rounded-full glass-effect"
           onclick={() => (quantity > 0 ? quantity-- : null)}
         >
           -
@@ -55,7 +55,7 @@
         />
 
         <button
-          class="text-base btn-icon rounded-full"
+          class="text-base btn-icon rounded-full glass-effect"
           onclick={() => quantity++}
         >
           +

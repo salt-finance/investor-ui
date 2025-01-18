@@ -46,6 +46,7 @@ Danger - Cornell red - #b91c1c - red-700 */
 
 :root {
     interpolate-size: allow-keywords;
+
 }
 
 html {
@@ -56,6 +57,10 @@ html {
 
 body {
     overflow: scroll;
+    --accent: #00bbff;
+    --accent-dark: #0014ff;
+
+    scroll-behavior: smooth;
 }
 
 button {
@@ -147,8 +152,8 @@ div[data-popper-arrow] {
 .motion-hide-opacity {
     animation-fill-mode: forwards;
     animation-duration: 300ms;
-    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
-    animation-delay: 300ms;
+    animation-timing-function: ease;
+    animation-delay: 100ms;
     animation-name: motion-hide;
 }
 
@@ -169,7 +174,7 @@ div[data-popper-arrow] {
 
 
     .body-colors {
-        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br to-neutral-200 from-blue-600 from-0% to-15%  dark:to-neutral-900 dark:from-blue-700 dark:bg-black selection:bg-blue-500 selection:text-white
+        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br dark:bg-gradient-to-tl to-neutral-200 from-accent from-0% to-10% dark:from-0% dark:to-30%  dark:to-transparent dark:from-accent-dark dark:bg-black selection:bg-blue-500 selection:text-white
     }
 
 
@@ -207,7 +212,7 @@ div[data-popper-arrow] {
     }
 
     .dark-light-bg {
-        @apply bg-blue-600 dark:bg-blue-600;
+        @apply bg-accent dark:bg-accent-dark;
     }
 
     .btn-wide {
@@ -219,7 +224,7 @@ div[data-popper-arrow] {
     }
 
     .btn-tearsheet {
-        @apply btn-wide dark-light-bg hover:bg-blue-800;
+        @apply btn-wide dark-light-bg;
     }
 
     .btn-sell {
@@ -243,9 +248,11 @@ div[data-popper-arrow] {
     }
 
     .card {
-        @apply dark:bg-slate-950 rounded-xl bg-slate-50 border border-white/80 dark:border-white/30 border-opacity-15 dark:border-opacity-15;
+
+        @apply dark:bg-neutral-900 dark:bg-opacity-40 rounded-xl shadow-inner dark:shadow-black/20 shadow-slate-950/10 bg-slate-50 border border-white/80 dark:border-white/10;
+
     }
-    
+
 
     .glass-effect {
         backdrop-filter: blur(10px);
@@ -268,7 +275,7 @@ div[data-popper-arrow] {
     .base-button:hover,
     .base-button:focus,
     .base-button:active {
-        @apply dark:bg-blue-800 bg-blue-400 border-blue-400;
+        @apply dark:bg-accent-dark bg-accent border-blue-400;
     }
 
     .primary-button {
