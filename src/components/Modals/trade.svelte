@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full max-w-96 card dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
+    class="w-full max-w-96 glass-effect dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
       ? 'motion-hide'
       : 'motion-preset-expand motion-duration-300'}"
   >
