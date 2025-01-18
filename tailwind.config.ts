@@ -35,7 +35,8 @@ const config: Config = {
         },
         accent: {
           DEFAULT: 'var(--accent)',
-          dark: 'var(--accent-dark)'
+          dark: 'var(--accent-dark)',
+          darkSaturated: 'var(--accent-dark-saturated)'
         },
         popover: {
           DEFAULT: 'hsl(var(--popover) / <alpha-value>)',

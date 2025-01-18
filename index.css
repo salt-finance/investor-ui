@@ -57,8 +57,9 @@ html {
 
 body {
     overflow: scroll;
-    --accent: #00bbff;
-    --accent-dark: #0014ff;
+    --accent: #529ef4;
+    --accent-dark: #0b237f;
+    --accent-dark-saturated: #0038ff;
 
     scroll-behavior: smooth;
 }
@@ -174,7 +175,7 @@ div[data-popper-arrow] {
 
 
     .body-colors {
-        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br dark:bg-gradient-to-tl to-neutral-200 from-accent from-0% to-10% dark:from-0% dark:to-30%  dark:to-transparent dark:from-accent-dark dark:bg-black selection:bg-blue-500 selection:text-white
+        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br dark:bg-gradient-to-br to-neutral-200 from-accent from-10% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
     }
 
 
@@ -249,7 +250,7 @@ div[data-popper-arrow] {
 
     .card {
 
-        @apply dark:bg-neutral-900 dark:bg-opacity-40 rounded-xl shadow-inner dark:shadow-black/20 shadow-slate-950/10 bg-slate-50 border border-white/80 dark:border-white/10;
+        @apply dark:bg-neutral-900 dark:bg-opacity-40 rounded-xl shadow-inner dark:shadow-black/10 shadow-slate-950/10 bg-slate-50 border border-white/80 dark:border-white/10;
 
     }
 

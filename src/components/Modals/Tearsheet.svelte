@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full h-fit max-h-full lg:max-w-screen-lg body-colors bg-gradient-to-b from-10% to-40% rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
+    class="w-full h-fit max-h-full lg:max-w-screen-lg body-colors dark:from-accent-dark bg-gradient-to-b from-10% to-40% rounded-xl flex flex-col sm:mx-16 overflow-hidden {closing
       ? 'motion-hide'
       : 'motion-preset-expand'}"
   >
