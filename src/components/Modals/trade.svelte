@@ -1,6 +1,6 @@
 <dialog bind:this={dialogRef}>
   <div
-    class="w-full max-w-96 glass-effect flex flex-col overflow-hidden sm:m-16 {closing
+    class="w-full max-w-96 card dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
       ? 'motion-hide'
       : 'motion-preset-expand motion-duration-300'}"
   >
@@ -12,10 +12,15 @@
     >
       <div class="flex flex-col">
         <span class="uppercase font-semibold">{buy ? 'Buy' : 'Sell'}</span>
-        <span class="text-2xl font-black">{value?.name}</span>
+        <span class="text-xl font-semibold">{value?.name}</span>
       </div>
 
-      <button class="close-icon" id="cancel" onclick={hide} type="reset">
+      <button
+        class="close-icon text-2xl"
+        id="cancel"
+        onclick={hide}
+        type="reset"
+      >
         <span class="material-symbols-outlined skiptranslate">
           cancel
         </span></button
@@ -35,7 +40,7 @@
       <div class="flex gap-4 justify-center mb-2">
         <button
           disabled={quantity === 0}
-          class="text-base btn-icon glass-on-glass rounded-full"
+          class="text-base btn-icon rounded-full"
           onclick={() => (quantity > 0 ? quantity-- : null)}
         >
           -
@@ -50,7 +55,7 @@
         />
 
         <button
-          class="text-base btn-icon glass-on-glass rounded-full"
+          class="text-base btn-icon rounded-full"
           onclick={() => quantity++}
         >
           +
