@@ -75,7 +75,7 @@
                 {currencyFormat({
                   notation:
                     Math.abs(security.price) >= 10000 ? 'compact' : 'standard'
-                })(security.price)}
+                })(lineChart?.latest())}
               </span>
             </div>
             <div class="glass-effect p-4 w-full gap-2 flex flex-col">
@@ -102,7 +102,11 @@
 
           <div class="glass-effect mt-2 flex-grow grid h-96 lg:h-auto">
             <div class="m-4 h-[95%]">
-              <CardLineChart bind:this={lineChart} />
+              <CardLineChart
+                bind:this={lineChart}
+                startingValue={security.price}
+                range={security.price * 0.01}
+              />
             </div>
           </div>
         </div>
@@ -212,6 +216,7 @@
   let buy = $state(true);
 
   let { security } = $props<{ security: iSecurity }>();
+
   let dialogRef: HTMLDialogElement | undefined = $state();
 
   let closing = $state(false);
@@ -226,10 +231,10 @@
     }, 500);
   }
 
-  let lineChart: SvelteComponent;
+  let lineChart: SvelteComponent | undefined = $state();
 
   export function show() {
     dialogRef?.showModal();
-    lineChart.show();
+    lineChart?.show();
   }
 </script>

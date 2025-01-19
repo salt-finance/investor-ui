@@ -16,34 +16,46 @@
   import { theme } from '@/store/theme';
   // init chart
 
+  let {
+    dataLength = 10,
+    startingValue = 61100.34,
+    range = 100
+  } = $props<{
+    dataLength: number;
+    startingValue: number;
+  }>();
+
+  export function latest() {
+    return latestValue;
+  }
+
   let isDark = $state(false);
 
   let chart: Chart | undefined;
 
   const startDate = Date.now();
-  var latestValue = 4500;
+  let latestValue = startingValue;
 
-  const generateData = (length: number, startingValue = 450000) => {
+  const generateData = (length: number) => {
     latestValue = startingValue;
 
     return [...Array(length).keys()].map(() => {
       let factor: number = Math.sin(100000 * Math.random() * Math.random());
-      var value = latestValue;
+      let value = latestValue;
 
-      value = Math.floor(latestValue + factor * 5000);
+      value = Math.floor(latestValue + factor * range * 5);
       latestValue = value;
 
       return value;
     });
   };
 
-  var defaultLength = 10;
-  var data = generateData(defaultLength).reverse();
+  let data = generateData(dataLength).reverse();
 
-  var labels = [...Array(defaultLength).keys()]
-    .map((i) => dateTimeFormat(startDate - defaultLength * 1000 * i))
+  let labels = [...Array(dataLength).keys()]
+    .map((i) => dateTimeFormat(startDate - dataLength * range * i))
     .reverse();
-  var chartColorBase = chartColors.grey;
+  let chartColorBase = chartColors.grey;
 
   let borderFill: string | undefined;
   let backgroundFill: CanvasGradient | undefined;
@@ -161,11 +173,11 @@
   };
 
   const setData = (date: Date) => {
-    var values = generateData(2, latestValue);
+    let values = generateData(2, latestValue);
 
-    var value = values[1];
+    let value = values[1];
 
-    var label = dateTimeFormat(date.getTime());
+    let label = dateTimeFormat(date.getTime());
     labels.push(label);
     data.push(value);
 
@@ -202,9 +214,6 @@
       clearInterval(a);
       a = undefined;
     }
-
-    console.log('cahrt destroy');
-
     chart?.destroy();
     chart = undefined;
   }

@@ -19,7 +19,7 @@
           >
             <div class="flex flex-grow w-full justify-between items-center">
               <img
-                class="rounded-full border-none aspect-square items-center h-20"
+                class="rounded-full border-none aspect-square items-center h-12"
                 src={security.logoUrl}
                 alt="logo"
               />
@@ -60,8 +60,6 @@
   let sectorSecurites: iSecurity[] | [] = $state([]);
 
   const sectorsSubscription = sectors.subscribe((sectors) => {
-    console.log(sectors);
-
     location.subscribe((val) => {
       let sectorId = val.split('/').pop();
       sector = sectors.find((sector) => sector.id === sectorId);

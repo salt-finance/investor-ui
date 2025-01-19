@@ -36,9 +36,7 @@
               <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}
                   <img
-                    width="48"
-                    height="48"
-                    class="rounded-full align-middle border-none max-w-fit"
+                    class="rounded-full align-middle border-none max-w-fit aspect-square h-12"
                     src={row[column.key]}
                     alt="logo"
                   />

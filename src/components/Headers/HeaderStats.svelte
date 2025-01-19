@@ -11,7 +11,7 @@
       statPercent="3.48"
       statPercentColor="text-red-500"
       statSubtitle="Total value"
-      statTitle="350,897.35 Birr"
+      statTitle="61,100.34 Birr"
     />
   </div>
   <div
