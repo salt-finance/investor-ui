@@ -20,7 +20,7 @@ Danger - Cornell red - #b91c1c - red-700 */
     font-variation-settings: 'FILL' 1,
     'wght' 400,
     'GRAD' 200;
-    width: 1em;
+    height: 1em;
     aspect-ratio: 1;
     overflow: hidden;
     font-family: 'Material Symbols Outlined', sans-serif;

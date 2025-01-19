@@ -4,7 +4,7 @@
       href="/dashboard"
       use:link
       use:active
-      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
     >
       <span class="material-symbols-outlined skiptranslate flex items-center">
         dashboard
@@ -15,7 +15,7 @@
       use:link
       use:active
       href="/dashboard/market"
-      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
     >
       <span class="material-symbols-outlined skiptranslate flex items-center">
         storefront
@@ -26,7 +26,7 @@
       use:link
       use:active
       href="/dashboard/holdings"
-      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
     >
       <span class="material-symbols-outlined skiptranslate flex items-center">
         category
@@ -37,7 +37,7 @@
       use:link
       use:active
       href="/dashboard/activity"
-      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
     >
       <span class="material-symbols-outlined skiptranslate flex items-center">
         swap_horiz
