@@ -8,9 +8,9 @@
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
-            <h6 class="text-sm uppercase mb-1 font-extrabold">
+            <h5 class="text-sm uppercase mb-1 font-extrabold">
               Total value over time
-            </h6>
+            </h5>
             <h2
               class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
             >
@@ -31,9 +31,9 @@
       >
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
-            <h6 class="text-sm uppercase mb-1 font-extrabold">
+            <h5 class="text-sm uppercase mb-1 font-extrabold">
               Portfolio distribution by category
-            </h6>
+            </h5>
             <h2
               class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
             >
@@ -51,9 +51,9 @@
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
-            <h6 class="text-sm uppercase mb-1 font-extrabold">
+            <h5 class="text-sm uppercase mb-1 font-extrabold">
               Performance vs Previous year
-            </h6>
+            </h5>
             <h2
               class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
             >
@@ -74,9 +74,9 @@
       >
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
-            <h6 class="text-sm uppercase mb-1 font-extrabold">
+            <h5 class="text-sm uppercase mb-1 font-extrabold">
               Average profit to loss ratio
-            </h6>
+            </h5>
             <h2
               class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
             >
