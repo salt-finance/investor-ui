@@ -11,7 +11,7 @@
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
         <tr
-          class="glass-effect uppercase whitespace-nowrap font-semibold text-left"
+          class="card uppercase whitespace-nowrap font-semibold text-left shadow-none"
         >
           {#each columns as column}
             <th
@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         {#each data as row}
-          <tr class="cursor-pointer">
+          <tr class="hover:dark-light-bg">
             {#each columns as column}
               <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}

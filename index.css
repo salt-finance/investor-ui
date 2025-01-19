@@ -68,9 +68,14 @@ html {
     overflow: hidden;
 }
 
+
+.body-text{
+    @apply text-opacity-50 dark:text-opacity-90;
+}
+
 body {
     overflow: scroll;
-    --accent: #529ef4;
+    --accent: #00bcffff;
     --accent-dark: #0b237f;
     --accent-dark-saturated: #0038ff;
 
@@ -193,11 +198,45 @@ div[data-popper-arrow] {
     height: inherit;
 }
 
+
+.goog-te-gadget {
+    width: 100%;
+    border: none !important;
+    @apply bg-transparent text-inherit !important;
+    >div{
+        width: 90%;
+        display: block !important;
+    
+    }
+}
+
+#google_translate_element {
+    @apply mx-2;
+}
+
+.goog-te-gadget select {
+    width: 100%;
+
+    @apply pr-2 py-2 mx-2 m-0 border-0 bg-transparent 
+    rounded-sm text-inherit hover:bg-blue-600 hover:text-white  !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+div.skiptranslate  > iframe{
+    display: none;
+    visibility: hidden !important;
+    height: 0px;
+}
+
+
 @layer components {
 
 
     .body-colors {
-        @apply text-neutral-700 dark:text-neutral-300 bg-gradient-to-br dark:bg-gradient-to-br to-neutral-200 from-accent from-10% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
+        @apply text-neutral-700 dark:text-neutral-100 bg-gradient-to-br dark:bg-gradient-to-br to-neutral-100 from-accent from-0% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
     }
 
 
@@ -331,20 +370,9 @@ div[data-popper-arrow] {
         @apply hover:text-blue-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
     }
 
-    .goog-te-gadget {
-        width: 100%;
-        border: none !important;
-        @apply bg-transparent text-inherit !important;
-    }
 
-    #google_translate_element {
-        @apply mx-2;
-    }
-
-    .goog-te-gadget select {
-        @apply px-2 py-2 mx-0 m-0 border-0 bg-transparent text-inherit hover:bg-blue-600 hover:text-white  !important;
-    }
 }
+
 
 @layer base {
     :root {

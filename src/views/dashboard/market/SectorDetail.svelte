@@ -1,7 +1,7 @@
 {#if sector !== undefined}
   <h1 class="page-title mb-2">{sector.title}</h1>
   {#if sector.description !== undefined}
-    <span class="opacity-80 dark:opacity-60 lg:w-2/3">
+    <span class="body-text dark-light-text lg:w-2/3">
       {sector.description}
     </span>
   {/if}
@@ -27,12 +27,12 @@
             </div>
 
             <div class="flex flex-col gap-1">
-              <p class="text-opacity-80 dark-light-text">{security.name}</p>
+              <p class="body-text dark-light-text">{security.name}</p>
               <p class="font-medium text-xl">
                 {currencyFormat()(security.price ?? 0)}
               </p>
               <span class="flex gap-2">
-                <p class="text-opacity-80 dark-light-text">
+                <p class="body-text dark-light-text">
                   {security.symbol}
                 </p>
                 <p class="text-emerald-600">
@@ -48,13 +48,13 @@
 {/if}
 
 <script lang="ts">
-  import { type iSector } from 'models/sector';
-  import { location } from 'svelte-spa-router';
   import { sectors, securities } from '@/store/stock';
-  import { onDestroy } from 'svelte';
-  import type { iSecurity } from 'models/security';
-  import { currencyFormat, decimalFormat } from 'utils/formatTools';
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
+  import { type iSector } from 'models/sector';
+  import type { iSecurity } from 'models/security';
+  import { onDestroy } from 'svelte';
+  import { location } from 'svelte-spa-router';
+  import { currencyFormat, decimalFormat } from 'utils/formatTools';
 
   let sector: iSector | undefined = $state();
   let sectorSecurites: iSecurity[] | [] = $state([]);
