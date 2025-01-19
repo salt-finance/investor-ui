@@ -51,7 +51,7 @@ Danger - Cornell red - #b91c1c - red-700 */
 
 
 .logo {
-    background-image: url("/assets/img/logos/color-black.webp");
+    background-image: url("./assets/img/logos/color-black.webp");
     filter: opacity(0.9);
     min-width: 100px;
     margin-right: 10px;
@@ -78,7 +78,7 @@ body {
 
     &.dark {
         .logo {
-            background-image: url("/assets/img/logos/color-white.webp");
+            background-image: url("./assets/img/logos/color-white.webp");
             min-width: 100px;
 
 
