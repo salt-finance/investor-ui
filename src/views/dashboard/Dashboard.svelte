@@ -24,7 +24,7 @@
       </div>
     </div>
     <div
-      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-translate-x-in-[30%] motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px] motion-delay-200"
+      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-translate-x-in-[30%] motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px]"
     >
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div
-      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-translate-x-in-[30%] motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px] motion-delay-1000"
+      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-translate-x-in-[30%] motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px]"
     >
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
