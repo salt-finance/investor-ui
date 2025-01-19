@@ -20,7 +20,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/ETC.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/ETC.webp"
   },
   {
     "name": "Commercial Bank Of Ethiopia",
@@ -42,7 +42,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/CBE.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/CBE.webp"
   },
   {
     "name": "Ethiopian Mineral Corporation",
@@ -65,7 +65,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/EMC.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/EMC.webp"
   },
   {
     "name": "Ethiopian Electric Utility",
@@ -88,7 +88,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/EEU.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/EEU.webp"
   },
   {
     "name": "Ethiopian Airlines Group",
@@ -111,7 +111,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/ET.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/ET.webp"
   },
   {
     "name": "Ethiopian Insurance Corporation",
@@ -134,7 +134,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/EIC.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/EIC.webp"
   },
   {
     "name": "Ethiopian Sugar Industry Group",
@@ -157,7 +157,7 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/ESIG.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/ESIG.webp"
   },
   {
     "name": "Ethiopian Shipping and Logistics",
@@ -180,6 +180,6 @@
     "marketCap": 400000,
     "earningsPerShare": 12,
     "priceToEarningsPerShare": 0.12,
-    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/ESL.webp"
+    "logoUrl": "https://salt-finance.github.io/investor-ui/assets/img/Icons/48/ESL.webp"
   }
 ]
