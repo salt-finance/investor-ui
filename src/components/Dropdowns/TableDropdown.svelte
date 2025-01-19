@@ -51,9 +51,11 @@
     </div>
   </div>
 </div>
-
 <Trade bind:this={tradeModal} {buy} {value} />
-<Tearsheet bind:this={tearsheetModal} security={value} />
+
+{#if dropdownPopoverShow}
+  <Tearsheet bind:this={tearsheetModal} security={value} />
+{/if}
 
 <script lang="ts">
   // library for creating dropdown menu appear on click
@@ -71,11 +73,11 @@
   // core components
 
   let dropdownPopoverShow = $state(false);
-  let tearsheetModal: SvelteComponent;
+  let tearsheetModal: SvelteComponent | undefined = $state();
 
   let btnDropdownRef: Element | undefined = $state();
   let buy = $state(true);
-  let tradeModal: SvelteComponent;
+  let tradeModal: SvelteComponent | undefined = $state();
 
   let popoverDropdownRef: HTMLElement | undefined = $state();
   let popoverInstance: Instance | undefined;
@@ -114,13 +116,6 @@
                 fallbackPlacements: ['bottom-start']
               }
             }
-
-            // {
-            //   name: 'arrow',
-            //   options: {
-            //     padding: 5
-            //   }
-            // }
           ]
         }
       );
