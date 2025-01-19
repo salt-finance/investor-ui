@@ -1,20 +1,19 @@
 <div class="relative">
-  <a
-    class="block"
-    href="#pablo"
-    bind:this={btnDropdownRef}
-    onclick={toggleDropdown}
-  >
-    <div class="items-center flex">
-      <span class="inline-flex items-center justify-center rounded-full">
-        <img
-          alt="..."
-          class="w-10 rounded-full align-middle border-none aspect-square"
-          src={image}
-        />
+  <button class="block" bind:this={btnDropdownRef} onclick={toggleDropdown}>
+    <span class="items-center flex">
+      <span
+        class="inline-flex items-center justify-center rounded-full shadow-sm"
+      >
+        {#if image}
+          <img
+            alt="..."
+            class="h-12 rounded-full aspect-square glass-effect"
+            src={image}
+          />
+        {/if}
       </span>
-    </div>
-  </a>
+    </span>
+  </button>
   <div
     bind:this={popoverDropdownRef}
     class="z-50 py-2 list-none text-left rounded min-w-48 glass-effect dark:bg-opacity-90 bg-opacity-95 {dropdownPopoverShow

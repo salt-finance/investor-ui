@@ -8,7 +8,7 @@
           <img
             alt="..."
             src={team2}
-            class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+            class="h-12 rounded-full aspect-square glass-effect"
           />
         </div>
       </div>
@@ -42,9 +42,7 @@
       </div>
     </div>
     <div class="text-center mt-12">
-      <h3
-        class="text-xl font-semibold leading-normal mb-2 text-neutral-700 mb-2"
-      >
+      <h3 class="text-xl font-semibold leading-normal mb-2 text-neutral-700">
         Jenna Stones
       </h3>
       <div
