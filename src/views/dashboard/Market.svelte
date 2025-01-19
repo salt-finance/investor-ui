@@ -2,13 +2,13 @@
   <div class="flex w-full justify-between items-center flex-wrap gap-2">
     <span class="page-title"> Market </span>
     <BaseInput
-      baseClass="md:justify-self-end"
+      baseClass="md:justify-self-end w-full sm:w-fit"
       placeholder="Search stock"
       prependIcon="search"
     ></BaseInput>
   </div>
 
-  <h2 class="text-xl my-4">Sectors</h2>
+  <h2 class="page-subtitle my-4">Sectors</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 flex-wrap">
     {#each sectors as sector}
       <SectorCard {sector} />

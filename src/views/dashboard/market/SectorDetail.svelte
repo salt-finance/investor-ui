@@ -1,15 +1,13 @@
 {#if sector !== undefined}
-  <h1 class="page-title mb-2">{sector.title}</h1>
-  {#if sector.description !== undefined}
-    <span class="body-text dark-light-text lg:w-2/3">
-      {sector.description}
-    </span>
-  {/if}
-  <div
-    class="flex-col flex w-full mt-4 motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px]"
-  >
+  <div class="flex-col flex w-full motion-preset-focus p-2">
+    <span class="page-title mb-4">{sector.title}</span>
+    {#if sector.description !== undefined}
+      <span class="body-text dark-light-text lg:w-2/3">
+        {sector.description}
+      </span>
+    {/if}
     {#if sectorSecurites.length > 0}
-      <h2 class="text-xl mb-4">Securities</h2>
+      <span class="page-subtitle my-4">Securities</span>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 flex-wrap"
       >

@@ -1,9 +1,9 @@
 <div class="form-group {baseClass}">
-  {#if label !== ''}
+  {#if label !== undefined}
     <label class="mb-2 block" for={id}>{label}</label>
   {/if}
   <div
-    class="flex w-full gap-2 card bg-opacity-50 px-3 items-center justify-center content-center"
+    class="flex w-full gap-2 card bg-opacity-50 px-3 justify-start items-center md:justify-center"
   >
     {#if prependIcon !== undefined}
       <i

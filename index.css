@@ -239,7 +239,12 @@ div.skiptranslate > iframe {
     }
 
     .page-title {
-        @apply text-2xl font-extralight;
+        @apply text-xl sm:text-2xl font-extralight;
+
+    }
+
+    .page-subtitle {
+        @apply text-lg;
     }
 
     dialog {
