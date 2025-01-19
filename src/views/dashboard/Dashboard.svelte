@@ -46,7 +46,7 @@
     </div>
 
     <div
-      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-translate-x-in-[-30%] motion-translate-y-in-[40%] motion-opacity-in-[0%] motion-blur-in-[20px] motion-delay-700"
+      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-translate-x-in-[-30%] motion-translate-y-in-[40%] motion-opacity-in-[0%]"
     >
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">

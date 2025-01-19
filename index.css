@@ -69,15 +69,15 @@ html {
 }
 
 
-.body-text{
+.body-text {
     @apply text-opacity-50 dark:text-opacity-90;
 }
 
 body {
     overflow: scroll;
-    --accent: #00bcffff;
-    --accent-dark: #0b237f;
-    --accent-dark-saturated: #0038ff;
+    --accent: 0, 188, 255;
+    --accent-dark: 50, 94, 252;
+    --accent-dark-saturated: 50, 94, 252;
 
     scroll-behavior: smooth;
 
@@ -203,10 +203,11 @@ div[data-popper-arrow] {
     width: 100%;
     border: none !important;
     @apply bg-transparent text-inherit !important;
-    >div{
+
+    > div {
         width: 90%;
         display: block !important;
-    
+
     }
 }
 
@@ -217,7 +218,7 @@ div[data-popper-arrow] {
 .goog-te-gadget select {
     width: 100%;
 
-    @apply pr-2 py-2 mx-2 m-0 border-0 bg-transparent 
+    @apply pr-2 py-2 mx-2 m-0 border-0 bg-transparent
     rounded-sm text-inherit hover:bg-blue-600 hover:text-white  !important;
 }
 
@@ -225,7 +226,7 @@ body {
     top: 0px !important;
 }
 
-div.skiptranslate  > iframe{
+div.skiptranslate > iframe {
     display: none;
     visibility: hidden !important;
     height: 0px;
@@ -274,6 +275,7 @@ div.skiptranslate  > iframe{
     }
 
     .dark-light-bg {
+
         @apply bg-accent dark:bg-accent-dark;
     }
 

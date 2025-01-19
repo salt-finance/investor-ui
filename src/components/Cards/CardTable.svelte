@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         {#each data as row}
-          <tr class="hover:dark-light-bg">
+          <tr class="hover:bg-accent/30 dark:hover:bg-accent-dark/30">
             {#each columns as column}
               <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}
