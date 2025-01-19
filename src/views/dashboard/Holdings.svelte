@@ -1,7 +1,7 @@
 {#snippet actionSnippet(value: iSecurity)}
   <TableDropdown {value} />
 {/snippet}
-<div class="motion-preset-focus w-full block">
+<div class="motion-preset-fade w-full block">
   <span class="page-title m-4 block">
     Holdings
     {#if data.length > 0}
@@ -41,7 +41,7 @@
 <script lang="ts">
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import CardTable, {
-    type TableColumn
+      type TableColumn
   } from '../../components/Cards/CardTable.svelte';
 
   import holdings from 'data/holdings.json';

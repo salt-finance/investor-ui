@@ -3,7 +3,7 @@
 <div class="w-full">
   <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
     <div
-      class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-focus"
+      class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade"
     >
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div
-      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-preset-focus"
+      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-preset-fade"
     >
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
@@ -46,7 +46,7 @@
     </div>
 
     <div
-      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-preset-focus"
+      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-preset-fade"
     >
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div
-      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-preset-focus"
+      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-preset-fade"
     >
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
@@ -106,9 +106,9 @@
   import Activity from './Activity.svelte';
   import Holdings from './Holdings.svelte';
 
+  import { onMount, type SvelteComponent } from 'svelte';
   import { fly } from 'svelte/transition';
   import { staggerdTransition } from 'utils/animationTools';
-  import { onMount, type SvelteComponent } from 'svelte';
 
   let lineChart: SvelteComponent;
 

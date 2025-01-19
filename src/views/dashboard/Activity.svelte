@@ -1,7 +1,7 @@
 {#snippet actionSnippet(value: Record<string, any>)}
   <TableDropdown {value} />
 {/snippet}
-<div class="motion-preset-focus w-full block">
+<div class="motion-preset-fade w-full block">
   <span class="page-title m-4 block">
     Activity
     {#if data.length > 0}
@@ -32,7 +32,7 @@
 
 <script lang="ts">
   import CardTable, {
-    type TableColumn
+      type TableColumn
   } from 'components/Cards/CardTable.svelte';
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import { MediaQuery } from 'svelte/reactivity';

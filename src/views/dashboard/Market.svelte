@@ -1,4 +1,4 @@
-<div class="w-full motion-preset-focus">
+<div class="w-full motion-preset-fade">
   <div class="flex w-full justify-between items-start flex-wrap gap-2 p-4">
     <span class="page-title"> Market </span>
     <BaseInput
@@ -19,9 +19,9 @@
 <script lang="ts">
   import BaseInput from 'components/Inputs/BaseInput.svelte';
 
+  import SectorCard from 'components/SectorCard.svelte';
   import sectorsData from 'data/sectors.json';
   import { type iSector, Sector } from 'models/sector';
-  import SectorCard from 'components/SectorCard.svelte';
 
   const sectors: iSector[] = Sector.fromJsonList(sectorsData);
 </script>

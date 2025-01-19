@@ -1,5 +1,5 @@
 {#if sector !== undefined}
-  <div class="flex-col flex w-full motion-preset-focus p-2">
+  <div class="flex-col flex w-full motion-preset-fade p-2">
     <span class="page-title mb-4">{sector.title}</span>
     {#if sector.description !== undefined}
       <span class="body-text dark-light-text lg:w-2/3">
