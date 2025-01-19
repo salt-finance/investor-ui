@@ -103,11 +103,8 @@
       }
     };
 
-    let { Chart, ArcElement, PieController, Tooltip } = await import(
-      'chart.js/auto'
-    );
+    let { Chart } = await import('chart.js/auto');
 
-    Chart.register([PieController, ArcElement, Tooltip]);
     Chart.defaults.color = '#999';
     Chart.defaults.font.family = 'poppins';
 

@@ -122,10 +122,7 @@
       }
     };
 
-    const { Chart, ArcElement, DoughnutController } = await import(
-      'chart.js/auto'
-    );
-    Chart.register([DoughnutController, ArcElement]);
+    const { Chart } = await import('chart.js/auto');
 
     chart = new Chart<'doughnut'>('doughnut-chart', config);
     chart.options = options(mobile);

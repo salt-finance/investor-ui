@@ -152,10 +152,7 @@
   // library that creates chart objects in page
   // init chart
   onMount(async () => {
-    let { Chart, BarElement, BarController, Tooltip } = await import(
-      'chart.js/auto'
-    );
-    Chart.register([BarElement, BarController, Tooltip]);
+    let { Chart } = await import('chart.js/auto');
 
     chart = new Chart('bar-chart', config);
 
