@@ -49,6 +49,19 @@ Danger - Cornell red - #b91c1c - red-700 */
 
 }
 
+
+.logo {
+    background-image: url("/assets/img/logos/color-black.webp");
+    filter: opacity(0.9);
+    min-width: 100px;
+    margin-right: 10px;
+    object-fit: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 2;
+}
+
 html {
     min-height: 100vh;
     height: auto !important;
@@ -62,6 +75,15 @@ body {
     --accent-dark-saturated: #0038ff;
 
     scroll-behavior: smooth;
+
+    &.dark {
+        .logo {
+            background-image: url("/assets/img/logos/color-white.webp");
+            min-width: 100px;
+
+
+        }
+    }
 }
 
 button {

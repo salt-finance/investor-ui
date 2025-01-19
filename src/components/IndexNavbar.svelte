@@ -5,16 +5,17 @@
   <div
     class="px-0 flex items-center justify-between flex-wrap w-full flex-grow"
   >
-    <span class="flex items-center">
+    <div class="flex items-center">
       <a
         class="text-2xl tracking-wide font-extralight leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
         href="/"
+        aria-label="logo"
         use:link
       >
-        Salt
+        <div class="logo"></div>
       </a>
       <DarkModeToggle />
-    </span>
+    </div>
     <div
       class="overflow-hidden lg:flex items-center order-3 transition-all ease-in-out duration-200 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
         ? 'h-auto'
