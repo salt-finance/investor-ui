@@ -50,7 +50,7 @@
   // core components
 
   const image =
-    'https://salt-finance.github.io/investor-ui/assets/img/team-2-800x800.webp';
+    'https://salt-finance.github.io/investor-ui/assets/img/user.webp';
 
   let dropdownPopoverShow = $state(false);
 
