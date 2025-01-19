@@ -1,5 +1,5 @@
 <div class="w-full motion-preset-focus">
-  <div class="flex w-full justify-between items-center flex-wrap gap-2">
+  <div class="flex w-full justify-between items-start flex-wrap gap-2 p-4">
     <span class="page-title"> Market </span>
     <BaseInput
       baseClass="md:justify-self-end w-full sm:w-fit"
@@ -8,7 +8,7 @@
     ></BaseInput>
   </div>
 
-  <h2 class="page-subtitle my-4">Sectors</h2>
+  <h2 class="page-subtitle m-4 mt-0">Sectors</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 flex-wrap">
     {#each sectors as sector}
       <SectorCard {sector} />

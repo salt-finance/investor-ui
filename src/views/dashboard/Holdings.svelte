@@ -2,7 +2,7 @@
   <TableDropdown {value} />
 {/snippet}
 <div class="motion-preset-focus w-full block">
-  <span class="page-title my-4 block">
+  <span class="page-title m-4 block">
     Holdings
     {#if data.length > 0}
       ({data.length})
