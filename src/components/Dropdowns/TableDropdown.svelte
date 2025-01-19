@@ -11,44 +11,46 @@
     bind:this={popoverDropdownRef}
     class={dropdownPopoverShow ? 'block' : 'hidden'}
   >
-    <div data-popper-arrow></div>
-    <div
-      class="card bg-opacity-100 shadow-none text-base z-50 flex flex-col text-left rounded min-w-48"
-    >
-      <button
-        class="hover:dark-light-bg hover:text-white py-2 px-4 whitespace-nowrap text-left"
-        onclick={(e) => {
-          e.preventDefault();
-          tearsheetModal?.show();
-        }}
+    {#if dropdownPopoverShow}
+      <div data-popper-arrow></div>
+      <div
+        class="card bg-opacity-100 shadow-none text-base z-50 flex flex-col text-left rounded min-w-48"
       >
-        View security details
-      </button>
-      <button
-        class="hover:bg-emerald-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
-        onclick={(e) => {
-          e.preventDefault();
-          buy = true;
-          tradeModal?.show();
-          toggleDropdown(e);
-        }}
-      >
-        Buy {value?.symbol}
-      </button>
-      {#if value?.owned}
         <button
+          class="hover:dark-light-bg hover:text-white py-2 px-4 whitespace-nowrap text-left"
           onclick={(e) => {
             e.preventDefault();
-            buy = false;
+            tearsheetModal?.show();
+          }}
+        >
+          View security details
+        </button>
+        <button
+          class="hover:bg-emerald-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
+          onclick={(e) => {
+            e.preventDefault();
+            buy = true;
             tradeModal?.show();
             toggleDropdown(e);
           }}
-          class="hover:bg-yellow-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
         >
-          Sell {value?.symbol}
+          Buy {value?.symbol}
         </button>
-      {/if}
-    </div>
+        {#if value?.owned}
+          <button
+            onclick={(e) => {
+              e.preventDefault();
+              buy = false;
+              tradeModal?.show();
+              toggleDropdown(e);
+            }}
+            class="hover:bg-yellow-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
+          >
+            Sell {value?.symbol}
+          </button>
+        {/if}
+      </div>
+    {/if}
   </div>
 </div>
 <Trade bind:this={tradeModal} {buy} {value} />

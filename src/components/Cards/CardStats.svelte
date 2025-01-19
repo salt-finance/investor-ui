@@ -27,7 +27,7 @@
 
             {statPercent}%
           </span>
-          <span class="whitespace-nowrap text-xs">{statDescripiron}</span>
+          <span class="whitespace-nowrap">{statDescripiron}</span>
         </p>
       {/if}
     </div>
