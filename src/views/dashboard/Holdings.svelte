@@ -8,9 +8,9 @@
       ({data.length})
     {/if}
   </span>
-  <div class="glass-effect">
+  <div>
     {#if mobile.current}
-      <div class="flex flex-col">
+      <div class="flex flex-col glass-effect">
         {#each data as security}
           <div class="flex w-full justify-between p-4">
             <div class="flex gap-2 items-center">

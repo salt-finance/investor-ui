@@ -224,8 +224,15 @@ div.skiptranslate > iframe {
     display: none;
     visibility: hidden !important;
     height: 0px;
+
+
 }
 
+table {
+    thead {
+        border: none;
+    }
+}
 
 @layer components {
 
@@ -315,7 +322,9 @@ div.skiptranslate > iframe {
 
     .card {
 
-        @apply dark:bg-neutral-900 dark:bg-opacity-40 rounded-xl shadow-inner dark:shadow-black/10 shadow-slate-950/10 bg-slate-50 border border-white/80 dark:border-white/10;
+        @apply dark:bg-neutral-900 dark:bg-opacity-40 rounded-xl shadow-inner dark:shadow-black/10 shadow-slate-950/5 bg-slate-50 border border-white/80 dark:border-neutral-800/80;
+        --tw-shadow-colored: inset 0px 0px 10px 5px var(--tw-shadow-color);
+        clip-path: border-box;
 
     }
 

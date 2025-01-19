@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full overflow-x-hidden lg:overflow-visible">
+<div class="flex flex-col w-full overflow-hidden card">
   {#if title !== undefined}
     <div class="rounded-t mb-0 border-0 p-6">
       <h3 class="font-semibold text-lg capitalize">
@@ -10,11 +10,9 @@
     </div>
   {/if}
   {#if data.length > 0}
-    <table class="items-center w-full bg-transparent border-collapse">
-      <thead>
-        <tr
-          class="card uppercase whitespace-nowrap font-semibold text-left shadow-none"
-        >
+    <table class="items-center w-full">
+      <thead class="overflow-hidden bg-accent/20 dark:bg-accent-dark/20">
+        <tr class="uppercase whitespace-nowrap font-semibold text-left">
           {#each columns as column}
             <th
               class="py-4 pl-4 {column.headerClasses}"
