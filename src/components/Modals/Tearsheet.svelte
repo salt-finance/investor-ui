@@ -32,7 +32,7 @@
       >
         <div class="flex items-center gap-4">
           <img
-            class="rounded-full border-none aspect-square items-center h-20"
+            class="rounded-full border-none aspect-square h-12"
             src={security.logoUrl}
             alt="logo"
           />

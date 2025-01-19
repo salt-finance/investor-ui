@@ -13,18 +13,23 @@
       <div class="flex flex-col glass-effect">
         {#each data as security}
           <div class="flex w-full justify-between p-4">
-            <div class="flex gap-2 items-center">
+            <div class="flex gap-4 items-center">
               <img
-                width="48"
-                height="48"
-                class="rounded-full align-middle border-none max-w-fit object-cover h-min"
+                class="rounded-full border-none aspect-square h-12"
                 src={security.logoUrl}
                 alt="logo"
               />
 
               <div class="flex flex-col">
-                <span>{security.name} <b>{security.symbol}</b></span>
-                <span>{currencyFormat()(security.price ?? 0)}</span>
+                <span>
+                  {security.name}
+                  &nbsp;
+                  <span class="font-semibold text-sm">{security.symbol}</span
+                  ></span
+                >
+                <span class="body-text dark-light-text"
+                  >{currencyFormat()(security.price ?? 0)}</span
+                >
               </div>
             </div>
             {@render actionSnippet(security)}
@@ -41,7 +46,7 @@
 <script lang="ts">
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import CardTable, {
-      type TableColumn
+    type TableColumn
   } from '../../components/Cards/CardTable.svelte';
 
   import holdings from 'data/holdings.json';

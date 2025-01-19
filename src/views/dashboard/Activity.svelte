@@ -15,8 +15,8 @@
           <div class="flex w-full justify-between p-4">
             <div class="flex gap-2">
               <div class="flex flex-col">
-                <span>{security.Date}</span>
-                <span>{security.name}</span>
+                <span class="dark-light-text body-text">{security.Date}</span>
+                <span class="dark-light-text body-text">{security.name}</span>
                 <span>{security.Transaction}</span>
               </div>
             </div>
@@ -32,7 +32,7 @@
 
 <script lang="ts">
   import CardTable, {
-      type TableColumn
+    type TableColumn
   } from 'components/Cards/CardTable.svelte';
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import { MediaQuery } from 'svelte/reactivity';
