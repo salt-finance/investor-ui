@@ -1,32 +1,33 @@
 {#snippet actionSnippet(value: Record<string, any>)}
   <TableDropdown {value} />
 {/snippet}
-<div class="w-full glass-effect" in:fly|global={staggerdTransition(1)}>
-  {#if mobile.current}
-    <h3 class="font-semibold text-lg capitalize m-4">
-      Activity
-      {#if data.length > 0}
-        ({data.length})
-      {/if}
-    </h3>
-
-    <div class="flex flex-col">
-      {#each data as security}
-        <div class="flex w-full justify-between p-4">
-          <div class="flex gap-2">
-            <div class="flex flex-col">
-              <span>{security.Date}</span>
-              <span>{security.name}</span>
-              <span>{security.Transaction}</span>
+<div class="motion-preset-focus w-full block">
+  <span class="page-title my-4 block">
+    Activity
+    {#if data.length > 0}
+      ({data.length})
+    {/if}
+  </span>
+  <div class="glass-effect">
+    {#if mobile.current}
+      <div class="flex flex-col">
+        {#each data as security}
+          <div class="flex w-full justify-between p-4">
+            <div class="flex gap-2">
+              <div class="flex flex-col">
+                <span>{security.Date}</span>
+                <span>{security.name}</span>
+                <span>{security.Transaction}</span>
+              </div>
             </div>
+            {@render actionSnippet(security)}
           </div>
-          {@render actionSnippet(security)}
-        </div>
-      {/each}
-    </div>
-  {:else}
-    <CardTable {columns} {data} title={'Activity'} {actionSnippet} />
-  {/if}
+        {/each}
+      </div>
+    {:else}
+      <CardTable {columns} {data} {actionSnippet} />
+    {/if}
+  </div>
 </div>
 
 <script lang="ts">
@@ -34,8 +35,6 @@
     type TableColumn
   } from 'components/Cards/CardTable.svelte';
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
-  import { fly } from 'svelte/transition';
-  import { staggerdTransition } from 'utils/animationTools';
   import { MediaQuery } from 'svelte/reactivity';
 
   let mobile = new MediaQuery('max-width: 1024px');

@@ -12,7 +12,7 @@
               Total value over time
             </p>
             <h2
-              class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
+              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
               Performance
             </h2>
@@ -35,7 +35,7 @@
               Portfolio distribution by category
             </p>
             <h2
-              class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
+              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
               Spread
             </h2>
@@ -55,7 +55,7 @@
               Performance vs Previous year
             </p>
             <h2
-              class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
+              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
               Comparison
             </h2>
@@ -78,7 +78,7 @@
               Average profit to loss ratio
             </p>
             <h2
-              class="text-neutral-500 dark:text-neutral-200 text-2xl sm:text-3xl md:text-4xl font-extralight"
+              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
               Profit/Loss
             </h2>

@@ -1,46 +1,41 @@
 {#snippet actionSnippet(value: iSecurity)}
   <TableDropdown {value} />
 {/snippet}
-<div class="w-full glass-effect" in:fly|global={staggerdTransition(1)}>
-  {#if mobile.current}
-    <h3 class="font-semibold text-lg capitalize m-4">
-      Holdings
-      {#if data.length > 0}
-        ({data.length})
-      {/if}
-    </h3>
+<div class="motion-preset-focus w-full block">
+  <span class="page-title my-4 block">
+    Holdings
+    {#if data.length > 0}
+      ({data.length})
+    {/if}
+  </span>
+  <div class="glass-effect">
+    {#if mobile.current}
+      <div class="flex flex-col">
+        {#each data as security}
+          <div class="flex w-full justify-between p-4">
+            <div class="flex gap-2 items-center">
+              <img
+                width="48"
+                height="48"
+                class="rounded-full align-middle border-none max-w-fit object-cover h-min"
+                src={security.logoUrl}
+                alt="logo"
+              />
 
-    <div class="flex flex-col">
-      {#each data as security}
-        <div class="flex w-full justify-between p-4">
-          <div class="flex gap-2 items-center">
-            <img
-              width="48"
-              height="48"
-              class="rounded-full align-middle border-none max-w-fit object-cover h-min"
-              src={security.logoUrl}
-              alt="logo"
-            />
-
-            <div class="flex flex-col">
-              <span>{security.name} <b>{security.symbol}</b></span>
-              <span>{currencyFormat()(security.price ?? 0)}</span>
+              <div class="flex flex-col">
+                <span>{security.name} <b>{security.symbol}</b></span>
+                <span>{currencyFormat()(security.price ?? 0)}</span>
+              </div>
             </div>
+            {@render actionSnippet(security)}
           </div>
-          {@render actionSnippet(security)}
-        </div>
-      {/each}
-    </div>
-  {:else}
-    <CardTable
-      {actionSnippet}
-      {columns}
-      {data}
-      sortIndex={2}
-      title="Holdings"
-    />
-  {/if}
-  <div></div>
+        {/each}
+      </div>
+    {:else}
+      <CardTable {actionSnippet} {columns} {data} sortIndex={2} />
+    {/if}
+    <div></div>
+  </div>
 </div>
 
 <script lang="ts">
@@ -51,8 +46,6 @@
 
   import holdings from 'data/holdings.json';
   import { Security, type iSecurity } from 'models/security';
-  import { fly } from 'svelte/transition';
-  import { staggerdTransition } from 'utils/animationTools';
 
   const data: iSecurity[] = [];
 
@@ -78,7 +71,6 @@
       sortable: true,
       format: 'currency'
     },
-    { key: 'dayChangePercent', header: 'Gain/Loss(%)', sortable: true },
     { key: 'type', header: 'Type', sortable: true },
     { key: 'sector', header: 'Sector', sortable: true },
     {

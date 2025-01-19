@@ -1,4 +1,4 @@
-<div class="w-full" in:fly|global={staggerdTransition(1)}>
+<div class="w-full motion-preset-focus">
   <div class="flex w-full justify-between items-center flex-wrap gap-2">
     <span class="page-title"> Market </span>
     <BaseInput
@@ -17,8 +17,6 @@
 </div>
 
 <script lang="ts">
-  import { fly } from 'svelte/transition';
-  import { staggerdTransition } from 'utils/animationTools';
   import BaseInput from 'components/Inputs/BaseInput.svelte';
 
   import sectorsData from 'data/sectors.json';

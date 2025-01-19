@@ -1,12 +1,14 @@
 <div class="flex flex-col w-full overflow-x-hidden lg:overflow-visible">
-  <div class="rounded-t mb-0 border-0 p-6">
-    <h3 class="font-semibold text-lg capitalize">
-      {title}
-      {#if data.length > 0}
-        ({data.length})
-      {/if}
-    </h3>
-  </div>
+  {#if title !== undefined}
+    <div class="rounded-t mb-0 border-0 p-6">
+      <h3 class="font-semibold text-lg capitalize">
+        {title}
+        {#if data.length > 0}
+          ({data.length})
+        {/if}
+      </h3>
+    </div>
+  {/if}
   {#if data.length > 0}
     <table class="items-center w-full bg-transparent border-collapse">
       <thead>
@@ -85,8 +87,7 @@
   } = $props<{
     data: any[];
     columns: TableColumn<T>[];
-    title: string;
-
+    title?: string;
     actionSnippet?: Snippet<TableColumn<T>[]>;
     sortIndex?: number;
   }>();

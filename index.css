@@ -234,9 +234,12 @@ div.skiptranslate > iframe {
         @apply text-neutral-700 dark:text-neutral-100 bg-gradient-to-br dark:bg-gradient-to-br to-neutral-100 from-accent from-0% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
     }
 
+    .card-title {
+        @apply text-3xl font-extralight;
+    }
 
     .page-title {
-        @apply text-3xl font-extralight motion-preset-blur-up-lg motion-duration-500;
+        @apply text-2xl font-extralight;
     }
 
     dialog {
