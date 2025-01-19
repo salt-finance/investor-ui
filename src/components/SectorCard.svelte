@@ -5,7 +5,7 @@
     <span class="text-lg font-semibold">{sector.title}</span>
   </div>
   {#if sector.description !== undefined}
-    <span class="dark-light-text body-text h-full">
+    <span class="dark-light-text body-text">
       {sector.description}
     </span>
   {/if}

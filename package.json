@@ -5,7 +5,7 @@
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {
     "dev": "npm-run-all --parallel check vite build:tailwind-dev ",
-    "vite": "vite --host --strictPort && openChrome",
+    "vite": "vite --host --strictPort --open",
     "build": "vite build",
     "preview": "vite preview",
     "open:chrome": "open -na 'Google Chrome' --args --auto-open-devtools-for-tabs --incognito 'http://localhost:4040/investor-ui'",

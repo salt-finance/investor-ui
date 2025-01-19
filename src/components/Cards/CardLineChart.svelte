@@ -196,10 +196,7 @@
   let chartCanvas: HTMLCanvasElement;
 
   export async function show() {
-    let { Chart, Filler, LineController, LineElement, PointElement } =
-      await import('chart.js/auto');
-
-    Chart.register([LineController, PointElement, Filler, LineElement]);
+    let { Chart } = await import('chart.js/auto');
 
     chart = new Chart(chartCanvas, config);
 
