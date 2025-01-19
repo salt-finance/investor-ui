@@ -21,8 +21,9 @@
     startingValue = 61100.34,
     range = 100
   } = $props<{
-    dataLength: number;
-    startingValue: number;
+    dataLength?: number;
+    startingValue?: number;
+    range?: number;
   }>();
 
   export function latest() {
@@ -173,7 +174,7 @@
   };
 
   const setData = (date: Date) => {
-    let values = generateData(2, latestValue);
+    let values = generateData(2);
 
     let value = values[1];
 
