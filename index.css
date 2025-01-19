@@ -14,17 +14,17 @@ Action - Azure - #3B82F6 - blue-500
 Danger - Cornell red - #b91c1c - red-700 */
 
 
-
-
 .material-symbols-outlined {
     user-select: none;
     font-size: inherit;
 
     font-variation-settings: 'FILL' 1,
     'wght' 400,
-    'GRAD' 200
+    'GRAD' 200;
+    width: 1em;
+    aspect-ratio: 1;
+    overflow: hidden;
 }
-
 
 
 :root {
