@@ -1,0 +1,100 @@
+/*Navbar*/
+.navbar-fixed {
+    position: fixed;
+    max-width: inherit;
+    margin: inherit;
+}
+
+
+/*Alerts*/
+
+.alert {
+    @apply card p-4 block rounded-lg;
+
+    &.alert-error {
+        @apply border-red-500;
+    }
+}
+
+
+/*Popover*/
+.glass-effect:has(div[data-popper-placement]) {
+    @apply z-50;
+}
+
+div[data-popper-placement] {
+    &[data-popper-placement^='top'] {
+        div[data-popper-arrow] {
+            bottom: -5px;
+        }
+    }
+
+    &[data-popper-placement^='right'] {
+        div[data-popper-arrow] {
+            left: -5px;
+        }
+    }
+
+    &[data-popper-placement^='left'] {
+        div[data-popper-arrow] {
+            right: -5px;
+        }
+    }
+}
+
+div[data-popper-arrow] {
+    visibility: hidden;
+    width: 10px;
+    height: 10px;
+
+    &::after {
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        visibility: visible;
+        content: '';
+        transform: rotate(45deg);
+        @apply glass-effect rounded-none bg-opacity-100;
+    }
+}
+
+/*Popover End*/
+
+
+/*Google transalate*/
+.goog-te-gadget {
+    width: 100%;
+    border: none !important;
+    @apply bg-transparent text-inherit !important;
+
+    > div {
+        width: 90%;
+        display: block !important;
+
+    }
+}
+
+#google_translate_element {
+    @apply mx-2;
+}
+
+.goog-te-gadget select {
+    width: 100%;
+
+    @apply pr-2 py-2 mx-2 m-0 border-0 bg-transparent
+    rounded-sm text-inherit hover:bg-blue-600 hover:text-white  !important;
+}
+
+body {
+    top: 0px !important;
+}
+
+div.skiptranslate > iframe {
+    display: none;
+    visibility: hidden !important;
+    height: 0px;
+
+}
+
+
+/*Google translate end*/

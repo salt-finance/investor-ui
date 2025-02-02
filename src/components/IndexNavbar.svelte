@@ -1,49 +1,59 @@
-<nav
-  bind:this={navRef}
-  class="flex flex-col p-4 glass-effect z-10 transition-transform"
->
-  <div
-    class="px-0 flex items-center justify-between flex-wrap w-full flex-grow"
+<div class="z-20">
+  <nav
+    bind:this={navRef}
+    class="flex flex-col p-[14px] glass-effect z-10 transition-transform"
   >
-    <div class="flex items-center">
-      <a
-        class="text-2xl tracking-wide font-extralight leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
-        href="/"
-        aria-label="logo"
-        use:link
-      >
-        <div class="logo"></div>
-      </a>
-      <DarkModeToggle />
-    </div>
     <div
-      class="overflow-hidden lg:flex items-center order-3 transition-all ease-in-out duration-200 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
-        ? 'h-auto'
-        : 'h-px lg:h-auto'}"
-      class:justify-center={isLoggedIn}
-      class:justify-end={!isLoggedIn}
+      class="px-0 flex items-center justify-between flex-wrap w-full flex-grow min-h-[50px]"
     >
-      <IndexDropdown {isLoggedIn} />
-    </div>
-    <div class="flex flex-shrink justify-between">
-      {#if isLoggedIn}
-        <UserDropdown />
-      {/if}
-      <button
-        aria-label="open menu"
-        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-        onclick={setNavbarOpen}
-        type="button"
+      <div class="flex items-center">
+        <a
+          class="text-2xl tracking-wide font-extralight leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
+          href="/"
+          aria-label="logo"
+          use:link
+        >
+          <div class="logo"></div>
+        </a>
+      </div>
+      <div
+        class="overflow-hidden lg:flex items-center order-3 transition-all ease-in-out duration-200 lg:order-none w-full lg:w-auto flex-grow {navbarOpen
+          ? 'h-auto'
+          : 'h-px lg:h-auto'}"
+        class:justify-center={isLoggedIn}
+        class:justify-end={!isLoggedIn}
       >
-        {#if navbarOpen === false}
-          <span class="material-symbols-outlined skiptranslate">menu</span>
-        {:else}
-          <span class="material-symbols-outlined skiptranslate">close</span>
+        <div class="lg:hidden flex">
+          <DarkModeToggle />
+        </div>
+        <IndexDropdown {isLoggedIn} />
+      </div>
+
+      <div class="flex flex-shrink justify-between gap-4">
+        <div class="lg:flex hidden">
+          <DarkModeToggle />
+        </div>
+
+        <button
+          aria-label="open menu"
+          class="cursor-pointer text-xl leading-none py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+          onclick={setNavbarOpen}
+          type="button"
+        >
+          {#if navbarOpen === false}
+            <span class="material-symbols-outlined skiptranslate">menu</span>
+          {:else}
+            <span class="material-symbols-outlined skiptranslate">close</span>
+          {/if}
+        </button>
+
+        {#if isLoggedIn}
+          <UserDropdown />
         {/if}
-      </button>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
 
 <script lang="ts">
   import { link } from 'svelte-spa-router';

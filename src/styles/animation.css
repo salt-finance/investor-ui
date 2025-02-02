@@ -1,0 +1,51 @@
+@keyframes motion-hide-scale {
+
+    40% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0%);
+
+    }
+
+}
+
+@keyframes motion-hide {
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/*Motion animations*/
+
+.motion-preset-expand {
+    transform-origin: 50% 100%;
+
+
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+
+}
+
+
+.motion-hide-opacity {
+    animation-fill-mode: forwards;
+    animation-duration: 300ms;
+    animation-timing-function: ease;
+    animation-delay: 100ms;
+    animation-name: motion-hide;
+}
+
+.motion-hide {
+    transform-origin: 50% 100%;
+    animation-fill-mode: forwards;
+    animation-duration: 300ms;
+    /* animation-timing-function: linear; */
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-name: motion-hide-scale;
+}
+
+

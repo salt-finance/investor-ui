@@ -1,0 +1,56 @@
+.btn-wide {
+    @apply py-4 rounded-lg font-bold text-center text-white;
+}
+
+.btn-buy {
+    @apply btn-wide bg-emerald-600 hover:bg-emerald-800;
+}
+
+.btn-tearsheet {
+    @apply btn-wide dark-light-bg;
+}
+
+.btn-sell {
+    @apply btn-wide bg-yellow-600 hover:bg-yellow-800;
+}
+
+.btn-icon {
+    &:not([disabled]) {
+        @apply bg-blue-500 hover:bg-blue-900 text-white;
+    }
+
+    @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none;
+}
+
+
+.base-button:not([disabled]):hover,
+.base-button:not([disabled]):focus,
+.base-button:not([disabled]):active {
+    @apply bg-accent dark:bg-accent-dark border-accent dark:border-accent-dark;
+}
+
+.base-button {
+    @apply rounded px-12 py-3 font-semibold transition-all duration-300 shadow-none disabled:opacity-50;
+}
+
+.primary-button {
+    @apply base-button bg-blue-500 text-white;
+}
+
+.primary-button:not([disabled]) {
+    @apply hover:text-neutral-950 dark:hover:text-white;
+}
+
+
+.secondary-button {
+    @apply base-button border-accent border-2 bg-white dark:bg-transparent;
+}
+
+.secondary-button:not([disabled]) {
+    @apply hover:text-neutral-950 dark:hover:text-white;
+}
+
+
+button {
+    user-select: none;
+}

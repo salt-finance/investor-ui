@@ -1,0 +1,107 @@
+@import url("animation.css");
+@import url("button.css");
+@import url("components.css");
+@import url("icon.css");
+@import url("input.css");
+@import url("table.css");
+@import url("text.css");
+@import url("util.css");
+
+
+/* Defaults For HTML Tags*/
+
+
+html {
+    min-height: 100vh;
+    height: auto !important;
+    overflow: hidden;
+}
+
+body {
+    overflow: scroll;
+    --accent: 0, 188, 255;
+    --accent-dark: 50, 94, 252;
+    --accent-dark-saturated: 50, 94, 252;
+
+    scroll-behavior: smooth;
+
+    .logo {
+        background-image: url("./assets/img/logos/color-black.webp");
+        filter: opacity(0.9);
+        min-width: 100px;
+        margin-right: 10px;
+        object-fit: contain;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        aspect-ratio: 2;
+    }
+
+    &.dark {
+        .logo {
+            background-image: url("./assets/img/logos/color-white.webp");
+            min-width: 100px;
+
+
+        }
+    }
+}
+
+
+.body-colors {
+    @apply text-neutral-700 dark:text-neutral-100 bg-gradient-to-br dark:bg-gradient-to-br to-neutral-100 from-accent from-0% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
+}
+
+
+a {
+    &.active {
+        p {
+            @apply underline;
+        }
+
+        @apply text-blue-500 dark:text-blue-300;
+    }
+
+    &:hover {
+        p {
+            @apply underline;
+        }
+    }
+
+    @apply hover:text-blue-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
+}
+
+
+dialog {
+    place-content: center;
+    display: none;
+    @apply h-screen;
+
+    @apply place-items-end md:place-items-start;
+
+    &[open] {
+        display: flex;
+    }
+
+    @apply bg-transparent w-screen dark-light-text;
+
+    > div {
+        @apply shadow-xl;
+    }
+
+    &:has(.motion-hide) {
+        &::backdrop {
+            @apply motion-hide-opacity;
+        }
+    }
+
+    &::backdrop {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        @apply from-30%  from-transparent to-black/70 dark:to-black/100 vignette;
+    }
+}
+
+
+
+

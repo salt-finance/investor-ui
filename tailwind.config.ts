@@ -65,7 +65,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Dm Sans', 'ui-sans-serif', 'system-ui'],
-        serif: ['Libre Bodoni', 'ui-serif', 'Georgia'],
+        serif: ['Dm Serif Display', 'ui-serif', 'Georgia'],
         body: ['"Dm Sans"', 'ui-sans-serif']
       },
       keyframes: {

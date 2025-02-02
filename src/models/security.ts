@@ -1,12 +1,12 @@
 import { fromJson, fromJsonList } from 'models/parser';
 
 export class Security {
-  static fromJson = (json: Record<string, any>) => fromJson<iSecurity>(json);
+  static fromJson = (json: Record<string, any>) => fromJson<ISecurity>(json);
   static fromJsonList = (jsonList: Record<string, any>[]) =>
-    fromJsonList<iSecurity>(jsonList);
+    fromJsonList<ISecurity>(jsonList);
 }
 
-export interface iSecurity {
+export interface ISecurity {
   closePrice?: number;
   dayChange?: number;
   dayChangePercent?: number;

@@ -1,262 +1,280 @@
-<div class="text-left flex content-center justify-center w-full flex-col">
-  <span class="mt-0 mb-2 text-2xl lg:text-4xl lg:font-extralight">
-    Create an investment account
-  </span>
-  <span class="lg:text-xl mb-6">
-    Please answer a few questions to create your account
-  </span>
+<div
+  class="flex flex-col body-colors bg-gradient-to-bl from-0% to-60% dark:to-40% p-5 lg:p-8 content-center items-center w-screen flex-wrap h-screen overflow-hidden justify-center"
+>
   <div
-    class="relative flex flex-wrap gap-y-4 glass-effect px-8 py-6 font-normal min-h-500"
+    class="xl:max-w-screen-2xl xl:max-h-[1400px] w-full h-full aspect-square"
   >
-    <div class="{isLastPage() ? 'lg:w-1/3' : 'lg:w-1/2'} flex flex-col w-full">
-      <h1 class="text-3xl">{pages[currentPage].title}</h1>
-      <h4 class="text-lg">{pages[currentPage].subtitle}</h4>
-    </div>
-    <form
-      class="{isLastPage()
-        ? 'lg:w-2/3'
-        : 'lg:w-1/2'} flex flex-col justify-between w-full"
+    <div
+      class="h-full w-full md:justify-stretch justify-between gap-4 relative"
     >
-      <div class="relative gap-4 flex flex-col">
-        {#each pages[currentPage].questions as question, index}
-          <div>
-            <label class="block text-sm mb-2" for="grid-name">
-              {question.title}
-            </label>
-            <input
-              class="border-0 px-3 py-3 w-full primary-input"
-              id="grid-name"
-              value={question.value ?? ''}
-              onchange={(event) => changeValue(currentPage, index, event)}
-              placeholder={question.placeholder ?? question.title}
-              type="text"
-            />
-          </div>
-        {/each}
-
-        {#if isLastPage()}
-          <div class="flex flex-wrap gap-y-4">
-            {#each pages as page, index}
-              {#if index > 0 && index < pages.length - 1}
-                <div class="w-full lg:w-1/2">
-                  <h3 class="text-2xl mb-2">{page.title}</h3>
-                  {#each page.questions as question}
-                    <div class="mb-2">
-                      <span class="block text-sm mb-2 font-bold">
-                        {question.title}
-                      </span>
-                      {question.value ?? '--'}
-                    </div>
-                  {/each}
-                </div>
-              {/if}
-            {/each}
-          </div>
-
-          <div>
-            <label class="inline-flex items-center cursor-pointer">
-              <input
-                class="form-checkbox"
-                id="customCheckLogin"
-                type="checkbox"
-              />
-              <span class="ml-2 text-sm">
-                I have reviewed and confirm that the information I provided is
-                correct.
-              </span>
-            </label>
-          </div>
-          <div>
-            <label class="inline-flex items-center cursor-pointer">
-              <input
-                class="form-checkbox"
-                id="customCheckLogin"
-                type="checkbox"
-              />
-              <span class="ml-2 text-sm">
-                I have read and agree with the
-                <a
-                  class="text-blue-500"
-                  href="#pablo"
-                  onclick={(e) => e.preventDefault()}
-                >
-                  Terms and Conditions
-                </a>
-              </span>
-            </label>
-          </div>
-        {/if}
-      </div>
       <div
-        class="text-center mt-6 flex gap-2 justify-between flex-wrap-reverse"
+        class="flex items-center z-10 absolute mx-5 lg:mx-10 mt-10 top-0 left-0 right-0 justify-between"
       >
-        <button
-          class="secondary-button w-full md:w-auto"
-          onclick={() => changePage(false)}
-          type="button"
+        <div
+          class="text-2xl tracking-wide font-extralight leading-relaxed inline-block whitespace-nowrap uppercase skiptranslate hover:no-underline"
         >
-          Back
-        </button>
-        <button
-          class="primary-button w-full md:w-auto"
-          disabled={confirmed}
-          onclick={() => changePage(true)}
-          type="button"
-        >
-          {#if isLastPage()}
-            Create your account
-          {:else}
-            Next
-          {/if}
-        </button>
+          <div class="logo"></div>
+        </div>
+        <DarkModeToggle />
       </div>
-    </form>
+      <div class="flex flex-col justify-end w-full gap-4 h-full">
+        <div
+          class="text-left flex w-full flex-col glass-effect h-full max-h-full overflow-auto lg:overflow-hidden"
+        >
+          <div
+            class="flex flex-wrap h-full lg:gap-y-4 font-normal transition-all duration-1000"
+          >
+            {#if loading}
+              processing
+            {:else if loadingError}
+              {loadingError}
+              <button class="primary-button" onclick={() => replace('/signin')}
+                >Return
+              </button>
+            {:else}
+              <div
+                class="{isLastPage()
+                  ? 'lg:w-1/2'
+                  : 'lg:w-1/2'} sticky lg:static top-0 z-10 lg:z-0 pt-28 p-5 flex flex-col w-full lg:h-full max-h-full rounded-none card shadow-none border-0 bg-opacity-100 lg:bg-opacity-30 gap-4 justify-end lg:justify-center lg:p-14"
+              >
+                <h1
+                  class="page-title lg:text-4xl font-semibold font-serif dark-light-text"
+                >
+                  {pages[currentPageIndex].title}
+                </h1>
+                <h4 class="page-subtitle text-sm lg:text-xl body-text lg:w-3/4">
+                  {pages[currentPageIndex].subtitle}
+                </h4>
+              </div>
+
+              <div
+                class="flex flex-col justify-between p-5 pb-0 lg:p-14 w-full lg:w-1/2 max-h-full lg:h-full"
+              >
+                <form class="flex-2 h-full content-center">
+                  <div class="gap-4 flex flex-col justify-center lg:h-full">
+                    {#each pages[currentPageIndex].questions as question, index}
+                      <div>
+                        <BaseInput
+                          label={question.title}
+                          large={true}
+                          id={index.toString()}
+                          bind:value={question.value}
+                          appendIcon={question.prependIcon}
+                          onchange={() => changeValue(question)}
+                          placeholder={question.placeholder ?? question.title}
+                        />
+                      </div>
+                    {/each}
+
+                    {#if isLastPage()}
+                      <div class="flex flex-wrap gap-y-4">
+                        {#each pages as page, index}
+                          {#if index < pages.length - 1}
+                            <div class="w-full lg:w-1/2">
+                              {#each page.questions as question}
+                                <div class="mb-2">
+                                  <span class="block text-sm mb-2 font-bold">
+                                    {question.title}
+                                  </span>
+                                  {question.value ?? '--'}
+                                </div>
+                              {/each}
+                            </div>
+                          {/if}
+                        {/each}
+                      </div>
+
+                      <div>
+                        <label class="inline-flex items-center cursor-pointer">
+                          <input
+                            class="form-checkbox"
+                            id="customCheckLogin"
+                            type="checkbox"
+                            value={attested}
+                            onchange={(e) => {
+                              attested = e?.currentTarget.checked;
+                            }}
+                          />
+                          <span class="ml-2 text-sm">
+                            I have reviewed and confirm that the information I
+                            provided is correct.
+                          </span>
+                        </label>
+                      </div>
+                      <div>
+                        <label class="inline-flex items-center cursor-pointer">
+                          <input
+                            class="form-checkbox"
+                            id="customCheckLogin"
+                            type="checkbox"
+                            value={agreed}
+                            onchange={(e) =>
+                              (agreed = e?.currentTarget?.checked)}
+                          />
+                          <span class="ml-2 text-sm">
+                            I have read and agree with the
+                            <a
+                              class="text-blue-500"
+                              href="#pablo"
+                              onclick={(e) => e.preventDefault()}
+                            >
+                              Terms and Conditions
+                            </a>
+                          </span>
+                        </label>
+                      </div>
+                    {/if}
+
+                    {#if submitError}
+                      <span class="alert alert-error my-4">{submitError}</span>
+                    {/if}
+                  </div>
+                </form>
+
+                <!--      Show Error -->
+                <div
+                  class="py-6 lg:pb-0 lg:fixed lg:bottom-20 lg:right-14 lg:left-14"
+                >
+                  <div
+                    class="text-center flex gap-2 self-end justify-between flex-wrap-reverse lg:flex-nowrap"
+                  >
+                    <button
+                      class="secondary-button w-full md:w-auto"
+                      disabled={processing}
+                      onclick={() => changePage(false)}
+                      type="button"
+                    >
+                      Back
+                    </button>
+                    <button
+                      class="primary-button w-full md:w-auto"
+                      class:cursor-wait={processing}
+                      class:cursor-not-allowed={!valid()}
+                      disabled={processing || !valid()}
+                      onclick={() => changePage(true)}
+                      type="button"
+                    >
+                      {#if isLastPage()}
+                        {#if processing}
+                          Creating your account...
+                        {:else}
+                          Create your account
+                        {/if}
+                      {:else if currentPageIndex === 0}
+                        Continue
+                      {:else}
+                        Next
+                      {/if}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            {/if}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <script lang="ts">
-  import { replace } from 'svelte-spa-router';
+  import { replace, querystring } from 'svelte-spa-router';
+  import { type IUser } from 'models/user';
+  import { createUser, continueRegister } from '@/api/user/api_user';
+  import type { IApiResponse } from 'utils/http_client';
+  import {
+    setupQuestionPages,
+    type IQuestion
+  } from 'models/modelSetupQuestionPage';
+  import BaseInput from 'components/Inputs/BaseInput.svelte';
+  import DarkModeToggle from 'components/DarkModeToggle.svelte';
+  import { onDestroy } from 'svelte';
 
-  interface question<T> {
-    title: string;
-    value?: T;
-    placeholder?: string;
+  var data: IUser = $state({});
+
+  var loading: boolean = $state(true);
+  var loadingError: string | undefined = $state();
+
+  const pages = $state(setupQuestionPages());
+
+  let currentPageIndex = $state(0);
+  let agreed = $state(false);
+  let attested = $state(false);
+
+  let processing = $state(false);
+  let submitError: string | undefined = $state();
+
+  function valid() {
+    return !isLastPage() || (agreed && attested && !submitError);
   }
 
-  interface page<T> {
-    title: string;
-    subtitle?: string;
-    questions: question<T>[];
-  }
-
-  const pages: page<string>[] = [
-    {
-      title: 'Get started',
-      subtitle: 'Confirm your email address to continue',
-      questions: [
-        {
-          title: 'Your email address',
-          value: 'email@example.com'
-        },
-        {
-          title: 'Confirm your email address',
-          value: 'email@example.com'
-        }
-      ]
-    },
-    {
-      title: 'About you',
-      subtitle: 'Tell us about you',
-      questions: [
-        {
-          title: 'First name'
-        },
-        {
-          title: 'Last name'
-        },
-        {
-          title: 'Date of birth',
-          placeholder: 'You need to be at least 18 years old'
-        },
-        {
-          title: 'Maritial status'
-        },
-        {
-          title: 'Tax Id number (TIN)'
-        }
-      ]
-    },
-    {
-      title: 'Contact info',
-      subtitle:
-        'We’ll send all your investment documents and disclosures to this address.',
-      questions: [
-        {
-          title: 'Phone number'
-        },
-        {
-          title: 'Country',
-          placeholder: 'Ethiopia'
-        },
-        {
-          title: 'City',
-          placeholder: 'Addis Ababa'
-        },
-        {
-          title: 'State / Zone',
-          placeholder: 'Addis Ababa'
-        },
-        {
-          title: 'Post code'
-        }
-      ]
-    },
-    {
-      title: 'Financial information',
-      subtitle:
-        'Tell us about your financial situation and experience with investing.',
-      questions: [
-        {
-          title: 'Annual income'
-        },
-        {
-          title: 'Total net worth'
-        },
-        {
-          title: 'Liquid net worth'
-        },
-        {
-          title: 'Investment experience'
-        }
-      ]
-    },
-    {
-      title: 'Affiliations',
-      subtitle: 'Tell us about your industry affiliations.',
-      questions: [
-        {
-          title:
-            'Do you work for, or are you related to someone who works for, a financial services company, a stock exchange, a registered securities broker-dealer?',
-          placeholder: 'Yes / No'
-        },
-        {
-          title:
-            'Are you, or someone who will benefit from this account a director or major owner (10% or more shares) of a publicly traded company?',
-          placeholder: 'Yes / No'
-        }
-      ]
-    },
-    {
-      title: 'Review and confirm',
-      subtitle: 'Confirm your personal information',
-      questions: []
+  function changeValue(question: IQuestion<IUser>) {
+    if (question.changeHandler) {
+      question.changeHandler(data, question.value);
     }
-  ];
-
-  let currentPage = $state(0);
-  let confirmed = $state(false);
+  }
 
   function isLastPage() {
-    return currentPage === pages.length - 1;
+    return currentPageIndex === pages.length - 1;
   }
 
   function changePage(increase: boolean = true) {
+    submitError = undefined;
     if (increase) {
-      if (currentPage + 1 < pages.length) {
-        currentPage++;
+      if (currentPageIndex + 1 < pages.length) {
+        currentPageIndex++;
       } else if (isLastPage()) {
-        replace('/dashboard');
+        submit();
       }
     } else if (!increase) {
-      if (currentPage > 0) {
-        currentPage--;
+      if (currentPageIndex > 0) {
+        currentPageIndex--;
       } else {
-        replace('/');
+        replace('/auth/login');
       }
     }
   }
 
-  function changeValue(pageIndex: number, questionIndex: number, event: any) {
-    pages[pageIndex].questions[questionIndex].value = event.target.value;
+  async function submit() {
+    processing = true;
+    submitError = undefined;
+    await createUser(data)
+      .then((response) => {
+        console.log('Success!');
+        console.log(response);
+      })
+      .catch((error: IApiResponse<any>) => {
+        submitError = error.error?.message;
+      });
+    processing = false;
   }
+
+  const unsubscribe = querystring.subscribe((value) => {
+    if (value !== undefined && value !== '') {
+      let token = value.split('get-started=')[1];
+      console.table(token);
+
+      if (token === undefined) {
+        loading = false;
+        return;
+      }
+
+      continueRegister(token)
+        .then((user) => {
+          console.log('GOt user');
+          console.log(user.response?.email);
+          data.email = user.response?.email;
+          data.profilePicture = user.response?.profilePicture;
+        })
+        .catch((e: IApiResponse<IUser>) => {
+          loadingError = e.error?.message ?? 'Something went wrong';
+        })
+        .finally(() => {
+          loading = false;
+        });
+      return;
+    }
+    console.warn('No login');
+  });
+  onDestroy(unsubscribe);
 </script>

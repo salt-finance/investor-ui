@@ -113,7 +113,7 @@
 
         <div class="p-4 col-span-1 lg:col-span-2 glass-effect">
           <span class="font-semibold block text-lg">Details</span>
-          <span>{security.description}</span>
+          <span>{security.message}</span>
           <hr class="my-4 opacity-20 bg-neutral-800 h-[2px]" />
 
           <div class="flex flex-col gap-4">
@@ -207,7 +207,7 @@
 
 <script lang="ts">
   import { currencyFormat, decimalFormat } from 'utils/formatTools';
-  import type { iSecurity } from 'models/security';
+  import type { ISecurity } from 'models/security';
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
   import Trade from 'components/Modals/trade.svelte';
   import { type SvelteComponent } from 'svelte';
@@ -215,7 +215,7 @@
   let tradeModal: SvelteComponent;
   let buy = $state(true);
 
-  let { security } = $props<{ security: iSecurity }>();
+  let { security } = $props<{ security: ISecurity }>();
 
   let dialogRef: HTMLDialogElement | undefined = $state();
 

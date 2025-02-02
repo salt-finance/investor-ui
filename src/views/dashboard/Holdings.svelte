@@ -1,4 +1,4 @@
-{#snippet actionSnippet(value: iSecurity)}
+{#snippet actionSnippet(value: ISecurity)}
   <TableDropdown {value} />
 {/snippet}
 <div class="motion-preset-fade w-full block">
@@ -50,9 +50,9 @@
   } from '../../components/Cards/CardTable.svelte';
 
   import holdings from 'data/holdings.json';
-  import { Security, type iSecurity } from 'models/security';
+  import { Security, type ISecurity } from 'models/security';
 
-  const data: iSecurity[] = [];
+  const data: ISecurity[] = [];
 
   const sec = Security.fromJsonList(holdings);
 
@@ -64,7 +64,7 @@
   let mobile = new MediaQuery('max-width: 1024px');
 
   // Column definitions
-  const columns: TableColumn<iSecurity>[] = [
+  const columns: TableColumn<ISecurity>[] = [
     { key: 'logoUrl', header: '', sortable: false, type: 'image' },
     { key: 'name', header: 'Security Name', sortable: true },
     { key: 'symbol', header: 'Ticker', sortable: true },

@@ -31,30 +31,47 @@
 
     <div id="googleTranslateElement"></div>
 
-    <a
-      use:link
-      href="/"
+    <button
+      onclick={logout}
       class="text-sm py-2 px-4 font-normal flex justify-between items-center w-full whitespace-nowrap bg-transparent"
     >
       Logout <i class="fas fa-arrow-right-from-bracket"></i>
-    </a>
+    </button>
   </div>
 </div>
 
 <script lang="ts">
+  import { userStore } from '@/store/user';
+
   // library for creating dropdown menu appear on click
   import { createPopper } from '@popperjs/core';
+  import { onDestroy } from 'svelte';
   import { link } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
+  import { logout } from '@/api/user/api_auth';
+
   // core components
 
-  const image =
-    'https://salt-finance.github.io/investor-ui/assets/img/user.webp';
+  let image = $state(
+    'https://salt-finance.github.io/investor-ui/assets/img/user.webp'
+  );
 
   let dropdownPopoverShow = $state(false);
 
   let btnDropdownRef: Element | undefined = $state();
   let popoverDropdownRef: HTMLElement | undefined = $state();
+
+  const unsubscribe = userStore.subscribe((user) => {
+    if (user === undefined) {
+      return;
+    }
+
+    if (user.profilePicture) {
+      image = user.profilePicture;
+    }
+  });
+
+  onDestroy(unsubscribe);
 
   const toggleDropdown = (event: Event) => {
     event.preventDefault();

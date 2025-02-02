@@ -49,13 +49,13 @@
   import { sectors, securities } from '@/store/stock';
   import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import { type iSector } from 'models/sector';
-  import type { iSecurity } from 'models/security';
+  import type { ISecurity } from 'models/security';
   import { onDestroy } from 'svelte';
   import { location } from 'svelte-spa-router';
   import { currencyFormat, decimalFormat } from 'utils/formatTools';
 
   let sector: iSector | undefined = $state();
-  let sectorSecurites: iSecurity[] | [] = $state([]);
+  let sectorSecurites: ISecurity[] | [] = $state([]);
 
   const sectorsSubscription = sectors.subscribe((sectors) => {
     location.subscribe((val) => {
