@@ -1,8 +1,8 @@
 import { fromJson } from 'models/parser';
 
-// export const ApiURL = 'https://salt-server.com/v1';
+export const ApiURL = 'https://salt-server.com/v1';
 
-export const ApiURL = 'http://localhost:8000/v1';
+// export const ApiURL = 'http://localhost:8000/v1';
 
 const getToken = () => {
   return sessionStorage.getItem('token');
