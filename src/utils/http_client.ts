@@ -27,7 +27,7 @@ export interface IApiResponse<T> {
 }
 
 const parseResponse = async <T>(response: Response) => {
-  if (response.redirected) {
+  if (await response.redirected) {
     console.log('redirect me');
     console.log(response);
     console.log(response.status);
