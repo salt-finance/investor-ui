@@ -82,11 +82,13 @@
 
 <script lang="ts">
   // core components
-  import { replace } from 'svelte-spa-router';
+  import { querystring, replace } from 'svelte-spa-router';
   import BaseInput from 'components/Inputs/BaseInput.svelte';
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { ApiURL } from 'utils/http_client';
   import { tokenTest } from '@/api/user/api_auth';
+
+  import { onDestroy } from 'svelte';
 
   let email = $state('');
 
@@ -98,7 +100,19 @@
     window.location.href = `${ApiURL}/auth/google`;
   }
 
+  const unsubscribe = querystring.subscribe((value) => {
+    if (value !== undefined && value !== '') {
+      let token = value.split('continue=')[1];
+      console.table(token);
+
+      if (token) {
+        sessionStorage.setItem('token', token);
+      }
+    }
+  });
+
   tokenTest().then(() => {
     replace('/dashboard');
   });
+  onDestroy(unsubscribe);
 </script>

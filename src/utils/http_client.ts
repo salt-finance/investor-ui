@@ -1,8 +1,8 @@
 import { fromJson } from 'models/parser';
 
-export const ApiURL = 'https://salt-server.com/v1';
+// export const ApiURL = 'https://salt-server.com/v1';
 
-// export const ApiURL = 'http://localhost:8000/v1';
+export const ApiURL = 'http://localhost:8000/v1';
 
 const getToken = () => {
   return sessionStorage.getItem('token');
@@ -27,7 +27,10 @@ export interface IApiResponse<T> {
 }
 
 const parseResponse = async <T>(response: Response) => {
-  if (await response.redirected) {
+  if (response.redirected) {
+    console.log('redirect me');
+    console.log(response);
+    console.log(response.status);
     window.location.href = response.url;
   }
   const data = await response.json();

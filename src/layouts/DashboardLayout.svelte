@@ -21,7 +21,7 @@
 </div>
 
 <script lang="ts">
-  import Router from 'svelte-spa-router';
+  import Router, { replace } from 'svelte-spa-router';
   // components for this layout
   import FooterAdmin from 'components/Footer.svelte';
   import HeaderStats from 'components/Headers/HeaderStats.svelte';
@@ -35,6 +35,7 @@
   import SectorDetail from 'views/dashboard/market/SectorDetail.svelte';
   import { userStore } from '@/store/user';
   import { getUser } from '@/api/user/api_user';
+  import { tokenTest } from '@/api/user/api_auth';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -45,6 +46,10 @@
     // '/': Dashboard,
     '*': Dashboard
   };
+
+  tokenTest().catch(() => {
+    replace('/');
+  });
 
   getUser().then((user) => {
     if (user.response) {
