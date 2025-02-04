@@ -10,6 +10,12 @@
             class="h-12 rounded-full aspect-square glass-effect"
             src={image}
           />
+        {:else}
+          <span
+            class="h-12 rounded-full aspect-square glass-effect flex items-center justify-center font-bold"
+          >
+            {userData?.firstName?.at(0) ?? 'P'}
+          </span>
         {/if}
       </span>
     </span>
@@ -49,12 +55,13 @@
   import { link } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
   import { logout } from '@/api/user/api_auth';
+  import type { IUser } from 'models/user';
 
   // core components
 
-  let image = $state(
-    'https://salt-finance.github.io/investor-ui/assets/img/user.webp'
-  );
+  let image: string | undefined = $state();
+
+  let userData: IUser | undefined = $state();
 
   let dropdownPopoverShow = $state(false);
 
@@ -65,6 +72,7 @@
     if (user === undefined) {
       return;
     }
+    userData = user;
 
     if (user.profilePicture) {
       image = user.profilePicture;

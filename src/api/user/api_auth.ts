@@ -2,9 +2,8 @@ import { get } from 'utils/http_client';
 
 export const logout = () => {
   sessionStorage.removeItem('token');
-  return get<any>('/auth/logout').then((resp) => {
-    console.log(resp.response);
-    window.location.replace('/');
+  return get<any>('/auth/logout').finally(() => {
+    window.location.replace(window.location.origin + window.location.pathname);
   });
 };
 
