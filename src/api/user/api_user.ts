@@ -2,7 +2,7 @@ import { get, post } from 'utils/http_client';
 import type { IUser } from 'models/user';
 
 export const createUser = (payload: IUser) => {
-  return post<IUser>('/user', payload);
+  return post<any>('/user', payload);
 };
 
 export const continueRegister = (token: string) => {

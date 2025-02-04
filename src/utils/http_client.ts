@@ -27,12 +27,6 @@ export interface IApiResponse<T> {
 }
 
 const parseResponse = async <T>(response: Response) => {
-  if (await response.redirected) {
-    console.log('redirect me');
-    console.log(response);
-    console.log(response.status);
-    window.location.href = response.url;
-  }
   const data = await response.json();
   const parsed = fromJson<IApiResponse<T>>(data);
   const err: IApiResponse<T> = {

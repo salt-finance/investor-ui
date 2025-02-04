@@ -240,6 +240,9 @@
     submitError = undefined;
     await createUser(data)
       .then((response) => {
+        if (response.response['redirectUrl'] !== undefined) {
+          replace(response.response['redirectUrl']);
+        }
         console.log('Success!');
         console.log(response);
       })
