@@ -1,8 +1,9 @@
 import { fromJson } from 'models/parser';
 
-// export const ApiURL = 'https://salt-server.com/v1';
-
-export const ApiURL = 'http://localhost:8000/v1';
+export const ApiURL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000/v1'
+    : 'https://salt-server.com/v1';
 
 const getToken = () => {
   return sessionStorage.getItem('token');
@@ -59,8 +60,6 @@ const createRequest = async <T>(
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort('timeout'), timeout);
-
-  console.log(process.env.NODE_ENV);
 
   let payload: Record<string, any> = {
     headers: _headers,
