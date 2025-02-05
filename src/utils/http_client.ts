@@ -1,8 +1,8 @@
 import { fromJson } from 'models/parser';
 
-export const ApiURL = 'https://salt-server.com/v1';
+// export const ApiURL = 'https://salt-server.com/v1';
 
-// export const ApiURL = 'http://localhost:8000/v1';
+export const ApiURL = 'http://localhost:8000/v1';
 
 const getToken = () => {
   return sessionStorage.getItem('token');
@@ -60,7 +60,9 @@ const createRequest = async <T>(
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort('timeout'), timeout);
 
-  var payload: Record<string, any> = {
+  console.log(process.env.NODE_ENV);
+
+  let payload: Record<string, any> = {
     headers: _headers,
     method: method,
     mode: 'cors', // Enable CORS
