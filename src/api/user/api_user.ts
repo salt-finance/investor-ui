@@ -7,7 +7,7 @@ export const createUser = (payload: IUser) => {
 
 export const continueRegister = (token: string) => {
   sessionStorage.setItem('token', token);
-  return get<IUser>('/continue');
+  return get<IUser>('/get-started');
 };
 
 export const getUser = () => {
