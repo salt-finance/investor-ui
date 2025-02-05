@@ -19,6 +19,8 @@
       bind:value
       {id}
       {type}
+      {min}
+      {max}
       {required}
       {placeholder}
       {onchange}
@@ -42,6 +44,8 @@
     label?: string;
     value?: string;
     type?: string;
+    min?: string;
+    max?: string;
     appendIcon?: string;
     prependIcon?: string;
     placeholder?: string;
@@ -56,6 +60,8 @@
     label,
     value = $bindable(),
     type = 'text',
+    min,
+    max,
     appendIcon,
     prependIcon,
     placeholder,

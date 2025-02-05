@@ -10,6 +10,15 @@ const defaultOptions: Intl.DateTimeFormatOptions = {
   hour12: true
 };
 
+export const dateOfBirthFormat = (value: Date | number) => {
+  let parsed = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(value);
+  return parsed[4].value + '-' + parsed[2].value + '-' + parsed[0].value;
+};
+
 const defaultCurrencyOptions: Intl.NumberFormatOptions = {
   currencySign: 'standard',
   notation: 'standard',

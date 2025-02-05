@@ -24,13 +24,21 @@
           <div
             class="flex flex-wrap h-full lg:gap-y-4 font-normal transition-all duration-1000"
           >
-            {#if loading}
-              processing
-            {:else if loadingError}
-              {loadingError}
-              <button class="primary-button" onclick={() => replace('/signin')}
-                >Return
-              </button>
+            {#if loading || loadingError}
+              <div
+                class="flex flex-col justify-center items-center gap-4 p-5 w-full h-full"
+              >
+                {#if loadingError}
+                  Unable to verify your email address, {loadingError}
+                  <button
+                    class="primary-button"
+                    onclick={() => continueRegistration()}
+                    >Retry
+                  </button>
+                {:else}
+                  Processing
+                {/if}
+              </div>
             {:else}
               <div
                 class="{isLastPage()
@@ -58,7 +66,11 @@
                           label={question.title}
                           large={true}
                           id={index.toString()}
+                          min={question.min}
+                          max={question.max}
                           bind:value={question.value}
+                          type={question.type}
+                          required={true}
                           appendIcon={question.prependIcon}
                           onchange={() => changeValue(question)}
                           placeholder={question.placeholder ?? question.title}
@@ -140,6 +152,7 @@
                   >
                     <button
                       class="secondary-button w-full md:w-auto"
+                      tabindex={1}
                       disabled={processing}
                       onclick={() => changePage(false)}
                       type="button"
@@ -148,6 +161,7 @@
                     </button>
                     <button
                       class="primary-button w-full md:w-auto"
+                      tabIndex={0}
                       class:cursor-wait={processing}
                       class:cursor-not-allowed={!valid()}
                       disabled={processing || !valid()}
@@ -190,10 +204,11 @@
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { onDestroy } from 'svelte';
 
-  var data: IUser = $state({});
+  let data: IUser = $state({});
+  let token: string | undefined = $state();
 
-  var loading: boolean = $state(true);
-  var loadingError: string | undefined = $state();
+  let loading: boolean = $state(true);
+  let loadingError: string | undefined = $state();
 
   const pages = $state(setupQuestionPages());
 
@@ -243,8 +258,6 @@
         if (response.response['redirectUrl'] !== undefined) {
           replace(response.response['redirectUrl']);
         }
-        console.log('Success!');
-        console.log(response);
       })
       .catch((error: IApiResponse<any>) => {
         submitError = error.error?.message;
@@ -252,32 +265,33 @@
     processing = false;
   }
 
-  const unsubscribe = querystring.subscribe((value) => {
-    if (value !== undefined && value !== '') {
-      let token = value.split('get-started=')[1];
-      console.table(token);
-
-      if (token === undefined) {
-        loading = false;
-        return;
-      }
-
-      continueRegister(token)
-        .then((user) => {
-          console.log('GOt user');
-          console.log(user.response?.email);
-          data.email = user.response?.email;
-          data.profilePicture = user.response?.profilePicture;
-        })
-        .catch((e: IApiResponse<IUser>) => {
-          loadingError = e.error?.message ?? 'Something went wrong';
-        })
-        .finally(() => {
-          loading = false;
-        });
+  function continueRegistration() {
+    loading = true;
+    loadingError = undefined;
+    if (!token) {
+      loading = false;
+      replace('/');
       return;
     }
-    console.warn('No login');
+    continueRegister(token)
+      .then((user) => {
+        data.email = user.response?.email;
+        data.profilePicture = user.response?.profilePicture;
+      })
+      .catch((e: IApiResponse<IUser>) => {
+        loadingError = e.error?.message ?? 'Something went wrong';
+      })
+      .finally(() => {
+        loading = false;
+      });
+  }
+
+  const unsubscribe = querystring.subscribe((value) => {
+    if (value !== undefined && value !== '') {
+      token = value.split('get-started=')[1];
+
+      continueRegistration();
+    }
   });
   onDestroy(unsubscribe);
 </script>

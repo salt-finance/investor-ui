@@ -103,16 +103,16 @@
   const unsubscribe = querystring.subscribe((value) => {
     if (value !== undefined && value !== '') {
       let token = value.split('continue=')[1];
-      console.table(token);
-
       if (token) {
         sessionStorage.setItem('token', token);
       }
     }
   });
 
-  tokenTest().then(() => {
-    replace('/dashboard');
-  });
+  tokenTest()
+    .then(() => {
+      replace('/dashboard');
+    })
+    .catch(() => {});
   onDestroy(unsubscribe);
 </script>

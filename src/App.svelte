@@ -6,7 +6,7 @@
   import Dashboard from './layouts/DashboardLayout.svelte';
   // Auth Layout
   import Signin from 'views/auth/Signin.svelte';
-  import Register from 'views/auth/Register.svelte';
+  import Register from 'views/auth/Signup.svelte';
   // No Layout Pages
   import Router from 'svelte-spa-router';
 

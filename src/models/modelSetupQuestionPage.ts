@@ -1,10 +1,14 @@
 import type { IUser } from 'models/user';
+import { dateOfBirthFormat } from 'utils/formatTools';
 
 export interface IQuestion<T> {
   title: string;
   value?: string;
   placeholder?: string;
   prependIcon?: string;
+  type?: string;
+  min?: string;
+  max?: string;
 
   changeHandler(model: T, value: any): void;
 }
@@ -16,6 +20,14 @@ interface IPage<T> {
 }
 
 export const setupQuestionPages = (): IPage<IUser>[] => {
+  let now = new Date(Date.now());
+  let minDate = dateOfBirthFormat(
+    new Date(Date.now()).setFullYear(now.getFullYear() - 120)
+  );
+  let maxDate = dateOfBirthFormat(
+    new Date(Date.now()).setFullYear(now.getFullYear() - 18)
+  );
+
   return [
     {
       title: 'Getting to know you',
@@ -47,12 +59,16 @@ export const setupQuestionPages = (): IPage<IUser>[] => {
     },
     {
       title: 'Getting to know you',
-      subtitle:
-        'Help us to understand the full scope of your financial goals and match you with the right experts.',
+      subtitle: 'You must be at least 18 Years old to create an account',
       questions: [
         {
           title: 'When were you born?',
           placeholder: 'eg: 1998-01-17',
+          type: 'date',
+
+          min: minDate,
+          max: maxDate,
+
           changeHandler: (model, value) => {
             model.dateOfBirth = value;
           }
