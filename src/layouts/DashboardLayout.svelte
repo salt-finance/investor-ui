@@ -36,12 +36,14 @@
   import { userStore } from '@/store/user';
   import { getUser } from '@/api/user/api_user';
   import { tokenTest } from '@/api/user/api_auth';
+  import Portfolio from 'views/dashboard/Portfolio.svelte';
 
   const routes = {
     '/dashboard/holdings': Holdings,
     '/dashboard/activity': Activity,
     '/dashboard/market': Market,
     '/dashboard/settings': Settings,
+    '/dashboard/portfolio': Portfolio,
     '/dashboard/sector/:sectorId': SectorDetail,
     // '/': Dashboard,
     '*': Dashboard

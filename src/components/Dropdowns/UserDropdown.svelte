@@ -8,13 +8,14 @@
           <img
             alt="..."
             class="h-12 rounded-full aspect-square glass-effect"
+            onerror={() => (image = undefined)}
             src={image}
           />
         {:else}
           <span
             class="h-12 rounded-full aspect-square glass-effect flex items-center justify-center font-bold"
           >
-            {userData?.firstName?.at(0) ?? 'P'}
+            {userData?.firstName?.at(0)?.toUpperCase() ?? 'P'}
           </span>
         {/if}
       </span>

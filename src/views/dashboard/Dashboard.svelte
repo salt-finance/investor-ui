@@ -23,49 +23,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-preset-fade"
-    >
-      <div
-        class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
-      >
-        <div class="mb-0 px-4 py-3">
-          <div class="w-full max-w-full flex-grow flex-1">
-            <p class="text-sm uppercase mb-1 font-extrabold">
-              Portfolio distribution by category
-            </p>
-            <h2
-              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
-            >
-              Spread
-            </h2>
-          </div>
-        </div>
-        <CardPieChart />
-      </div>
-    </div>
 
-    <div
-      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-preset-fade"
-    >
-      <div class="relative flex flex-col min-w-0 break-words w-full h-full">
-        <div class="mb-0 px-4 py-3">
-          <div class="w-full max-w-full flex-grow flex-1">
-            <p class="text-sm uppercase mb-1 font-extrabold">
-              Performance vs Previous year
-            </p>
-            <h2
-              class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
-            >
-              Comparison
-            </h2>
-          </div>
-        </div>
-        <div class="h-60 md:h-full lg:h-72 xl:h-80 m-4 mt-0 grid">
-          <CardBarChart />
-        </div>
-      </div>
-    </div>
     <div
       class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-preset-fade"
     >
@@ -99,10 +57,9 @@
 
 <script lang="ts">
   // core components
-  import CardBarChart from 'components/Cards/CardBarChart.svelte';
+
   import CardDoghnutChart from 'components/Cards/CardDoghnutChart.svelte';
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
-  import CardPieChart from 'components/Cards/CardPieChart.svelte';
   import Activity from './Activity.svelte';
   import Holdings from './Holdings.svelte';
 

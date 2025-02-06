@@ -25,6 +25,17 @@
     <a
       use:link
       use:active
+      href="/dashboard/portfolio"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
+    >
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        pie_chart
+      </span>
+      <p>portfolio</p>
+    </a>
+    <a
+      use:link
+      use:active
       href="/dashboard/holdings"
       class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center"
     >
