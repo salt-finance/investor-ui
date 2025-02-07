@@ -1,12 +1,10 @@
 <div
-  class="relative flex flex-col w-full min-w-0 break-words glass-effect xl:mb-0 h-full"
+  class="relative flex flex-col w-full min-w-0 break-words card bg-opacity-40 xl:mb-0 h-full"
 >
-  <div
-    class="flex-auto flex p-4 justify-between gap-2 flex-wrap-reverse md:flex-nowrap"
-  >
-    <div class="flex flex-col gap-2">
+  <div class="flex-auto flex p-4 justify-between gap-2 flex-nowrap">
+    <div class="flex flex-col gap-2 w-full">
       <div
-        class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-top"
+        class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-between"
       >
         <h5 class="uppercase font-bold text-sm">
           {statSubtitle}
@@ -17,12 +15,14 @@
       </div>
 
       {#if statPercent !== undefined}
-        <p class="flex gap-2 items-center flex-wrap md:flex-nowrap">
+        <p class="hidden md:flex gap-2 items-center flex-wrap xl:flex-nowrap">
           <span
-            class="text-sm font-bold gap-1 inline-flex align-item-center line-clamp-1 {statPercentColor}"
+            class="text-sm font-bold gap-1 inline-flex align-item-center line-clamp-1 {statDown
+              ? 'text-red-500'
+              : 'text-emerald-500'}"
           >
             <span class="material-symbols-outlined text-sm skiptranslate">
-              {statArrow === 'up' ? 'trending_up' : 'trending_down'}
+              {statDown ? 'trending_down' : 'trending_up'}
             </span>
 
             {statPercent}%
@@ -33,9 +33,9 @@
     </div>
 
     {#if statIconName !== undefined}
-      <div class="relative w-auto flex-initial items-center">
+      <div class="flex relative flex-initial items-start justify-end">
         <div
-          class="p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-opacity-80 {statIconColor}"
+          class="text-center inline-flex items-center justify-center w-8 sm:w-12 aspect-square sm:shadow-lg rounded-full bg-opacity-0 sm:bg-opacity-80 icon-bg"
         >
           <i class="material-symbols-outlined skiptranslate">{statIconName}</i>
         </div>
@@ -56,24 +56,19 @@
     statSubtitle?: string;
     statTitle?: string;
     // "up" or "down"
-    statArrow?: string;
+    statDown?: boolean;
     statPercent?: any;
     // from tailwindcss
-    statPercentColor?: string;
     statDescripiron?: string;
     statIconName?: string;
-    // from tailwindcssp
-    statIconColor?: string;
   }
 
   let {
     statSubtitle = 'Traffic',
     statTitle = '350,897',
-    statArrow = 'up',
+    statDown = false,
     statPercent,
-    statPercentColor = 'text-emerald-500',
     statDescripiron = 'Since last month',
-    statIconName,
-    statIconColor = 'bg-red-500'
+    statIconName
   }: Props = $props();
 </script>

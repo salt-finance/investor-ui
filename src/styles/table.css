@@ -2,5 +2,10 @@
 table {
     thead {
         border: none;
+
+        th.sortable {
+            cursor: pointer;
+            @apply hover:underline;
+        }
     }
 }

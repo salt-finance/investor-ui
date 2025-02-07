@@ -53,4 +53,8 @@
 
 button {
     user-select: none;
+
+    &:hover:not([disabled]) {
+        cursor: pointer;
+    }
 }

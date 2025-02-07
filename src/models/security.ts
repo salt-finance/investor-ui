@@ -16,7 +16,7 @@ export interface ISecurity {
   earningsPerShare?: number;
   exchange?: string;
   id?: string;
-  owned: boolean;
+  owned?: boolean;
   logoUrl?: string;
   marketCap?: number;
   name?: string;

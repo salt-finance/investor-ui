@@ -12,50 +12,59 @@
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 flex-wrap"
       >
         {#each sectorSecurites as security}
-          <div
-            class="col-span-1 glass-effect flex flex-row flex-wrap p-4 items-start gap-4 content-between"
-          >
-            <div class="flex flex-grow w-full justify-between items-center">
-              <img
-                class="rounded-full border-none aspect-square items-center h-12"
-                src={security.logoUrl}
-                alt="logo"
-              />
-              <TableDropdown value={security} />
-            </div>
-
-            <div class="flex flex-col gap-1">
-              <p class="body-text dark-light-text">{security.name}</p>
-              <p class="font-medium text-xl">
-                {currencyFormat()(security.price ?? 0)}
-              </p>
-              <span class="flex gap-2">
-                <p class="body-text dark-light-text">
-                  {security.symbol}
-                </p>
-                <p class="text-emerald-600">
-                  +{decimalFormat()(security.dayChangePercent ?? 0)}%
-                </p>
+          <button onclick={() => onRowTap(security)} class="unset">
+            <span
+              class="col-span-1 card flex flex-row flex-wrap p-4 items-start gap-4 content-between hover:bg-accent/30 dark:hover:bg-accent-dark/30"
+            >
+              <span class="flex flex-grow w-full justify-between items-center">
+                <img
+                  class="rounded-full border-none aspect-square items-center h-12"
+                  src={security.logoUrl}
+                  alt="logo"
+                />
               </span>
-            </div>
-          </div>
+
+              <span class="flex flex-col gap-1">
+                <span class="body-text dark-light-text">{security.name}</span>
+                <span class="font-medium text-xl">
+                  {currencyFormat()(security.price ?? 0)}
+                </span>
+                <span class="flex gap-2">
+                  <span class="body-text dark-light-text">
+                    {security.symbol}
+                  </span>
+                  <span class="text-emerald-600">
+                    +{decimalFormat()(security.dayChangePercent ?? 0)}%
+                  </span>
+                </span>
+              </span>
+            </span>
+          </button>
         {/each}
       </div>
     {/if}
   </div>
+  <Tearsheet bind:this={tearsheetModal} security={selectedSecurity} />
 {/if}
 
 <script lang="ts">
   import { sectors, securities } from '@/store/stock';
-  import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
   import { type ISector } from 'models/sector';
   import type { ISecurity } from 'models/security';
-  import { onDestroy } from 'svelte';
+  import { onDestroy, type SvelteComponent } from 'svelte';
   import { location } from 'svelte-spa-router';
   import { currencyFormat, decimalFormat } from 'utils/formatTools';
+  import Tearsheet from 'components/Modals/Tearsheet.svelte';
 
   let sector: ISector | undefined = $state();
   let sectorSecurites: ISecurity[] | [] = $state([]);
+
+  let selectedSecurity: ISecurity | undefined = $state();
+  let tearsheetModal: SvelteComponent | undefined = $state();
+  const onRowTap = (data: ISecurity) => {
+    selectedSecurity = data;
+    tearsheetModal?.show();
+  };
 
   const sectorsSubscription = sectors.subscribe((sectors) => {
     location.subscribe((val) => {

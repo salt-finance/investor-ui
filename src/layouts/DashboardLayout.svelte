@@ -7,9 +7,9 @@
     </div>
 
     <div
-      class=" w-full flex flex-col justify-between gap-4 pt-[100px] pb-10 min-h-screen"
+      class=" w-full flex flex-col justify-between gap-4 pt-[calc(80px+2rem)] pb-10 min-h-screen"
     >
-      <div class="flex flex-col justify-end w-full gap-4 flex-grow pt-8">
+      <div class="flex flex-col justify-end w-full gap-4 flex-grow">
         <HeaderStats />
         <div class="flex flex-wrap z-10 flex-grow flex-col content-start">
           <Router restoreScrollState={false} {routes} />

@@ -56,7 +56,7 @@
 </div>
 
 <script lang="ts">
-  import { link } from 'svelte-spa-router';
+  import { link, location } from 'svelte-spa-router';
 
   // core components
   import IndexDropdown from 'components/Dropdowns/IndexDropdown.svelte';
@@ -82,6 +82,12 @@
 
   const hideClasses = '-translate-y-full';
   const scrollOffset = 100;
+
+  const unsubscribeLocation = location.subscribe(() => {
+    if (navbarOpen) {
+      setNavbarOpen();
+    }
+  });
 
   function toggleNavSize() {
     if (navRef.clientHeight - scrollOffset > body.scrollTop) {
@@ -110,6 +116,7 @@
 
   onDestroy(() => {
     body.removeEventListener('scroll', toggleNavSize);
+    unsubscribeLocation();
   });
   // Listen to media query changes, or currentTheme changes to auto update styles.
 </script>

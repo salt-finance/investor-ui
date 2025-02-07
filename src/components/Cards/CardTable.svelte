@@ -1,4 +1,4 @@
-<div class="flex flex-col w-full overflow-hidden card">
+<div class="flex flex-col w-full overflow-hidden">
   {#if title !== undefined}
     <div class="rounded-t mb-0 border-0 p-6">
       <h3 class="font-semibold text-lg capitalize">
@@ -31,7 +31,10 @@
       </thead>
       <tbody>
         {#each data as row}
-          <tr class="hover:bg-accent/30 dark:hover:bg-accent-dark/30">
+          <tr
+            onclick={onRowTap !== undefined ? () => onRowTap(row) : () => {}}
+            class="hover:bg-accent/30 dark:hover:bg-accent-dark/30 hover:cursor-pointer"
+          >
             {#each columns as column}
               <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}
@@ -81,13 +84,15 @@
     columns,
     title,
     actionSnippet,
-    sortIndex = 0
+    sortIndex = 0,
+    onRowTap
   } = $props<{
     data: any[];
     columns: TableColumn<T>[];
     title?: string;
     actionSnippet?: Snippet<TableColumn<T>[]>;
     sortIndex?: number;
+    onRowTap?: (data: T) => void;
   }>();
 
   // State

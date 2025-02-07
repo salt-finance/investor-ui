@@ -31,3 +31,7 @@ Danger - Cornell red - #b91c1c - red-700 */
     aspect-ratio: 2;
 }
 
+.unset {
+    all: unset;
+}
+

@@ -1,9 +1,9 @@
 <!--   in:blur|global={{ amount: 30, delay: 50, duration: 1000 }}
  -->
 <div class="w-full">
-  <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
+  <div class="grid gap-y-4 sm:gap-4 grid-rows-1 sm:grid-cols-6 md:grid-cols-8">
     <div
-      class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade"
+      class="w-full card bg-opacity-40 col-span-2 sm:col-span-4 md:col-span-5 lg:col-span-6 motion-preset-fade"
     >
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
@@ -25,10 +25,10 @@
     </div>
 
     <div
-      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-preset-fade"
+      class="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-2 overflow-hidden card bg-opacity-40 motion-preset-fade"
     >
       <div
-        class="relative flex flex-col min-w-0 break-words w-full h-full justify-between"
+        class="relative flex flex-col min-w-0 break-words w-full h-full justify-start"
       >
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">

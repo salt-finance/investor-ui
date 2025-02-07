@@ -1,6 +1,3 @@
-{#snippet actionSnippet(value: Record<string, any>)}
-  <TableDropdown {value} />
-{/snippet}
 <div class="motion-preset-fade w-full block">
   <span class="page-title m-4 block">
     Activity
@@ -8,36 +5,52 @@
       ({data.length})
     {/if}
   </span>
-  <div class="glass-effect">
+  <div class="card bg-opacity-40">
     {#if mobile.current}
       <div class="flex flex-col">
         {#each data as security}
-          <div class="flex w-full justify-between p-4">
-            <div class="flex gap-2">
-              <div class="flex flex-col">
-                <span class="dark-light-text body-text">{security.Date}</span>
-                <span class="dark-light-text body-text">{security.name}</span>
-                <span>{security.Transaction}</span>
-              </div>
-            </div>
-            {@render actionSnippet(security)}
-          </div>
+          <button
+            onclick={() => onRowTap(security)}
+            class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
+          >
+            <span class="flex w-full justify-between p-4">
+              <span class="flex gap-2">
+                <span class="flex flex-col">
+                  <span class="dark-light-text body-text">{security.Date}</span>
+                  <span class="dark-light-text body-text">{security.name}</span>
+                  <span>{security.Transaction}</span>
+                </span>
+              </span>
+            </span>
+          </button>
         {/each}
       </div>
     {:else}
-      <CardTable {columns} {data} {actionSnippet} />
+      <CardTable {onRowTap} {columns} {data} />
     {/if}
   </div>
 </div>
+<Tearsheet bind:this={tearsheetModal} security={selectedSecurity} />
 
 <script lang="ts">
   import CardTable, {
     type TableColumn
   } from 'components/Cards/CardTable.svelte';
-  import TableDropdown from 'components/Dropdowns/TableDropdown.svelte';
+
   import { MediaQuery } from 'svelte/reactivity';
+  import Tearsheet from 'components/Modals/Tearsheet.svelte';
+  import type { ISecurity } from 'models/security';
+  import type { SvelteComponent } from 'svelte';
 
   let mobile = new MediaQuery('max-width: 1024px');
+
+  let selectedSecurity: ISecurity | undefined = $state();
+
+  let tearsheetModal: SvelteComponent | undefined = $state();
+  const onRowTap = (data: Record<string, string>) => {
+    selectedSecurity = data as ISecurity;
+    tearsheetModal?.show();
+  };
 
   const columns: TableColumn<Record<string, any>>[] = [
     {
@@ -50,13 +63,7 @@
     { key: 'name', header: 'Security | Ticker', sortable: true },
     { key: 'Quantity', header: 'Quantity (Shares)', sortable: true },
     { key: 'price', header: 'Price (Etb)', sortable: true },
-    { key: 'netAmount', header: 'Net Amount (Etb)', sortable: true },
-    {
-      key: 'id',
-      header: '',
-      type: 'action',
-      action: (a) => console.table(a)
-    }
+    { key: 'netAmount', header: 'Net Amount (Etb)', sortable: true }
   ];
 
   const data = [
