@@ -11,7 +11,7 @@
       statPercent="3.48"
       statPercentColor="text-red-500"
       statSubtitle="Total value"
-      statTitle="61,100.34 Birr"
+      statTitle="{account?.balance?.total} Birr"
     />
   </div>
   <div
@@ -25,7 +25,7 @@
       statPercent="3.48"
       statPercentColor="text-red-500"
       statSubtitle="holdings"
-      statTitle="52,970.00 Birr"
+      statTitle="{account?.balance?.holdings} Birr"
     />
   </div>
   <div
@@ -35,7 +35,7 @@
       statIconColor="icon-bg"
       statIconName="money"
       statSubtitle="Cash"
-      statTitle="8,130.34 Birr"
+      statTitle="{account?.balance?.cash} Birr"
     />
   </div>
   <div
@@ -49,7 +49,7 @@
       statPercent="12"
       statPercentColor="text-emerald-500"
       statSubtitle="PERFORMANCE"
-      statTitle="49.65%"
+      statTitle="{account?.balance?.roi} %"
     />
   </div>
 </div>
@@ -57,4 +57,18 @@
 <script lang="ts">
   // core components
   import CardStats from '@/components/Cards/CardStats.svelte';
+  import type { IAccount } from 'models/account';
+  import { onDestroy } from 'svelte';
+  import { accountStore } from '@/store/account';
+
+  let account: IAccount | undefined = $state();
+
+  const unsubscribe = accountStore.subscribe((userAccount) => {
+    if (userAccount === undefined) {
+      return;
+    }
+    account = userAccount;
+  });
+
+  onDestroy(unsubscribe);
 </script>

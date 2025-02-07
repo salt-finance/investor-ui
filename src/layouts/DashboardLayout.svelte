@@ -37,6 +37,7 @@
   import { getUser } from '@/api/user/api_user';
   import { tokenTest } from '@/api/user/api_auth';
   import Portfolio from 'views/dashboard/Portfolio.svelte';
+  import { accountStore } from '@/store/account';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -56,6 +57,10 @@
   getUser().then((user) => {
     if (user.response) {
       userStore.set(user.response);
+      if (user.response.accounts.at(0) !== undefined) {
+        accountStore.set(user.response.accounts.at(0)!);
+      }
+      console.log(user.response);
     }
   });
 </script>
