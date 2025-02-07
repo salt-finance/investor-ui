@@ -49,11 +49,11 @@
 </div>
 
 <script lang="ts">
-  import type { iSector } from 'models/sector';
+  import type { ISector } from 'models/sector';
   import { push } from 'svelte-spa-router';
 
   let { sector } = $props<{
-    sector: iSector;
+    sector: ISector;
   }>();
 </script>
 

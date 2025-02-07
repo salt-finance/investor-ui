@@ -21,7 +21,7 @@
 
   import SectorCard from 'components/SectorCard.svelte';
   import sectorsData from 'data/sectors.json';
-  import { type iSector, Sector } from 'models/sector';
+  import { type ISector, Sector } from 'models/sector';
 
-  const sectors: iSector[] = Sector.fromJsonList(sectorsData);
+  const sectors: ISector[] = Sector.fromJsonList(sectorsData);
 </script>

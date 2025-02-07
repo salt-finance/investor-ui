@@ -1,12 +1,12 @@
 import { fromJson, fromJsonList } from 'models/parser';
 
 export class Sector {
-  static fromJson = (json: Record<string, any>) => fromJson<iSector>(json);
+  static fromJson = (json: Record<string, any>) => fromJson<ISector>(json);
   static fromJsonList = (jsonList: Record<string, any>[]) =>
-    fromJsonList<iSector>(jsonList);
+    fromJsonList<ISector>(jsonList);
 }
 
-export interface iSector {
+export interface ISector {
   title: string;
   description?: string;
   totalGainLoss?: number;
