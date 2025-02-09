@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Salt Server - OpenAPI 3.0
+  description: 'This is the internal specification for the Salt API.'
+  version: 0.0.1
+servers:
+  - url: https://salt-server.com/v1
+    description: Production endpoint
+  - url: http://localhost:8000/v1
+    description: Local server
+tags:
+  - name: Health
+    description: Check API health
+  - name: User
+    description: Handles create, read update and delete for a user with a bearer token.
+paths:
+  /healthz:
+    head:
+      tags:
+        - Health
+      description: Check if api is healthy
+      responses:
+        200:
+          description: Api is active and running
+  /user:
+    post:
+      tags:
+        - User
+      summary: Create User
+      description: Sign up new user
+      operationId: createUser
+      requestBody:
+        $ref: "#/components/requestBodies/UserCreation"
+
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    get:
+      tags:
+        - User
+      summary: Get User
+      description: Get user detail for logged in user
+      security:
+        - BearerAuth: [ user ]
+      responses:
+        200:
+          description: New response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        401:
+          description: Not authenticated
+        403:
+          description: Access token does not have the required scope
+    delete:
+      tags:
+        - User
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      responses:
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+  /logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout
+      description: "Log out current user"
+      operationId: logoutUser
+      parameters: [ ]
+      responses:
+        default:
+          description: successful operation
+
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: 437 Lytton
+        city:
+          type: string
+          example: Addis Ababa
+        state:
+          type: string
+          example: Addis Ababa
+        postcode:
+          type: string
+          example: "94301"
+      example:
+        city: Addis Ababa
+        street: 437 Lytton
+        postcode: "94301"
+        state: Addis Ababa
+
+    Affiliation:
+      type: object
+      title: User Affiliations
+      properties:
+        isAffiliatedToFinancialServices:
+          type: boolean
+          example: false
+        isDirectorOrMajorOwner:
+          type: boolean
+          example: false
+      description: User industry affiliations
+      example:
+        isDirectorOrMajorOwner: false
+        hasIndustryAffiliations: false
+    User:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - dateOfBirth
+        - email
+      properties:
+        id:
+          type: string
+          example: 0000-0000-000-0000
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        dateOfBirth:
+          type: string
+        married:
+          type: boolean
+        taxId:
+          type: string
+        email:
+          type: string
+          example: john@email.com
+        phonenumber:
+          type: string
+          example: +(251)911000000
+        profilePicture:
+          type: string
+          example: https://profilepicture.com
+        address:
+          $ref: '#/components/schemas/Address'
+        affiliation:
+          $ref: '#/components/schemas/Affiliation'
+      example:
+        firstName: John
+        lastName: James
+        address:
+          city: Addis Ababa
+          street: 437 Lytton
+          postcode: "94301"
+          state: Addis Ababa
+        taxIdNumber: 12345634523
+        phone: "12345"
+        affiliation: null
+        dateOfBirth: 1998-01-21
+        married: true
+        email: john@email.com
+
+  requestBodies:
+    UserCreation:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/User"
+  securitySchemes:
+    GoogleOAuth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://salt-server.com/auth/google
+          scopes:
+            read:auth: Continue with google.
+    BearerAuth:
+      type: http
+      scheme: bearer
