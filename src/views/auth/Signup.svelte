@@ -194,7 +194,7 @@
 <script lang="ts">
   import { replace, querystring } from 'svelte-spa-router';
   import { type IUser } from 'models/user';
-  import { createUser, continueRegister } from '@/api/user/api_user';
+  import { createUser, continueRegister } from '@/api/api_user';
   import type { IApiResponse } from 'utils/http_client';
   import {
     setupQuestionPages,
@@ -204,7 +204,7 @@
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { onDestroy } from 'svelte';
 
-  let data: IUser = $state({});
+  let data: IUser | undefined = $state();
   let token: string | undefined = $state();
 
   let loading: boolean = $state(true);
@@ -225,7 +225,7 @@
 
   function changeValue(question: IQuestion<IUser>) {
     if (question.changeHandler) {
-      question.changeHandler(data, question.value);
+      question.changeHandler(data!, question.value);
     }
   }
 
@@ -253,7 +253,7 @@
   async function submit() {
     processing = true;
     submitError = undefined;
-    await createUser(data)
+    await createUser(data!)
       .then((response) => {
         if (response.response['redirectUrl'] !== undefined) {
           replace(response.response['redirectUrl']);
@@ -275,8 +275,7 @@
     }
     continueRegister(token)
       .then((user) => {
-        data.email = user.response?.email;
-        data.profilePicture = user.response?.profilePicture;
+        data = user.response;
       })
       .catch((e: IApiResponse<IUser>) => {
         loadingError = e.error?.message ?? 'Something went wrong';

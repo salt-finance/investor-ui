@@ -86,7 +86,7 @@
   import BaseInput from 'components/Inputs/BaseInput.svelte';
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { ApiURL } from 'utils/http_client';
-  import { tokenTest } from '@/api/user/api_auth';
+  import { tokenTest } from '@/api/api_auth';
 
   import { onDestroy } from 'svelte';
 

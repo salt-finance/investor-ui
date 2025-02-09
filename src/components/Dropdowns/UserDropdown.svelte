@@ -55,7 +55,7 @@
   import { onDestroy } from 'svelte';
   import { link } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
-  import { logout } from '@/api/user/api_auth';
+  import { logout } from '@/api/api_auth';
   import type { IUser } from 'models/user';
 
   // core components

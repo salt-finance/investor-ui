@@ -34,10 +34,11 @@
   import Settings from 'views/dashboard/Settings.svelte';
   import SectorDetail from 'views/dashboard/market/SectorDetail.svelte';
   import { userStore } from '@/store/user';
-  import { getUser } from '@/api/user/api_user';
-  import { tokenTest } from '@/api/user/api_auth';
+  import { getUser } from '@/api/api_user';
+  import { tokenTest } from '@/api/api_auth';
   import Portfolio from 'views/dashboard/Portfolio.svelte';
   import { accountStore } from '@/store/account';
+  import { getAccounts } from '@/api/api_account';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -57,10 +58,12 @@
   getUser().then((user) => {
     if (user.response) {
       userStore.set(user.response);
-      if (user.response.accounts.at(0) !== undefined) {
-        accountStore.set(user.response.accounts.at(0)!);
-      }
-      console.log(user.response);
+    }
+  });
+
+  getAccounts().then((accounts) => {
+    if (accounts.response?.at(0)) {
+      accountStore.set(accounts.response.at(0)!);
     }
   });
 </script>

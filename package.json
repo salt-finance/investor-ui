@@ -29,6 +29,8 @@
     ],
     "svelteSortOrder": "markup-options-scripts-styles",
     "singleQuote": true,
+    "semi": true,
+    "htmlWhitespaceSensitivity": "strict",
     "trailingComma": "none",
     "arrowParens": "always"
   },
@@ -49,7 +51,7 @@
     "terser": "^5.37.0",
     "tslib": "^2.8.1",
     "typescript": "~5.7.2",
-    "vite": "^6.0.6",
+    "vite": "^6.1.0",
     "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "dependencies": {

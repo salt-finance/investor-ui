@@ -1,5 +1,3 @@
-import type { IAccount } from 'models/account';
-
 export type IUser = {
   firstName?: string;
   lastName?: string;
@@ -8,7 +6,6 @@ export type IUser = {
   dateOfBirth?: string;
   email?: string;
   affiliation?: Affiliation;
-  accounts: IAccount[];
   profilePicture?: string;
 };
 

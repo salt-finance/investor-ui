@@ -62,10 +62,9 @@
   };
 
   const unsubscribe = accountStore.subscribe((userAccount) => {
-    if (userAccount === undefined) {
-      return;
+    if (userAccount) {
+      account = userAccount;
     }
-    account = userAccount;
   });
 
   onDestroy(unsubscribe);
