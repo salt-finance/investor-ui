@@ -37,8 +37,7 @@
   import { getUser } from '@/api/api_user';
   import { tokenTest } from '@/api/api_auth';
   import Portfolio from 'views/dashboard/Portfolio.svelte';
-  import { accountStore } from '@/store/account';
-  import { getAccounts } from '@/api/api_account';
+  import { fetchAccounts } from '@/store/account';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -61,9 +60,5 @@
     }
   });
 
-  getAccounts().then((accounts) => {
-    if (accounts.response?.at(0)) {
-      accountStore.set(accounts.response.at(0)!);
-    }
-  });
+  fetchAccounts();
 </script>

@@ -15,3 +15,8 @@ interface IAccountBalance {
   roi?: number;
   total?: number;
 }
+
+export interface IFundingMethod {
+  id?: string;
+  method?: string;
+}

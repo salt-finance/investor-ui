@@ -1,24 +1,37 @@
-<div
-  out:blur|global={blurTransitionOutConfig}
-  in:blur|global={blurTransitionInConfig}
-  class="flex flex-wrap gap-4 flex-col-reverse lg:flex-row"
->
-  <div class="w-full lg:w-6/12" in:fly|global={staggerdTransition(0)}>
-    <CardSettings />
-  </div>
-  <div class="w-full flex-grow lg:w-5/12" in:fly|global={staggerdTransition(2)}>
-    <CardProfile />
-  </div>
+<div class="motion-preset-fade w-full block">
+  {#if user !== undefined}
+    <span class="page-title m-4 block">Profile </span>
+    <CardSettings {user} />
+  {/if}
+  {#if account !== undefined}
+    <span class="page-title m-4 block">Funding </span>
+    <CardFunding {account} />
+  {/if}
 </div>
 
 <script lang="ts">
   // core components
-  import CardProfile from 'components/Cards/CardProfile.svelte';
   import CardSettings from 'components/Cards/CardSettings.svelte';
-  import { blur, fly } from 'svelte/transition';
-  import {
-    blurTransitionInConfig,
-    blurTransitionOutConfig,
-    staggerdTransition
-  } from 'utils/animationTools';
+  import { userStore } from '@/store/user';
+  import { onDestroy } from 'svelte';
+  import type { IUser } from 'models/user';
+  import { accountStore } from '@/store/account';
+  import CardFunding from 'components/Cards/CardFunding.svelte';
+  import type { IAccount } from 'models/account';
+
+  let user: IUser | undefined = $state();
+  let account: IAccount | undefined = $state();
+
+  const userSubscription = userStore.subscribe((value) => {
+    user = value;
+  });
+
+  const accountSubscription = accountStore.subscribe((value) => {
+    account = value;
+  });
+
+  onDestroy(() => {
+    userSubscription;
+    accountSubscription;
+  });
 </script>
