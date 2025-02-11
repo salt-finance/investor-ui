@@ -1,18 +1,16 @@
-<div
-  class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg card border-0"
->
-  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-    <form>
-      <h6 class="text-neutral-500 text-sm mt-3 mb-6 font-bold uppercase">
-        Personal Information
-      </h6>
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 gap-2 flex flex-col">
-          <BaseInput viewOnly value={user.firstName} label="First Name" />
-          <BaseInput viewOnly value={user.lastName} label="Last Name" />
-        </div>
+<div class="flex flex-col card bg-opacity-40">
+  <div class="flex-auto p-4 lg:py-10 lg:px-8">
+    <h6
+      class="text-neutral-500 text-sm mb-6 gap-4 font-bold flex-wrap uppercase flex items-center justify-between"
+    >
+      Personal Information
+    </h6>
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-6/12 gap-2 flex flex-col">
+        <BaseInput viewOnly value={user.firstName} label="First Name" />
+        <BaseInput viewOnly value={user.lastName} label="Last Name" />
       </div>
-    </form>
+    </div>
   </div>
 </div>
 
