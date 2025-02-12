@@ -1,7 +1,7 @@
 <dialog bind:this={dialogRef}>
   {#if dialogVisible}
     <div
-      class="w-full h-fit max-h-full lg:max-w-screen-lg rounded-xl card flex flex-col sm:mx-16 overflow-hidden p-4 {closing
+      class="w-full max-w-96 h-fit max-h-full rounded-xl card flex flex-col sm:mx-16 overflow-hidden p-4 {closing
         ? 'motion-hide'
         : 'motion-preset-expand motion-duration-300'}"
     >

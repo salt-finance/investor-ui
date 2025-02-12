@@ -24,6 +24,7 @@ const defaultCurrencyOptions: Intl.NumberFormatOptions = {
   notation: 'standard',
   style: 'currency',
   currencyDisplay: 'symbol',
+  maximumFractionDigits: 2,
   signDisplay: 'never',
   currency: 'ETB'
 };

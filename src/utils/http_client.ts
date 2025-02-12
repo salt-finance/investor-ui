@@ -115,7 +115,7 @@ const createRequest = async <T>(
 
 export const post = <T>(
   endpoint: string,
-  body: any
+  body: Record<string, any>
 ): Promise<IApiResponse<T>> => {
   return createRequest<T>('POST', endpoint, body);
 };

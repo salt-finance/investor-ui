@@ -46,7 +46,7 @@
     required?: boolean;
     baseClass?: string;
     label?: string;
-    value?: string;
+    value?: string | number;
     type?: string;
     min?: string;
     max?: string;

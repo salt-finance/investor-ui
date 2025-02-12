@@ -15,3 +15,15 @@ export const linkFundingMethod = async (
 ) => {
   return post<any>(`/link-funding/${account.id}/${fundingMethod.id}`, {});
 };
+
+export const withdrawFunds = async (account: IAccount, amount: number) => {
+  return post<any>(`/withdraw/${account.id}`, {
+    amount: parseFloat(amount.toString())
+  });
+};
+
+export const depositFunds = async (account: IAccount, amount: number) => {
+  return post<any>(`/deposit/${account.id}`, {
+    amount: parseFloat(amount.toString())
+  });
+};
