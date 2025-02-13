@@ -18,9 +18,15 @@
             value={account.fundingMethod.method}
             viewOnly
           />
+
           <BaseInput
             label="Available for deposit"
-            value={currencyFormat()(account.fundingMethod.balance ?? 0)}
+            value={currencyFormat({
+              notation:
+                Math.abs(account?.fundingMethod?.balance ?? 0) >= 1000000
+                  ? 'compact'
+                  : 'standard'
+            })(account.fundingMethod.balance ?? 0)}
             viewOnly
           />
         </div>

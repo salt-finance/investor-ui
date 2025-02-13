@@ -35,6 +35,12 @@ body {
         background-repeat: no-repeat;
         background-position: center;
         aspect-ratio: 2;
+
+        &:after {
+            content: "beta";
+
+            @apply text-sm font-bold absolute right-10 -bottom-2 body-text
+        }
     }
 
     &.dark {

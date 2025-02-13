@@ -1,6 +1,6 @@
 {
   "name": "investor-ui",
-  "version": "0.2.54",
+  "version": "0.2.79",
   "type": "module",
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {

@@ -34,7 +34,7 @@
         </div>
         <div class="flex justify-between">
           <span>Cash available</span>
-          <span>{currencyFormat()(50400.22)}</span>
+          <span>{currencyFormat()(account?.balance?.cash ?? 0)}</span>
         </div>
       </div>
       <div class="py-12 px-4 text-center flex flex-col justify-center">
@@ -85,13 +85,24 @@
 
 <script lang="ts">
   import { currencyFormat } from 'utils/formatTools';
+  import { accountStore } from '@/store/account';
+  import type { IAccount } from 'models/account';
+  import { onDestroy } from 'svelte';
 
   let { value, buy } = $props();
   let dialogRef: HTMLDialogElement | undefined = $state();
 
+  let account: IAccount | undefined = $state();
+
   let quantity = $state(0);
   let closing = $state(false);
   let dialogVisible = $state(false);
+
+  const accountSubscription = accountStore.subscribe((value) => {
+    account = value;
+  });
+
+  onDestroy(accountSubscription);
 
   let total = $derived(quantity * (value?.price ?? 0));
 

@@ -38,15 +38,26 @@
       },
       {
         statTitle: 'Holdings',
-        statText: `${currencyFormat()(account?.balance?.holdings ?? 0)}`,
+        statText: `${currencyFormat({
+          notation:
+            Math.abs(account?.balance?.holdings ?? 0) >= 1000000
+              ? 'compact'
+              : 'standard'
+        })(account?.balance?.holdings ?? 0)}`,
         statDescription: 'Since yesterday',
         statPercent: `${decimalFormat()(0)}`,
         statIcon: 'category',
         statDown: false
       },
+
       {
         statTitle: 'Cash',
-        statText: `${currencyFormat()(account?.balance?.cash ?? 0)}`,
+        statText: `${currencyFormat({
+          notation:
+            Math.abs(account?.balance?.cash ?? 0) >= 1000000
+              ? 'compact'
+              : 'standard'
+        })(account?.balance?.cash ?? 0)}`,
         statDescription: 'Since yesterday',
         statIcon: 'money',
         statDown: true
