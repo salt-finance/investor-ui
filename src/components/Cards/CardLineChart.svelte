@@ -19,7 +19,7 @@
 
   let {
     dataLength = 10,
-    startingValue = 61100.34,
+    startingValue = 0,
     range = 100
   } = $props<{
     dataLength?: number;
@@ -102,7 +102,8 @@
 
               if (context.parsed.y !== null) {
                 label += currencyFormat({
-                  currencyDisplay: 'name'
+                  currencyDisplay: 'name',
+                  signDisplay: 'negative'
                 })(context.parsed.y);
               }
               return label;
