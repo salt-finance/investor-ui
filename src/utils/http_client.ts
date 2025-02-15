@@ -6,7 +6,7 @@ export const ApiURL =
     : 'https://salt-server.com/v1';
 
 const getToken = () => {
-  return sessionStorage.getItem('token');
+  return localStorage.getItem('token');
 };
 
 const _headers = { 'Content-Type': 'application/json', Authorization: '' };

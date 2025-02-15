@@ -6,7 +6,7 @@ export const createUser = (payload: IUser) => {
 };
 
 export const continueRegister = (token: string) => {
-  sessionStorage.setItem('token', token);
+  localStorage.setItem('token', token);
   return get<IUser>('/get-started');
 };
 

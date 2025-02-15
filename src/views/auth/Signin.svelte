@@ -111,7 +111,7 @@
     if (value !== undefined && value !== '') {
       let token = value.split('continue=')[1];
       if (token) {
-        sessionStorage.setItem('token', token);
+        localStorage.setItem('token', token);
       }
     }
   });
