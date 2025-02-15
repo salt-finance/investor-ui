@@ -14,6 +14,7 @@
   } from 'utils/chartTools';
   import { currencyFormat, dateTimeFormat } from 'utils/formatTools';
   import { theme } from '@/store/theme';
+  import { formatCurrencyWithNotation } from 'utils/formatTools.js';
   // init chart
 
   let {
@@ -83,11 +84,7 @@
             // Include a dollar sign in the ticks
             callback: function (value: any) {
               value = value as number;
-              value = currencyFormat({
-                notation: Math.abs(value) >= 10000 ? 'compact' : 'standard'
-              })(value);
-
-              return value;
+              return formatCurrencyWithNotation(value);
             }
           }
         }
@@ -197,7 +194,6 @@
 
   export async function show() {
     let { Chart } = await import('chart.js/auto');
-
     chart = new Chart(chartCanvas, config);
 
     chart.options = options(defaultConfigs(isDark));

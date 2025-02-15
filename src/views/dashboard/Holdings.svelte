@@ -57,7 +57,7 @@
   </div>
 </div>
 
-<Tearsheet bind:this={tearsheetModal} security={selectedSecurity} />
+<Tearsheet bind:this={tearsheetModal} />
 
 <script lang="ts">
   import CardTable, {
@@ -112,11 +112,9 @@
 
   fetchSectors();
 
-  let selectedSecurity: ISecurity | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
   const onRowTap = (data: ISecurity) => {
-    selectedSecurity = data;
-    tearsheetModal?.show();
+    tearsheetModal?.show(data);
   };
 
   let mobile = new MediaQuery('max-width: 1024px');

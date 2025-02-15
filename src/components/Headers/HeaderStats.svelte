@@ -22,7 +22,10 @@
   import type { IAccount } from 'models/account';
   import { onDestroy } from 'svelte';
   import { accountStore } from '@/store/account';
-  import { currencyFormat, decimalFormat } from 'utils/formatTools';
+  import {
+    formatCurrencyWithNotation,
+    formatPercentage
+  } from 'utils/formatTools';
 
   let account: IAccount | undefined = $state();
 
@@ -30,46 +33,31 @@
     return [
       {
         statTitle: 'Total Value',
-        statText: `${currencyFormat({
-          notation:
-            Math.abs(account?.balance?.total ?? 0) >= 1000000
-              ? 'compact'
-              : 'standard'
-        })(account?.balance?.total ?? 0)}`,
+        statText: `${formatCurrencyWithNotation(account?.balance?.total)}`,
         statDescription: 'Since yesterday',
-        statPercent: `${decimalFormat()(0)}`,
+        statPercent: formatPercentage(),
         statIcon: 'leaderboard',
         statDown: false
       },
       {
         statTitle: 'Holdings',
-        statText: `${currencyFormat({
-          notation:
-            Math.abs(account?.balance?.holdings ?? 0) >= 1000000
-              ? 'compact'
-              : 'standard'
-        })(account?.balance?.holdings ?? 0)}`,
+        statText: formatCurrencyWithNotation(account?.balance?.holdings),
         statDescription: 'Since yesterday',
-        statPercent: `${decimalFormat()(0)}`,
+        statPercent: formatPercentage(),
         statIcon: 'category',
         statDown: false
       },
 
       {
         statTitle: 'Cash',
-        statText: `${currencyFormat({
-          notation:
-            Math.abs(account?.balance?.cash ?? 0) >= 1000000
-              ? 'compact'
-              : 'standard'
-        })(account?.balance?.cash ?? 0)}`,
+        statText: formatCurrencyWithNotation(account?.balance?.cash),
         statDescription: 'Since yesterday',
         statIcon: 'money',
         statDown: true
       },
       {
         statTitle: 'Performance',
-        statText: `${decimalFormat()(account?.balance?.roi ?? 0)} %`,
+        statText: formatPercentage(account?.balance?.roi),
         statDescription: 'Since yesterday',
         statIcon: 'speed',
         statDown: true

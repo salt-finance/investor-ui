@@ -25,7 +25,7 @@
               {statDown ? 'trending_down' : 'trending_up'}
             </span>
 
-            {statPercent}%
+            {statPercent}
           </span>
           <span class="whitespace-nowrap">{statDescripiron}</span>
         </p>

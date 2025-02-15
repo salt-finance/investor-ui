@@ -30,7 +30,7 @@
     {/if}
   </div>
 </div>
-<Tearsheet bind:this={tearsheetModal} security={selectedSecurity} />
+<Tearsheet bind:this={tearsheetModal} />
 
 <script lang="ts">
   import CardTable, {
@@ -42,12 +42,10 @@
   import type { SvelteComponent } from 'svelte';
 
   let mobile = new MediaQuery('max-width: 1024px');
-  let selectedSecurity: ISecurity | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
 
-  const onRowTap = (data: Record<string, any>) => {
-    selectedSecurity = data as ISecurity;
-    tearsheetModal?.show();
+  const onRowTap = (data: ISecurity) => {
+    tearsheetModal?.show(data);
   };
 
   const columns: TableColumn<Record<string, any>>[] = [

@@ -43,7 +43,7 @@
       </div>
     {/if}
   </div>
-  <Tearsheet bind:this={tearsheetModal} security={selectedSecurity} />
+  <Tearsheet bind:this={tearsheetModal} />
 {/if}
 
 <script lang="ts">
@@ -57,11 +57,9 @@
   import { getSector } from '@/api/api_security';
 
   let sector: ISector | undefined = $state();
-  let selectedSecurity: ISecurity | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
   const onRowTap = (data: ISecurity) => {
-    selectedSecurity = data;
-    tearsheetModal?.show();
+    tearsheetModal?.show(data);
   };
 
   const paramSubscription = params.subscribe((val) => {

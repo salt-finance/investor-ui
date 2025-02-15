@@ -19,7 +19,10 @@
           </div>
         </div>
         <div class="h-60 lg:h-72 xl:h-80 m-4 grid">
-          <CardLineChart bind:this={lineChart} />
+          <CardLineChart
+            bind:this={lineChart}
+            startingValue={account?.balance?.total}
+          />
         </div>
       </div>
     </div>
@@ -63,11 +66,21 @@
   import Activity from './Activity.svelte';
   import Holdings from './Holdings.svelte';
 
-  import { onMount, type SvelteComponent } from 'svelte';
+  import { onDestroy, onMount, type SvelteComponent } from 'svelte';
   import { fly } from 'svelte/transition';
   import { staggerdTransition } from 'utils/animationTools';
+  import { accountStore } from '@/store/account';
+  import type { IAccount } from 'models/account';
 
   let lineChart: SvelteComponent;
+
+  let account: IAccount | undefined = $state();
+
+  const accountSubscription = accountStore.subscribe((value) => {
+    account = value;
+  });
+
+  onDestroy(accountSubscription);
 
   onMount(async () => {
     lineChart.show();

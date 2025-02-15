@@ -220,11 +220,7 @@
   let tradeModal: SvelteComponent;
   let buy = $state(true);
 
-  interface Props {
-    security?: ISecurity;
-  }
-
-  let { security = $bindable() }: Props = $props();
+  let security: ISecurity | undefined = $state();
 
   let dialogRef: HTMLDialogElement | undefined = $state();
 
@@ -240,15 +236,17 @@
     }, 500);
   }
 
+  let lineChart: SvelteComponent | undefined = $state();
+
   $effect(() => {
-    if (security !== undefined) {
+    if (lineChart) {
       lineChart?.show();
     }
   });
 
-  let lineChart: SvelteComponent | undefined = $state();
-
-  export function show() {
+  export function show(securityToShow: ISecurity) {
+    security = securityToShow;
+    lineChart?.show();
     dialogRef?.showModal();
   }
 </script>

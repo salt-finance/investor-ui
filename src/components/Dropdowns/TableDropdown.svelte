@@ -20,7 +20,7 @@
           class="hover:dark-light-bg hover:text-white py-2 px-4 whitespace-nowrap text-left"
           onclick={(e) => {
             e.preventDefault();
-            tearsheetModal?.show();
+            tearsheetModal?.show(value);
           }}
         >
           View security details
@@ -30,7 +30,7 @@
           onclick={(e) => {
             e.preventDefault();
             buy = true;
-            tradeModal?.show();
+            tradeModal?.show(value);
             toggleDropdown(e);
           }}
         >
@@ -41,7 +41,7 @@
             onclick={(e) => {
               e.preventDefault();
               buy = false;
-              tradeModal?.show();
+              tradeModal?.show(value);
               toggleDropdown(e);
             }}
             class="hover:bg-yellow-600 hover:text-white py-2 px-4 whitespace-nowrap text-left"
@@ -56,7 +56,7 @@
 <Trade bind:this={tradeModal} {buy} {value} />
 
 {#if dropdownPopoverShow}
-  <Tearsheet bind:this={tearsheetModal} security={value} />
+  <Tearsheet bind:this={tearsheetModal} />
 {/if}
 
 <script lang="ts">

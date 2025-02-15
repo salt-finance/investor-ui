@@ -36,6 +36,22 @@ export const decimalFormat = (options?: Intl.NumberFormatOptions) =>
     ...options
   }).format;
 
+export const formatPercentage = (value?: number) => {
+  if (!value) {
+    return '--';
+  }
+  return decimalFormat()(value) + ' %';
+};
+
+export const formatCurrencyWithNotation = (value?: number) => {
+  if (!value) {
+    return '--';
+  }
+  return currencyFormat({
+    notation: Math.abs(value) >= 100000 ? 'compact' : 'standard'
+  })(value);
+};
+
 export const currencyFormat = (options?: Intl.NumberFormatOptions) =>
   new Intl.NumberFormat(locale, {
     ...defaultCurrencyOptions,
