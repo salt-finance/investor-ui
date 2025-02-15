@@ -6,21 +6,20 @@
         {sector.description}
       </span>
     {/if}
-    {#if sectorSecurites.length > 0}
+    {#if sector?.securities?.data}
       <span class="page-subtitle my-4">Securities</span>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 flex-wrap"
       >
-        {#each sectorSecurites as security}
+        {#each sector.securities.data as security}
           <button onclick={() => onRowTap(security)} class="unset">
             <span
-              class="col-span-1 card flex flex-row flex-wrap p-4 items-start gap-4 content-between hover:bg-accent/30 dark:hover:bg-accent-dark/30"
+              class="col-span-1 card flex flex-row flex-wrap p-4 items-start gap-4 content-between h-full hover:bg-accent/30 dark:hover:bg-accent-dark/30"
             >
               <span class="flex flex-grow w-full justify-between items-center">
-                <img
-                  class="rounded-full border-none aspect-square items-center h-12"
+                <RoundedImage
                   src={security.logoUrl}
-                  alt="logo"
+                  fallBackText={security.name}
                 />
               </span>
 
@@ -48,17 +47,16 @@
 {/if}
 
 <script lang="ts">
-  import { sectors, securities } from '@/store/stock';
   import { type ISector } from 'models/sector';
   import type { ISecurity } from 'models/security';
   import { onDestroy, type SvelteComponent } from 'svelte';
-  import { location } from 'svelte-spa-router';
+  import { params } from 'svelte-spa-router';
   import { currencyFormat, decimalFormat } from 'utils/formatTools';
   import Tearsheet from 'components/Modals/Tearsheet.svelte';
+  import RoundedImage from 'components/RoundedImage.svelte';
+  import { getSector } from '@/api/api_security';
 
   let sector: ISector | undefined = $state();
-  let sectorSecurites: ISecurity[] | [] = $state([]);
-
   let selectedSecurity: ISecurity | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
   const onRowTap = (data: ISecurity) => {
@@ -66,19 +64,15 @@
     tearsheetModal?.show();
   };
 
-  const sectorsSubscription = sectors.subscribe((sectors) => {
-    location.subscribe((val) => {
-      let sectorId = val.split('/').pop();
-      sector = sectors.find((sector) => sector.id === sectorId);
-      if (sector !== undefined) {
-        securities.subscribe((securities) => {
-          sectorSecurites = securities.filter((security) =>
-            sector!.securities.find((id) => id === security.id)
-          );
-        });
-      }
-    });
+  const paramSubscription = params.subscribe((val) => {
+    if (val?.sectorId) {
+      getSector(val.sectorId)
+        .then((response) => {
+          sector = response.response;
+        })
+        .catch((_) => {});
+    }
   });
 
-  onDestroy(sectorsSubscription);
+  onDestroy(paramSubscription);
 </script>

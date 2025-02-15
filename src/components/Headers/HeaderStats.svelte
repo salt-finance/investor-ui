@@ -30,7 +30,12 @@
     return [
       {
         statTitle: 'Total Value',
-        statText: `${currencyFormat()(account?.balance?.total ?? 0)}`,
+        statText: `${currencyFormat({
+          notation:
+            Math.abs(account?.balance?.total ?? 0) >= 1000000
+              ? 'compact'
+              : 'standard'
+        })(account?.balance?.total ?? 0)}`,
         statDescription: 'Since yesterday',
         statPercent: `${decimalFormat()(0)}`,
         statIcon: 'leaderboard',

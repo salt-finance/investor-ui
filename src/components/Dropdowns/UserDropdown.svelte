@@ -1,24 +1,7 @@
 <div class="relative">
   <button class="block" bind:this={btnDropdownRef} onclick={toggleDropdown}>
     <span class="items-center flex">
-      <span
-        class="inline-flex items-center justify-center rounded-full shadow-sm"
-      >
-        {#if image}
-          <img
-            alt="..."
-            class="h-12 rounded-full aspect-square glass-effect"
-            onerror={() => (image = undefined)}
-            src={image}
-          />
-        {:else}
-          <span
-            class="h-12 rounded-full aspect-square glass-effect flex items-center justify-center font-bold"
-          >
-            {userData?.firstName?.at(0)?.toUpperCase() ?? 'P'}
-          </span>
-        {/if}
-      </span>
+      <RoundedImage src={image} fallBackText={userData?.firstName} />
     </span>
   </button>
   <div
@@ -57,6 +40,7 @@
   import active from 'svelte-spa-router/active';
   import { logout } from '@/api/api_auth';
   import type { IUser } from 'models/user';
+  import RoundedImage from 'components/RoundedImage.svelte';
 
   // core components
 

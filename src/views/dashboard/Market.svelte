@@ -20,8 +20,17 @@
   import BaseInput from 'components/Inputs/BaseInput.svelte';
 
   import SectorCard from 'components/SectorCard.svelte';
-  import sectorsData from 'data/sectors.json';
-  import { type ISector, Sector } from 'models/sector';
+  import { type ISector } from 'models/sector';
+  import { fetchSectors, sectorStore } from '@/store/stock';
+  import { onDestroy } from 'svelte';
 
-  const sectors: ISector[] = Sector.fromJsonList(sectorsData);
+  let sectors: ISector[] = $state([]);
+
+  const sectorsSubscription = sectorStore.subscribe((data) => {
+    sectors = data;
+  });
+
+  onDestroy(sectorsSubscription);
+
+  fetchSectors();
 </script>

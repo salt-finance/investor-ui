@@ -32,11 +32,8 @@
           class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:-top-1 bottom-0 z-10 card"
         >
           <div class="flex items-center gap-4">
-            <img
-              class="rounded-full border-none aspect-square h-12"
-              src={security.logoUrl}
-              alt="logo"
-            />
+            <RoundedImage src={security.logoUrl} fallBackText={security.name} />
+
             <div>
               <span class="text-lg font-semibold mr-2">{security?.name}</span>
               <p>{security?.exchange} : {security?.symbol}</p>
@@ -218,6 +215,7 @@
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
   import Trade from 'components/Modals/trade.svelte';
   import { type SvelteComponent } from 'svelte';
+  import RoundedImage from 'components/RoundedImage.svelte';
 
   let tradeModal: SvelteComponent;
   let buy = $state(true);

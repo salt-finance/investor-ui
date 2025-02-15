@@ -24,12 +24,15 @@
           <div
             class="lg:w-3/5 h-1/2 flex-col overflow-hidden w-full lg:h-full lg:flex items-center justify-center content-start flex-wrap"
           >
-            <img
-              src="https://picsum.photos/id/525/3000?grayscale"
-              height="100px"
-              class="w-full h-full object-cover dark:opacity-60"
-              alt=""
-            />
+            {#if src !== undefined}
+              <img
+                {src}
+                height="100px"
+                onerror={() => (src = undefined)}
+                class="w-full h-full object-cover dark:opacity-60"
+                alt=""
+              />
+            {/if}
           </div>
           <form
             class="flex flex-col justify-start md:justify-center gap-4 w-full h-1/2 lg:h-full lg:w-2/5 flex-grow px-8 py-6 mb-3"
@@ -91,6 +94,10 @@
   import { onDestroy } from 'svelte';
 
   let email = $state('');
+
+  let src: string | undefined = $state(
+    'https://picsum.photos/id/525/3000?grayscale'
+  );
 
   function continueWithEmail() {
     window.location.href = `${ApiURL}/auth/google`;

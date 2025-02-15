@@ -51,7 +51,7 @@
   <div class="flex flex-wrap mt-4 gap-4" in:fly|global={staggerdTransition(4)}>
     <Activity />
 
-    <Holdings />
+    <Holdings showTop />
   </div>
 </div>
 

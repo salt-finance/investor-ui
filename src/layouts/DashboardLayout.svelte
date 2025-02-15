@@ -12,7 +12,11 @@
       <div class="flex flex-col justify-end w-full gap-4 flex-grow">
         <HeaderStats />
         <div class="flex flex-wrap z-10 flex-grow flex-col content-start">
-          <Router restoreScrollState={false} {routes} />
+          <Router
+            on:routeLoaded={navigateToTop}
+            restoreScrollState={true}
+            {routes}
+          />
         </div>
       </div>
       <FooterAdmin />
@@ -53,6 +57,10 @@
   tokenTest().catch(() => {
     replace('/');
   });
+
+  const navigateToTop = () => {
+    document.body.scroll({ behavior: 'smooth', top: 0 });
+  };
 
   getUser().then((user) => {
     if (user.response) {

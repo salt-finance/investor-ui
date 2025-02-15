@@ -2,28 +2,39 @@
 <!--  <TableDropdown {value} />-->
 <!--{/snippet}-->
 <div class="motion-preset-fade w-full block">
-  <span class="page-title m-4 block">
-    Holdings
-    {#if data.length > 0}
-      ({data.length})
+  <div class="flex justify-between">
+    <span class="page-title m-4 block">
+      Holdings
+      {getTitle()}
+    </span>
+    {#if showTop && all.length > maxTop}
+      <button
+        class="base-button mb-3"
+        onclick={() => {
+          replace('/dashboard/holdings');
+        }}
+        >Show all
+      </button>
     {/if}
-  </span>
+  </div>
+
   <div class="card bg-opacity-40">
     {#if mobile.current}
       <div class="flex flex-col">
-        {#each data as security}
+        {#if filtered.length === 0}
+          <span class="p-6"> No results found. </span>
+        {/if}
+        {#each filtered as security}
           <button
             onclick={() => onRowTap(security)}
             class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
           >
             <span class="flex w-full justify-between p-4">
               <span class="flex gap-4 items-center">
-                <img
-                  class="rounded-full border-none aspect-square h-12"
+                <RoundedImage
                   src={security.logoUrl}
-                  alt="logo"
+                  fallBackText={security.name}
                 />
-
                 <span class="flex flex-col">
                   <span>
                     {security.name}
@@ -41,9 +52,8 @@
         {/each}
       </div>
     {:else}
-      <CardTable {onRowTap} {columns} {data} sortIndex={2} />
+      <CardTable {onRowTap} {columns} bind:data={filtered} sortIndex={2} />
     {/if}
-    <div></div>
   </div>
 </div>
 
@@ -54,17 +64,53 @@
     type TableColumn
   } from '../../components/Cards/CardTable.svelte';
 
-  import holdings from 'data/holdings.json';
   import { MediaQuery } from 'svelte/reactivity';
   import { currencyFormat } from 'utils/formatTools.js';
-  import type { SvelteComponent } from 'svelte';
+  import { onDestroy, type SvelteComponent } from 'svelte';
   import Tearsheet from 'components/Modals/Tearsheet.svelte';
-  import { Security, type ISecurity } from 'models/security';
+  import { type ISecurity } from 'models/security';
+  import { fetchSectors, sectorStore } from '@/store/stock';
+  import { replace } from 'svelte-spa-router';
+  import RoundedImage from 'components/RoundedImage.svelte';
 
-  const data: ISecurity[] = [];
+  let all: ISecurity[] = $state([]);
+  let filtered: ISecurity[] = $state([]);
 
-  const sec = Security.fromJsonList(holdings);
-  data.push(...sec);
+  const maxTop = 5;
+
+  const sectorsSubscription = sectorStore.subscribe((sectors) => {
+    all = [];
+    sectors.forEach((sector) => {
+      if (sector?.securities?.data) {
+        all.push(...sector.securities.data);
+      }
+    });
+
+    if (showTop && all.length > maxTop) {
+      filtered = all?.filter((_, index) => index < maxTop);
+    } else {
+      filtered = all;
+    }
+  });
+
+  const getTitle = () => {
+    if (filtered.length <= 0) {
+      return '';
+    }
+
+    if (showTop && all.length !== filtered.length) {
+      return `(${maxTop} of ${all.length})`;
+    }
+    return `(${all.length})`;
+  };
+
+  let { showTop } = $props<{
+    showTop?: boolean;
+  }>();
+
+  onDestroy(sectorsSubscription);
+
+  fetchSectors();
 
   let selectedSecurity: ISecurity | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
@@ -77,7 +123,13 @@
 
   // Column definitions
   const columns: TableColumn<ISecurity>[] = [
-    { key: 'logoUrl', header: '', sortable: false, type: 'image' },
+    {
+      key: 'logoUrl',
+      header: '',
+      sortable: false,
+      type: 'image',
+      imageFallBackProp: 'name'
+    },
     { key: 'name', header: 'Security Name', sortable: true },
     { key: 'symbol', header: 'Ticker', sortable: true },
     { key: 'price', header: 'Price', sortable: true, format: 'currency' },

@@ -35,14 +35,12 @@
         {sector.totalGainLoss} %
       </span>
     {/if}
-    {#if sector.securities !== undefined}
-      <span
-        class="font-semibold text-sm flex items-center gap-1 justify-self-end"
-      >
+    {#if sector.securities !== null}
+      <span class="font-semibold text-sm flex gap-1 justify-self-end">
         <span class="material-symbols-outlined skiptranslate text-sm">
           category
         </span>
-        {sector.securities.length.toString()}
+        {sector.securities.count}
       </span>
     {/if}
   </span>

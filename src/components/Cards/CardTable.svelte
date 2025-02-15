@@ -38,10 +38,9 @@
             {#each columns as column}
               <td class="py-4 pl-4 {column.bodyClasses}">
                 {#if column.type === 'image'}
-                  <img
-                    class="rounded-full align-middle border-none max-w-fit aspect-square h-12"
+                  <RoundedImage
                     src={row[column.key]}
-                    alt="logo"
+                    fallBackText={row[column.imageFallBackProp]}
                   />
                 {:else if column.type === 'action' && actionSnippet}
                   {@render actionSnippet(row)}
@@ -71,16 +70,18 @@
     type?: 'image' | 'action';
     format?: 'currency' | 'number' | 'date';
     action?: (event: Event) => any;
+    imageFallBackProp?: string;
   };
 </script>
 
 <script generics="T" lang="ts">
   import type { Snippet } from 'svelte';
   import { currencyFormat } from 'utils/formatTools';
+  import RoundedImage from 'components/RoundedImage.svelte';
 
   // Props
   let {
-    data,
+    data = $bindable(),
     columns,
     title,
     actionSnippet,
