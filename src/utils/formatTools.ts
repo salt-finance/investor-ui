@@ -37,14 +37,14 @@ export const decimalFormat = (options?: Intl.NumberFormatOptions) =>
   }).format;
 
 export const formatPercentage = (value?: number) => {
-  if (!value) {
+  if (value === undefined) {
     return '--';
   }
   return decimalFormat()(value) + ' %';
 };
 
 export const formatCurrencyWithNotation = (value?: number) => {
-  if (!value) {
+  if (value === undefined) {
     return '--';
   }
   return currencyFormat({
