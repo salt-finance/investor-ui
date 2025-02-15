@@ -5,10 +5,8 @@
       class="motion-translate-x-in-[20%] motion-translate-y-in-[20%] motion-opacity-in-[0%] motion-duration-[1.00s]/translate motion-duration-[0.44s]/opacity motion-ease-spring-bouncier"
     >
       <CardStats
-        statDown={stat.statDown}
         statDescripiron={stat.statDescription}
         statIconName={stat.statIcon}
-        statPercent={stat.statPercent}
         statSubtitle={stat.statTitle}
         statTitle={stat.statText}
       />
@@ -23,6 +21,7 @@
   import { onDestroy } from 'svelte';
   import { accountStore } from '@/store/account';
   import {
+    currencyFormat,
     formatCurrencyWithNotation,
     formatPercentage
   } from 'utils/formatTools';
@@ -34,15 +33,24 @@
       {
         statTitle: 'Total Value',
         statText: `${formatCurrencyWithNotation(account?.balance?.total)}`,
-        statDescription: 'Since yesterday',
-        statPercent: formatPercentage(),
+        statDescription:
+          account?.balance?.total !== undefined
+            ? currencyFormat({ currencyDisplay: 'name' })(
+                account?.balance?.total
+              )
+            : undefined,
         statIcon: 'leaderboard',
         statDown: false
       },
       {
         statTitle: 'Holdings',
         statText: formatCurrencyWithNotation(account?.balance?.holdings),
-        statDescription: 'Since yesterday',
+        statDescription:
+          account?.balance?.holdings !== undefined
+            ? currencyFormat({ currencyDisplay: 'name' })(
+                account.balance.holdings
+              )
+            : undefined,
         statPercent: formatPercentage(),
         statIcon: 'category',
         statDown: false
@@ -51,14 +59,16 @@
       {
         statTitle: 'Cash',
         statText: formatCurrencyWithNotation(account?.balance?.cash),
-        statDescription: 'Since yesterday',
+        statDescription:
+          account?.balance?.cash !== undefined
+            ? currencyFormat({ currencyDisplay: 'name' })(account.balance.cash)
+            : undefined,
         statIcon: 'money',
         statDown: true
       },
       {
         statTitle: 'Performance',
         statText: formatPercentage(account?.balance?.roi),
-        statDescription: 'Since yesterday',
         statIcon: 'speed',
         statDown: true
       }

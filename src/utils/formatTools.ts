@@ -1,5 +1,5 @@
-const locale = 'en-US';
-// const locale = 'am-ET';
+// const locale = 'en-US';
+const locale = 'am-ET';
 const defaultOptions: Intl.DateTimeFormatOptions = {
   calendar: 'ethiopic',
   year: 'numeric',

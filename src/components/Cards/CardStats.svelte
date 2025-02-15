@@ -14,19 +14,8 @@
         </span>
       </div>
 
-      {#if statPercent !== undefined}
+      {#if statDescripiron !== undefined}
         <p class="hidden md:flex gap-2 items-center flex-wrap xl:flex-nowrap">
-          <span
-            class="text-sm font-bold gap-1 inline-flex align-item-center line-clamp-1 {statDown
-              ? 'text-red-500'
-              : 'text-emerald-500'}"
-          >
-            <span class="material-symbols-outlined text-sm skiptranslate">
-              {statDown ? 'trending_down' : 'trending_up'}
-            </span>
-
-            {statPercent}
-          </span>
           <span class="whitespace-nowrap">{statDescripiron}</span>
         </p>
       {/if}
@@ -56,19 +45,11 @@
     statSubtitle?: string;
     statTitle?: string;
     // "up" or "down"
-    statDown?: boolean;
-    statPercent?: any;
     // from tailwindcss
     statDescripiron?: string;
     statIconName?: string;
   }
 
-  let {
-    statSubtitle = 'Traffic',
-    statTitle = '350,897',
-    statDown = false,
-    statPercent,
-    statDescripiron = 'Since last month',
-    statIconName
-  }: Props = $props();
+  let { statSubtitle, statTitle, statDescripiron, statIconName }: Props =
+    $props();
 </script>
