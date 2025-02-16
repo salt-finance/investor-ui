@@ -4,32 +4,34 @@
   <div class="flex-auto flex p-4 justify-between gap-2 flex-nowrap">
     <div class="flex flex-col gap-2 w-full">
       <div
-        class="relative w-full max-w-full flex-grow flex-1 gap-2 flex-col flex justify-between"
+        class="relative w-full max-w-full gap-2 flex-row flex justify-between items-center"
       >
-        <h5 class="uppercase font-bold text-sm">
+        <h5 class="uppercase font-bold text-sm pb-0">
           {statSubtitle}
         </h5>
-        <span class="font-extralight text-xl md:text-2xl">
-          {statTitle}
-        </span>
+        {#if statIconName !== undefined}
+          <div class="flex relative flex-initial items-start justify-end">
+            <div
+              class="text-center inline-flex items-start sm:items-center text-lg justify-center w-4 sm:w-10 aspect-square sm:shadow-lg rounded-full bg-opacity-0 sm:bg-opacity-80 icon-bg"
+            >
+              <i class="material-symbols-outlined skiptranslate"
+                >{statIconName}</i
+              >
+            </div>
+          </div>
+        {/if}
       </div>
 
+      <span class="text-xl md:text-2xl {titleClass}">
+        {statTitle}
+      </span>
+
       {#if statDescripiron !== undefined}
-        <p class="hidden md:flex gap-2 items-center flex-wrap xl:flex-nowrap">
-          <span class="whitespace-nowrap">{statDescripiron}</span>
+        <p class="gap-2 items-center flex-wrap xl:flex-nowrap">
+          <span class="text-sm sm:text-lg lg:text-sm">{statDescripiron}</span>
         </p>
       {/if}
     </div>
-
-    {#if statIconName !== undefined}
-      <div class="flex relative flex-initial items-start justify-end">
-        <div
-          class="text-center inline-flex items-center justify-center w-8 sm:w-12 aspect-square sm:shadow-lg rounded-full bg-opacity-0 sm:bg-opacity-80 icon-bg"
-        >
-          <i class="material-symbols-outlined skiptranslate">{statIconName}</i>
-        </div>
-      </div>
-    {/if}
   </div>
 </div>
 
@@ -44,12 +46,18 @@
     // core components
     statSubtitle?: string;
     statTitle?: string;
+    titleClass?: string;
     // "up" or "down"
     // from tailwindcss
     statDescripiron?: string;
     statIconName?: string;
   }
 
-  let { statSubtitle, statTitle, statDescripiron, statIconName }: Props =
-    $props();
+  let {
+    statSubtitle,
+    statTitle,
+    titleClass,
+    statDescripiron,
+    statIconName
+  }: Props = $props();
 </script>

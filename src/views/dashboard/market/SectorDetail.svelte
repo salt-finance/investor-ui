@@ -26,14 +26,14 @@
               <span class="flex flex-col gap-1">
                 <span class="body-text dark-light-text">{security.name}</span>
                 <span class="font-medium text-xl">
-                  {currencyFormat()(security.price ?? 0)}
+                  {formatCurrencyWithNotation(security.ask)}
                 </span>
                 <span class="flex gap-2">
                   <span class="body-text dark-light-text">
                     {security.symbol}
                   </span>
-                  <span class="text-emerald-600">
-                    +{decimalFormat()(security.dayChangePercent ?? 0)}%
+                  <span class={styleForValue(security.dayChangePercent)}>
+                    {formatPercentage(security.dayChangePercent)}
                   </span>
                 </span>
               </span>
@@ -51,7 +51,11 @@
   import type { ISecurity } from 'models/security';
   import { onDestroy, type SvelteComponent } from 'svelte';
   import { params } from 'svelte-spa-router';
-  import { currencyFormat, decimalFormat } from 'utils/formatTools';
+  import {
+    formatCurrencyWithNotation,
+    formatPercentage,
+    styleForValue
+  } from 'utils/formatTools';
   import Tearsheet from 'components/Modals/Tearsheet.svelte';
   import RoundedImage from 'components/RoundedImage.svelte';
   import { getSector } from '@/api/api_security';

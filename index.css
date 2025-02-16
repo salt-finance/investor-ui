@@ -15,6 +15,7 @@ Danger - Cornell red - #b91c1c - red-700 */
 
 :root {
     interpolate-size: allow-keywords;
+    user-select: none;
 
 }
 

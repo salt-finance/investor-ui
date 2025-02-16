@@ -21,7 +21,7 @@ export interface ISecurity {
   marketCap?: number;
   name?: string;
   openPrice?: number;
-  price?: number;
+  ask?: number;
   priceToEarningsPerShare?: number;
   sector?: string;
   symbol?: string;

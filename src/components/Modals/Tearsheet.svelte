@@ -1,32 +1,36 @@
 <dialog class="tearsheet" bind:this={dialogRef}>
-  {#if security !== undefined}
-    <div
-      class="w-full h-fit max-h-full lg:max-w-screen-lg rounded-xl card flex flex-col sm:mx-16 overflow-hidden {closing
-        ? 'motion-hide'
-        : 'motion-preset-expand'}"
-    >
-      <!--      HEADER-->
-      <div class="py-4 mx-4 flex justify-between w-auto items-center">
-        <div class="flex flex-col">
-          <span class="font-semibold text-lg"
-            >Security Details | {security?.symbol}</span
-          >
-        </div>
-
-        <button
-          class="close-icon text-2xl"
-          id="cancel"
-          onclick={hide}
-          type="reset"
-        >
-          <span class="material-symbols-outlined skiptranslate">
-            cancel
-          </span></button
+  <div
+    class="w-full h-fit max-h-full lg:max-w-screen-lg rounded-xl card flex flex-col sm:mx-16 overflow-hidden {closing
+      ? 'motion-hide'
+      : 'motion-preset-expand'}"
+  >
+    <!--      HEADER-->
+    <div class="py-4 mx-4 flex justify-between w-auto items-center">
+      <div class="flex flex-col">
+        <span class="font-semibold text-lg"
+          >Security Details {security?.symbol
+            ? ' | ' + security.symbol
+            : ''}</span
         >
       </div>
 
-      <!--    BODY -->
-      <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
+      <button
+        class="close-icon text-2xl"
+        id="cancel"
+        onclick={hide}
+        type="reset"
+      >
+        <span class="material-symbols-outlined skiptranslate">
+          cancel
+        </span></button
+      >
+    </div>
+
+    <!--    BODY -->
+    <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
+      {#if loading}
+        loading
+      {:else if security !== undefined}
         <!--      Security Title-->
         <div
           class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:-top-1 bottom-0 z-10 card"
@@ -70,12 +74,7 @@
               <div class="card p-4 w-full gap-2 flex flex-col">
                 Open Price
                 <span class="text-xl">
-                  {currencyFormat({
-                    notation:
-                      Math.abs(security.price ?? 0) >= 10000
-                        ? 'compact'
-                        : 'standard'
-                  })(lineChart?.latest())}
+                  {formatCurrencyWithNotation(security?.ask)}
                 </span>
               </div>
               <div class="card p-4 w-full gap-2 flex flex-col">
@@ -106,8 +105,8 @@
               <div class="m-4 h-[95%]">
                 <CardLineChart
                   bind:this={lineChart}
-                  startingValue={security.price}
-                  range={(security.price ?? 0) * 0.01}
+                  startingValue={security.ask}
+                  range={(security.ask ?? 0) * 0.01}
                 />
               </div>
             </div>
@@ -203,24 +202,32 @@
             </div>
           </div>
         </div>
-      </div>
+        <Trade bind:this={tradeModal} {buy} {security} />
+      {:else}
+        "Not found"
+      {/if}
     </div>
-  {/if}
-  <Trade bind:this={tradeModal} {buy} value={security} />
+  </div>
 </dialog>
 
 <script lang="ts">
-  import { currencyFormat, decimalFormat } from 'utils/formatTools';
+  import {
+    currencyFormat,
+    decimalFormat,
+    formatCurrencyWithNotation
+  } from 'utils/formatTools';
   import type { ISecurity } from 'models/security';
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
   import Trade from 'components/Modals/trade.svelte';
   import { type SvelteComponent } from 'svelte';
   import RoundedImage from 'components/RoundedImage.svelte';
+  import { getSecurity } from '@/api/api_security';
 
-  let tradeModal: SvelteComponent;
+  let tradeModal: SvelteComponent | undefined = $state();
   let buy = $state(true);
 
   let security: ISecurity | undefined = $state();
+  let loading = $state(true);
 
   let dialogRef: HTMLDialogElement | undefined = $state();
 
@@ -244,9 +251,22 @@
     }
   });
 
-  export function show(securityToShow: ISecurity) {
+  export function show(securityToShow?: ISecurity, id?: string) {
     security = securityToShow;
-    lineChart?.show();
     dialogRef?.showModal();
+
+    if (securityToShow) {
+      loading = false;
+      lineChart?.show();
+    } else if (id) {
+      getSecurity(id)
+        .then((resp) => {
+          security = resp.response;
+          lineChart?.show();
+        })
+        .finally(() => {
+          loading = false;
+        });
+    }
   }
 </script>

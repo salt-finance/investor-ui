@@ -53,7 +53,7 @@
     {/if}
   </div>
 </div>
-<Trade bind:this={tradeModal} {buy} {value} />
+<Trade bind:this={tradeModal} {buy} security={value} />
 
 {#if dropdownPopoverShow}
   <Tearsheet bind:this={tearsheetModal} />

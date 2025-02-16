@@ -1,14 +1,16 @@
-<span class="inline-flex items-center justify-center rounded-full shadow-sm">
+<span
+  class="inline-flex max-h-full items-center justify-center rounded-full shadow-sm aspect-square"
+>
   {#if src}
     <img
       alt="..."
-      class="h-12 rounded-full aspect-square glass-effect"
+      class="h-auto rounded-full glass-effect"
       onerror={() => (src = undefined)}
       {src}
     />
   {:else}
     <span
-      class="h-12 rounded-full aspect-square glass-effect flex items-center justify-center font-bold"
+      class="h-auto rounded-full glass-effect flex items-center justify-center font-bold"
     >
       {fallBackText?.at(0)?.toUpperCase() ?? 'P'}
     </span>

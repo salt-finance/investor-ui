@@ -1,6 +1,6 @@
 <div class="relative">
   <button class="block" bind:this={btnDropdownRef} onclick={toggleDropdown}>
-    <span class="items-center flex">
+    <span class="items-center flex h-12">
       <RoundedImage src={image} fallBackText={userData?.firstName} />
     </span>
   </button>

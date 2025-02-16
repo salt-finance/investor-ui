@@ -13,7 +13,7 @@
       >
         <div class="flex flex-col">
           <span class="uppercase font-semibold">{buy ? 'Buy' : 'Sell'}</span>
-          <span class="text-xl font-semibold">{value?.name}</span>
+          <span class="text-xl font-semibold">{security?.name}</span>
         </div>
 
         <button
@@ -30,11 +30,13 @@
       <div class="p-4 flex flex-col gap-4">
         <div class="flex justify-between">
           <span>Unit price</span>
-          <span> {currencyFormat()(value?.price ?? 0)}</span>
+          <span> {formatCurrencyWithNotation(security?.ask)}</span>
         </div>
         <div class="flex justify-between">
           <span>Cash available</span>
-          <span>{currencyFormat()(account?.balance?.cash ?? 0)}</span>
+          <span class={canBuy() ? '' : 'text-amber-400'}
+            >{currencyFormat()(account?.balance?.cash ?? 0)}</span
+          >
         </div>
       </div>
       <div class="py-12 px-4 text-center flex flex-col justify-center">
@@ -58,6 +60,7 @@
           <button
             class="text-base btn-icon rounded-full glass-effect"
             onclick={() => quantity++}
+            disabled={!canBuy()}
           >
             +
           </button>
@@ -68,14 +71,14 @@
       <div class="p-4 flex flex-col gap-4">
         <div class="flex justify-between">
           <span>Total price</span>
-          <span class="text-xl"
-            >{currencyFormat({
-              notation: Math.abs(total) >= 1000000 ? 'compact' : 'standard'
-            })(total ?? 0)}</span
-          >
+          <span class="text-xl">{formatCurrencyWithNotation(total)}</span>
         </div>
 
-        <button class={buy ? 'btn-buy' : 'btn-sell'} onclick={hide}>
+        <button
+          disabled={!valid()}
+          class={buy ? 'btn-buy' : 'btn-sell'}
+          onclick={buyNow}
+        >
           Place {buy ? 'buy' : 'sell'} order
         </button>
       </div>
@@ -84,12 +87,20 @@
 </dialog>
 
 <script lang="ts">
-  import { currencyFormat } from 'utils/formatTools';
-  import { accountStore } from '@/store/account';
+  import {
+    currencyFormat,
+    formatCurrencyWithNotation
+  } from 'utils/formatTools';
+  import { accountStore, fetchAccounts } from '@/store/account';
   import type { IAccount } from 'models/account';
   import { onDestroy } from 'svelte';
+  import { buySecurity } from '@/api/api_holding';
+  import type { ISecurity } from 'models/security';
 
-  let { value, buy } = $props();
+  let { security, buy } = $props<{
+    security: ISecurity;
+    buy: boolean;
+  }>();
   let dialogRef: HTMLDialogElement | undefined = $state();
 
   let account: IAccount | undefined = $state();
@@ -104,10 +115,35 @@
 
   onDestroy(accountSubscription);
 
-  let total = $derived(quantity * (value?.price ?? 0));
+  let total = $derived(quantity * (security?.ask ?? 0));
 
-  function hide(e: Event) {
-    e.preventDefault();
+  function buyNow() {
+    if (!account) {
+      return;
+    }
+    buySecurity(account.id, security.id, quantity).then(() => {
+      fetchAccounts().finally(() => {
+        hide();
+      });
+    });
+  }
+
+  function canBuy() {
+    if (!account?.balance?.cash) {
+      return false;
+    }
+    return account.balance.cash - total >= security.ask;
+  }
+
+  function valid() {
+    if (!account?.balance?.cash || !total) {
+      return false;
+    }
+    return account.balance.cash - total >= security.ask;
+  }
+
+  function hide(e?: Event) {
+    e?.preventDefault();
     closing = true;
     setTimeout(() => {
       dialogRef?.close();

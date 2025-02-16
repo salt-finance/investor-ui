@@ -24,27 +24,30 @@
         {#if filtered.length === 0}
           <span class="p-6"> No results found. </span>
         {/if}
-        {#each filtered as security}
+        {#each filtered as holding}
           <button
-            onclick={() => onRowTap(security)}
+            onclick={() => onRowTap(holding)}
             class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
           >
             <span class="flex w-full justify-between p-4">
-              <span class="flex gap-4 items-center">
+              <span class="flex items-center w-full justify-between">
                 <RoundedImage
-                  src={security.logoUrl}
-                  fallBackText={security.name}
+                  src={holding.securityLogoUrl}
+                  fallBackText={holding.securityName}
                 />
-                <span class="flex flex-col">
-                  <span>
-                    {security.name}
-                    &nbsp;
-                    <span class="font-semibold text-sm">{security.symbol}</span
-                    ></span
-                  >
-                  <span class="body-text dark-light-text"
-                    >{currencyFormat()(security.price ?? 0)}</span
-                  >
+                <span class="flex flex-col w-[calc(100%-4rem)]">
+                  <span class="flex justify-between flex-wrap gap-2">
+                    {holding.securityName}
+                    <span class="font-semibold text-sm">{holding.symbol} </span>
+                  </span>
+                  <span class="flex justify-between flex-wrap gap-2">
+                    <span class="body-text {styleForValue(holding.averageROI)}"
+                      >{formatPercentage(holding.averageROI)}</span
+                    >
+                    <span class="body-text dark-light-text"
+                      >{currencyFormat()(holding.marketValue)}</span
+                    >
+                  </span>
                 </span>
               </span>
             </span>
@@ -65,32 +68,40 @@
   } from '../../components/Cards/CardTable.svelte';
 
   import { MediaQuery } from 'svelte/reactivity';
-  import { currencyFormat } from 'utils/formatTools.js';
+  import {
+    currencyFormat,
+    formatPercentage,
+    styleForValue
+  } from 'utils/formatTools.js';
   import { onDestroy, type SvelteComponent } from 'svelte';
   import Tearsheet from 'components/Modals/Tearsheet.svelte';
-  import { type ISecurity } from 'models/security';
-  import { fetchSectors, sectorStore } from '@/store/stock';
+
   import { replace } from 'svelte-spa-router';
   import RoundedImage from 'components/RoundedImage.svelte';
+  import { getHoldings } from '@/api/api_holding';
+  import { accountStore } from '@/store/account';
+  import type { IHolding } from 'models/holding';
 
-  let all: ISecurity[] = $state([]);
-  let filtered: ISecurity[] = $state([]);
+  let all: IHolding[] = $state([]);
+  let filtered: IHolding[] = $state([]);
 
   const maxTop = 5;
 
-  const sectorsSubscription = sectorStore.subscribe((sectors) => {
-    all = [];
-    sectors.forEach((sector) => {
-      if (sector?.securities?.data) {
-        all.push(...sector.securities.data);
+  const accountSubscription = accountStore.subscribe((account) => {
+    if (account === undefined) {
+      return;
+    }
+
+    getHoldings(account.id).then((resp) => {
+      all = resp.response ?? [];
+      console.table(all);
+
+      if (showTop && all.length > maxTop) {
+        filtered = all?.filter((_, index) => index < maxTop);
+      } else {
+        filtered = all;
       }
     });
-
-    if (showTop && all.length > maxTop) {
-      filtered = all?.filter((_, index) => index < maxTop);
-    } else {
-      filtered = all;
-    }
   });
 
   const getTitle = () => {
@@ -108,37 +119,55 @@
     showTop?: boolean;
   }>();
 
-  onDestroy(sectorsSubscription);
-
-  fetchSectors();
+  onDestroy(accountSubscription);
 
   let tearsheetModal: SvelteComponent | undefined = $state();
-  const onRowTap = (data: ISecurity) => {
-    tearsheetModal?.show(data);
+  const onRowTap = (data: IHolding) => {
+    tearsheetModal?.show(undefined, data.securityId);
   };
 
   let mobile = new MediaQuery('max-width: 1024px');
 
   // Column definitions
-  const columns: TableColumn<ISecurity>[] = [
+  const columns: TableColumn<IHolding>[] = [
     {
-      key: 'logoUrl',
+      key: 'securityLogoUrl',
       header: '',
       sortable: false,
       type: 'image',
       imageFallBackProp: 'name'
     },
-    { key: 'name', header: 'Security Name', sortable: true },
+    { key: 'securityName', header: 'Security Name', sortable: true },
     { key: 'symbol', header: 'Ticker', sortable: true },
-    { key: 'price', header: 'Price', sortable: true, format: 'currency' },
-    { key: 'yearHigh', header: '52W High', sortable: true, format: 'currency' },
+    { key: 'openPrice', header: 'Price', sortable: true, format: 'currency' },
     {
-      key: 'dayChange',
-      header: 'Gain/Loss',
+      key: 'quantity',
+      header: 'Quantity <br /> (Shares)',
+      sortable: true,
+      format: 'number'
+    },
+    { key: 'totalCost', header: 'Cost', sortable: true, format: 'currency' },
+
+    {
+      key: 'averageROI',
+      header: 'Gain / Loss %',
+      sortable: true,
+      type: 'gainLoss',
+      format: 'percentage'
+    },
+    {
+      key: 'totalGainLoss',
+      header: 'Gain / Loss',
+      sortable: true,
+      type: 'gainLoss',
+      format: 'currencyChange'
+    },
+
+    {
+      key: 'marketValue',
+      header: 'Market value',
       sortable: true,
       format: 'currency'
-    },
-    { key: 'type', header: 'Type', sortable: true },
-    { key: 'sector', header: 'Sector', sortable: true }
+    }
   ];
 </script>

@@ -1,5 +1,5 @@
 export type IAccount = {
-  id?: string;
+  id: string;
   fundingMethod?: IAccountFundingMethod;
   balance?: IAccountBalance;
 };

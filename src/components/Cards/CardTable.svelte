@@ -15,11 +15,13 @@
         <tr class="uppercase whitespace-nowrap font-semibold text-left">
           {#each columns as column}
             <th
-              class="py-4 pl-4 {column.headerClasses}"
+              class="py-4 {column.headerClasses} {column.type === 'image'
+                ? 'flex'
+                : ' px-2 '}"
               class:sortable={column.sortable}
               onclick={() => column.sortable && sortData(column.key)}
             >
-              {column.header}
+              {@html column.header}
               {#if column.sortable && sortedColumn === column.key}
                 <span class="sort-indicator">
                   {sortDirection === 'asc' ? '↑' : '↓'}
@@ -36,7 +38,13 @@
             class="hover:bg-accent/30 dark:hover:bg-accent-dark/30 hover:cursor-pointer"
           >
             {#each columns as column}
-              <td class="py-4 pl-4 {column.bodyClasses}">
+              <td
+                class=" px-2 py-4 {column.type === 'image'
+                  ? 'h-24 align-baseline'
+                  : ' '}{column.bodyClasses}{column.type === 'gainLoss'
+                  ? styleForValue(row[column.key])
+                  : ''}"
+              >
                 {#if column.type === 'image'}
                   <RoundedImage
                     src={row[column.key]}
@@ -46,6 +54,12 @@
                   {@render actionSnippet(row)}
                 {:else if column.format === 'currency'}
                   {currencyFormat()(row[column.key] ?? 0)}
+                {:else if column.format === 'currencyChange'}
+                  {currencyFormat({ signDisplay: 'exceptZero' })(
+                    row[column.key] ?? 0
+                  )}
+                {:else if column.format === 'percentage'}
+                  {formatPercentage(row[column.key])}
                 {:else}
                   {row[column.key] ?? '--'}
                 {/if}
@@ -67,8 +81,8 @@
     sortable?: boolean;
     headerClasses?: string;
     bodyClasses?: string;
-    type?: 'image' | 'action';
-    format?: 'currency' | 'number' | 'date';
+    type?: 'image' | 'action' | 'gainLoss';
+    format?: 'currency' | 'number' | 'date' | 'percentage' | 'currencyChange';
     action?: (event: Event) => any;
     imageFallBackProp?: string;
   };
@@ -76,7 +90,11 @@
 
 <script generics="T" lang="ts">
   import type { Snippet } from 'svelte';
-  import { currencyFormat } from 'utils/formatTools';
+  import {
+    currencyFormat,
+    formatPercentage,
+    styleForValue
+  } from 'utils/formatTools';
   import RoundedImage from 'components/RoundedImage.svelte';
 
   // Props

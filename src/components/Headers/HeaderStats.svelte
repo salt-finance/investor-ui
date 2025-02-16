@@ -1,5 +1,5 @@
 <!-- Header -->
-<div class="grid grid-cols-2 lg:grid-cols-4 flex-wrap gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 flex-wrap gap-4">
   {#each getStats() as stat}
     <div
       class="motion-translate-x-in-[20%] motion-translate-y-in-[20%] motion-opacity-in-[0%] motion-duration-[1.00s]/translate motion-duration-[0.44s]/opacity motion-ease-spring-bouncier"
@@ -9,6 +9,7 @@
         statIconName={stat.statIcon}
         statSubtitle={stat.statTitle}
         statTitle={stat.statText}
+        titleClass={stat.titleClass}
       />
     </div>
   {/each}
@@ -23,7 +24,8 @@
   import {
     currencyFormat,
     formatCurrencyWithNotation,
-    formatPercentage
+    formatPercentage,
+    styleForValue
   } from 'utils/formatTools';
 
   let account: IAccount | undefined = $state();
@@ -35,9 +37,11 @@
         statText: `${formatCurrencyWithNotation(account?.balance?.total)}`,
         statDescription:
           account?.balance?.total !== undefined
-            ? currencyFormat({ currencyDisplay: 'name' })(
-                account?.balance?.total
-              )
+            ? account.balance.total > 100000
+              ? currencyFormat({ currencyDisplay: 'name' })(
+                  account?.balance?.total
+                )
+              : undefined
             : undefined,
         statIcon: 'leaderboard',
         statDown: false
@@ -47,11 +51,12 @@
         statText: formatCurrencyWithNotation(account?.balance?.holdings),
         statDescription:
           account?.balance?.holdings !== undefined
-            ? currencyFormat({ currencyDisplay: 'name' })(
-                account.balance.holdings
-              )
+            ? account.balance.holdings > 100000
+              ? currencyFormat({ currencyDisplay: 'name' })(
+                  account.balance.holdings
+                )
+              : undefined
             : undefined,
-        statPercent: formatPercentage(),
         statIcon: 'category',
         statDown: false
       },
@@ -61,7 +66,11 @@
         statText: formatCurrencyWithNotation(account?.balance?.cash),
         statDescription:
           account?.balance?.cash !== undefined
-            ? currencyFormat({ currencyDisplay: 'name' })(account.balance.cash)
+            ? account.balance.cash > 100000
+              ? currencyFormat({ currencyDisplay: 'name' })(
+                  account.balance.cash
+                )
+              : undefined
             : undefined,
         statIcon: 'money',
         statDown: true
@@ -70,7 +79,8 @@
         statTitle: 'Performance',
         statText: formatPercentage(account?.balance?.roi),
         statIcon: 'speed',
-        statDown: true
+        statDown: true,
+        titleClass: styleForValue(account?.balance?.roi)
       }
     ];
   };

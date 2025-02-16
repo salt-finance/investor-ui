@@ -123,3 +123,7 @@ export const post = <T>(
 export const get = <T>(endpoint: string): Promise<IApiResponse<T>> => {
   return createRequest<T>('GET', endpoint, null);
 };
+
+export const put = <T>(endpoint: string): Promise<IApiResponse<T>> => {
+  return createRequest<T>('PUT', endpoint, null);
+};

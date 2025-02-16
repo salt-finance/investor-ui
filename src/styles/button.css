@@ -3,7 +3,7 @@
 }
 
 .btn-buy {
-    @apply btn-wide bg-emerald-600 hover:bg-emerald-800;
+    @apply base-button bg-emerald-600;
 }
 
 .btn-tearsheet {
@@ -11,7 +11,7 @@
 }
 
 .btn-sell {
-    @apply btn-wide bg-yellow-600 hover:bg-yellow-800;
+    @apply base-button bg-yellow-600;
 }
 
 .btn-icon {

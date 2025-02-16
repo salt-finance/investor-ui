@@ -40,7 +40,7 @@ export const formatPercentage = (value?: number) => {
   if (value === undefined) {
     return '--';
   }
-  return decimalFormat()(value) + ' %';
+  return decimalFormat({ signDisplay: 'exceptZero' })(value * 100) + '%';
 };
 
 export const formatCurrencyWithNotation = (value?: number) => {
@@ -92,4 +92,12 @@ export const monthsInYear = () => {
     // OFfset by 3 months and 10 Days (Sep, 10)
     return monthFormat(new Date(Date.now()).setMonth(m - 3, m - 10));
   });
+};
+
+export const styleForValue = (value?: number) => {
+  if (!value) {
+    return '';
+  }
+
+  return value < 0 ? 'text-red-500' : 'text-emerald-600';
 };
