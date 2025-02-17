@@ -8,22 +8,25 @@
   <div class="card bg-opacity-40">
     {#if mobile.current}
       <div class="flex flex-col">
-        {#each data as security}
-          <button
-            onclick={() => onRowTap(security)}
-            class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
-          >
-            <span class="flex w-full justify-between p-4">
-              <span class="flex gap-2">
-                <span class="flex flex-col">
-                  <span class="dark-light-text body-text">{security.Date}</span>
-                  <span class="dark-light-text body-text">{security.name}</span>
-                  <span>{security.Transaction}</span>
-                </span>
-              </span>
-            </span>
-          </button>
-        {/each}
+        {#if data.length === 0}
+          <span class="p-6"> No results found. </span>
+        {/if}
+        <!--        {#each data as security}-->
+        <!--&lt;!&ndash;          <button&ndash;&gt;-->
+        <!--&lt;!&ndash;            onclick={() => onRowTap(security)}&ndash;&gt;-->
+        <!--&lt;!&ndash;            class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"&ndash;&gt;-->
+        <!--&lt;!&ndash;          >&ndash;&gt;-->
+        <!--&lt;!&ndash;            <span class="flex w-full justify-between p-4">&ndash;&gt;-->
+        <!--&lt;!&ndash;              <span class="flex gap-2">&ndash;&gt;-->
+        <!--&lt;!&ndash;                <span class="flex flex-col">&ndash;&gt;-->
+        <!--&lt;!&ndash;                  <span class="dark-light-text body-text">{security.Date}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;                  <span class="dark-light-text body-text">{security.name}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;                  <span>{security.}</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;              </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;            </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;          </button>&ndash;&gt;-->
+        <!--        {/each}-->
       </div>
     {:else}
       <CardTable {onRowTap} {columns} {data} />
@@ -62,91 +65,5 @@
     { key: 'netAmount', header: 'Net Amount (Etb)', sortable: true }
   ];
 
-  const data = [
-    {
-      Date: 'Nov 12-2024',
-      Transaction: 'Bought 3 Shares ETC @ 400.00 Birr',
-      Quantity: '3.00',
-      symbol: 'ETC',
-      netAmount: '-1,200.00',
-      name: 'Ethio Telecom',
-      securityTicker: 'Ethio Telecom | ETC',
-      id: '1',
-      description: 'description',
-      type: 'Common Stock',
-      sector: 'Technology',
-      exchange: 'ECMA',
-      yearHigh: 5300,
-      yearLow: 5000,
-      dayHigh: 5230,
-      dayLow: 5200,
-      dayChange: 30,
-      dayChangePercent: 0.4,
-      price: 5200,
-      closePrice: 5300,
-      owned: true,
-      volume: 400,
-      marketCap: 400000,
-      earningsPerShare: 12,
-      priceToEarningsPerShare: 0.12,
-      logoUrl:
-        'https://salt-finance.github.io/investor-ui/assets/img/Icons/48/ETC.webp'
-    },
-    {
-      Date: 'Dec 19-2024',
-      Transaction: 'Sold 4 Shares CBE @ 890.00 Birr',
-      securityTicker: 'Commercial Bank Of Ethiopia | CBE',
-
-      Quantity: '4.00',
-      symbol: 'CBE',
-      netAmount: '3,560.00',
-      name: 'Commercial Bank Of Ethiopia',
-      id: '2',
-      description: 'description',
-      sector: 'Financial Services',
-      exchange: 'ECMA',
-      yearHigh: 5300,
-      yearLow: 5000,
-      dayHigh: 5230,
-      dayLow: 5200,
-      dayChange: 30,
-      type: 'Common Stock',
-      price: 5200,
-      closePrice: 5300,
-      volume: 400,
-      marketCap: 400000,
-      earningsPerShare: 12,
-      priceToEarningsPerShare: 0.12,
-      logoUrl:
-        'https://salt-finance.github.io/investor-ui/assets/img/Icons/48/CBE.webp'
-    },
-    {
-      Date: 'Nov 22-2024',
-      Transaction: 'Sold 8 Shares EIC @ 280.00 Birr',
-      securityTicker: 'Ethiopian Insurance Corporation | EIC',
-      Quantity: '8.00',
-      symbol: 'EIC',
-      netAmount: '2,240.00',
-      name: 'Ethiopian Insurance Corporation',
-      id: '6',
-      description: 'description',
-      sector: 'Finacial Services',
-      exchange: 'ESX',
-      yearHigh: 5300,
-      yearLow: 5000,
-      type: 'Common Stock',
-      dayHigh: 5230,
-      dayLow: 5200,
-      dayChange: 30,
-      dayChangePercent: 0.4,
-      openPrice: 5200,
-      closePrice: 5300,
-      volume: 400,
-      marketCap: 400000,
-      earningsPerShare: 12,
-      priceToEarningsPerShare: 0.12,
-      logoUrl:
-        'https://salt-finance.github.io/investor-ui/assets/img/Icons/48/EIC.webp'
-    }
-  ];
+  const data: ISecurity[] = [];
 </script>

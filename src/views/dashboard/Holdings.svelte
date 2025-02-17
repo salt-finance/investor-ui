@@ -19,7 +19,11 @@
   </div>
 
   <div class="card bg-opacity-40">
-    {#if mobile.current}
+    {#if loading}
+      <div class="h-8 m-4 flex items-center">
+        <Loading />
+      </div>
+    {:else if mobile.current}
       <div class="flex flex-col">
         {#if filtered.length === 0}
           <span class="p-6"> No results found. </span>
@@ -78,12 +82,13 @@
 
   import { replace } from 'svelte-spa-router';
   import RoundedImage from 'components/RoundedImage.svelte';
-  import { getHoldings } from '@/api/api_holding';
-  import { accountStore } from '@/store/account';
+  import { accountStore, fetchHoldings, holdingsStore } from '@/store/account';
   import type { IHolding } from 'models/holding';
+  import Loading from 'components/Loading.svelte';
 
   let all: IHolding[] = $state([]);
   let filtered: IHolding[] = $state([]);
+  let loading = $state(true);
 
   const maxTop = 5;
 
@@ -92,16 +97,18 @@
       return;
     }
 
-    getHoldings(account.id).then((resp) => {
-      all = resp.response ?? [];
-      console.table(all);
+    fetchHoldings(account.id).finally(() => (loading = false));
+  });
 
+  const holdingsSubscription = holdingsStore.subscribe((holdings) => {
+    if (holdings) {
+      all = holdings;
       if (showTop && all.length > maxTop) {
         filtered = all?.filter((_, index) => index < maxTop);
       } else {
         filtered = all;
       }
-    });
+    }
   });
 
   const getTitle = () => {
@@ -119,7 +126,10 @@
     showTop?: boolean;
   }>();
 
-  onDestroy(accountSubscription);
+  onDestroy(() => {
+    accountSubscription;
+    holdingsSubscription;
+  });
 
   let tearsheetModal: SvelteComponent | undefined = $state();
   const onRowTap = (data: IHolding) => {

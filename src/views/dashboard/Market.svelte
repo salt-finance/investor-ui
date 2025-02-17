@@ -2,7 +2,7 @@
   <div class="flex w-full justify-between items-start flex-wrap gap-2 p-4">
     <span class="page-title"> Market </span>
     <BaseInput
-      baseClass="md:justify-self-end w-full sm:w-fit"
+      baseClass="hidden md:justify-self-end w-full sm:w-fit"
       placeholder="Search stock"
       prependIcon="search"
     ></BaseInput>

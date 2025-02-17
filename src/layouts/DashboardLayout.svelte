@@ -11,12 +11,19 @@
     >
       <div class="flex flex-col justify-end w-full gap-4 flex-grow">
         <HeaderStats />
-        <div class="flex flex-wrap z-10 flex-grow flex-col content-start">
-          <Router
-            on:routeLoaded={navigateToTop}
-            restoreScrollState={true}
-            {routes}
-          />
+
+        <div class="flex flex-wrap z-10 flex-grow flex-col content-center">
+          {#if loading}
+            <div class="mx-auto h-10 flex items-center">
+              <Loading />
+            </div>
+          {:else}
+            <Router
+              on:routeLoaded={navigateToTop}
+              restoreScrollState={true}
+              {routes}
+            />
+          {/if}
         </div>
       </div>
       <FooterAdmin />
@@ -42,6 +49,7 @@
   import { tokenTest } from '@/api/api_auth';
   import Portfolio from 'views/dashboard/Portfolio.svelte';
   import { fetchAccounts } from '@/store/account';
+  import Loading from 'components/Loading.svelte';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -54,6 +62,8 @@
     '*': Dashboard
   };
 
+  let loading = $state(true);
+
   tokenTest().catch(() => {
     replace('/');
   });
@@ -62,11 +72,16 @@
     document.body.scroll({ behavior: 'smooth', top: 0 });
   };
 
-  getUser().then((user) => {
-    if (user.response) {
-      userStore.set(user.response);
-    }
-  });
+  getUser()
+    .then((user) => {
+      if (user.response) {
+        userStore.set(user.response);
+        loading = false;
+      }
+    })
+    .catch(() => {
+      replace('/');
+    });
 
   fetchAccounts();
 </script>

@@ -39,7 +39,7 @@ body {
         &:after {
             content: "beta";
 
-            @apply text-sm font-bold absolute right-10 -bottom-2 body-text
+            @apply text-sm font-bold absolute right-10 -bottom-2 opacity-75
         }
     }
 

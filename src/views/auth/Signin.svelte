@@ -22,20 +22,19 @@
           class="flex flex-row flex-wrap h-full w-full glass-effect overflow-hidden"
         >
           <div
-            class="lg:w-3/5 h-1/2 flex-col overflow-hidden w-full lg:h-full lg:flex items-center justify-center content-start flex-wrap"
+            class="lg:w-1/2 h-1/2 flex-col overflow-hidden w-full lg:h-full lg:flex items-center justify-center content-start flex-wrap"
           >
             {#if src !== undefined}
               <img
-                {src}
-                height="100px"
+                src="assets/img/login.jpg"
                 onerror={() => (src = undefined)}
-                class="w-full h-full object-cover dark:opacity-60"
+                class="w-full h-full object-cover dark:opacity-80"
                 alt=""
               />
             {/if}
           </div>
           <form
-            class="flex flex-col justify-start md:justify-center gap-4 w-full h-1/2 lg:h-full lg:w-2/5 flex-grow px-8 py-6 mb-3"
+            class="flex flex-col justify-start lg:justify-center gap-4 w-full h-1/2 sm:w-3/4 lg:w-2/5 self-center mx-auto lg:h-full px-8 md:px-12 py-6 mb-3"
           >
             <h1
               class="text-xl md:text-2xl/tight font-serif font-extralight max-w-[60vw]"
@@ -57,7 +56,7 @@
 
               <button
                 disabled={true}
-                class="primary-button w-full"
+                class="primary-button"
                 onclick={continueWithEmail}
                 type="button"
               >
@@ -69,11 +68,15 @@
               />
 
               <button
-                class="primary-button bg-black dark:bg-white text-white dark:text-black w-full mt-4 md:mt-16"
+                class="primary-button bg-black dark:bg-white text-white dark:text-black w-full mt-4 md:mt-16 login-with-google-btn flex gap-4 items-center justify-center"
                 onclick={continueWithSSO}
                 type="button"
+                disabled={loading}
               >
-                Continue with Google
+                Continue with Google &nbsp;
+                {#if loading}
+                  <Loading />
+                {/if}
               </button>
             </div>
           </form>
@@ -92,8 +95,11 @@
   import { tokenTest } from '@/api/api_auth';
 
   import { onDestroy } from 'svelte';
+  import Loading from 'components/Loading.svelte';
 
   let email = $state('');
+
+  let loading = $state(false);
 
   let src: string | undefined = $state(
     'https://picsum.photos/id/525/3000?grayscale'
@@ -104,6 +110,7 @@
   }
 
   function continueWithSSO() {
+    loading = true;
     window.location.href = `${ApiURL}/auth/google`;
   }
 

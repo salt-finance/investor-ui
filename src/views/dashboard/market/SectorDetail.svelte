@@ -1,4 +1,8 @@
-{#if sector !== undefined}
+{#if loading}
+  <div class="h-8 m-4 flex items-center">
+    <Loading />
+  </div>
+{:else if sector !== undefined}
   <div class="flex-col flex w-full motion-preset-fade p-2">
     <span class="page-title mb-4">{sector.title}</span>
     {#if sector.description !== undefined}
@@ -59,6 +63,9 @@
   import Tearsheet from 'components/Modals/Tearsheet.svelte';
   import RoundedImage from 'components/RoundedImage.svelte';
   import { getSector } from '@/api/api_security';
+  import Loading from 'components/Loading.svelte';
+
+  let loading = $state(true);
 
   let sector: ISector | undefined = $state();
   let tearsheetModal: SvelteComponent | undefined = $state();
@@ -72,7 +79,8 @@
         .then((response) => {
           sector = response.response;
         })
-        .catch((_) => {});
+        .catch((_) => {})
+        .finally(() => (loading = false));
     }
   });
 
