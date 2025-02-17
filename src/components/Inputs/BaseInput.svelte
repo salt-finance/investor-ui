@@ -26,7 +26,7 @@
         {placeholder}
         {onchange}
         class:large_input={large}
-        class="py-3 bg-transparent {large
+        class="bg-transparent {large
           ? 'large_input'
           : 'border-0 focus:outline-none w-full'}"
       />

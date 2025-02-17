@@ -46,10 +46,12 @@
                   : ''}"
               >
                 {#if column.type === 'image'}
-                  <RoundedImage
-                    src={row[column.key]}
-                    fallBackText={row[column.imageFallBackProp]}
-                  />
+                  <div class="items-center justify-center flex h-full">
+                    <RoundedImage
+                      src={row[column.key]}
+                      fallBackText={row[column.imageFallBackProp]}
+                    />
+                  </div>
                 {:else if column.type === 'action' && actionSnippet}
                   {@render actionSnippet(row)}
                 {:else if column.format === 'currency'}

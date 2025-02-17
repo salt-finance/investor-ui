@@ -1,59 +1,59 @@
 Input {
-  @apply hover:cursor-pointer;
+    @apply hover:cursor-pointer;
 }
 
 .primary-input {
-  @apply rounded-xl dark:bg-opacity-40 dark:bg-neutral-900  dark-light-text p-4;
+    @apply rounded-xl dark:bg-opacity-40 dark:bg-neutral-900  dark-light-text p-4;
 }
 
 .large-input {
-  i {
-    @apply text-lg lg:text-2xl w-8 text-right;
-  }
-
-  &:focus,
-  &:hover,
-  &:focus-within {
     i {
-      @apply pb-4;
+        @apply text-lg lg:text-2xl w-8 text-right;
+    }
+
+    &:focus,
+    &:hover,
+    &:focus-within {
+        i {
+            @apply pb-4;
+        }
+
+        Input {
+            @apply border-opacity-100 pb-1 sm:pb-4;
+        }
     }
 
     Input {
-      @apply border-opacity-100 pb-4;
-    }
-  }
+        .prepend-icon {
+            @apply pb-4;
+        }
 
-  Input {
-    .prepend-icon {
-      @apply pb-4;
-    }
+        &::placeholder {
+            @apply body-text;
+        }
 
-    &::placeholder {
-      @apply body-text;
+        @apply w-full text-lg lg:text-2xl border-b-2 py-4 sm:py-8 border-neutral-500  border-opacity-15 transition-all outline-none duration-300 border-0;
     }
-
-    @apply w-full text-lg lg:text-2xl border-b-2 py-8 border-neutral-500  border-opacity-15 transition-all outline-none duration-300 border-0;
-  }
 }
 
 body.dark {
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    -webkit-text-fill-color: white;
-  }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-text-fill-color: white;
+    }
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-text-fill-color: inherit;
-  -webkit-backdrop-filter: opacity(0) !important;
-  background-origin: content-box;
-  background-image: radial-gradient(red, black) !important;
-  -webkit-background-image: radial-gradient(red, black);
-  opacity: 0.9;
-  background-clip: text;
+    -webkit-text-fill-color: inherit;
+    -webkit-backdrop-filter: opacity(0) !important;
+    background-origin: content-box;
+    background-image: radial-gradient(red, black) !important;
+    -webkit-background-image: radial-gradient(red, black);
+    opacity: 0.9;
+    background-clip: text;
 }
