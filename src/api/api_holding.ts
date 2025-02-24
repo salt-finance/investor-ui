@@ -13,3 +13,12 @@ export const buySecurity = (
   // buy/:accountId/:securityId/:quantity
   return put<any>(`/buy/${accountId}/${securityId}/${quantity}`);
 };
+
+export const sellSecurity = (
+  accountId: String,
+  securityId: String,
+  quantity: number
+) => {
+  // buy/:accountId/:securityId/:quantity
+  return put<any>(`/sell/${accountId}/${securityId}/${quantity}`);
+};

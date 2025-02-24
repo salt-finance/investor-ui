@@ -33,10 +33,17 @@
           <span> {formatCurrencyWithNotation(security?.ask)}</span>
         </div>
         <div class="flex justify-between">
-          <span>Cash available</span>
-          <span class={canBuy() ? '' : 'text-amber-400'}
-            >{currencyFormat()(account?.balance?.cash ?? 0)}</span
-          >
+          {#if buy}
+            <span>Cash available</span>
+            <span class={canBuy() ? '' : 'text-amber-400'}
+              >{currencyFormat()(account?.balance?.cash ?? 0)}</span
+            >
+          {:else}
+            <span>Shares held</span>
+            <span class={canBuy() ? '' : 'text-amber-400'}
+              >{holding?.quantity}</span
+            >
+          {/if}
         </div>
       </div>
       <div class="py-12 px-4 text-center flex flex-col justify-center">
@@ -70,10 +77,18 @@
       </div>
       <div class="p-4 flex flex-col gap-4">
         <div class="flex justify-between">
-          <span>Total price</span>
+          <span> Total </span>
           <span class="text-xl">{formatCurrencyWithNotation(total)}</span>
         </div>
 
+        {#if !buy}
+          <button
+            class="secondary-button"
+            onclick={() => (quantity = holding?.quantity ?? 0)}
+          >
+            Sell all shares
+          </button>
+        {/if}
         <button
           disabled={!valid()}
           class={buy ? 'btn-buy' : 'btn-sell'}
@@ -91,11 +106,12 @@
     currencyFormat,
     formatCurrencyWithNotation
   } from 'utils/formatTools';
-  import { accountStore, fetchAccounts } from '@/store/account';
+  import { accountStore, fetchAccounts, holdingsStore } from '@/store/account';
   import type { IAccount } from 'models/account';
   import { onDestroy } from 'svelte';
-  import { buySecurity } from '@/api/api_holding';
+  import { buySecurity, sellSecurity } from '@/api/api_holding';
   import type { ISecurity } from 'models/security';
+  import type { IHolding } from 'models/holding';
 
   let { security, buy } = $props<{
     security: ISecurity;
@@ -105,6 +121,8 @@
 
   let account: IAccount | undefined = $state();
 
+  let holding: IHolding | undefined = $state();
+
   let quantity = $state(0);
   let closing = $state(false);
   let dialogVisible = $state(false);
@@ -113,7 +131,14 @@
     account = value;
   });
 
-  onDestroy(accountSubscription);
+  const holdingSubscription = holdingsStore.subscribe((holdings) => {
+    holding = holdings?.find((v) => v.securityId === security.id);
+  });
+
+  onDestroy(() => {
+    accountSubscription;
+    holdingSubscription;
+  });
 
   let total = $derived(quantity * (security?.ask ?? 0));
 
@@ -121,7 +146,15 @@
     if (!account) {
       return;
     }
-    buySecurity(account.id, security.id, quantity).then(() => {
+    if (buy) {
+      buySecurity(account.id, security.id, quantity).then(() => {
+        fetchAccounts().finally(() => {
+          hide();
+        });
+      });
+      return;
+    }
+    sellSecurity(account.id, security.id, quantity).then(() => {
       fetchAccounts().finally(() => {
         hide();
       });
@@ -132,14 +165,24 @@
     if (!account?.balance?.cash) {
       return false;
     }
-    return account.balance.cash - total >= security.ask;
+
+    if (buy) {
+      return account.balance.cash - total >= security.ask;
+    }
+    return quantity < (holding?.quantity ?? 0);
   }
 
   function valid() {
-    if (!account?.balance?.cash || !total) {
+    if (!total) {
       return false;
     }
-    return account.balance.cash - total >= security.ask;
+    if (buy) {
+      return (
+        (account?.balance?.cash ?? 0) > 0 &&
+        (account?.balance?.cash ?? 0 - total) >= security.ask
+      );
+    }
+    return quantity > 0 && quantity <= (holding?.quantity ?? 0);
   }
 
   function hide(e?: Event) {
