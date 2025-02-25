@@ -41,7 +41,7 @@
           {:else}
             <span>Shares held</span>
             <span class={canBuy() ? '' : 'text-amber-400'}
-              >{holding?.quantity}</span
+              >{holding?.quantity ?? 0}</span
             >
           {/if}
         </div>
@@ -49,7 +49,7 @@
       <div class="py-12 px-4 text-center flex flex-col justify-center">
         <div class="flex gap-4 justify-center mb-2">
           <button
-            disabled={quantity === 0}
+            disabled={quantity === 0 || processing}
             class="text-base btn-icon rounded-full glass-effect"
             onclick={() => (quantity > 0 ? quantity-- : null)}
           >
@@ -59,6 +59,7 @@
             class="text-3xl select-none bg-transparent text-center max-w-16"
             bind:value={quantity}
             type="text"
+            disabled={processing}
             inputmode="numeric"
             size="3"
             pattern="\d*"
@@ -67,7 +68,7 @@
           <button
             class="text-base btn-icon rounded-full glass-effect"
             onclick={() => quantity++}
-            disabled={!canBuy()}
+            disabled={!canBuy() || processing}
           >
             +
           </button>
@@ -83,6 +84,7 @@
 
         {#if !buy}
           <button
+            disabled={processing || (holding?.quantity ?? 0) == 0}
             class="secondary-button"
             onclick={() => (quantity = holding?.quantity ?? 0)}
           >
@@ -90,11 +92,16 @@
           </button>
         {/if}
         <button
-          disabled={!valid()}
-          class={buy ? 'btn-buy' : 'btn-sell'}
+          disabled={!valid() || processing}
+          class="flex justify-center items-center gap-1 {buy
+            ? 'btn-buy'
+            : 'btn-sell'}"
           onclick={buyNow}
         >
           Place {buy ? 'buy' : 'sell'} order
+          {#if processing}
+            <Loading />
+          {/if}
         </button>
       </div>
     </div>
@@ -106,12 +113,18 @@
     currencyFormat,
     formatCurrencyWithNotation
   } from 'utils/formatTools';
-  import { accountStore, fetchAccounts, holdingsStore } from '@/store/account';
+  import {
+    accountStore,
+    fetchAccounts,
+    fetchHoldings,
+    holdingsStore
+  } from '@/store/account';
   import type { IAccount } from 'models/account';
   import { onDestroy } from 'svelte';
   import { buySecurity, sellSecurity } from '@/api/api_holding';
   import type { ISecurity } from 'models/security';
   import type { IHolding } from 'models/holding';
+  import Loading from 'components/Loading.svelte';
 
   let { security, buy } = $props<{
     security: ISecurity;
@@ -122,6 +135,7 @@
   let account: IAccount | undefined = $state();
 
   let holding: IHolding | undefined = $state();
+  let processing = $state(false);
 
   let quantity = $state(0);
   let closing = $state(false);
@@ -142,23 +156,25 @@
 
   let total = $derived(quantity * (security?.ask ?? 0));
 
-  function buyNow() {
+  async function buyNow() {
     if (!account) {
       return;
     }
-    if (buy) {
-      buySecurity(account.id, security.id, quantity).then(() => {
-        fetchAccounts().finally(() => {
-          hide();
-        });
-      });
-      return;
+    processing = true;
+
+    try {
+      if (buy) {
+        await buySecurity(account.id, security.id, quantity);
+      } else {
+        await sellSecurity(account.id, security.id, quantity);
+      }
+      await fetchAccounts();
+      await fetchHoldings(account?.id, true);
+
+      quantity = 0;
+    } finally {
+      processing = false;
     }
-    sellSecurity(account.id, security.id, quantity).then(() => {
-      fetchAccounts().finally(() => {
-        hide();
-      });
-    });
   }
 
   function canBuy() {
@@ -187,6 +203,7 @@
 
   function hide(e?: Event) {
     e?.preventDefault();
+
     closing = true;
     setTimeout(() => {
       dialogRef?.close();

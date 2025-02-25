@@ -28,9 +28,9 @@
 
     <!--    BODY -->
     <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
-      {#if loading}
-        loading
-      {:else if security !== undefined}
+      {#if loading || security === undefined}
+        <Loading />
+      {:else}
         <!--      Security Title-->
         <div
           class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:-top-1 bottom-0 z-10 card"
@@ -203,8 +203,6 @@
           </div>
         </div>
         <Trade bind:this={tradeModal} {buy} {security} />
-      {:else}
-        "Not found"
       {/if}
     </div>
   </div>
@@ -222,6 +220,7 @@
   import { type SvelteComponent } from 'svelte';
   import RoundedImage from 'components/RoundedImage.svelte';
   import { getSecurity } from '@/api/api_security';
+  import Loading from 'components/Loading.svelte';
 
   let tradeModal: SvelteComponent | undefined = $state();
   let buy = $state(true);

@@ -21,6 +21,7 @@
     aspect-ratio: 1;
     height: 100%;
     background: currentColor;
+    padding: 5px;
     border-radius: 50%;
     animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }

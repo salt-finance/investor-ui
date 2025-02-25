@@ -9,10 +9,17 @@
   </div>
 
   <h2 class="page-subtitle m-4 mt-0">Sectors</h2>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 flex-wrap">
-    {#each sectors as sector}
-      <SectorCard {sector} />
-    {/each}
+    {#if sectors.length === 0}
+      <div class="p-4">
+        <Loading />
+      </div>
+    {:else}
+      {#each sectors as sector}
+        <SectorCard {sector} />
+      {/each}
+    {/if}
   </div>
 </div>
 
@@ -23,6 +30,7 @@
   import { type ISector } from 'models/sector';
   import { fetchSectors, sectorStore } from '@/store/stock';
   import { onDestroy } from 'svelte';
+  import Loading from 'components/Loading.svelte';
 
   let sectors: ISector[] = $state([]);
 

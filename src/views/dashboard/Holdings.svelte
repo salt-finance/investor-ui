@@ -82,7 +82,7 @@
 
   import { replace } from 'svelte-spa-router';
   import RoundedImage from 'components/RoundedImage.svelte';
-  import { accountStore, fetchHoldings, holdingsStore } from '@/store/account';
+  import { accountStore, holdingsStore, fetchHoldings } from '@/store/account';
   import type { IHolding } from 'models/holding';
   import Loading from 'components/Loading.svelte';
 
@@ -93,7 +93,7 @@
   const maxTop = 5;
 
   const accountSubscription = accountStore.subscribe((account) => {
-    if (account === undefined) {
+    if (account === undefined || all.length > 0) {
       return;
     }
 
