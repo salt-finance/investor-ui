@@ -99,5 +99,7 @@ export const styleForValue = (value?: number) => {
     return '';
   }
 
-  return value < 0 ? 'text-red-500' : 'text-emerald-600';
+  return value < 0
+    ? 'text-red-500 dark:text-red-400'
+    : 'text-emerald-500 dark:text-emerald-400';
 };

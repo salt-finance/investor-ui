@@ -27,39 +27,59 @@
       <div class="flex flex-col">
         {#if filtered.length === 0}
           <span class="p-6"> No results found. </span>
-        {/if}
-        {#each filtered as holding}
-          <button
-            onclick={() => onRowTap(holding)}
-            class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
+        {:else}
+          <span
+            class="p-4 flex flex-col w-full bg-accent/20 dark:bg-accent-dark/20"
           >
-            <span class="flex w-full justify-between p-4">
-              <span class="flex items-center w-full justify-between">
-                <RoundedImage
-                  src={holding.securityLogoUrl}
-                  fallBackText={holding.securityName}
-                />
-                <span class="flex flex-col w-[calc(100%-4rem)]">
-                  <span class="flex justify-between flex-wrap gap-2">
-                    {holding.securityName}
-                    <span class="font-semibold text-sm">{holding.symbol} </span>
-                  </span>
-                  <span class="flex justify-between flex-wrap gap-2">
-                    <span class="body-text {styleForValue(holding.averageROI)}"
-                      >{formatPercentage(holding.averageROI)}</span
-                    >
-                    <span class="body-text dark-light-text"
-                      >{currencyFormat()(holding.marketValue)}</span
-                    >
+            <span class="flex justify-between flex-wrap gap-2">
+              Security name
+              <span class="font-bold text-sm"> Ticker </span>
+            </span>
+            <span class="flex justify-between flex-wrap gap-2">
+              <span> Gain / Loss </span>
+              <span class="body-text dark-light-text">Market value</span>
+            </span>
+          </span>
+          {#each filtered as holding}
+            <button
+              onclick={() => onRowTap(holding)}
+              class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30"
+            >
+              <span class="flex w-full justify-between p-4">
+                <span class="flex items-center w-full justify-between">
+                  <RoundedImage
+                    src={holding.securityLogoUrl}
+                    fallBackText={holding.securityName}
+                  />
+                  <span class="flex flex-col w-[calc(100%-4rem)] gap-y-2">
+                    <span class="flex justify-between flex-wrap gap-x-4">
+                      {holding.securityName}
+                      <span class="font-bold text-sm">{holding.symbol} </span>
+                    </span>
+                    <span class="flex justify-between flex-wrap gap-x-4">
+                      <span
+                        class="body-text {styleForValue(holding.averageROI)}"
+                        >{formatPercentage(holding.averageROI)}</span
+                      >
+                      <span class="body-text dark-light-text"
+                        >{currencyFormat()(holding.marketValue)}</span
+                      >
+                    </span>
                   </span>
                 </span>
               </span>
-            </span>
-          </button>
-        {/each}
+            </button>
+          {/each}
+        {/if}
       </div>
     {:else}
-      <CardTable {onRowTap} {columns} bind:data={filtered} sortIndex={2} />
+      <CardTable
+        {onRowTap}
+        {columns}
+        bind:data={filtered}
+        sortIndex={7}
+        sortDirection="desc"
+      />
     {/if}
   </div>
 </div>
@@ -148,11 +168,17 @@
       imageFallBackProp: 'name'
     },
     { key: 'securityName', header: 'Security Name', sortable: true },
-    { key: 'symbol', header: 'Ticker', sortable: true },
+    {
+      key: 'symbol',
+      header: 'Ticker',
+      sortable: true,
+      bodyClasses: 'font-bold'
+    },
     { key: 'openPrice', header: 'Price', sortable: true, format: 'currency' },
     {
       key: 'quantity',
-      header: 'Quantity <br /> (Shares)',
+      header:
+        ' <div class="inline-flex flex-col"><span> Quantity</span> <span>(Shares)</span> </div> ',
       sortable: true,
       format: 'number'
     },
@@ -160,17 +186,16 @@
 
     {
       key: 'averageROI',
-      header: 'Gain / Loss %',
-      sortable: true,
-      type: 'gainLoss',
-      format: 'percentage'
-    },
-    {
-      key: 'totalGainLoss',
       header: 'Gain / Loss',
-      sortable: true,
       type: 'gainLoss',
-      format: 'currencyChange'
+      format: 'percentage',
+      sortable: true,
+      childColumn: {
+        key: 'totalGainLoss',
+        header: 'Gain / Loss',
+        type: 'gainLoss',
+        format: 'currencyChange'
+      }
     },
 
     {

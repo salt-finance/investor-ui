@@ -12,21 +12,22 @@
   {#if data.length > 0}
     <table class="items-center w-full">
       <thead class="overflow-hidden bg-accent/20 dark:bg-accent-dark/20">
-        <tr class="uppercase whitespace-nowrap font-semibold text-left">
+        <tr class="whitespace-nowrap text-left">
           {#each columns as column}
             <th
-              class="py-4 {column.headerClasses} {column.type === 'image'
+              class="py-4 font-normal {column.headerClasses} {column.type ===
+              'image'
                 ? 'flex'
-                : ' px-2 '}"
+                : ' px-3 '}"
               class:sortable={column.sortable}
               onclick={() => column.sortable && sortData(column.key)}
             >
-              {@html column.header}
               {#if column.sortable && sortedColumn === column.key}
                 <span class="sort-indicator">
                   {sortDirection === 'asc' ? '↑' : '↓'}
                 </span>
               {/if}
+              {@html column.header}
             </th>
           {/each}
         </tr>
@@ -38,13 +39,7 @@
             class="hover:bg-accent/30 dark:hover:bg-accent-dark/30 hover:cursor-pointer"
           >
             {#each columns as column}
-              <td
-                class=" px-2 py-4 {column.type === 'image'
-                  ? 'h-24 align-baseline'
-                  : ' '}{column.bodyClasses}{column.type === 'gainLoss'
-                  ? styleForValue(row[column.key])
-                  : ''}"
-              >
+              <td class="px-3 py-4 {columnClass(column, row)}">
                 {#if column.type === 'image'}
                   <div class="items-center justify-center flex h-full">
                     <RoundedImage
@@ -54,16 +49,39 @@
                   </div>
                 {:else if column.type === 'action' && actionSnippet}
                   {@render actionSnippet(row)}
-                {:else if column.format === 'currency'}
-                  {currencyFormat()(row[column.key] ?? 0)}
-                {:else if column.format === 'currencyChange'}
-                  {currencyFormat({ signDisplay: 'exceptZero' })(
-                    row[column.key] ?? 0
-                  )}
-                {:else if column.format === 'percentage'}
-                  {formatPercentage(row[column.key])}
+                {:else if row[column.key] !== undefined}
+                  {#if column.format === 'currency'}
+                    {currencyFormat()(row[column.key])}
+                  {:else if column.format === 'currencyChange'}
+                    {currencyFormat({
+                      signDisplay: 'exceptZero',
+                      style: 'currency'
+                    })(row[column.key] ?? 0)}
+                  {:else if column.format === 'percentage'}
+                    {formatPercentage(row[column.key])}
+                  {:else}
+                    {row[column.key] ?? '--'}
+                  {/if}
+                  {#if column.childColumn !== undefined}
+                    <br />
+                    {#if row[column.childColumn.key] !== undefined}
+                      {#if column.childColumn.format === 'currency'}
+                        {currencyFormat()(row[column.childColumn.key])}
+                      {:else if column.childColumn.format === 'currencyChange'}
+                        {currencyFormat({ signDisplay: 'exceptZero' })(
+                          row[column.childColumn.key]
+                        )}
+                      {:else if column.childColumn.format === 'percentage'}
+                        {formatPercentage(row[column.childColumn.key])}
+                      {:else}
+                        {row[column.childColumn.key]}
+                      {/if}
+                    {:else}
+                      --
+                    {/if}
+                  {/if}
                 {:else}
-                  {row[column.key] ?? '--'}
+                  --
                 {/if}
               </td>
             {/each}
@@ -87,6 +105,7 @@
     format?: 'currency' | 'number' | 'date' | 'percentage' | 'currencyChange';
     action?: (event: Event) => any;
     imageFallBackProp?: string;
+    childColumn?: TableColumn<T>;
   };
 </script>
 
@@ -106,6 +125,7 @@
     title,
     actionSnippet,
     sortIndex = 0,
+    sortDirection = 'desc',
     onRowTap
   } = $props<{
     data: any[];
@@ -113,20 +133,20 @@
     title?: string;
     actionSnippet?: Snippet<TableColumn<T>[]>;
     sortIndex?: number;
+    sortDirection?: string;
     onRowTap?: (data: T) => void;
   }>();
 
   // State
   let sortedColumn = $state<keyof any | null>(null);
-  let sortDirection = $state<'asc' | 'desc'>('asc');
 
   // Sort function
-  function sortData(column: keyof any) {
+  function sortData(column: keyof any, direction?: string) {
     if (sortedColumn === column) {
       sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
       sortedColumn = column;
-      sortDirection = 'asc';
+      sortDirection = direction ?? 'asc';
     }
 
     data = [...data].sort((a, b) => {
@@ -140,5 +160,18 @@
     });
   }
 
-  sortData(columns[sortIndex]?.key);
+  function columnClass(column: TableColumn<any>, row: any) {
+    return [
+      column.bodyClasses,
+      column.type === 'image' ? 'h-24 align-baseline' : '',
+      column.type === 'gainLoss' ? styleForValue(row[column.key]) : '',
+      column.format === 'number' ||
+      column.format?.includes('currency') ||
+      column.format === 'percentage'
+        ? 'loose-spacing'
+        : ''
+    ].join(' ');
+  }
+
+  sortData(columns[sortIndex]?.key, sortDirection);
 </script>

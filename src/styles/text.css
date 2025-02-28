@@ -3,13 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
 .card-title {
-  @apply text-3xl font-extralight;
+    @apply text-3xl font-extralight;
 }
 
 .page-title {
-  @apply text-xl sm:text-2xl font-extralight;
+    @apply text-xl sm:text-2xl font-extralight;
 }
 
 .page-subtitle {
-  @apply text-lg;
+    @apply text-lg;
+}
+
+.loose-spacing {
+    letter-spacing: 0.5px;
 }
