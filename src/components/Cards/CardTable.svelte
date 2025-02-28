@@ -11,7 +11,9 @@
   {/if}
   {#if data.length > 0}
     <table class="items-center w-full">
-      <thead class="overflow-hidden bg-accent/20 dark:bg-accent-dark/20">
+      <thead
+        class="overflow-hidden bg-accent/20 dark:bg-accent-dark/20 body-text"
+      >
         <tr class="whitespace-nowrap text-left">
           {#each columns as column}
             <th

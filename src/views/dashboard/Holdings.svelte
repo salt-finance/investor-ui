@@ -29,17 +29,15 @@
           <span class="p-6"> No results found. </span>
         {:else}
           <span
-            class="p-4 flex flex-col w-full bg-accent/20 dark:bg-accent-dark/20"
+            class="p-4 flex flex-col w-full bg-accent/20 dark:bg-accent-dark/20 body-text gap-y-1"
           >
             <span class="flex justify-between flex-wrap gap-2">
-              Security name
-              <span class="font-bold text-sm"> Ticker </span>
+              <span><strong>Ticker</strong> | Security name</span>
+              <span> Quantity (shares) </span>
             </span>
             <span class="flex justify-between flex-wrap gap-2">
               <span> Gain / Loss </span>
-              <span class="body-text dark-light-text">
-                <span class="sort-indicator"> ↓ </span>Market value</span
-              >
+              <span> <span class="sort-indicator"> ↓ </span> Market value</span>
             </span>
           </span>
           {#each filtered as holding}
@@ -55,8 +53,11 @@
                   />
                   <span class="flex flex-col w-[calc(100%-4rem)] gap-y-2">
                     <span class="flex justify-between flex-wrap gap-x-4">
-                      {holding.securityName}
-                      <span class="font-bold text-sm">{holding.symbol} </span>
+                      <span>
+                        <strong>{holding.symbol}</strong> |
+                        {holding.securityName}
+                      </span>
+                      <span>{holding.quantity} </span>
                     </span>
                     <span class="flex justify-between flex-wrap gap-x-4">
                       <span
@@ -181,8 +182,7 @@
     { key: 'openPrice', header: 'Price', sortable: true, format: 'currency' },
     {
       key: 'quantity',
-      header:
-        ' <div class="inline-flex flex-col"><span> Quantity</span> <span>(Shares)</span> </div> ',
+      header: 'Quantity (shares)',
       sortable: true,
       format: 'number'
     },
