@@ -37,7 +37,9 @@
             </span>
             <span class="flex justify-between flex-wrap gap-2">
               <span> Gain / Loss </span>
-              <span class="body-text dark-light-text">Market value</span>
+              <span class="body-text dark-light-text">
+                <span class="sort-indicator"> ↓ </span>Market value</span
+              >
             </span>
           </span>
           {#each filtered as holding}
@@ -123,6 +125,8 @@
   const holdingsSubscription = holdingsStore.subscribe((holdings) => {
     if (holdings) {
       all = holdings;
+      all.sort((a, b) => b.marketValue - a.marketValue);
+
       if (showTop && all.length > maxTop) {
         filtered = all?.filter((_, index) => index < maxTop);
       } else {
