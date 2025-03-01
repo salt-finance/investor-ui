@@ -13,3 +13,7 @@ export const getSector = (id: String) => {
 export const getSecurity = (id: String) => {
   return get<ISecurity>(`/security/${id}`);
 };
+
+export const findSecurities = (term: String) => {
+  return get<ISecurity[]>(`/security/find/${term}`);
+};

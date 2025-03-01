@@ -25,8 +25,10 @@
         {required}
         {placeholder}
         {onchange}
+        {oninput}
+        {onfocusout}
         class:large_input={large}
-        class="bg-transparent {large
+        class="bg-transparent {inputClass} {large
           ? 'large_input'
           : 'border-0 focus:outline-none w-full'}"
       />
@@ -45,6 +47,7 @@
   interface Props {
     required?: boolean;
     baseClass?: string;
+    inputClass?: string;
     label?: string;
     value?: string | number;
     type?: string;
@@ -54,6 +57,9 @@
     prependIcon?: string;
     placeholder?: string;
     onchange?: ChangeEventHandler<HTMLInputElement>;
+    oninput?: ChangeEventHandler<HTMLInputElement>;
+    onfocusout?: ChangeEventHandler<HTMLInputElement>;
+
     id?: string;
     large?: boolean;
     viewOnly?: boolean;
@@ -62,6 +68,7 @@
   let {
     required = false,
     baseClass,
+    inputClass,
     label,
     value = $bindable(),
     type = 'text',
@@ -71,6 +78,8 @@
     prependIcon,
     placeholder,
     onchange,
+    oninput,
+    onfocusout,
     id,
     large,
     viewOnly
