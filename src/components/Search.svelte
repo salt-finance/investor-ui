@@ -45,7 +45,7 @@
 
   let tearsheetModal: SvelteComponent | undefined = $state();
 
-  let searchTerm = $state('ethiopian');
+  let searchTerm = $state('');
   let securities: ISecurity[] = $state([]);
   let timeout: NodeJS.Timeout;
   let searching = $state(false);
