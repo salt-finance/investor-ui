@@ -2,7 +2,7 @@
   class="relative flex justify-center items-end sm:place-items-center h-inherit"
 >
   <h3
-    class="text-2xl sm:text-3xl md:text-4xl md:font-extralight text-center select-none mb-2 w-full motion-opacity-out-100 opacity-0 duration-500 motion-delay-500 {styleForValue(
+    class="text-2xl sm:text-3xl md:text-4xl md:font-extralight text-center select-none mb-2 w-full -motion-translate-y-out-50 translate-y-1/2 motion-opacity-out-100 opacity-0 duration-500 motion-delay-500 {styleForValue(
       value
     )}"
   >
