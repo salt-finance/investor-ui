@@ -2,7 +2,7 @@
   class="relative flex justify-center items-end sm:place-items-center h-inherit"
 >
   <h3
-    class="text-2xl sm:text-3xl md:text-4xl md:font-extralight text-center select-none mb-2 w-full {styleForValue(
+    class="text-2xl sm:text-3xl md:text-4xl md:font-extralight text-center select-none mb-2 w-full motion-opacity-out-100 opacity-0 duration-500 motion-delay-500 {styleForValue(
       value
     )}"
   >
@@ -69,6 +69,10 @@
     }
     return {
       type: 'doughnut',
+      options: {
+        normalized: true,
+        radius: '50%'
+      },
       data: {
         labels: labels,
         datasets: [
@@ -109,9 +113,8 @@
             },
             // animation: undefined,
             animation: {
-              duration: 1000,
-              delay: 1500,
-              easing: 'easeOutCirc'
+              duration: 500,
+              easing: 'easeInSine'
             },
             hoverOffset: 0
           }
