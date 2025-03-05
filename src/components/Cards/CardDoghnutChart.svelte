@@ -71,7 +71,9 @@
       type: 'doughnut',
       options: {
         normalized: true,
-        radius: '50%'
+        radius: '0%',
+        clip: 50,
+        cutout: 100
       },
       data: {
         labels: labels,
