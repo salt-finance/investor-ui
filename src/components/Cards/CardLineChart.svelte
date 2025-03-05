@@ -17,13 +17,8 @@
   import { formatCurrencyWithNotation } from 'utils/formatTools.js';
   // init chart
 
-  let {
-    dataLength = 10,
-    startingValue = 0,
-    range = 100
-  } = $props<{
+  let { dataLength = 10, range = 100 } = $props<{
     dataLength?: number;
-    startingValue?: number;
     range?: number;
   }>();
 
@@ -36,11 +31,9 @@
   let chart: Chart | undefined;
 
   const startDate = Date.now();
-  let latestValue = startingValue;
+  let latestValue = $state(0);
 
   const generateData = (length: number) => {
-    latestValue = startingValue;
-
     return [...Array(length).keys()].map(() => {
       let factor: number = Math.sin(100000 * Math.random() * Math.random());
       let value = latestValue;
@@ -52,7 +45,7 @@
     });
   };
 
-  let data = generateData(dataLength).reverse();
+  let data: number[] = [];
 
   let labels = [...Array(dataLength).keys()]
     .map((i) => dateTimeFormat(startDate - dataLength * range * i))
@@ -193,7 +186,16 @@
 
   let chartCanvas: HTMLCanvasElement;
 
-  export async function show() {
+  export async function show(startingValue: number) {
+    if (startingValue === undefined) {
+      return;
+    }
+    latestValue = startingValue;
+
+    let values = generateData(20);
+
+    data.push(...values);
+
     let { Chart } = await import('chart.js/auto');
     chart = new Chart(chartCanvas, config);
 

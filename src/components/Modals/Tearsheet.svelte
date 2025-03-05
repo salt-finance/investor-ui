@@ -105,7 +105,6 @@
               <div class="m-4 h-[95%]">
                 <CardLineChart
                   bind:this={lineChart}
-                  startingValue={security.ask}
                   range={(security.ask ?? 0) * 0.01}
                 />
               </div>
@@ -244,28 +243,18 @@
 
   let lineChart: SvelteComponent | undefined = $state();
 
-  $effect(() => {
-    if (lineChart) {
-      lineChart?.show();
-    }
-  });
-
-  export function show(securityToShow?: ISecurity, id?: string) {
+  export async function show(securityToShow?: ISecurity, id?: string) {
     security = securityToShow;
     dialogRef?.showModal();
 
-    if (securityToShow) {
-      loading = false;
-      lineChart?.show();
-    } else if (id) {
-      getSecurity(id)
-        .then((resp) => {
-          security = resp.response;
-          lineChart?.show();
-        })
-        .finally(() => {
-          loading = false;
-        });
+    if (securityToShow === undefined && id) {
+      await getSecurity(id).then((resp) => {
+        security = resp.response;
+      });
     }
+    loading = false;
+    setTimeout(() => {
+      lineChart?.show(security?.ask);
+    }, 100);
   }
 </script>

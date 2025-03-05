@@ -58,14 +58,16 @@ export const currencyFormat = (options?: Intl.NumberFormatOptions) =>
     ...options
   }).format;
 export const dateTimeFormat = (date: number, options = defaultOptions) => {
-  const parts = new Intl.DateTimeFormat(locale, options)
+  const parts = new Intl.DateTimeFormat(locale, {
+    ...options,
+    second: 'numeric'
+  })
     .formatToParts(date)
     .reduce((acc: Record<string, any>, part) => {
       acc[part.type] = part.value;
       return acc;
     }, {});
-
-  return `${parts.hour}:${parts.minute}`;
+  return `${parts.hour}:${parts.minute}:${parts.second}`;
 };
 
 const monthFormat = new Intl.DateTimeFormat(locale, {

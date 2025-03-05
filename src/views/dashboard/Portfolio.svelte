@@ -9,12 +9,12 @@
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
             <p class="text-sm uppercase mb-1 font-extrabold">
-              Total value over time
+              Value over time
             </p>
             <h2
               class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
-              Performance
+              Total value
             </h2>
           </div>
         </div>
@@ -75,17 +75,20 @@
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
             <p class="text-sm uppercase mb-1 font-extrabold">
-              Average profit to loss ratio
+              Average return on investment
             </p>
             <h2
               class="text-neutral-500 dark:text-neutral-200 card-title font-extralight"
             >
-              Profit/Loss
+              Performance
             </h2>
           </div>
         </div>
         <div class="aspect-[2] sm:aspect-square lg:h-72 xl:h-80 m-4 mb-0 grid">
-          <CardDoghnutChart />
+          <CardDoghnutChart
+            bind:this={roiChart}
+            value={Math.round((account?.balance?.roi ?? 0) * 100)}
+          />
         </div>
       </div>
     </div>
@@ -99,11 +102,22 @@
   import CardLineChart from 'components/Cards/CardLineChart.svelte';
   import CardPieChart from 'components/Cards/CardPieChart.svelte';
 
-  import { onMount, type SvelteComponent } from 'svelte';
+  import { onDestroy, type SvelteComponent } from 'svelte';
+  import type { IAccount } from 'models/account';
+  import { accountStore } from '@/store/account';
 
-  let lineChart: SvelteComponent;
+  let lineChart: SvelteComponent | undefined = $state();
+  let roiChart: SvelteComponent | undefined = $state();
 
-  onMount(async () => {
-    lineChart.show();
+  let account: IAccount | undefined = $state();
+
+  const accountSubscription = accountStore.subscribe((value) => {
+    account = value;
+    setTimeout(() => {
+      lineChart?.show(value?.balance?.total);
+      roiChart?.show();
+    }, 100);
   });
+
+  onDestroy(accountSubscription);
 </script>
