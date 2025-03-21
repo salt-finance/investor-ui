@@ -1,14 +1,14 @@
 <div class="motion-preset-fade w-full block">
-  {#if user !== undefined}
-    <span class="page-title my-4 block">Profile </span>
-    <div class="w-full lg:w-1/2">
-      <CardSettings {user} />
-    </div>
-  {/if}
   {#if account !== undefined}
     <span class="page-title my-4 block">Funding </span>
     <div class="w-full lg:w-1/2">
       <CardFunding {account} />
+    </div>
+  {/if}
+  {#if user !== undefined}
+    <span class="page-title my-4 block">Profile </span>
+    <div class="w-full lg:w-1/2">
+      <CardSettings {user} />
     </div>
   {/if}
 </div>

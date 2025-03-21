@@ -58,8 +58,8 @@
       <Deposit bind:this={depositModal} {account} {withdrawal} />
     {:else}
       {#if !fundOnly}
-        <p class="mb-3 text-amber-500 font-bold text-sm">
-          Fund your account to get started
+        <p class="mb-3 text-amber-500 text-sm">
+          Fund your account to start investing
         </p>
       {/if}
       <button

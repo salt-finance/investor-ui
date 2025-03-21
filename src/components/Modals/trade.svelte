@@ -91,18 +91,30 @@
             Sell all shares
           </button>
         {/if}
-        <button
-          disabled={!valid() || processing}
-          class="flex justify-center items-center gap-1 {buy
-            ? 'btn-buy'
-            : 'btn-sell'}"
-          onclick={buyNow}
-        >
-          Place {buy ? 'buy' : 'sell'} order
-          {#if processing}
-            <Loading />
-          {/if}
-        </button>
+
+        {#if account?.fundingMethod == null}
+          <a
+            href="/dashboard/settings"
+            use:link
+            class=" base-button bg-amber-600 hover:bg-amber-700 text-white hover:text-white hover:no-underline"
+          >
+            Add funding account
+            <span class="ml-4 material-symbols-outlined">money </span>
+          </a>
+        {:else}
+          <button
+            disabled={!valid() || processing}
+            class="flex justify-center items-center gap-1 {buy
+              ? 'btn-buy'
+              : 'btn-sell'}"
+            onclick={buyNow}
+          >
+            Place {buy ? 'buy' : 'sell'} order
+            {#if processing}
+              <Loading />
+            {/if}
+          </button>
+        {/if}
       </div>
     </div>
   {/if}
@@ -125,6 +137,8 @@
   import type { ISecurity } from 'models/security';
   import type { IHolding } from 'models/holding';
   import Loading from 'components/Loading.svelte';
+
+  import { link } from 'svelte-spa-router';
 
   let { security, buy } = $props<{
     security: ISecurity;
