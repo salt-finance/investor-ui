@@ -1,6 +1,6 @@
 <!--   in:blur|global={{ amount: 30, delay: 50, duration: 1000 }}
  -->
-<div class="w-full">
+<div class="w-full" class:opacity-50={requiresFunding}>
   <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
     <div
       class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade"
@@ -111,10 +111,14 @@
 
   let account: IAccount | undefined = $state();
 
+  let requiresFunding = $state(false);
+
   const accountSubscription = accountStore.subscribe((value) => {
     account = value;
+    requiresFunding = account !== undefined && account.fundingMethod == null;
+
     setTimeout(() => {
-      lineChart?.show(value?.balance?.total);
+      lineChart?.show(value?.balance?.total, requiresFunding);
       roiChart?.show();
     }, 100);
   });

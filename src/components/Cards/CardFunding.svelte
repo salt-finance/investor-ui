@@ -1,8 +1,9 @@
-<div
-  id="fund"
-  class="flex flex-col mb-6 {fundOnly ? '' : 'card bg-opacity-40'} "
->
-  <div class="flex-auto {fundOnly ? '' : 'p-4  lg:px-8 lg:py-10'}">
+<div id="fund" class="flex flex-col mb-6 glass-effect bg-opacity-40">
+  <div
+    class="flex-auto {account.fundingMethod != null
+      ? 'p-4 lg:px-8 lg:py-10'
+      : 'px-4 py-3'}"
+  >
     {#if account.fundingMethod != null}
       <h6
         class="text-neutral-500 text-sm mb-6 gap-4 font-bold flex-wrap uppercase flex items-center justify-between"

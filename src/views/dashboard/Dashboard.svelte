@@ -100,7 +100,7 @@
     account = value;
     requiresFunding = account !== undefined && account.fundingMethod == null;
     setTimeout(() => {
-      lineChart?.show(value?.balance?.total, true);
+      lineChart?.show(value?.balance?.total, requiresFunding);
       roiChart?.show();
     }, 100);
   });
