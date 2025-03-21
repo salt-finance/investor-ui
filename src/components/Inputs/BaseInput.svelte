@@ -18,6 +18,7 @@
       {/if}
       <input
         bind:value
+        {disabled}
         {id}
         {type}
         {min}
@@ -63,6 +64,7 @@
     id?: string;
     large?: boolean;
     viewOnly?: boolean;
+    disabled?: boolean | undefined | null;
   }
 
   let {
@@ -82,6 +84,7 @@
     onfocusout,
     id,
     large,
-    viewOnly
+    viewOnly,
+    disabled = $bindable()
   }: Props = $props();
 </script>

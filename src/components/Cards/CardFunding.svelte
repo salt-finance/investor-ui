@@ -1,5 +1,8 @@
-<div class="flex flex-col mb-6 card bg-opacity-40">
-  <div class="flex-auto p-4 lg:py-10 lg:px-8">
+<div
+  id="fund"
+  class="flex flex-col mb-6 {fundOnly ? '' : 'card bg-opacity-40'} "
+>
+  <div class="flex-auto {fundOnly ? '' : 'p-4  lg:px-8 lg:py-10'}">
     {#if account.fundingMethod != null}
       <h6
         class="text-neutral-500 text-sm mb-6 gap-4 font-bold flex-wrap uppercase flex items-center justify-between"
@@ -54,15 +57,17 @@
       </div>
       <Deposit bind:this={depositModal} {account} {withdrawal} />
     {:else}
-      <h6 class="body-text text-sm mb-6 text-amber-500">
-        <span class="material-symbols-outlined">priority_high </span>
-        No funding method linked
-      </h6>
-
+      {#if !fundOnly}
+        <p class="mb-3 text-amber-500 font-bold text-sm">
+          Fund your account to get started
+        </p>
+      {/if}
       <button
-        class="base-button primary-button"
+        class=" primary-button base-button"
         onclick={() => fundModal?.show()}
-        >Link a funding method
+      >
+        Fund account
+        <span class="ml-4 material-symbols-outlined">money </span>
       </button>
     {/if}
 
@@ -87,7 +92,8 @@
   interface Props {
     // core components
     account: IAccount;
+    fundOnly?: boolean;
   }
 
-  let { account }: Props = $props();
+  let { account, fundOnly = false }: Props = $props();
 </script>

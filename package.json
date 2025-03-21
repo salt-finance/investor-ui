@@ -58,6 +58,7 @@
     "@kurkle/color": "^0.3.4",
     "@popperjs/core": "2.11.8",
     "chart.js": "4.4.7",
+    "posthog-js": "^1.232.2",
     "svelte-spa-router": "4.0.1"
   }
 }

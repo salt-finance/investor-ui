@@ -56,6 +56,7 @@
     '/dashboard/activity': Activity,
     '/dashboard/market': Market,
     '/dashboard/settings': Settings,
+    '/dashboard/settings/*': Settings,
     '/dashboard/portfolio': Portfolio,
     '/dashboard/sector/:sectorId': SectorDetail,
     // '/': Dashboard,

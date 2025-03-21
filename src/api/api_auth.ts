@@ -14,3 +14,8 @@ export const tokenTest = async () => {
   let token = response.response['token'];
   localStorage.setItem('token', token);
 };
+
+export const startWithEmail = async (email: string) => {
+  localStorage.setItem('token', email);
+  return get<any>(`/auth/email`);
+};

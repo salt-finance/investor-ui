@@ -57,14 +57,14 @@
 }
 
 
-.base-button:not([disabled]):hover,
-.base-button:not([disabled]):focus,
-.base-button:not([disabled]):active {
-    @apply bg-accent dark:bg-accent-dark border-accent dark:border-accent-dark;
-}
+/*.base-button:not([disabled]):hover,*/
+/*.base-button:not([disabled]):focus,*/
+/*.base-button:not([disabled]):active {*/
+/*    @apply bg-accent dark:bg-accent-dark border-accent dark:border-accent-dark;*/
+/*}*/
 
 .base-button {
-    @apply rounded px-12 py-3 font-semibold transition-all duration-300 shadow-none disabled:opacity-50;
+    @apply rounded px-12 py-3 font-semibold transition-all duration-300 shadow-none disabled:opacity-50 flex items-center justify-center;
 }
 
 .primary-button {

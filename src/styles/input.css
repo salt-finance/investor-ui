@@ -1,4 +1,4 @@
-Input {
+Input:not([disabled]) {
     @apply hover:cursor-pointer;
 }
 
@@ -11,6 +11,7 @@ Input {
         @apply text-lg lg:text-2xl w-8 text-right;
     }
 
+
     &:focus,
     &:hover,
     &:focus-within {
@@ -19,7 +20,10 @@ Input {
         }
 
         Input {
-            @apply border-opacity-100 pb-1 sm:pb-4;
+            &:not([disabled]) {
+                @apply border-opacity-100 pb-1 sm:pb-4;
+
+            }
         }
     }
 

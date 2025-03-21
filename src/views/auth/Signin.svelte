@@ -45,28 +45,32 @@
               appendIcon="alternate_email"
               placeholder="Email"
               type="email"
-              onchange={(e) => (email = e.currentTarget.value)}
-              value={email}
+              bind:disabled={loading}
+              bind:value={email}
             />
 
-            <div class=" w-full flex flex-col lg:mt-10">
+            <div class=" w-full flex flex-col lg:mt-4">
               <!-- Error will show here -->
 
               <button
-                disabled={true}
-                class="primary-button"
+                disabled={!email || loading}
+                class="primary-button gap-4"
                 onclick={continueWithEmail}
                 type="button"
               >
                 Continue
+
+                {#if loading}
+                  <Loading />
+                {/if}
               </button>
 
               <hr
-                class="mt-8 md:mt-16 opacity-60 border-1 border-neutral-800 dark:border-neutral-300"
+                class="my-8 opacity-60 border-1 border-neutral-800 dark:border-neutral-300"
               />
 
               <button
-                class="primary-button bg-black dark:bg-white text-white dark:text-black w-full mt-4 md:mt-16 login-with-google-btn flex gap-4 items-center justify-center"
+                class="primary-button bg-black dark:bg-white text-white dark:text-black w-full login-with-google-btn flex gap-4 items-center justify-center"
                 onclick={continueWithSSO}
                 type="button"
                 disabled={loading}
@@ -90,7 +94,7 @@
   import BaseInput from 'components/Inputs/BaseInput.svelte';
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { ApiURL } from 'utils/http_client';
-  import { tokenTest } from '@/api/api_auth';
+  import { startWithEmail, tokenTest } from '@/api/api_auth';
 
   import { onDestroy } from 'svelte';
   import Loading from 'components/Loading.svelte';
@@ -103,8 +107,11 @@
     'https://picsum.photos/id/525/3000?grayscale'
   );
 
-  function continueWithEmail() {
-    window.location.href = `${ApiURL}/auth/google`;
+  async function continueWithEmail() {
+    loading = true;
+    await startWithEmail(email).finally(() => {
+      loading = false;
+    });
   }
 
   function continueWithSSO() {

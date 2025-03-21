@@ -186,7 +186,7 @@
 
   let chartCanvas: HTMLCanvasElement;
 
-  export async function show(startingValue: number) {
+  export async function show(startingValue: number, disabled: boolean = false) {
     if (startingValue === undefined) {
       return;
     }
@@ -202,7 +202,9 @@
     chart.options = options(defaultConfigs(isDark));
     chart.update();
     updateDarkLight();
-    a = setInterval(() => setData(new Date(Date.now())), 5000);
+    if (!disabled) {
+      a = setInterval(() => setData(new Date(Date.now())), 5000);
+    }
   }
 
   export async function destroy() {

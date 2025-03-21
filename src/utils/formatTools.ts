@@ -1,5 +1,5 @@
-// const locale = 'en-US';
-const locale = 'am-ET';
+const locale = 'en-US';
+// const locale = 'am-ET';
 const defaultOptions: Intl.DateTimeFormatOptions = {
   calendar: 'ethiopic',
   year: 'numeric',
@@ -48,7 +48,7 @@ export const formatCurrencyWithNotation = (value?: number) => {
     return '--';
   }
   return currencyFormat({
-    notation: Math.abs(value) >= 100000 ? 'compact' : 'standard'
+    notation: Math.abs(value) >= 10000000 ? 'compact' : 'standard'
   })(value);
 };
 
