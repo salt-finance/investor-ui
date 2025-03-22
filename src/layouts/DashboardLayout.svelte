@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <AutoLogout />
+  <StillThere />
 </div>
 
 <script lang="ts">
@@ -66,7 +66,7 @@
   import FooterAdmin from 'components/Footer.svelte';
   import HeaderStats from 'components/Headers/HeaderStats.svelte';
   // pages for this layout
-  import AutoLogout from 'components/Modals/autoLogout.svelte';
+  import StillThere from 'components/Modals/StillThere.svelte';
 
   import IndexNavbar from 'components/IndexNavbar.svelte';
   import Activity from 'views/dashboard/Activity.svelte';

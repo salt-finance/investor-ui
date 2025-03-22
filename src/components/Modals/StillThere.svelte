@@ -28,14 +28,17 @@
         >
       </div>
       <p>
-        You have been inactive for a while. For security reasons you will be
-        signed out in
+        You have been inactive for a while. <br /> <br /> For security reasons you
+        will be signed out in
       </p>
       <p>
         <strong> {secondsLeft} </strong> seconds.
       </p>
 
-      <button class="primary-button my-3 justify-between gap-10" onclick={hide}>
+      <button
+        class="primary-button my-3 justify-between gap-10 mt-10"
+        onclick={hide}
+      >
         <span class="flex-grow"> Stay signed in </span>
         <span class="border-current border-solid border-l self-stretch"></span>
         <span class="material-symbols-outlined skiptranslate text-[1.25rem]">
