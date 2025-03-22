@@ -3,38 +3,40 @@ import type { IAccount } from 'models/account';
 import { getAccounts } from '@/api/api_account';
 import type { IHolding } from 'models/holding';
 import { getHoldings } from '@/api/api_holding';
+import type { IApiResponse } from 'utils/http_client';
+import type { Result } from 'models/trycatch';
 
-let holdingsCall: Promise<void> | undefined;
+let holdingsCall: Promise<Result<IApiResponse<IHolding[]>>> | undefined;
 
-export const accountStore = writable<IAccount | undefined>();
+export const accountStore = writable<IAccount>();
 
+// Does not return accounts, simply updates the store, does not emit errors.
 export const fetchAccounts = async () => {
-  return getAccounts().then((accounts) => {
-    if (accounts.response?.at(0)) {
-      accountStore.set(accounts.response.at(0)!);
-    }
-  });
+  const result = await getAccounts();
+
+  if (result.data !== null && result.data.response?.at(0)) {
+    accountStore.set(result.data.response.at(0)!);
+    return;
+  }
 };
 
 export const holdingsStore = writable<IHolding[] | undefined>();
 
+// Does not return the holdings, simply updates the store, does not emit errors.
 export const fetchHoldings = async (id?: string, force?: boolean) => {
   let holdings = get(holdingsStore)?.length;
   if (!id || (!force && holdings !== undefined && holdings > 0)) {
     return;
   }
 
-  if (holdingsCall !== undefined) {
-    return holdingsCall;
+  if (holdingsCall === undefined) {
+    holdingsCall = getHoldings(id);
   }
 
-  holdingsCall = getHoldings(id)
-    .then((holdings) => {
-      holdingsStore.set(holdings.response);
-    })
-    .finally(() => {
-      holdingsCall = undefined;
-    });
+  const result = await holdingsCall;
 
-  return holdingsCall;
+  if (result!.data !== null) {
+    holdingsStore.set(result!.data.response);
+    return;
+  }
 };

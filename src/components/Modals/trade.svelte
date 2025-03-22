@@ -139,6 +139,7 @@
   import Loading from 'components/Loading.svelte';
 
   import { link } from 'svelte-spa-router';
+  import { type Result } from 'models/trycatch';
 
   let { security, buy } = $props<{
     security: ISecurity;
@@ -176,19 +177,23 @@
     }
     processing = true;
 
-    try {
-      if (buy) {
-        await buySecurity(account.id, security.id, quantity);
-      } else {
-        await sellSecurity(account.id, security.id, quantity);
-      }
-      await fetchAccounts();
-      await fetchHoldings(account?.id, true);
-
-      quantity = 0;
-    } finally {
-      processing = false;
+    let result: Result<any>;
+    if (buy) {
+      result = await buySecurity(account.id, security.id, quantity);
+    } else {
+      result = await sellSecurity(account.id, security.id, quantity);
     }
+
+    if (result.error !== null) {
+      processing = false;
+      console.trace(result.error);
+      return;
+    }
+
+    await fetchAccounts();
+    await fetchHoldings(account?.id, true);
+    processing = false;
+    quantity = 0;
   }
 
   function canBuy() {

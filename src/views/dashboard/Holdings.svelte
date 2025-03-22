@@ -115,12 +115,14 @@
 
   const maxTop = 5;
 
-  const accountSubscription = accountStore.subscribe((account) => {
+  const accountSubscription = accountStore.subscribe(async (account) => {
     if (account === undefined || all.length > 0) {
+      loading = false;
       return;
     }
-
-    fetchHoldings(account.id).finally(() => (loading = false));
+    loading = true;
+    await fetchHoldings(account.id);
+    loading = false;
   });
 
   const holdingsSubscription = holdingsStore.subscribe((holdings) => {

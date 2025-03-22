@@ -56,18 +56,18 @@
       <FooterAdmin />
     </div>
   </div>
+
+  <AutoLogout />
 </div>
 
 <script lang="ts">
-  import Router, {
-    replace,
-    link,
-    type RouteLoadedEvent
-  } from 'svelte-spa-router';
+  import Router, { link, type RouteLoadedEvent } from 'svelte-spa-router';
   // components for this layout
   import FooterAdmin from 'components/Footer.svelte';
   import HeaderStats from 'components/Headers/HeaderStats.svelte';
   // pages for this layout
+  import AutoLogout from 'components/Modals/autoLogout.svelte';
+
   import IndexNavbar from 'components/IndexNavbar.svelte';
   import Activity from 'views/dashboard/Activity.svelte';
   import Dashboard from 'views/dashboard/Dashboard.svelte';
@@ -75,14 +75,13 @@
   import Market from 'views/dashboard/Market.svelte';
   import Settings from 'views/dashboard/Settings.svelte';
   import SectorDetail from 'views/dashboard/market/SectorDetail.svelte';
-  import { userStore } from '@/store/user';
-  import { getUser } from '@/api/api_user';
-  import { tokenTest } from '@/api/api_auth';
+  import { fetchUser } from '@/store/user';
+  import { logout, tokenTest } from '@/api/api_auth';
   import Portfolio from 'views/dashboard/Portfolio.svelte';
   import { accountStore, fetchAccounts } from '@/store/account';
   import Loading from 'components/Loading.svelte';
   import type { IAccount } from 'models/account';
-  import { onDestroy } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -101,8 +100,16 @@
 
   let requiresFunding = $state(false);
 
-  tokenTest().catch(() => {
-    replace('/');
+  onMount(async () => {
+    const result = await tokenTest();
+
+    if (result.error) {
+      await logout();
+      return;
+    }
+    await fetchUser();
+    await fetchAccounts();
+    loading = false;
   });
 
   const navigateToTop = (e: RouteLoadedEvent) => {
@@ -113,22 +120,8 @@
   let account: IAccount | undefined = $state();
 
   const accountSubscription = accountStore.subscribe((value) => {
-    loading = false;
     account = value;
     requiresFunding = account !== undefined && account.fundingMethod == null;
   });
-
   onDestroy(accountSubscription);
-  getUser()
-    .then((user) => {
-      if (user.response) {
-        userStore.set(user.response);
-        loading = false;
-      }
-    })
-    .catch(() => {
-      replace('/');
-    });
-
-  fetchAccounts();
 </script>

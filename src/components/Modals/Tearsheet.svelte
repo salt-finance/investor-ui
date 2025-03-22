@@ -28,8 +28,10 @@
 
     <!--    BODY -->
     <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
-      {#if loading || security === undefined}
+      {#if loading}
         <Loading />
+      {:else if loadingError.length > 0 || security === undefined}
+        error
       {:else}
         <!--      Security Title-->
         <div
@@ -231,6 +233,8 @@
 
   let closing = $state(false);
 
+  let loadingError = $state('');
+
   function hide(e: Event) {
     e.preventDefault();
     lineChart?.destroy();
@@ -248,11 +252,19 @@
     dialogRef?.showModal();
 
     if (securityToShow === undefined && id) {
-      await getSecurity(id).then((resp) => {
-        security = resp.response;
-      });
+      const result = await getSecurity(id);
+
+      loading = false;
+
+      if (result.error) {
+        loadingError = result.error.message;
+        return;
+      }
+
+      if (result.data) {
+        security = result.data.response;
+      }
     }
-    loading = false;
     setTimeout(() => {
       lineChart?.show(security?.ask);
     }, 100);

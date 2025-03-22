@@ -60,13 +60,16 @@
       return;
     }
 
-    const data = await findSecurities(searchTerm)
-      .then((resp) => {
-        return resp.response;
-      })
-      .catch(() => handleError());
-    securities = data || [];
+    const result = await findSecurities(searchTerm);
     searching = false;
+
+    if (result.error) {
+      handleError();
+    }
+
+    if (result.data) {
+      securities = result.data.response;
+    }
   }
 
   function handleSearch() {

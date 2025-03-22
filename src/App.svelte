@@ -21,10 +21,12 @@
     ['*', Signin]
   ]);
 
-  onMount(() => {
-    posthog.init('phc_faqICTnQr6DINP15c3R4tPyj1GbaGTsbDT6Ph05SNVm', {
-      api_host: 'https://us.i.posthog.com',
-      person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
+  if (process.env.NODE_ENV !== 'development') {
+    onMount(() => {
+      posthog.init('phc_faqICTnQr6DINP15c3R4tPyj1GbaGTsbDT6Ph05SNVm', {
+        api_host: 'https://us.i.posthog.com',
+        person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
+      });
     });
-  });
+  }
 </script>

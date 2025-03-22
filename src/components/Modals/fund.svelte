@@ -54,6 +54,7 @@
   } from '@/api/api_account';
   import type { IAccount, IFundingMethod } from 'models/account';
   import { fetchAccounts } from '@/store/account';
+  import { onMount } from 'svelte';
 
   let dialogRef: HTMLDialogElement | undefined = $state();
 
@@ -87,16 +88,22 @@
 
   let { account }: Props = $props();
 
-  function selectFundingMethod(method: IFundingMethod) {
+  async function selectFundingMethod(method: IFundingMethod) {
     loadingMethod = method;
-    linkFundingMethod(account, method).then(() => {
-      fetchAccounts().then(() => {
-        hide();
-      });
-    });
+
+    const result = await linkFundingMethod(account, method);
+
+    if (result.error !== null) {
+      return;
+    }
+    await fetchAccounts();
   }
 
-  getAvailableFundingMethods().then((res) => {
-    fundingMethods = res.response;
+  onMount(async () => {
+    const result = await getAvailableFundingMethods();
+
+    if (result.data) {
+      fundingMethods = result.data.response;
+    }
   });
 </script>

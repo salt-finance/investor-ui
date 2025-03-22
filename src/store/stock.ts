@@ -6,6 +6,8 @@ import { getSectors } from '@/api/api_security';
 export const sectorStore: Writable<ISector[]> = writable<ISector[]>([]);
 
 export const fetchSectors = async () => {
-  let sectors = await getSectors();
-  sectorStore.set(sectors.response ?? []);
+  let result = await getSectors();
+  if (result.data) {
+    sectorStore.set(result.data.response ?? []);
+  }
 };

@@ -94,9 +94,9 @@
   import BaseInput from 'components/Inputs/BaseInput.svelte';
   import DarkModeToggle from 'components/DarkModeToggle.svelte';
   import { ApiURL } from 'utils/http_client';
-  import { startWithEmail, tokenTest } from '@/api/api_auth';
+  import { loginWithToken, startWithEmail, tokenTest } from '@/api/api_auth';
 
-  import { onDestroy } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import Loading from 'components/Loading.svelte';
 
   let email = $state('');
@@ -119,19 +119,21 @@
     window.location.href = `${ApiURL}/auth/google`;
   }
 
-  const unsubscribe = querystring.subscribe((value) => {
+  const unsubscribe = querystring.subscribe(async (value) => {
     if (value !== undefined && value !== '') {
       let token = value.split('continue=')[1];
       if (token) {
-        localStorage.setItem('token', token);
+        loginWithToken(token);
       }
     }
   });
 
-  tokenTest()
-    .then(() => {
+  onMount(async () => {
+    const result = await tokenTest();
+    if (result.data) {
       replace('/dashboard');
-    })
-    .catch(() => {});
+    }
+  });
+
   onDestroy(unsubscribe);
 </script>

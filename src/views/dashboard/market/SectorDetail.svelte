@@ -73,14 +73,13 @@
     tearsheetModal?.show(data);
   };
 
-  const paramSubscription = params.subscribe((val) => {
+  const paramSubscription = params.subscribe(async (val) => {
     if (val?.sectorId) {
-      getSector(val.sectorId)
-        .then((response) => {
-          sector = response.response;
-        })
-        .catch((_) => {})
-        .finally(() => (loading = false));
+      const result = await getSector(val.sectorId);
+      if (result.data) {
+        sector = result.data.response;
+      }
+      loading = false;
     }
   });
 

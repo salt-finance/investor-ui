@@ -73,23 +73,23 @@
       return;
     }
     inProgress = true;
-    try {
-      if (withdrawal) {
-        await withdrawFunds(account, amount);
-        // Withdraw funds
-      } else {
-        await depositFunds(account, amount);
-        // Deposit funds
-      }
-
-      fetchAccounts().then(() => {
-        hide();
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      inProgress = false;
+    let result;
+    if (withdrawal) {
+      result = await withdrawFunds(account, amount);
+      // Withdraw funds
+    } else {
+      result = await depositFunds(account, amount);
+      // Deposit funds
     }
+
+    if (result.error !== null) {
+      console.error(result.error);
+      inProgress = false;
+      return;
+    }
+
+    await fetchAccounts();
+    inProgress = false;
   }
 
   function hide(e?: Event) {

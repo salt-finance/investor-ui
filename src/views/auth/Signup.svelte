@@ -195,7 +195,6 @@
   import { replace, querystring } from 'svelte-spa-router';
   import { type IUser } from 'models/user';
   import { createUser, continueRegister } from '@/api/api_user';
-  import type { IApiResponse } from 'utils/http_client';
   import {
     setupQuestionPages,
     type IQuestion
@@ -253,19 +252,19 @@
   async function submit() {
     processing = true;
     submitError = undefined;
-    await createUser(data!)
-      .then((response) => {
-        if (response.response['redirectUrl'] !== undefined) {
-          replace(response.response['redirectUrl']);
-        }
-      })
-      .catch((error: IApiResponse<any>) => {
-        submitError = error.error?.message;
-      });
+    const result = await createUser(data!);
     processing = false;
+
+    if (result.error !== null) {
+      submitError = result.error?.message;
+      return;
+    }
+    if (result.data.response['redirectUrl'] !== undefined) {
+      replace(result.data.response['redirectUrl']);
+    }
   }
 
-  function continueRegistration() {
+  async function continueRegistration() {
     loading = true;
     loadingError = undefined;
     if (!token) {
@@ -273,16 +272,17 @@
       replace('/');
       return;
     }
-    continueRegister(token)
-      .then((user) => {
-        data = user.response;
-      })
-      .catch((e: IApiResponse<IUser>) => {
-        loadingError = e.error?.message ?? 'Something went wrong';
-      })
-      .finally(() => {
-        loading = false;
-      });
+
+    const result = await continueRegister(token);
+
+    if (result.data) {
+      data = result.data.response;
+    }
+
+    if (result.error) {
+      loadingError = result.error.message;
+    }
+    loading = false;
   }
 
   const unsubscribe = querystring.subscribe((value) => {
