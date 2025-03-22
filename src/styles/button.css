@@ -81,7 +81,7 @@
 }
 
 .secondary-button:not([disabled]) {
-    @apply hover:text-neutral-950 dark:hover:text-white;
+    @apply hover:text-neutral-950 hover:bg-accent;
 }
 
 

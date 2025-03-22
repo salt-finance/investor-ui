@@ -8,7 +8,12 @@
       <!--      HEADER-->
       <div class="pb-4 flex justify-between w-auto items-center">
         <div class="flex flex-col">
-          <span class="text-xl font-semibold">Signing Out</span>
+          <span class="text-xl font-semibold inline-flex items-center gap-1">
+            <span class="material-symbols-outlined skiptranslate">
+              search_activity
+            </span>
+            Still there ?
+          </span>
         </div>
 
         <button
@@ -24,17 +29,29 @@
       </div>
       <p>
         You have been inactive for a while. For security reasons you will be
-        logged out in
+        signed out in
       </p>
       <p>
         <strong> {secondsLeft} </strong> seconds.
       </p>
 
-      <button class="primary-button my-3" onclick={hide}>
-        Stay signed in
+      <button class="primary-button my-3 justify-between gap-10" onclick={hide}>
+        <span class="flex-grow"> Stay signed in </span>
+        <span class="border-current border-solid border-l self-stretch"></span>
+        <span class="material-symbols-outlined skiptranslate text-[1.25rem]">
+          lock_open
+        </span>
       </button>
-      <button onclick={logout} class="secondary-button">
-        Sign out ({secondsLeft}s)
+      <button onclick={logout} class="secondary-button justify-between gap-10">
+        <span class="flex-grow">
+          Sign out ({secondsLeft}s)
+        </span>
+
+        <span class="border-current border-solid border-l self-stretch"></span>
+
+        <span class="material-symbols-outlined skiptranslate text-[1.25rem]">
+          lock
+        </span>
       </button>
     </div>
   {/if}
@@ -56,7 +73,9 @@
 
   let countdown: NodeJS.Timeout;
 
-  function getTimeLeft() {
+  let validateTimeout: NodeJS.Timeout;
+
+  async function getTimeLeft() {
     secondsLeft = expiryTimeout()?.secondsLeft ?? timeout;
     if (secondsLeft < timeout) {
       show();
@@ -64,23 +83,27 @@
   }
 
   // Start listening;
-  resetTimer();
+  countdown = setInterval(getTimeLeft, 1000);
 
   window.onpointerover = resetTimer; // catches mouse movements
 
   async function resetTimer() {
+    // Called on interaction.
     if (secondsLeft < timeout) {
       // Ignore events if modal is visible;
       return;
     }
-    // Set seconds left to inital state, stop interval timer.
-    clearInterval(countdown);
-    secondsLeft = timeout;
-
-    // Ensure token is valid and / or refresh it.
-    await revalidateToken();
-    // Check time left every 1s until canceled by resetTimer();
-    countdown = setInterval(getTimeLeft, 1000);
+    clearTimeout(validateTimeout);
+    await getTimeLeft();
+    // Call revalidate after :
+    let refreshAfter = secondsLeft - timeout;
+    // Revalidate token after `refreshAfter` seconds to refresh the token from api;
+    validateTimeout = setTimeout(async () => {
+      clearInterval(countdown);
+      await revalidateToken();
+      // check updateSecondsLeft every 1s until reset by validateTimeout;
+      countdown = setInterval(getTimeLeft, 1000);
+    }, refreshAfter * 1000);
   }
 
   async function hide(e?: Event) {
@@ -126,10 +149,13 @@
       await logout();
       return result;
     }
+    secondsLeft = expiryTimeout()?.secondsLeft ?? timeout;
+
     return result;
   }
 
   onDestroy(() => {
     clearInterval(countdown);
+    clearTimeout(validateTimeout);
   });
 </script>
