@@ -48,7 +48,7 @@
 
   let dialogRef: HTMLDialogElement | undefined = $state();
 
-  let secondsLeft = $state(timeout + 1);
+  let secondsLeft = $state(timeout);
 
   let closing = $state(false);
 
@@ -57,8 +57,8 @@
   let countdown: NodeJS.Timeout;
 
   function getTimeLeft() {
-    secondsLeft = expiryTimeout()?.secondsLeft ?? 0;
-    if (secondsLeft <= timeout) {
+    secondsLeft = expiryTimeout()?.secondsLeft ?? timeout;
+    if (secondsLeft < timeout) {
       show();
     }
   }
@@ -69,13 +69,13 @@
   window.onpointerover = resetTimer; // catches mouse movements
 
   async function resetTimer() {
-    if (secondsLeft <= timeout) {
+    if (secondsLeft < timeout) {
       // Ignore events if modal is visible;
       return;
     }
     // Set seconds left to inital state, stop interval timer.
     clearInterval(countdown);
-    secondsLeft = timeout + 1;
+    secondsLeft = timeout;
 
     // Ensure token is valid and / or refresh it.
     await revalidateToken();
