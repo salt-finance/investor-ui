@@ -27,13 +27,12 @@
 <dialog
   bind:this={dialogRef}
   class="tearsheet"
-  transition:fly={{
+  transition:fly|global={{
     y: 200,
     easing: circInOut,
     opacity: 0,
     duration: 300,
-  }}
->
+  }}>
   <div class={modalClass}>
     <div class={headerClass}>
       <div class="flex flex-col">
@@ -46,8 +45,7 @@
         class="close-icon text-2xl"
         id="cancel"
         onclick={hide}
-        type="reset"
-      >
+        type="reset">
         <span class="material-symbols-outlined skiptranslate">cancel</span>
       </button>
     </div>
