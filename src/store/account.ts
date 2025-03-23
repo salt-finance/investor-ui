@@ -25,6 +25,7 @@ export const holdingsStore = writable<IHolding[] | undefined>();
 // Does not return the holdings, simply updates the store, does not emit errors.
 export const fetchHoldings = async (id?: string, force?: boolean) => {
   let holdings = get(holdingsStore)?.length;
+
   if (!id || (!force && holdings !== undefined && holdings > 0)) {
     return;
   }
@@ -34,6 +35,8 @@ export const fetchHoldings = async (id?: string, force?: boolean) => {
   }
 
   const result = await holdingsCall;
+  // Clear holdings call after result.
+  holdingsCall = undefined;
 
   if (result!.data !== null) {
     holdingsStore.set(result!.data.response);

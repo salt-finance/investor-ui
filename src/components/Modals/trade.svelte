@@ -1,239 +1,219 @@
-<dialog bind:this={dialogRef}>
-  {#if dialogVisible}
-    <div
-      class="w-full max-w-96 glass-effect shadow-inner dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-16 {closing
-        ? 'motion-hide'
-        : 'motion-preset-expand motion-duration-300'}"
-    >
-      <!--      HEADER-->
-      <div
-        class="p-4 text-white flex justify-between items-center {buy
-          ? 'bg-emerald-600'
-          : 'bg-yellow-600'}"
-      >
-        <div class="flex flex-col">
-          <span class="uppercase font-semibold">{buy ? 'Buy' : 'Sell'}</span>
-          <span class="text-xl font-semibold">{security?.name}</span>
-        </div>
-
-        <button
-          class="close-icon text-2xl"
-          id="cancel"
-          onclick={hide}
-          type="reset"
-        >
-          <span class="material-symbols-outlined skiptranslate">
-            cancel
-          </span></button
-        >
-      </div>
-      <div class="p-4 flex flex-col gap-4">
-        <div class="flex justify-between">
-          <span>Unit price</span>
-          <span> {formatCurrencyWithNotation(security?.ask)}</span>
-        </div>
-        <div class="flex justify-between">
-          {#if buy}
-            <span>Cash available</span>
-            <span class={canBuy() ? '' : 'text-amber-400'}
-              >{currencyFormat()(account?.balance?.cash ?? 0)}</span
-            >
-          {:else}
-            <span>Shares held</span>
-            <span class={canBuy() ? '' : 'text-amber-400'}
-              >{holding?.quantity ?? 0}</span
-            >
-          {/if}
-        </div>
-      </div>
-      <div class="py-12 px-4 text-center flex flex-col justify-center">
-        <div class="flex gap-4 justify-center mb-2">
-          <button
-            disabled={quantity === 0 || processing}
-            class="text-base btn-icon rounded-full glass-effect"
-            onclick={() => (quantity > 0 ? quantity-- : null)}
-          >
-            -
-          </button>
-          <input
-            class="text-3xl select-none bg-transparent text-center max-w-16"
-            bind:value={quantity}
-            type="text"
-            disabled={processing}
-            inputmode="numeric"
-            size="3"
-            pattern="\d*"
-          />
-
-          <button
-            class="text-base btn-icon rounded-full glass-effect"
-            onclick={() => quantity++}
-            disabled={!canBuy() || processing}
-          >
-            +
-          </button>
-        </div>
-
-        Shares to {buy ? 'buy' : 'sell'}
-      </div>
-      <div class="p-4 flex flex-col gap-4">
-        <div class="flex justify-between">
-          <span> Total </span>
-          <span class="text-xl">{formatCurrencyWithNotation(total)}</span>
-        </div>
-
-        {#if !buy}
-          <button
-            disabled={processing || (holding?.quantity ?? 0) == 0}
-            class="secondary-button"
-            onclick={() => (quantity = holding?.quantity ?? 0)}
-          >
-            Sell all shares
-          </button>
-        {/if}
-
-        {#if account?.fundingMethod == null}
-          <a
-            href="/dashboard/settings"
-            use:link
-            class=" base-button bg-amber-600 hover:bg-amber-700 text-white hover:text-white hover:no-underline"
-          >
-            Add funding account
-            <span class="ml-4 material-symbols-outlined">money </span>
-          </a>
-        {:else}
-          <button
-            disabled={!valid() || processing}
-            class="flex justify-center items-center gap-1 {buy
-              ? 'btn-buy'
-              : 'btn-sell'}"
-            onclick={buyNow}
-          >
-            Place {buy ? 'buy' : 'sell'} order
-            {#if processing}
-              <Loading />
-            {/if}
-          </button>
-        {/if}
-      </div>
-    </div>
-  {/if}
-</dialog>
-
 <script lang="ts">
-  import {
-    currencyFormat,
-    formatCurrencyWithNotation
-  } from 'utils/formatTools';
+  import { currencyFormat, formatCurrencyWithNotation } from 'utils/formatTools'
   import {
     accountStore,
     fetchAccounts,
     fetchHoldings,
-    holdingsStore
-  } from '@/store/account';
-  import type { IAccount } from 'models/account';
-  import { onDestroy } from 'svelte';
-  import { buySecurity, sellSecurity } from '@/api/api_holding';
-  import type { ISecurity } from 'models/security';
-  import type { IHolding } from 'models/holding';
-  import Loading from 'components/Loading.svelte';
+    holdingsStore,
+  } from '@/store/account'
+  import type { IAccount } from 'models/account'
+  import { mount, onDestroy, unmount } from 'svelte'
+  import { buySecurity, sellSecurity } from '@/api/api_holding'
+  import type { ISecurity } from 'models/security'
+  import type { IHolding } from 'models/holding'
+  import Loading from 'components/Loading.svelte'
 
-  import { link } from 'svelte-spa-router';
-  import { type Result } from 'models/trycatch';
+  import { link } from 'svelte-spa-router'
+  import { type Result } from 'models/trycatch'
+  import ModalDialog from 'components/Modals/ModalDialog.svelte'
 
   let { security, buy } = $props<{
-    security: ISecurity;
-    buy: boolean;
-  }>();
-  let dialogRef: HTMLDialogElement | undefined = $state();
+    security: ISecurity
+    buy: boolean
+  }>()
 
-  let account: IAccount | undefined = $state();
+  let account: IAccount | undefined = $state()
 
-  let holding: IHolding | undefined = $state();
-  let processing = $state(false);
+  let holding: IHolding | undefined = $state()
+  let processing = $state(false)
 
-  let quantity = $state(0);
-  let closing = $state(false);
-  let dialogVisible = $state(false);
+  let quantity = $state(0)
 
   const accountSubscription = accountStore.subscribe((value) => {
-    account = value;
-  });
+    account = value
+  })
 
   const holdingSubscription = holdingsStore.subscribe((holdings) => {
-    holding = holdings?.find((v) => v.securityId === security.id);
-  });
+    holding = holdings?.find((v) => v.securityId === security.id)
+  })
 
-  onDestroy(() => {
-    accountSubscription;
-    holdingSubscription;
-  });
+  onDestroy(async () => {
+    accountSubscription
+    holdingSubscription
+  })
 
-  let total = $derived(quantity * (security?.ask ?? 0));
+  let total = $derived(quantity * (security?.ask ?? 0))
 
   async function buyNow() {
     if (!account) {
-      return;
+      return
     }
-    processing = true;
+    processing = true
 
-    let result: Result<any>;
+    let result: Result<any>
     if (buy) {
-      result = await buySecurity(account.id, security.id, quantity);
+      result = await buySecurity(account.id, security.id, quantity)
     } else {
-      result = await sellSecurity(account.id, security.id, quantity);
+      result = await sellSecurity(account.id, security.id, quantity)
     }
 
     if (result.error !== null) {
-      processing = false;
-      console.trace(result.error);
-      return;
+      processing = false
+      console.trace(result.error)
+      return
     }
 
-    await fetchAccounts();
-    await fetchHoldings(account?.id, true);
-    processing = false;
-    quantity = 0;
+    await fetchAccounts()
+    await fetchHoldings(account?.id, true)
+    quantity = 0
+
+    processing = false
   }
 
   function canBuy() {
     if (!account?.balance?.cash) {
-      return false;
+      return false
     }
 
     if (buy) {
-      return account.balance.cash - total >= security.ask;
+      return account.balance.cash - total >= security.ask
     }
-    return quantity < (holding?.quantity ?? 0);
+    return quantity < (holding?.quantity ?? 0)
   }
 
   function valid() {
     if (!total) {
-      return false;
+      return false
     }
     if (buy) {
       return (
         (account?.balance?.cash ?? 0) > 0 &&
         (account?.balance?.cash ?? 0 - total) >= security.ask
-      );
+      )
     }
-    return quantity > 0 && quantity <= (holding?.quantity ?? 0);
+    return quantity > 0 && quantity <= (holding?.quantity ?? 0)
   }
 
-  function hide(e?: Event) {
-    e?.preventDefault();
+  // Modal functions
+  let target: HTMLElement
 
-    closing = true;
-    setTimeout(() => {
-      dialogRef?.close();
-      closing = false;
-      dialogVisible = false;
-    }, 500);
+  let modal: Record<string, any>
+
+  async function hide() {
+    await unmount(modal, { outro: true })
   }
 
+  // noinspection JSUnusedGlobalSymbols
   export function show() {
-    dialogRef?.showModal();
-    quantity = 0;
-    dialogVisible = true;
+    quantity = 0
+
+    // noinspection JSUnusedGlobalSymbols
+    let props = {
+      hide: hide,
+      title: title,
+      body: body,
+      loading: false,
+      modalClass:
+        'w-full max-w-96 glass-effect shadow-inner bg-opacity-70 dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-1',
+      headerClass: `p-4 text-white flex justify-between items-center ${
+        buy ? 'bg-emerald-600' : 'bg-yellow-600'
+      }`,
+    }
+    modal = mount(ModalDialog, { props, target })
   }
 </script>
+
+<div bind:this={target}></div>
+
+{#snippet title()}
+  <div class="flex flex-col">
+    <span class="uppercase font-semibold">{buy ? 'Buy' : 'Sell'}</span>
+    <span class="text-xl font-semibold">{security?.name}</span>
+  </div>
+{/snippet}
+
+{#snippet body()}
+  <div class="p-4 flex flex-col gap-4">
+    <div class="flex justify-between">
+      <span>Unit price</span>
+      <span>{formatCurrencyWithNotation(security?.ask)}</span>
+    </div>
+    <div class="flex justify-between">
+      {#if buy}
+        <span>Cash available</span>
+        <span class={canBuy() ? '' : 'text-amber-400'}>
+          {currencyFormat()(account?.balance?.cash ?? 0)}
+        </span>
+      {:else}
+        <span>Shares held</span>
+        <span class={canBuy() ? '' : 'text-amber-400'}>
+          {holding?.quantity ?? 0}
+        </span>
+      {/if}
+    </div>
+  </div>
+  <div class="py-12 px-4 text-center flex flex-col justify-center">
+    <div class="flex gap-4 justify-center mb-2">
+      <button
+        disabled={quantity === 0 || processing}
+        class="text-base btn-icon rounded-full glass-effect"
+        onclick={() => (quantity > 0 ? quantity-- : null)}>
+        -
+      </button>
+      <input
+        class="text-3xl select-none bg-transparent text-center max-w-16"
+        bind:value={quantity}
+        type="text"
+        disabled={processing}
+        inputmode="numeric"
+        size="3"
+        pattern="\d*" />
+
+      <button
+        class="text-base btn-icon rounded-full glass-effect"
+        onclick={() => quantity++}
+        disabled={!canBuy() || processing}>
+        +
+      </button>
+    </div>
+
+    Shares to {buy ? 'buy' : 'sell'}
+  </div>
+  <div class="p-4 flex flex-col gap-4">
+    <div class="flex justify-between">
+      <span>Total</span>
+      <span class="text-xl">{formatCurrencyWithNotation(total)}</span>
+    </div>
+
+    {#if !buy}
+      <button
+        disabled={processing || (holding?.quantity ?? 0) === 0}
+        class="secondary-button"
+        onclick={() => (quantity = holding?.quantity ?? 0)}>
+        Sell all shares
+      </button>
+    {/if}
+
+    {#if account?.fundingMethod == null}
+      <a
+        href="/dashboard/settings"
+        use:link
+        class=" base-button bg-amber-600 hover:bg-amber-700 text-white hover:text-white hover:no-underline">
+        Add funding account
+        <span class="ml-4 material-symbols-outlined">money</span>
+      </a>
+    {:else}
+      <button
+        disabled={!valid() || processing}
+        class="flex justify-center items-center gap-1 {buy
+          ? 'btn-buy'
+          : 'btn-sell'}"
+        onclick={buyNow}>
+        Place {buy ? 'buy' : 'sell'} order
+        {#if processing}
+          <Loading />
+        {/if}
+      </button>
+    {/if}
+  </div>
+{/snippet}

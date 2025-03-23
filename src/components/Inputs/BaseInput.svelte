@@ -22,6 +22,7 @@
         {id}
         {type}
         {min}
+        {pattern}
         {max}
         {required}
         {placeholder}
@@ -56,6 +57,7 @@
     max?: string;
     appendIcon?: string;
     prependIcon?: string;
+    pattern?: string;
     placeholder?: string;
     onchange?: ChangeEventHandler<HTMLInputElement>;
     oninput?: ChangeEventHandler<HTMLInputElement>;
@@ -85,6 +87,7 @@
     id,
     large,
     viewOnly,
+    pattern,
     disabled = $bindable()
   }: Props = $props();
 </script>

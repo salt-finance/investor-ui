@@ -1,67 +1,52 @@
-<div
-  class="flex flex-col gap-4 card p-4 bg-opacity-40 justify-between sector-card"
->
-  <div class="w-full flex justify-between">
-    <span class="text-lg font-semibold">{sector.title}</span>
-  </div>
-  {#if sector.description !== undefined}
-    <span class="dark-light-text body-text">
-      {sector.description}
-    </span>
-  {/if}
-
-  <button
-    onclick={() => push(`/dashboard/sector/${sector.id}`)}
-    class="text-left text-indigo-500 dark:text-blue-300 hover:text-blue-500 flex items-center"
-  >
-    <span class="underline-offset-4 underline"> View securites </span>
-    <span
-      class="material-symbols-outlined skiptranslate ml-2 duration-200 text-sm"
-    >
-      north_east</span
-    >
-  </button>
-
-  <span class="gap-4 w-full inline-flex">
-    {#if sector.totalGainLoss !== undefined && sector.totalGainLoss !== 0}
-      <span
-        class:text-green-500={sector.totalGainLoss > 0}
-        class:text-red-500={sector.totalGainLoss < 0}
-        class="font-semibold text-sm flex items-center gap-1"
-      >
-        <span class="material-symbols-outlined skiptranslate text-sm">
-          {sector.totalGainLoss > 0 ? 'trending_up' : 'trending_down'}
-        </span>
-        {sector.totalGainLoss} %
-      </span>
-    {/if}
-    {#if sector.securities !== null}
-      <span class="font-semibold text-sm flex gap-1 justify-self-end">
-        <span class="material-symbols-outlined skiptranslate text-sm">
-          category
-        </span>
-        {sector.securities.count}
-      </span>
-    {/if}
-  </span>
-</div>
-
 <script lang="ts">
-  import type { ISector } from 'models/sector';
-  import { push } from 'svelte-spa-router';
+  import type { ISector } from 'models/sector'
+  import { push } from 'svelte-spa-router'
 
   let { sector } = $props<{
-    sector: ISector;
-  }>();
+    sector: ISector
+  }>()
 </script>
 
-<style>
-  button {
-    &:hover {
-      .material-symbols-outlined {
-        display: inline-block;
-        transform: rotate(45deg);
-      }
-    }
-  }
-</style>
+<button
+  onclick={() => push(`/dashboard/sector/${sector.id}`)}
+  title="View sector details"
+  class="unset">
+  <div
+    class="flex flex-col gap-4 card p-4 bg-opacity-40 justify-between sector-card hover:scale-95 transition-all h-full group border-solid border-accent border-opacity-0 hover:border-opacity-100">
+    <div class="w-full flex justify-between">
+      <span class="text-lg font-semibold">{sector.title}</span>
+      <span
+        class="material-symbols-outlined skiptranslate ml-2 duration-200 text-xl
+     group-hover:text-accent rotate-45 group-hover:rotate-0 group-hover:opacity-100">
+        north_east
+      </span>
+    </div>
+    {#if sector.description !== undefined}
+      <span class="dark-light-text body-text">
+        {sector.description}
+      </span>
+    {/if}
+
+    <span class="gap-4 w-full inline-flex">
+      {#if sector.totalGainLoss !== undefined && sector.totalGainLoss !== 0}
+        <span
+          class:text-green-500={sector.totalGainLoss > 0}
+          class:text-red-500={sector.totalGainLoss < 0}
+          class="font-semibold text-sm flex items-center gap-1">
+          <span class="material-symbols-outlined skiptranslate text-sm">
+            {sector.totalGainLoss > 0 ? 'trending_up' : 'trending_down'}
+          </span>
+          {sector.totalGainLoss} %
+        </span>
+      {/if}
+      {#if sector.securities !== null}
+        <span class="font-semibold text-sm flex gap-1 justify-self-end">
+          <span class="material-symbols-outlined skiptranslate text-sm">
+            category
+          </span>
+          {sector.securities.count}
+        </span>
+      {/if}
+    </span>
+  </div>
+</button>

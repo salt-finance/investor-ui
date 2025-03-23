@@ -36,7 +36,7 @@
   // library for creating dropdown menu appear on click
   import { createPopper } from '@popperjs/core';
   import { onDestroy } from 'svelte';
-  import { link } from 'svelte-spa-router';
+  import { link, location } from 'svelte-spa-router';
   import active from 'svelte-spa-router/active';
   import { logout } from '@/api/api_auth';
   import type { IUser } from 'models/user';
@@ -53,6 +53,12 @@
   let btnDropdownRef: Element | undefined = $state();
   let popoverDropdownRef: HTMLElement | undefined = $state();
 
+  const unsubscribeLocation = location.subscribe(() => {
+    if (dropdownPopoverShow) {
+      toggleDropdown();
+    }
+  });
+
   const unsubscribe = userStore.subscribe((user) => {
     if (user === undefined) {
       return;
@@ -64,10 +70,13 @@
     }
   });
 
-  onDestroy(unsubscribe);
+  onDestroy(() => {
+    unsubscribe();
+    unsubscribeLocation();
+  });
 
-  const toggleDropdown = (event: Event) => {
-    event.preventDefault();
+  const toggleDropdown = (event?: Event) => {
+    event?.preventDefault();
     if (dropdownPopoverShow) {
       dropdownPopoverShow = false;
     } else {

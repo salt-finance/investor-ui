@@ -48,7 +48,7 @@ export const formatCurrencyWithNotation = (value?: number) => {
     return '--';
   }
   return currencyFormat({
-    notation: Math.abs(value) >= 10000000 ? 'compact' : 'standard'
+    notation: Math.abs(value) >= 1000000 ? 'compact' : 'standard'
   })(value);
 };
 

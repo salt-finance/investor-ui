@@ -83,7 +83,7 @@ dialog {
     display: none;
     @apply h-screen;
 
-    @apply place-items-end md:place-items-start;
+    @apply place-items-end md:place-items-center ;
 
     &[open] {
         display: flex;
@@ -95,17 +95,20 @@ dialog {
         @apply shadow-xl;
     }
 
-    &:has(.motion-hide) {
+
+    &[inert] {
         &::backdrop {
             @apply motion-hide-opacity;
         }
     }
+
 
     &::backdrop {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         @apply from-30%  from-transparent to-black/70 dark:to-black/100 vignette;
     }
+    
 }
 
 

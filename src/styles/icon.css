@@ -1,35 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=alternate_email,backspace,cancel,category,close,dark_mode,dashboard,key,leaderboard,light_mode,lock,lock_open,menu,money,more_vert,night_sight_auto,north_east,pie_chart,priority_high,search,search_activity,speed,storefront,swap_horiz,trending_down,trending_up&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=alternate_email,backspace,cancel,category,close,dark_mode,dashboard,key,leaderboard,light_mode,lock,lock_open,menu,money,more_vert,night_sight_auto,north_east,person,pie_chart,priority_high,search,search_activity,settings,speed,storefront,swap_horiz,trending_down,trending_up&display=swap');
 
 .material-symbols-outlined {
-    user-select: none;
-    font-size: inherit;
-    font-variation-settings: 'FILL' 1,
+  user-select: none;
+  font-size: inherit;
+  font-variation-settings:
+    'FILL' 1,
     'wght' 300,
     'GRAD' 200;
-    height: 1em;
-    aspect-ratio: 1;
-    object-fit: contain;
-    overflow: hidden;
-    font-family: 'Material Symbols Outlined', sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
+  height: 1em;
+  aspect-ratio: 1;
+  object-fit: contain;
+  overflow: hidden;
+  font-family: 'Material Symbols Outlined', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  &.thin {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 200,
+      'GRAD' 200;
+  }
 }
-
 
 .close-icon {
-    @apply w-10 h-10 font-black hover:opacity-50;
+  @apply w-10 h-10 font-black hover:opacity-50 flex justify-center items-center;
 }
 
-
 .icon-bg {
-    @apply dark-light-bg text-neutral-900 dark:text-neutral-300;
+  @apply dark-light-bg text-neutral-900 dark:text-neutral-300;
 }

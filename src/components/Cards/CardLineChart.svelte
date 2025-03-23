@@ -4,7 +4,7 @@
 
 <script lang="ts">
   import type { Chart, ChartConfiguration } from 'chart.js';
-  import { onDestroy } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   import {
     chartColors,
@@ -17,9 +17,16 @@
   import { formatCurrencyWithNotation } from 'utils/formatTools.js';
   // init chart
 
-  let { dataLength = 10, range = 100 } = $props<{
+  let {
+    dataLength = 10,
+    range = 100,
+    startingValue = 1000,
+    disabled = false
+  } = $props<{
     dataLength?: number;
     range?: number;
+    startingValue?: number;
+    disabled?: boolean;
   }>();
 
   export function latest() {
@@ -185,6 +192,10 @@
   let a: NodeJS.Timeout | undefined;
 
   let chartCanvas: HTMLCanvasElement;
+
+  onMount(() => {
+    show(startingValue, disabled);
+  });
 
   export async function show(startingValue: number, disabled: boolean = false) {
     if (startingValue === undefined) {

@@ -1,6 +1,6 @@
 {
   "name": "investor-ui",
-  "version": "0.3.0",
+  "version": "0.3.21",
   "type": "module",
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {
@@ -27,11 +27,12 @@
         }
       }
     ],
-    "svelteSortOrder": "markup-options-scripts-styles",
+    "svelteSortOrder": "scripts-markup-options-styles",
+    "bracketSameLine": true,
     "singleQuote": true,
-    "semi": true,
-    "htmlWhitespaceSensitivity": "strict",
-    "trailingComma": "none",
+    "semi": false,
+    "htmlWhitespaceSensitivity": "ignore",
+    "trailingComma": "all",
     "arrowParens": "always"
   },
   "devDependencies": {

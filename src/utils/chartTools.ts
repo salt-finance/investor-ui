@@ -9,6 +9,7 @@ import {
   type TooltipLabelStyle,
   type TooltipModel
 } from 'chart.js';
+import { type Component, mount } from 'svelte';
 
 export type AnyObject = Record<string, any>;
 
@@ -438,3 +439,14 @@ export const defaultConfigs = (isDark: boolean = false): ChartOptions => {
     }
   };
 };
+
+export function mountChart(
+  component: Component,
+  target: HTMLElement,
+  props: Record<string, any>
+) {
+  return mount(component, {
+    props,
+    target
+  });
+}
