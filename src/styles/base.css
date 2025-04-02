@@ -1,116 +1,121 @@
-@import url("animation.css");
-@import url("button.css");
-@import url("components.css");
-@import url("icon.css");
-@import url("input.css");
-@import url("table.css");
-@import url("text.css");
-@import url("util.css");
-
+@import url('animation.css');
+@import url('button.css');
+@import url('components.css');
+@import url('icon.css');
+@import url('input.css');
+@import url('table.css');
+@import url('text.css');
+@import url('util.css');
 
 /* Defaults For HTML Tags*/
 
-
 html {
-    min-height: 100vh;
-    height: auto !important;
-    overflow: hidden;
+  min-height: 100vh;
+  height: auto !important;
+  overflow: hidden;
 }
 
 body {
-    overflow: scroll;
-    --accent: 0, 188, 255;
-    --accent-dark: 50, 94, 252;
-    --accent-dark-saturated: 50, 94, 252;
+  overflow: scroll;
+  --backgorund: 220, 220, 220;
+  --foreground: 0, 0, 0;
+  --accent: 70, 107, 249;
+  --accent-fg: 255, 255, 255;
+  --buy: 70, 17, 186;
+  --buy-fg: 255, 255, 255;
+  --sell: 234, 179, 8;
+  --sell-fg: 0, 0, 0;
+  --logo-url: url('./assets/img/logos/color-black.webp');
+  /* DB */
+  /* --accent: 60, 71, 147; */
+  /* --logo-url: url('https://dashenbanksc.com/wp-content/uploads/Dashen-Bank-Logo-Addis-Ababa-Ethiopia.png'); */
 
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+  .logo {
+    background-image: var(--logo-url);
+    filter: opacity(0.9);
+    min-width: 100px;
+    margin-right: 10px;
+    object-fit: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 2;
+
+    &:after {
+      content: '';
+
+      @apply text-sm font-bold absolute right-10 -bottom-2 opacity-75;
+    }
+  }
+
+  &.dark {
+    --backgorund: 0, 0, 0;
+    --foreground: 255, 255, 255;
+    --accent: 70, 107, 249;
+    --accent-fg: 255, 255, 255;
+    --buy: 70, 17, 186;
+    --buy-fg: 255, 255, 255;
+    --sell: 234, 179, 8;
+    --sell-fg: 0, 0, 0;
+    --logo-url: url('./assets/img/logos/color-white.webp');
 
     .logo {
-        background-image: url("./assets/img/logos/color-black.webp");
-        filter: opacity(0.9);
-        min-width: 100px;
-        margin-right: 10px;
-        object-fit: contain;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        aspect-ratio: 2;
-
-        &:after {
-            content: "beta";
-
-            @apply text-sm font-bold absolute right-10 -bottom-2 opacity-75
-        }
+      background-image: var(--logo-url);
+      min-width: 100px;
     }
-
-    &.dark {
-        .logo {
-            background-image: url("./assets/img/logos/color-white.webp");
-            min-width: 100px;
-
-
-        }
-    }
+  }
 }
-
 
 .body-colors {
-    @apply text-neutral-700 dark:text-neutral-100  bg-gradient-to-br dark:bg-gradient-to-br to-neutral-200 from-accent from-0% to-20% dark:from-0% dark:to-20%  dark:to-transparent dark:from-accent-darkSaturated dark:bg-black selection:bg-blue-500 selection:text-white
+  @apply bg-gradient-to-bl from-accent to-background text-foreground from-0% to-40%  selection:bg-blue-500 selection:text-white;
 }
-
 
 a {
-    &.active {
-        p {
-            @apply underline;
-        }
-
-        @apply text-blue-500 dark:text-blue-300;
+  &.active {
+    p {
+      @apply underline;
     }
 
-    &:hover {
-        p {
-            @apply underline;
-        }
-    }
+    @apply text-accent;
+  }
 
-    @apply hover:text-blue-800 dark:hover:text-blue-300 hover:underline underline-offset-8;
+  &:hover {
+    p {
+      @apply underline;
+    }
+  }
+
+  @apply hover:text-accent  hover:underline underline-offset-8;
 }
-
 
 dialog {
-    place-content: center;
-    display: none;
-    @apply h-screen;
+  place-content: center;
+  display: none;
+  @apply h-screen;
 
-    @apply place-items-end md:place-items-center ;
+  @apply place-items-end md:place-items-center;
 
-    &[open] {
-        display: flex;
-    }
+  &[open] {
+    display: flex;
+  }
 
-    @apply bg-transparent w-screen dark-light-text;
+  @apply bg-transparent w-screen dark-light-text;
 
-    > div {
-        @apply shadow-xl;
-    }
+  > div {
+    @apply shadow-xl;
+  }
 
-
-    &[inert] {
-        &::backdrop {
-            @apply motion-hide-opacity;
-        }
-    }
-
-
+  &[inert] {
     &::backdrop {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        @apply from-30%  from-transparent to-black/70 dark:to-black/100 vignette;
+      @apply motion-hide-opacity;
     }
-    
+  }
+
+  &::backdrop {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    @apply from-30%  from-transparent to-black/70 dark:to-black/100 vignette;
+  }
 }
-
-
-
-

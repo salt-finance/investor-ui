@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { IAccount } from 'models/account'
   import FundingMethod from 'components/Modals/FundingMethod.svelte'
   import Transact from 'components/Modals/Transact.svelte'
+  import type { IAccount } from 'models/account'
 
-  import type { SvelteComponent } from 'svelte'
   import BaseInput from 'components/Inputs/BaseInput.svelte'
+  import type { SvelteComponent } from 'svelte'
   import { formatCurrencyWithNotation } from 'utils/formatTools'
 
   let withdrawal: boolean = $state(false)
@@ -37,7 +37,7 @@
       </span>
       <button
         class={account.fundingMethod
-          ? 'base-button secondary-button border-dashed border-neutral-500 hover:dark-light-text focus:dark-light-text'
+          ? 'secondary-button border-dashed hover:border-opacity-0 border-neutral-500'
           : 'base-button bg-emerald-600 hover:bg-emerald-700 text-white hover:text-white hover:no-underline'}
         onclick={() => fundModal?.show()}>
         {#if account.fundingMethod}
@@ -71,7 +71,7 @@
           <button
             disabled={!account.fundingMethod.balance ||
               account.fundingMethod.balance <= 0}
-            class="base-button primary-button border-neutral-500 hover:dark-light-text focus:dark-light-text"
+            class="primary-button"
             onclick={() => {
               withdrawal = false
               depositModal?.show()
@@ -79,7 +79,7 @@
             Deposit
           </button>
           <button
-            class="base-button secondary-button hover:dark-light-text focus:dark-light-text"
+            class="secondary-button"
             onclick={() => {
               withdrawal = true
               depositModal?.show()

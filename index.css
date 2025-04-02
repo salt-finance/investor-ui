@@ -7,32 +7,28 @@
 /* // Base color classes
 Gain - Mint - #10B981 emerald-500
 Loss - Imperial Red - #EF4444 - red-500
-Buy - Yellow Green - #84CC16 - lime-500
+Buy - Yellow Green - #10B981 - lime-500
 Sell - Xanthous - #EAB308 - yellow-500
 Action - Azure - #3B82F6 - blue-500
 Danger - Cornell red - #b91c1c - red-700 */
 
-
 :root {
-    interpolate-size: allow-keywords;
-    user-select: none;
-
+  interpolate-size: allow-keywords;
+  user-select: none;
 }
 
-
 .logo {
-    background-image: url("./assets/img/logos/color-black.webp");
-    filter: opacity(0.9);
-    min-width: 100px;
-    margin-right: 10px;
-    object-fit: contain;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    aspect-ratio: 2;
+  background-image: url('./assets/img/logos/color-black.webp');
+  filter: opacity(0.9);
+  min-width: 100px;
+  margin-right: 10px;
+  object-fit: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  aspect-ratio: 2;
 }
 
 .unset {
-    all: unset;
+  all: unset;
 }
-

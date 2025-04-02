@@ -1,10 +1,10 @@
 <script lang="ts">
-  import SectorCard from 'components/SectorCard.svelte'
-  import { type ISector } from 'models/sector'
   import { fetchSectors, sectorStore } from '@/store/stock'
-  import { onDestroy } from 'svelte'
   import Loading from 'components/Loading.svelte'
   import Search from 'components/Search.svelte'
+  import SectorCard from 'components/SectorCard.svelte'
+  import { type ISector } from 'models/sector'
+  import { onDestroy } from 'svelte'
 
   let sectors: ISector[] = $state([])
 
@@ -38,7 +38,9 @@
       </div>
     {:else}
       {#each sectors as sector}
-        <SectorCard {sector} />
+        <div class="motion-preset-focus-lg motion-duration-500">
+          <SectorCard {sector} />
+        </div>
       {/each}
     {/if}
   </div>

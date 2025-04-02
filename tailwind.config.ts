@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   darkMode: ['selector', '.dark'],
@@ -7,7 +7,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem'
+      padding: '2rem',
     },
 
     extend: {
@@ -15,85 +15,40 @@ const config: Config = {
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
-        background: 'hsl(var(--background) / <alpha-value>)',
-        foreground: 'hsl(var(--foreground) / <alpha-value>)',
-        primary: {
-          DEFAULT: 'hsl(var(--primary) / <alpha-value>)',
-          foreground: 'hsl(var(--primary-foreground) / <alpha-value>)'
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary) / <alpha-value>)',
-          foreground: 'hsl(var(--secondary-foreground) / <alpha-value>)'
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive) / <alpha-value>)',
-          foreground: 'hsl(var(--destructive-foreground) / <alpha-value>)'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted) / <alpha-value>)',
-          foreground: 'hsl(var(--muted-foreground) / <alpha-value>)'
-        },
+        background: 'rgba(var(--backgorund), <alpha-value>)',
+        foreground: 'rgba(var(--foreground) , <alpha-value>)',
+
         accent: {
           DEFAULT: 'rgba(var(--accent), <alpha-value>)',
-          dark: 'rgba(var(--accent-dark), <alpha-value>)',
-          darkSaturated: 'rgba(var(--accent-dark-saturated), <alpha-value>)'
+          foregorund: 'rgba(var(--accent-fg), <alpha-value>)',
         },
-        popover: {
-          DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
-          foreground: 'hsl(var(--popover-foreground) / <alpha-value>)'
+        buy: {
+          DEFAULT: 'rgba(var(--buy), <alpha-value>)',
+          foregorund: 'rgba(var(--buy-fg), <alpha-value>)',
         },
-        card: {
-          DEFAULT: 'hsl(var(--card) / <alpha-value>)',
-          foreground: 'hsl(var(--card-foreground) / <alpha-value>)'
+        sell: {
+          DEFAULT: 'rgba(var(--sell), <alpha-value>)',
+          foregorund: 'rgba(var(--sell-fg), <alpha-value>)',
         },
-        sidebar: {
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--sidebar-primary))',
-          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--sidebar-accent))',
-          'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))'
-        }
       },
       borderRadius: {
         xl: 'calc(var(--radius) + 4px)',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
         sans: ['Dm Sans', 'ui-sans-serif', 'system-ui'],
         serif: ['Dm Serif Display', 'ui-serif', 'Georgia'],
-        body: ['"Dm Sans"', 'ui-sans-serif']
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--bits-accordion-content-height)' }
-        },
-        'accordion-up': {
-          from: { height: 'var(--bits-accordion-content-height)' },
-          to: { height: '0' }
-        },
-        'caret-blink': {
-          '0%,70%,100%': { opacity: '1' },
-          '20%,50%': { opacity: '0' }
-        }
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        'caret-blink': 'caret-blink 1.25s ease-out infinite'
+        body: ['"Dm Sans"', 'ui-sans-serif'],
       },
       screens: {
         xl: '1600px',
-        '2xl': '1640px'
-      }
-    }
+        '2xl': '1640px',
+      },
+    },
   },
-  plugins: [require('tailwindcss-motion')]
-};
+  plugins: [require('tailwindcss-motion')],
+}
 
-export default config;
+export default config

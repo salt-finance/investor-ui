@@ -1,71 +1,53 @@
 .h-inherit {
-    height: inherit;
+  height: inherit;
 }
-
 
 .vignette {
-    background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
+  background-image: radial-gradient(circle at center, var(--tw-gradient-stops));
 }
-
 
 /*Styling*/
 
-
 @layer components {
-    /*Dark Light Checkers need to be here*/
-    .glass-effect {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        @apply card dark:bg-opacity-40  bg-opacity-50 box-content;
+  /*Dark Light Checkers need to be here*/
+  .glass-effect {
+    backdrop-filter: blur(10px) saturate(150%);
+    @apply card bg-opacity-50 box-content;
+  }
 
-    }
+  .card {
+    @apply bg-background rounded-xl shadow shadow-foreground dark-light-border;
+    --tw-shadow-colored: 0px 0px 0px 0px var(--tw-shadow-color);
+  }
 
-    .card {
+  .card:has(.card) {
+    @apply bg-neutral-200 dark:bg-neutral-950;
+  }
 
+  .dark-light-bg {
+    @apply bg-accent;
+  }
 
-        @apply dark:bg-neutral-900 rounded-xl shadow-lg dark:shadow-black/10 shadow-slate-950/5 bg-slate-50 dark-light-border;
-        --tw-shadow-colored: 0px 0px 10px 0px var(--tw-shadow-color);
+  .dark-light-border {
+    @apply border border-foreground border-opacity-20;
+  }
 
-    }
+  .body-text {
+    @apply text-neutral-600 dark:text-neutral-400;
+  }
 
-    .card:has(.card) {
-        @apply bg-neutral-200 dark:bg-neutral-950;
-    }
+  .dark-light-text {
+    @apply text-neutral-700 dark:text-neutral-300;
+  }
 
-    .dark-light-bg {
-
-        @apply bg-accent dark:bg-accent-dark;
-    }
-
-
-    .dark-light-border {
-        @apply border-neutral-100/60 dark:border-neutral-600/60 border-solid border-[1px];
-    }
-
-    .body-text {
-        @apply text-neutral-600 dark:text-neutral-400;
-    }
-
-
-    .dark-light-text {
-        @apply text-neutral-700 dark:text-neutral-300;
-    }
-
-
-    .grid-auto-center {
-        grid-template-rows: 1fr auto;
-    }
-
-
+  .grid-auto-center {
+    grid-template-rows: 1fr auto;
+  }
 }
 
-
 @layer base {
-    :root {
-
-        --ring: 0 0% 3.9%;
-        --radius: 0.25rem;
-
-    }
-
+  :root {
+    /* --ring: 0 0% 3.9%; */
+    --radius: 0.25rem;
+  }
 }

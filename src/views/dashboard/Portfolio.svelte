@@ -5,9 +5,9 @@
   import CardLineChart from 'components/Cards/CardLineChart.svelte'
   import CardPieChart from 'components/Cards/CardPieChart.svelte'
 
-  import { onDestroy, type SvelteComponent, tick, unmount } from 'svelte'
-  import type { IAccount } from 'models/account'
   import { accountStore } from '@/store/account'
+  import type { IAccount } from 'models/account'
+  import { onDestroy, type SvelteComponent, tick, unmount } from 'svelte'
   import { mountChart } from 'utils/chartTools'
 
   let roiChart: SvelteComponent | undefined = $state()
@@ -50,7 +50,8 @@
   <span class="material-symbols-outlined skiptranslate thin">pie_chart</span>
   Portfolio
 </span>
-<div class="w-full" class:opacity-50={requiresFunding}>
+
+<div class="w-full motion-preset-focus-lg motion-duration-150" class:opacity-50={requiresFunding}>
   <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
     <div
       class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade">

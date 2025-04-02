@@ -17,3 +17,6 @@
 --neon-blue: #2667ff;
 --chrysler-blue: #3b28cc;
 ```
+
+Chart JS Plugin Crosshair to add financial features to chart.js
+https://github.com/abelheinsbroek/chartjs-plugin-crosshair

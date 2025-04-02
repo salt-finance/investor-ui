@@ -36,5 +36,5 @@
 }
 
 .icon-bg {
-  @apply dark-light-bg text-neutral-900 dark:text-neutral-300;
+  @apply text-accent-foregorund bg-accent;
 }

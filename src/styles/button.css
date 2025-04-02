@@ -1,61 +1,55 @@
 .btn-wide {
-    @apply py-4 rounded-lg font-bold text-center text-white;
-}
-
-.btn-buy {
-    @apply base-button bg-emerald-600;
-}
-
-.btn-tearsheet {
-    @apply btn-wide dark-light-bg;
-}
-
-.btn-sell {
-    @apply base-button bg-yellow-600;
+  @apply py-4 rounded-lg font-bold text-center text-white;
 }
 
 .btn-icon {
-    &:not([disabled]) {
-        @apply bg-blue-500 hover:bg-blue-900 text-white;
-    }
+  &:not([disabled]) {
+    @apply bg-blue-500 hover:bg-blue-900 text-white;
+  }
 
-    @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none;
+  @apply font-bold w-10 h-10 rounded-full border dark-light-border  shadow-none;
 }
 
 .login-with-google-btn {
-    transition: background-color .3s, box-shadow .3s;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
 
-    color: #757575;
-    font-size: 14px;
-    font-weight: 500;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: 10% 50%;
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 10% 50%;
 
-    &:hover {
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
-    }
+  &:hover {
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.25);
+  }
 
-    &:active {
-        background-color: #eeeeee;
-    }
+  &:active {
+    background-color: #eeeeee;
+  }
 
-    &:focus {
-        outline: none;
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04),
-        0 2px 4px rgba(0, 0, 0, .25),
-        0 0 0 3px #c8dafc;
-    }
+  &:focus {
+    outline: none;
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.25),
+      0 0 0 3px #c8dafc;
+  }
 
-    &:disabled {
-        filter: grayscale(100%);
-        background-color: #ebebeb;
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-        cursor: not-allowed;
-    }
+  &:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.04),
+      0 1px 1px rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
 }
-
 
 /*.base-button:not([disabled]):hover,*/
 /*.base-button:not([disabled]):focus,*/
@@ -63,32 +57,42 @@
 /*    @apply bg-accent dark:bg-accent-dark border-accent dark:border-accent-dark;*/
 /*}*/
 
+button {
+  user-select: none;
+
+  &:hover:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
 .base-button {
-    @apply rounded px-12 py-3 font-semibold transition-all duration-300 shadow-none disabled:opacity-50 flex items-center justify-center;
+  @apply rounded px-12 py-3 font-semibold transition-all border-2 duration-300 shadow-none disabled:opacity-50 flex items-center justify-center overflow-clip;
+}
+
+.base-button:not([disabled]) {
+  @apply hover:scale-105 hover:border-transparent;
+}
+.base-button:not([disabled]):hover {
+  --tw-shadow: 0 0px 20px 0px rgba(var(--accent), 0.75);
 }
 
 .primary-button {
-    @apply base-button bg-blue-500 text-white;
+  @apply base-button bg-accent text-accent-foregorund border-transparent;
 }
-
-.primary-button:not([disabled]) {
-    @apply hover:text-neutral-950 dark:hover:text-white;
-}
-
 
 .secondary-button {
-    @apply base-button border-accent border-2 bg-white dark:bg-transparent;
+  @apply base-button border-accent bg-transparent;
 }
-
 .secondary-button:not([disabled]) {
-    @apply hover:text-neutral-950 hover:bg-accent;
+  @apply hover:bg-accent hover:text-accent-foregorund;
 }
 
+.btn-buy {
+  --accent: var(--buy);
+  @apply base-button bg-buy text-buy-foregorund border-transparent;
+}
 
-button {
-    user-select: none;
-
-    &:hover:not([disabled]) {
-        cursor: pointer;
-    }
+.btn-sell {
+  --accent: var(--sell);
+  @apply base-button bg-sell text-sell-foregorund border-transparent;
 }

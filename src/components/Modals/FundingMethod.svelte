@@ -1,13 +1,13 @@
 <script lang="ts">
   import {
-    getAvailableFundingMethods,
-    linkFundingMethod,
+      getAvailableFundingMethods,
+      linkFundingMethod,
   } from '@/api/api_account'
-  import type { IAccount, IFundingMethod } from 'models/account'
   import { fetchAccounts } from '@/store/account'
-  import { mount, onMount, unmount } from 'svelte'
-  import ModalDialog from 'components/Modals/ModalDialog.svelte'
   import Loading from 'components/Loading.svelte'
+  import ModalDialog from 'components/Modals/ModalDialog.svelte'
+  import type { IAccount, IFundingMethod } from 'models/account'
+  import { mount, onMount, unmount } from 'svelte'
 
   let fundingMethods: IFundingMethod[] | undefined = $state()
 
@@ -97,7 +97,7 @@
     <button
       disabled={selectedMethod === undefined}
       onclick={selectFundingMethod}
-      class="secondary-button gap-4 mt-8">
+      class="primary-button gap-4 mt-8">
       Confirm
     </button>
   {:else}

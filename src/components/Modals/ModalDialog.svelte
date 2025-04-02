@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte'
 
-  import { fly } from 'svelte/transition'
-  import { circInOut } from 'svelte/easing'
   import Loading from 'components/Loading.svelte'
+  import { circInOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
 
   let dialogRef: HTMLDialogElement
 
@@ -31,7 +31,7 @@
     y: 200,
     easing: circInOut,
     opacity: 0,
-    duration: 300,
+    duration: 200,
   }}>
   <div class={modalClass}>
     <div class={headerClass}>

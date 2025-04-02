@@ -9,10 +9,10 @@
   import { onDestroy, type SvelteComponent, tick, unmount } from 'svelte'
   import { fly } from 'svelte/transition'
 
-  import { staggerdTransition } from 'utils/animationTools'
   import { accountStore } from '@/store/account'
   import Loading from 'components/Loading.svelte'
   import type { IAccount } from 'models/account'
+  import { staggerdTransition } from 'utils/animationTools'
   import { mountChart } from 'utils/chartTools'
 
   let roiChart: SvelteComponent | undefined = $state()
@@ -57,7 +57,7 @@
 {#if loading}
   <Loading />
 {:else}
-  <div class="w-full">
+  <div class="w-full motion-preset-focus-lg motion-duration-500">
     <div
       class="grid gap-y-4 sm:gap-4 grid-rows-1 sm:grid-cols-6 md:grid-cols-8">
       <div

@@ -1,22 +1,22 @@
 <script lang="ts">
   import CardTable, {
-    type TableColumn,
+      type TableColumn,
   } from '../../components/Cards/CardTable.svelte'
 
+  import Tearsheet from 'components/Modals/Tearsheet.svelte'
+  import { onDestroy, type SvelteComponent } from 'svelte'
   import { MediaQuery } from 'svelte/reactivity'
   import {
-    currencyFormat,
-    formatPercentage,
-    styleForValue,
+      currencyFormat,
+      formatPercentage,
+      styleForValue,
   } from 'utils/formatTools.js'
-  import { onDestroy, type SvelteComponent } from 'svelte'
-  import Tearsheet from 'components/Modals/Tearsheet.svelte'
 
-  import { replace } from 'svelte-spa-router'
-  import RoundedImage from 'components/RoundedImage.svelte'
-  import { accountStore, holdingsStore, fetchHoldings } from '@/store/account'
-  import type { IHolding } from 'models/holding'
+  import { accountStore, fetchHoldings, holdingsStore } from '@/store/account'
   import Loading from 'components/Loading.svelte'
+  import RoundedImage from 'components/RoundedImage.svelte'
+  import type { IHolding } from 'models/holding'
+  import { replace } from 'svelte-spa-router'
 
   let all: IHolding[] = $state([])
   let filtered: IHolding[] = $state([])
@@ -122,7 +122,7 @@
   ]
 </script>
 
-<div class="motion-preset-fade w-full block">
+<div class="w-full block">
   <div class="flex justify-between">
     <span class="page-title my-4 flex gap-2 items-center">
       <span class="material-symbols-outlined skiptranslate thin">category</span>
@@ -146,7 +146,7 @@
         <Loading />
       </div>
     {:else if mobile.current}
-      <div class="flex flex-col">
+      <div class="flex flex-col motion-preset-focus-lg motion-duration-1000">
         {#if filtered.length === 0}
           <span class="p-6">No results found.</span>
         {:else}
@@ -202,12 +202,14 @@
         {/if}
       </div>
     {:else}
+    <div class="flex flex-col motion-preset-focus-lg motion-duration-1000">
       <CardTable
-        {onRowTap}
-        {columns}
-        bind:data={filtered}
-        sortIndex={7}
-        sortDirection="desc" />
+      {onRowTap}
+      {columns}
+      bind:data={filtered}
+      sortIndex={7}
+      sortDirection="desc" />
+  </div>
     {/if}
   </div>
 </div>

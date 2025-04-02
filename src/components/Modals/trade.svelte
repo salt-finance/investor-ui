@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { currencyFormat, formatCurrencyWithNotation } from 'utils/formatTools'
+  import { buySecurity, sellSecurity } from '@/api/api_holding'
   import {
     accountStore,
     fetchAccounts,
     fetchHoldings,
     holdingsStore,
   } from '@/store/account'
-  import type { IAccount } from 'models/account'
-  import { mount, onDestroy, unmount } from 'svelte'
-  import { buySecurity, sellSecurity } from '@/api/api_holding'
-  import type { ISecurity } from 'models/security'
-  import type { IHolding } from 'models/holding'
   import Loading from 'components/Loading.svelte'
+  import type { IAccount } from 'models/account'
+  import type { IHolding } from 'models/holding'
+  import type { ISecurity } from 'models/security'
+  import { mount, onDestroy, unmount } from 'svelte'
+  import { currencyFormat, formatCurrencyWithNotation } from 'utils/formatTools'
 
-  import { link } from 'svelte-spa-router'
-  import { type Result } from 'models/trycatch'
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
+  import { type Result } from 'models/trycatch'
+  import { link } from 'svelte-spa-router'
 
   let { security, buy } = $props<{
     security: ISecurity
@@ -114,9 +114,9 @@
       body: body,
       loading: false,
       modalClass:
-        'w-full max-w-96 glass-effect shadow-inner bg-opacity-70 dark:bg-opacity-70 flex flex-col overflow-hidden sm:m-1',
-      headerClass: `p-4 text-white flex justify-between items-center ${
-        buy ? 'bg-emerald-600' : 'bg-yellow-600'
+        'w-full max-w-96 glass-effect shadow-inner bg-opacity-90 dark:bg-opacity-90 flex flex-col overflow-hidden sm:m-1',
+      headerClass: `p-4 flex justify-between items-center ${
+        buy ? 'bg-buy text-buy-foregorund' : 'bg-sell text-sell-foregorund'
       }`,
     }
     modal = mount(ModalDialog, { props, target })
@@ -156,7 +156,7 @@
     <div class="flex gap-4 justify-center mb-2">
       <button
         disabled={quantity === 0 || processing}
-        class="text-base btn-icon rounded-full glass-effect"
+        class=" rounded-full secondary-button aspect-square min-h-full p-5"
         onclick={() => (quantity > 0 ? quantity-- : null)}>
         -
       </button>
@@ -170,7 +170,7 @@
         pattern="\d*" />
 
       <button
-        class="text-base btn-icon rounded-full glass-effect"
+        class="rounded-full primary-button aspect-square min-h-full p-5"
         onclick={() => quantity++}
         disabled={!canBuy() || processing}>
         +
