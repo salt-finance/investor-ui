@@ -87,6 +87,10 @@ button {
   @apply hover:bg-accent hover:text-accent-foregorund;
 }
 
+.dashed-button{
+  @apply base-button border-dashed hover:border-opacity-0 secondary-button opacity-60 hover:opacity-100;
+}
+
 .btn-buy {
   --accent: var(--buy);
   @apply base-button bg-buy text-buy-foregorund border-transparent;

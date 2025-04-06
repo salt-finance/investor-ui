@@ -53,7 +53,7 @@
                   {@render actionSnippet(row)}
                 {:else if row[column.key] !== undefined}
                   {#if column.format === 'currency'}
-                    {currencyFormat()(row[column.key])}
+                    {formatCurrencyWithNotation(row[column.key])}
                   {:else if column.format === 'currencyChange'}
                     {currencyFormat({
                       signDisplay: 'exceptZero',
@@ -61,8 +61,10 @@
                     })(row[column.key] ?? 0)}
                   {:else if column.format === 'percentage'}
                     {formatPercentage(row[column.key])}
+                    {:else if column.format === 'date'}
+                    {parsedDate(row[column.key])}
                   {:else}
-                    {row[column.key] ?? '--'}
+                    {@html row[column.key] ?? '--'}
                   {/if}
                   {#if column.childColumn !== undefined}
                     <br />
@@ -112,13 +114,15 @@
 </script>
 
 <script generics="T" lang="ts">
-  import type { Snippet } from 'svelte';
+  import RoundedImage from 'components/RoundedImage.svelte'
+  import type { Snippet } from 'svelte'
   import {
-    currencyFormat,
-    formatPercentage,
-    styleForValue
-  } from 'utils/formatTools';
-  import RoundedImage from 'components/RoundedImage.svelte';
+      currencyFormat,
+      formatCurrencyWithNotation,
+      formatPercentage,
+      parsedDate,
+      styleForValue
+  } from 'utils/formatTools'
 
   // Props
   let {

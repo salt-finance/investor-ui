@@ -16,7 +16,7 @@
   import Loading from 'components/Loading.svelte'
   import RoundedImage from 'components/RoundedImage.svelte'
   import type { IHolding } from 'models/holding'
-  import { replace } from 'svelte-spa-router'
+  import { push } from 'svelte-spa-router'
 
   let all: IHolding[] = $state([])
   let filtered: IHolding[] = $state([])
@@ -40,7 +40,7 @@
       all.sort((a, b) => b.marketValue - a.marketValue)
 
       if (showTop && all.length > maxTop) {
-        filtered = all?.filter((_, index) => index < maxTop)
+        filtered = all.slice(0, maxTop)
       } else {
         filtered = all
       }
@@ -131,9 +131,9 @@
     </span>
     {#if showTop && all.length > maxTop}
       <button
-        class="base-button mb-3"
+        class="mb-3 dashed-button border-current"
         onclick={() => {
-          replace('/dashboard/holdings')
+          push('/dashboard/holdings')
         }}>
         Show all
       </button>

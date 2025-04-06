@@ -37,7 +37,7 @@
       </span>
       <button
         class={account.fundingMethod
-          ? 'secondary-button border-dashed hover:border-opacity-0 border-neutral-500'
+          ? 'dashed-button border-current'
           : 'base-button bg-emerald-600 hover:bg-emerald-700 text-white hover:text-white hover:no-underline'}
         onclick={() => fundModal?.show()}>
         {#if account.fundingMethod}

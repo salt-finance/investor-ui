@@ -10,9 +10,9 @@
 <button
   onclick={() => push(`/dashboard/sector/${sector.id}`)}
   title="View sector details"
-  class="unset">
+  class="unset ">
   <div
-    class="flex flex-col gap-4 card p-4 bg-opacity-40 justify-between sector-card hover:scale-95 transition-all h-full group border-solid border-accent border-opacity-0 hover:border-opacity-100">
+    class="flex flex-col gap-4 glass-effect p-4 bg-opacity-40 justify-between sector-card hover:scale-95 transition-all group border-solid hover:border-accent">
     <div class="w-full flex justify-between">
       <span class="text-lg font-semibold">{sector.title}</span>
       <span

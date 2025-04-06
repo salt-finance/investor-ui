@@ -6,6 +6,7 @@ export const ApiURL =
     ? 'http://localhost:8000/v1'
     : 'https://salt-server.com/v1';
 
+    
 const getToken = () => {
   return localStorage.getItem('token');
 };
@@ -22,15 +23,16 @@ interface IApiStatus {
   description: string;
 }
 
+export type Reviver = (data :Record <string, any>) => any;
 export interface IApiResponse<T> {
   response: T;
   error?: IApiError;
   status?: IApiStatus;
 }
 
-const parseResponse = async <T>(response: Response) => {
+const parseResponse = async <T>(response: Response, reviver?: Reviver) => {
   const data = await response.json();
-  const parsed = fromJson<IApiResponse<T>>(data);
+  const parsed = fromJson<IApiResponse<T>>(data, reviver);
 
   if (!parsed) {
     throw 'Unable to parse value';
@@ -45,7 +47,8 @@ const parseResponse = async <T>(response: Response) => {
 const createRequest = async <T>(
   method: string,
   endpoint: string,
-  body: any
+  body: any,
+  reviver?: Reviver
 ) => {
   // 10 seconds
   const timeout = 10 * 1000;
@@ -78,7 +81,7 @@ const createRequest = async <T>(
     return result;
   }
 
-  return await tryCatch(parseResponse<T>(result.data));
+  return await tryCatch(parseResponse<T>(result.data, reviver),);
 
   // try {
   //   const response = await ;
@@ -114,14 +117,15 @@ const createRequest = async <T>(
   // }
 };
 
-export const post = <T>(endpoint: string, body: Record<string, any>) => {
-  return createRequest<T>('POST', endpoint, body);
+export const post = <T>(endpoint: string, body: Record<string, any>,   reviver?: Reviver) => {
+  return createRequest<T>('POST', endpoint, body, reviver);
 };
 
-export const get = <T>(endpoint: string) => {
-  return createRequest<T>('GET', endpoint, null);
+export const get = <T>(endpoint: string,   reviver?: Reviver
+) => {
+  return createRequest<T>('GET', endpoint, null, reviver);
 };
 
-export const put = <T>(endpoint: string) => {
-  return createRequest<T>('PUT', endpoint, null);
+export const put = <T>(endpoint: string,   reviver?: Reviver) => {
+  return createRequest<T>('PUT', endpoint, null, reviver);
 };

@@ -1,4 +1,4 @@
-<div class="md:justify-self-end w-full sm:w-fit relative">
+<div class="md:justify-self-end w-full relative">
   <BaseInput
     inputClass="py-4"
     placeholder="Search stock"
@@ -36,12 +36,12 @@
 </div>
 
 <script lang="ts">
-  import Loading from './Loading.svelte';
-  import BaseInput from 'components/Inputs/BaseInput.svelte';
-  import type { ISecurity } from 'models/security';
-  import { findSecurities } from '@/api/api_security';
-  import Tearsheet from 'components/Modals/Tearsheet.svelte';
-  import type { SvelteComponent } from 'svelte';
+  import { findSecurities } from '@/api/api_security'
+  import BaseInput from 'components/Inputs/BaseInput.svelte'
+  import Tearsheet from 'components/Modals/Tearsheet.svelte'
+  import type { ISecurity } from 'models/security'
+  import type { SvelteComponent } from 'svelte'
+  import Loading from './Loading.svelte'
 
   let tearsheetModal: SvelteComponent | undefined = $state();
 

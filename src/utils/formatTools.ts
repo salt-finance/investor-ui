@@ -19,6 +19,17 @@ export const dateOfBirthFormat = (value: Date | number) => {
   return parsed[4].value + '-' + parsed[2].value + '-' + parsed[0].value;
 };
 
+
+export const parsedDate = (date: string) => {
+const value = Date.parse(date);
+  let parsed = new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(value);
+  return parsed[4].value + '-' + parsed[2].value + '-' + parsed[0].value;
+};
+
 const defaultCurrencyOptions: Intl.NumberFormatOptions = {
   currencySign: 'standard',
   notation: 'standard',
@@ -37,14 +48,14 @@ export const decimalFormat = (options?: Intl.NumberFormatOptions) =>
   }).format;
 
 export const formatPercentage = (value?: number) => {
-  if (value === undefined) {
+  if (value === undefined || value === null) {
     return '--';
   }
   return decimalFormat({ signDisplay: 'exceptZero' })(value * 100) + '%';
 };
 
 export const formatCurrencyWithNotation = (value?: number) => {
-  if (value === undefined) {
+  if (value === undefined || value === null) {
     return '--';
   }
   return currencyFormat({

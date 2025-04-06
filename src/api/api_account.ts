@@ -1,5 +1,5 @@
+import { Activity, type IAccount, type IFundingMethod } from 'models/account'
 import { get, post } from 'utils/http_client'
-import type { IAccount, IFundingMethod } from 'models/account'
 
 export const getAccounts = async () => {
   return get<IAccount[]>('/accounts')
@@ -25,5 +25,11 @@ export const withdrawFunds = async (account: IAccount, amount: number) => {
 export const depositFunds = async (account: IAccount, amount: number) => {
   return post<any>(`/deposit/${account.id}`, {
     amount: parseFloat(amount.toString()),
+  })
+}
+
+export const getActivity = async (accountId: string) => {
+  return get<Activity[]>(`/${accountId}/activity`, (data) => {
+    return  Activity.fromJson(data);
   })
 }

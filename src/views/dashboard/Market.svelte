@@ -26,7 +26,10 @@
 
       Market
     </span>
-    <Search />
+    <div class="w-full sm:w-1/2">
+      <Search />
+
+    </div>
   </div>
 
   <h2 class="page-subtitle mb-4">Sectors</h2>
@@ -38,7 +41,7 @@
       </div>
     {:else}
       {#each sectors as sector}
-        <div class="motion-preset-focus-lg motion-duration-500">
+        <div class="motion-preset-focus-lg motion-duration-500 lg:flex items-stretch">
           <SectorCard {sector} />
         </div>
       {/each}
