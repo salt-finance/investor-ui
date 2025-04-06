@@ -1,10 +1,10 @@
 <script lang="ts">
   import { buySecurity, sellSecurity } from '@/api/api_holding'
   import {
-    accountStore,
-    fetchAccounts,
-    fetchHoldings,
-    holdingsStore,
+      accountStore,
+      fetchAccounts,
+      fetchHoldings,
+      holdingsStore,
   } from '@/store/account'
   import Loading from 'components/Loading.svelte'
   import type { IAccount } from 'models/account'
@@ -13,6 +13,7 @@
   import { mount, onDestroy, unmount } from 'svelte'
   import { currencyFormat, formatCurrencyWithNotation } from 'utils/formatTools'
 
+  import BaseCheckbox from 'components/Inputs/BaseCheckbox.svelte'
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
   import { type Result } from 'models/trycatch'
   import { link } from 'svelte-spa-router'
@@ -185,13 +186,14 @@
       <span class="text-xl">{formatCurrencyWithNotation(total)}</span>
     </div>
 
-    {#if !buy}
-      <button
-        disabled={processing || (holding?.quantity ?? 0) === 0}
-        class="secondary-button"
-        onclick={() => (quantity = holding?.quantity ?? 0)}>
-        Sell all shares
-      </button>
+    {#if !buy && holding !== undefined}
+      <BaseCheckbox
+        disabled={processing || (holding.quantity ?? 0) === 0}
+        label={'Sell all shares'}
+        checked={quantity === holding.quantity}
+        onchange={() =>
+          (quantity =
+            quantity === holding?.quantity ? 0 : (holding?.quantity ?? 0))} />
     {/if}
 
     {#if account?.fundingMethod == null}

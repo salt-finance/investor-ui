@@ -3,23 +3,23 @@
   // components for this layout
   import FooterAdmin from 'components/Footer.svelte'
   import HeaderStats from 'components/Headers/HeaderStats.svelte'
-  // pages for this layout
+// pages for this layout
   import StillThere from 'components/Modals/StillThere.svelte'
 
+  import { logout, tokenTest } from '@/api/api_auth'
+  import { accountStore, fetchAccounts } from '@/store/account'
+  import { fetchUser } from '@/store/user'
   import IndexNavbar from 'components/IndexNavbar.svelte'
+  import Loading from 'components/Loading.svelte'
+  import type { IAccount } from 'models/account'
+  import { onDestroy, onMount } from 'svelte'
   import Activity from 'views/dashboard/Activity.svelte'
   import Dashboard from 'views/dashboard/Dashboard.svelte'
   import Holdings from 'views/dashboard/Holdings.svelte'
   import Market from 'views/dashboard/Market.svelte'
+  import Portfolio from 'views/dashboard/Portfolio.svelte'
   import Settings from 'views/dashboard/Settings.svelte'
   import SectorDetail from 'views/dashboard/market/SectorDetail.svelte'
-  import { fetchUser } from '@/store/user'
-  import { logout, tokenTest } from '@/api/api_auth'
-  import Portfolio from 'views/dashboard/Portfolio.svelte'
-  import { accountStore, fetchAccounts } from '@/store/account'
-  import Loading from 'components/Loading.svelte'
-  import type { IAccount } from 'models/account'
-  import { onDestroy, onMount } from 'svelte'
 
   const routes = {
     '/dashboard/holdings': Holdings,
@@ -64,12 +64,10 @@
   onDestroy(accountSubscription)
 </script>
 
-<div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap px-5">
+<div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap">
   <div
-    class="flex justify-center w-full min-h-fit xl:max-w-screen-2xl relative">
-    <div class="navbar-fixed top-4 w-full px-5 xl:px-0 z-20">
-      <IndexNavbar isLoggedIn={true} />
-    </div>
+    class="flex justify-center w-full min-h-fit xl:max-w-screen-xl relative px-5 xl:px-0">
+       <IndexNavbar isLoggedIn={true} />
 
     <div
       class=" w-full flex flex-col justify-between gap-4 pt-[calc(80px+2rem)] pb-10 min-h-screen">

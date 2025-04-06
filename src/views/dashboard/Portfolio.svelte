@@ -26,6 +26,12 @@
     // Wait one frame to allow the dialog to render
     await tick()
     if (chartContainer) {
+      //If a chart is mounted, unmount it first.
+      if (chart) {
+        await unmount(chart)
+        chart = undefined
+      }
+
       chart = mountChart(CardLineChart, chartContainer, {
         startingValue: value?.balance?.total,
         disabled: requiresFunding,
@@ -51,7 +57,9 @@
   Portfolio
 </span>
 
-<div class="w-full motion-preset-focus-lg motion-duration-150" class:opacity-50={requiresFunding}>
+<div
+  class="w-full motion-preset-focus-lg motion-duration-150"
+  class:opacity-50={requiresFunding}>
   <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
     <div
       class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade">

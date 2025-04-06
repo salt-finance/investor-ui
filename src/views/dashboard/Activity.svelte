@@ -12,7 +12,7 @@
   import { push } from 'svelte-spa-router'
   import { MediaQuery } from 'svelte/reactivity'
   import {
-      formatCurrencyWithNotation,
+      currencyFormat,
       parsedDate,
       styleForValue,
   } from 'utils/formatTools'
@@ -25,7 +25,14 @@
   let filtered: Activity[] = $state([])
   const maxTop = 5
   const onRowTap = (data: Activity) => {
-    tearsheetModal?.show(undefined, data.securityId)
+    if (data.securityId) {
+      tearsheetModal?.show(undefined, data.securityId)
+    }
+  }
+
+  const imageFallBackFunc = (activity: Activity) => {
+  return activity.securitySymbol ??
+  activity.securityName ?? activity.transaction; 
   }
 
   const columns: TableColumn<Activity>[] = [
@@ -34,7 +41,7 @@
       header: '',
       sortable: false,
       type: 'image',
-      imageFallBackProp: 'securityName',
+      imageFallBackFunc: imageFallBackFunc,
     },
     { key: 'transaction', header: 'Description', sortable: true },
 
@@ -78,7 +85,7 @@
 
     if (result.data !== null) {
       all = result.data.response
-      all = all.filter((activity) => activity.securityId)
+      // all = all.filter((activity) => activity.securityId)
       all.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime()
       })
@@ -87,7 +94,7 @@
       } else {
         filtered = all
       }
-    } 
+    }
     loading = false
   })
 
@@ -116,7 +123,7 @@
       </span>
 
       {showTop ? 'Recent activity' : 'Activity'}
-      
+
       {getTitle()}
     </span>
     {#if showTop && all.length > maxTop}
@@ -130,7 +137,7 @@
     {/if}
   </div>
 
-  <div class="card bg-opacity-40">
+  <div class="card">
     {#if loading}
       <div class="h-8 m-4 flex items-center">
         <Loading />
@@ -141,7 +148,7 @@
           <span class="p-6">No results found.</span>
         {:else}
           <span
-            class="p-4 flex flex-col w-full bg-accent/20 dark:bg-accent-dark/20 body-text gap-y-1">
+            class="p-4 flex flex-col w-full card z-10 gap-y-1 border-0 dark:border-b  border-foreground/50 rounded-b-none shadow-md dark:shadow-none {showTop? "" : "sticky top-0"}">
             <span class="flex justify-between gap-2">
               <span>
                 <strong>Ticker</strong>
@@ -151,7 +158,7 @@
             </span>
             <span class="flex justify-between gap-2">
               <span>
-                <span class="sort-indicator">↓</span>
+                <span class="opacity-50">↓</span>
                 Date
               </span>
               <span>Net amount</span>
@@ -160,20 +167,26 @@
           {#each filtered as activity}
             <button
               onclick={() => onRowTap(activity)}
-              class="unset hover:bg-accent/30 dark:hover:bg-accent-dark/30">
+              class="border-b  border-foreground/30 hover:bg-accent/30 text-left">
               <span class="flex w-full justify-between p-4">
                 <span class="flex items-center w-full justify-between">
                   <RoundedImage
                     src={activity.securityLogoUrl}
-                    fallBackText={activity.securityName} />
+                    fallBackText={imageFallBackFunc(activity)} />
                   <span class="flex flex-col w-[calc(100%-4rem)] gap-y-2">
                     <span class="flex justify-between gap-x-4">
                       <span>
+                        {#if activity.securitySymbol}
                         <strong>{activity.securitySymbol}</strong>
                         |
-                        {activity.securityName}
+                        {activity.securityName ?? '--'}
+                        {:else}
+                        --
+                        {/if}
                       </span>
-                      <div class="flex flex-wrap justify-end">{@html activity.transaction}</div>
+                      <div class="inline text-right">
+                        {@html activity.transaction}
+                      </div>
                     </span>
                     <span class="flex justify-between gap-x-4">
                       <span class="body-text">
@@ -181,7 +194,9 @@
                       </span>
                       <span
                         class="body-text {styleForValue(activity.netAmount)}">
-                        {formatCurrencyWithNotation(activity.netAmount)}
+                        {currencyFormat({ signDisplay: 'exceptZero' })(
+                          activity.netAmount
+                        )}
                       </span>
                     </span>
                   </span>
@@ -198,6 +213,7 @@
           {columns}
           bind:data={filtered}
           sortIndex={2}
+          sticky={!showTop}
           sortDirection="desc" />
       </div>
     {/if}

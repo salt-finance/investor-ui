@@ -56,23 +56,26 @@ export class Activity {
 
     const action = transaction?.toLowerCase().at(0)
     const isBuy = action === 'b'
+    const isTrade = isBuy || action === 's'
 
-    this.transaction = [
-      [
-        `<span class="${isBuy ? 'text-buy-foregorund bg-buy' : 'text-sell-foregorund bg-sell'} rounded-lg p-1 font-extrabold text-sm opacity-70">`,
-        action === 'b' ? 'BUY' : action === 's' ? 'SELL' : transaction,
-        '</span>',
-      ].join(''),
+    this.transaction = isTrade
+      ? [
+          [
+            `<span class="${isBuy ? 'bg-buy text-buy-foregorund' : 'bg-sell text-sell-foregorund'} rounded-full py-1 font-extrabold text-xs px-2 bg-opacity-80">`,
+            action === 'b' ? 'BUY' : action === 's' ? 'SELL' : transaction,
+            '</span>',
+          ].join(''),
 
-      quantity,
-      quantity === 1 ? 'share' : 'shares',
-      'of',
-      '<strong>',
-      securitySymbol,
-      '</strong>',
-      '@',
-      formatCurrencyWithNotation(Math.abs(netAmount)),
-    ].join('&nbsp;')
+          quantity ?? '--',
+          quantity === 1 ? 'share' : 'shares',
+          'of',
+          '<strong>',
+          securitySymbol ?? securityName,
+          '</strong>',
+          '@',
+          formatCurrencyWithNotation(Math.abs(netAmount)),
+        ].join(' ')
+      : [transaction].join('&nbsp')
   }
 
   static fromJson(json: Record<string, any>): Activity {

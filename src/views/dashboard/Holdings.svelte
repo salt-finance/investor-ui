@@ -140,7 +140,7 @@
     {/if}
   </div>
 
-  <div class="card bg-opacity-40">
+  <div class="card bg-opacity-90">
     {#if loading}
       <div class="h-8 m-4 flex items-center">
         <Loading />
@@ -150,8 +150,8 @@
         {#if filtered.length === 0}
           <span class="p-6">No results found.</span>
         {:else}
-          <span
-            class="p-4 flex flex-col w-full bg-accent/20 dark:bg-accent-dark/20 body-text gap-y-1">
+        <span
+        class="p-4 flex flex-col w-full card z-10 gap-y-1 border-0 dark:border-b  border-foreground/50 rounded-b-none shadow-md dark:shadow-none {showTop? "" : "sticky top-0"}">
             <span class="flex justify-between gap-2">
               <span>
                 <strong>Ticker</strong>
@@ -162,7 +162,7 @@
             <span class="flex justify-between gap-2">
               <span>Gain / Loss</span>
               <span>
-                <span class="sort-indicator">↓</span>
+                <span class="opacity-50">↓</span>
                 Market value
               </span>
             </span>
@@ -207,6 +207,7 @@
       {onRowTap}
       {columns}
       bind:data={filtered}
+      sticky={!showTop}
       sortIndex={7}
       sortDirection="desc" />
   </div>

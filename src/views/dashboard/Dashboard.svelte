@@ -33,6 +33,12 @@
     // Wait one frame to allow the dialog to render
     await tick()
     if (chartContainer) {
+      //If a chart is mounted, unmount it first.
+      if (chart) {
+        await unmount(chart)
+        chart = undefined
+      }
+
       chart = mountChart(CardLineChart, chartContainer, {
         startingValue: value?.balance?.total,
         disabled: requiresFunding,
@@ -108,7 +114,7 @@
     <div
       class="flex flex-wrap mt-4 gap-4"
       in:fly|global={staggerdTransition(4)}>
-      <Activity showTop/>
+      <Activity showTop />
 
       <Holdings showTop />
     </div>

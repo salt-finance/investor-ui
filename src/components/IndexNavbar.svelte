@@ -1,7 +1,7 @@
-<div class="z-20">
+<div class="navbar-fixed top-4 w-full px-5 xl:px-0 z-20 transition-transform max-w-full xl:max-w-screen-xl "     bind:this={navRef}
+>
   <nav
-    bind:this={navRef}
-    class="flex flex-col p-[14px] glass-effect z-10 transition-transform"
+    class="flex flex-col p-[14px] glass-effect"
   >
     <div
       class="px-0 flex items-center justify-between flex-wrap w-full flex-grow min-h-[50px]"
@@ -56,15 +56,14 @@
 </div>
 
 <script lang="ts">
-  import { link, location } from 'svelte-spa-router';
-
+  import { link, location } from 'svelte-spa-router'
   // core components
-  import IndexDropdown from 'components/Dropdowns/IndexDropdown.svelte';
+  import IndexDropdown from 'components/Dropdowns/IndexDropdown.svelte'
 
-  import UserDropdown from 'components/Dropdowns/UserDropdown.svelte';
+  import UserDropdown from 'components/Dropdowns/UserDropdown.svelte'
 
-  import DarkModeToggle from './DarkModeToggle.svelte';
-  import { onDestroy, onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte'
+  import DarkModeToggle from './DarkModeToggle.svelte'
 
   let { isLoggedIn = false } = $props();
 
@@ -80,8 +79,10 @@
 
   let navRef: HTMLElement;
 
-  const hideClasses = '-translate-y-full';
-  const scrollOffset = 100;
+  const hideClasses = ['-translate-y-full','top-0'];
+  const showClasses = ['top-4'];
+
+  const scrollOffset = 80;
 
   const unsubscribeLocation = location.subscribe(() => {
     if (navbarOpen) {
@@ -92,7 +93,7 @@
   function toggleNavSize() {
     if (navRef.clientHeight - scrollOffset > body.scrollTop) {
       // don't hide if there's no overlap yet.
-      navRef.classList.remove(hideClasses);
+      navRef.classList.remove(...hideClasses);
       return;
     }
 
@@ -102,10 +103,12 @@
 
     if (scrollY - body.scrollTop < 0) {
       // User is scrolling up hide it;
-      navRef.classList.add(hideClasses);
+      navRef.classList.remove(...showClasses); 
+      navRef.classList.add(...hideClasses);
     } else {
       // User is scrolling down show it;
-      navRef.classList.remove(hideClasses);
+      navRef.classList.remove(...hideClasses);
+      navRef.classList.add(...showClasses); 
     }
     scrollY = body.scrollTop;
   }
