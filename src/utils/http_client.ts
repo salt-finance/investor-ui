@@ -48,12 +48,14 @@ const createRequest = async <T>(
   method: string,
   endpoint: string,
   body: any,
-  reviver?: Reviver
+  reviver?: Reviver,
+  controller?: AbortController
 ) => {
   // 10 seconds
   const timeout = 10 * 1000;
 
-  const controller = new AbortController();
+  controller ??= new AbortController();
+  
   const timeoutId = setTimeout(() => controller.abort('timeout'), timeout);
 
   let payload: Record<string, any> = {
@@ -121,9 +123,9 @@ export const post = <T>(endpoint: string, body: Record<string, any>,   reviver?:
   return createRequest<T>('POST', endpoint, body, reviver);
 };
 
-export const get = <T>(endpoint: string,   reviver?: Reviver
+export const get = <T>(endpoint: string,   reviver?: Reviver,   controller?: AbortController
 ) => {
-  return createRequest<T>('GET', endpoint, null, reviver);
+  return createRequest<T>('GET', endpoint, null, reviver, controller);
 };
 
 export const put = <T>(endpoint: string,   reviver?: Reviver) => {

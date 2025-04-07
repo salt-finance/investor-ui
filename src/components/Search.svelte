@@ -14,6 +14,9 @@
   let timeout: NodeJS.Timeout
   let searching = $state(false)
 
+let  controller = new AbortController();
+
+
   const openTearsheet = (data: ISecurity) => {
     tearsheetModal?.show(undefined, data.id)
   }
@@ -24,11 +27,16 @@
       return
     }
 
-    const result = await findSecurities(searchTerm)
+    searching = true
+
+    const result = await findSecurities(searchTerm, controller)
     searching = false
 
     if (result.error) {
+     if(result.error as unknown as string !== 'cancel'){
       handleError()
+     }
+      
     }
 
     if (result.data) {
@@ -37,11 +45,16 @@
   }
 
   function handleSearch() {
-    searching = true
+
     if (timeout) {
       clearTimeout(timeout)
     }
-    timeout = setTimeout(getProducts, 500)
+    if(searching){
+      controller.abort("cancel");
+      controller = new AbortController();
+    }
+    
+    timeout = setTimeout(getProducts, 1000)
   }
 
   function handleError() {
@@ -70,7 +83,7 @@
     onfocusout={(e) => e.preventDefault}
     bind:value={searchTerm}></BaseInput>
 
-  {#if !searching && securities.length > 0}
+  {#if securities.length > 0}
     <div
       class="card w-full absolute text-left rounded-t-none z-20 top-[90%]"
       transition:slide={{

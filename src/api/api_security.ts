@@ -14,6 +14,6 @@ export const getSecurity = (id: String) => {
   return get<ISecurity>(`/security/${id}`);
 };
 
-export const findSecurities = (term: String) => {
-  return get<ISecurity[]>(`/security/find/${term}`);
+export const findSecurities = (term: String,   controller?: AbortController) => {
+  return get<ISecurity[]>(`/security/find/${term}`,undefined, controller);
 };
