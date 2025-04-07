@@ -3,15 +3,15 @@
 <!-- App.svelte -->
 <script lang="ts">
   // Admin Layout
-  import Dashboard from './layouts/DashboardLayout.svelte';
+  import Dashboard from './layouts/DashboardLayout.svelte'
   // Auth Layout
-  import Signin from 'views/auth/Signin.svelte';
+  import Signin from 'views/auth/Signin.svelte'
 
-  import Register from 'views/auth/Signup.svelte';
+  import Register from 'views/auth/Signup.svelte'
   // No Layout Pages
-  import Router from 'svelte-spa-router';
-  import posthog from 'posthog-js';
-  import { onMount } from 'svelte';
+  import posthog from 'posthog-js'
+  import { onMount } from 'svelte'
+  import Router from 'svelte-spa-router'
 
   const routes = new Map<string | RegExp, any>([
     // Exact path

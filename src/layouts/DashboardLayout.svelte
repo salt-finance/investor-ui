@@ -63,7 +63,8 @@
   })
   onDestroy(accountSubscription)
 </script>
-
+<link rel="dns-prefetch" href="https://salt-server.com">
+<link rel="dns-prefetch" href="http://localhost:8000">
 <div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap">
   <div
     class="flex justify-center w-full min-h-fit xl:max-w-screen-xl relative px-5 xl:px-0">
