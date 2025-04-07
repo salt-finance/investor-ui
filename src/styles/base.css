@@ -26,6 +26,9 @@ body {
   --sell: 234, 179, 8;
   --sell-fg: 0, 0, 0;
   --logo-url: url('./assets/img/logos/color-black.webp');
+  --gain: 0, 140, 0;
+  --loss: 255, 100, 100;
+  
   /* DB */
   /* --accent: 60, 71, 147; */
   /* --logo-url: url('https://dashenbanksc.com/wp-content/uploads/Dashen-Bank-Logo-Addis-Ababa-Ethiopia.png'); */
@@ -60,6 +63,9 @@ body {
     --sell: 234, 179, 8;
     --sell-fg: 0, 0, 0;
     --logo-url: url('./assets/img/logos/color-white.webp');
+
+    --gain: 100, 255, 100;
+    --loss: 255, 100, 100;
 
     .logo {
       background-image: var(--logo-url);

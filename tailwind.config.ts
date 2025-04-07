@@ -30,6 +30,15 @@ const config: Config = {
           DEFAULT: 'rgba(var(--sell), <alpha-value>)',
           foregorund: 'rgba(var(--sell-fg), <alpha-value>)',
         },
+        gain: {
+          DEFAULT: 'rgba(var(--gain), <alpha-value>)',
+          foregorund: 'rgba(var(--gain-fg), <alpha-value>)',
+        },
+
+        loss: {
+          DEFAULT: 'rgba(var(--loss), <alpha-value>)',
+          foregorund: 'rgba(var(--loss-fg), <alpha-value>)',
+        },
       },
       borderRadius: {
         xl: 'calc(var(--radius) + 4px)',

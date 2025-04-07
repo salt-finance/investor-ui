@@ -3,30 +3,33 @@
 </div>
 
 <script lang="ts">
-  import type { Chart, ChartConfiguration } from 'chart.js';
-  import { onDestroy, onMount } from 'svelte';
+  import type { Chart, ChartConfiguration } from 'chart.js'
+  import { onDestroy, onMount } from 'svelte'
 
+  import { theme } from '@/store/theme'
+  import { Color, rgbParse } from '@kurkle/color'
   import {
-    chartColors,
-    createLinearGradient,
-    type AnyObject,
-    defaultConfigs
-  } from 'utils/chartTools';
-  import { currencyFormat, dateTimeFormat } from 'utils/formatTools';
-  import { theme } from '@/store/theme';
-  import { formatCurrencyWithNotation } from 'utils/formatTools.js';
+      chartColors,
+      createLinearGradient,
+      defaultConfigs,
+      type AnyObject
+  } from 'utils/chartTools'
+  import { currencyFormat, dateTimeFormat } from 'utils/formatTools'
+  import { formatCurrencyWithNotation } from 'utils/formatTools.js'
   // init chart
 
   let {
-    dataLength = 10,
+    dataLength = 190,
     range = 100,
     startingValue = 1000,
-    disabled = false
+    disabled = false,
+    smooth = false
   } = $props<{
     dataLength?: number;
     range?: number;
     startingValue?: number;
     disabled?: boolean;
+    smooth?:boolean;
   }>();
 
   export function latest() {
@@ -55,9 +58,46 @@
   let data: number[] = [];
 
   let labels = [...Array(dataLength).keys()]
-    .map((i) => dateTimeFormat(startDate - dataLength * range * i))
+    .map((i) => dateTimeFormat(startDate - dataLength * range * i,))
     .reverse();
-  let chartColorBase = chartColors.grey;
+
+
+    const colors = (gainColor? : boolean): string => {
+    let style = window.getComputedStyle(document.body)
+    let gain:string | undefined = style.getPropertyValue('--gain');
+    let loss : string | undefined = style.getPropertyValue('--loss');
+    let accent : string | undefined = style.getPropertyValue('--accent');
+    if(gain !== '') {
+      gain = new Color(rgbParse(`rgb(${gain})`)).hexString();
+    }else{
+      gain = undefined;
+    }
+
+    if(loss !== ''){
+     loss  = new Color(rgbParse(`rgb(${loss})`)).hexString();
+    }else{
+      loss = undefined;
+    }
+
+    if(accent !== ''){
+     accent  = new Color(rgbParse(`rgb(${accent})`)).hexString();
+    }else{
+      accent = undefined;
+    }
+    
+    // gain = new Color(rgbParse(gain)).hexString();
+    gain ??= chartColors.gain;
+    loss ??= chartColors.loss;
+    if(disabled ){
+      accent = chartColors.grey;
+    }
+    accent ??= chartColors.grey;
+    
+
+    return gainColor === false ? loss : gainColor === true ? gain : accent;
+  }
+
+  let chartColorBase = colors(); 
 
   let borderFill: string | undefined;
   let backgroundFill: CanvasGradient | undefined;
@@ -94,7 +134,8 @@
           display: false
         },
         tooltip: {
-          ...baseConfig?.plugins?.tooltip,
+           ...baseConfig?.plugins?.tooltip,
+           enabled:!disabled,
           callbacks: {
             ...baseConfig?.plugins?.tooltip?.callbacks,
             label: function (context: any) {
@@ -113,12 +154,12 @@
       }
     };
   };
-  const unsubscribe = theme.subscribe(() => {
-    updateDarkLight();
+  const unsubscribe = theme.subscribe((theme) => {
+  isDark = theme.includes('dark')
+     updateDarkLight();
   });
 
   function updateDarkLight() {
-    isDark = document.body.classList.contains('dark');
     if (!chart) {
       // This case happens on initial chart load
       return;
@@ -139,7 +180,7 @@
           fill: true,
           pointStyle: false,
           // cubicInterpolationMode: "monotone",
-          tension: 0.1,
+          tension: smooth ? 0.4 : 0,
           data: data,
           // animation: false,
           animation: defaultConfigs().animation,
@@ -171,12 +212,14 @@
     }
   };
 
+
+
   const setData = (date: Date) => {
     let values = generateData(2);
 
     let value = values[1];
 
-    let label = dateTimeFormat(date.getTime());
+    let label = dateTimeFormat(date.getTime(),);
     labels.push(label);
     data.push(value);
 
@@ -184,8 +227,8 @@
     backgroundFill = undefined;
     chartColorBase =
       data[data.length - 1] >= data[data.length - 2]
-        ? chartColors.gain
-        : chartColors.loss;
+        ? colors(true)
+        : colors(false);
     chart?.update();
   };
 
@@ -194,16 +237,16 @@
   let chartCanvas: HTMLCanvasElement;
 
   onMount(() => {
-    show(startingValue, disabled);
+    show(startingValue);
   });
 
-  export async function show(startingValue: number, disabled: boolean = false) {
+  export async function show(startingValue: number) {
     if (startingValue === undefined) {
       return;
     }
     latestValue = startingValue;
 
-    let values = generateData(20);
+    let values = generateData(dataLength);
 
     data.push(...values);
 
@@ -214,7 +257,7 @@
     chart.update();
     updateDarkLight();
     if (!disabled) {
-      a = setInterval(() => setData(new Date(Date.now())), 5000);
+      a = setInterval(() => setData(new Date(Date.now())), 1500);
     }
   }
 

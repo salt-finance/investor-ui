@@ -109,10 +109,8 @@ export const monthsInYear = () => {
 
 export const styleForValue = (value?: number) => {
   if (!value) {
-    return '';
+    return ''
   }
 
-  return value < 0
-    ? 'text-red-500 dark:text-red-400'
-    : 'text-emerald-500 dark:text-emerald-400';
-};
+  return value < 0 ? 'text-loss' : 'text-gain'
+}

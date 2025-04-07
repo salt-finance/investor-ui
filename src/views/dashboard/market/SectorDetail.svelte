@@ -1,17 +1,17 @@
 <script lang="ts">
+  import { getSector } from '@/api/api_security'
+  import Loading from 'components/Loading.svelte'
+  import Tearsheet from 'components/Modals/Tearsheet.svelte'
+  import RoundedImage from 'components/RoundedImage.svelte'
   import { type ISector } from 'models/sector'
   import type { ISecurity } from 'models/security'
   import { onDestroy, type SvelteComponent } from 'svelte'
   import { params } from 'svelte-spa-router'
   import {
-    formatCurrencyWithNotation,
-    formatPercentage,
-    styleForValue,
+      formatCurrencyWithNotation,
+      formatPercentage,
+      styleForValue,
   } from 'utils/formatTools'
-  import Tearsheet from 'components/Modals/Tearsheet.svelte'
-  import RoundedImage from 'components/RoundedImage.svelte'
-  import { getSector } from '@/api/api_security'
-  import Loading from 'components/Loading.svelte'
 
   let loading = $state(true)
 
@@ -56,7 +56,7 @@
             class="unset"
             title="View security details">
             <span
-              class="col-span-1 card flex flex-row flex-wrap p-4 items-start gap-4 content-between h-full hover:scale-95 transition-all group border-solid border-accent border-opacity-0 hover:border-opacity-100">
+              class="col-span-1 card flex flex-row flex-wrap p-4 items-start gap-4 content-between h-full hover:scale-95 transition-all group border-2 hover:border-accent">
               <span class="w-full flex justify-between">
                 <span
                   class="flex flex-grow w-full justify-between items-center">

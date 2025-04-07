@@ -52,9 +52,7 @@
     label,
     checked = $bindable(),
     onchange, 
-    id,
     large,
-    viewOnly,
     disabled = $bindable()
   }: Props = $props();
 </script>

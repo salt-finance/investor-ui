@@ -1,19 +1,18 @@
 <script lang="ts">
-  import {
-    currencyFormat,
-    decimalFormat,
-    formatCurrencyWithNotation,
-  } from 'utils/formatTools'
-  import type { ISecurity } from 'models/security'
-  import CardLineChart from 'components/Cards/CardLineChart.svelte'
-  import Trade from 'components/Modals/trade.svelte'
-  import { mount, type SvelteComponent, tick } from 'svelte'
-  import RoundedImage from 'components/RoundedImage.svelte'
   import { getSecurity } from '@/api/api_security'
+  import CardLineChart from 'components/Cards/CardLineChart.svelte'
   import Loading from 'components/Loading.svelte'
-  import { unmount } from 'svelte'
-  import { mountChart } from 'utils/chartTools'
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
+  import Trade from 'components/Modals/trade.svelte'
+  import RoundedImage from 'components/RoundedImage.svelte'
+  import type { ISecurity } from 'models/security'
+  import { mount, type SvelteComponent, tick, unmount } from 'svelte'
+  import { mountChart } from 'utils/chartTools'
+  import {
+      currencyFormat,
+      decimalFormat,
+      formatCurrencyWithNotation,
+  } from 'utils/formatTools'
 
   let tradeModal: SvelteComponent | undefined = $state()
   let buy = $state(true)
@@ -69,8 +68,10 @@
     // Wait one frame to allow the dialog to render
     await tick()
     if (chartContainer) {
+      
       mountChart(CardLineChart, chartContainer, {
         startingValue: security?.ask,
+        dataLength:20
       })
     }
   }

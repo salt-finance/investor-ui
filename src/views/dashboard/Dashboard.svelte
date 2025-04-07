@@ -42,6 +42,7 @@
       chart = mountChart(CardLineChart, chartContainer, {
         startingValue: value?.balance?.total,
         disabled: requiresFunding,
+        smooth: true,
       })
     }
     roiChart?.show()

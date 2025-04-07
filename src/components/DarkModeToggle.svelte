@@ -26,25 +26,30 @@
 </button>
 
 <script lang="ts">
-  import { MediaQuery } from 'svelte/reactivity';
-  import { theme } from '@/store/theme';
+  import { theme } from '@/store/theme'
+  import { MediaQuery } from 'svelte/reactivity'
 
   let systemDark = new MediaQuery('prefers-color-scheme: dark');
 
   let currentTheme = $state(localStorage.theme ?? 'auto');
 
+  let actualTheme = $state('auto');
   $effect(() => {
     // Listen to media query changes, or currentTheme changes to auto update styles.
 
     if (currentTheme === 'auto') {
+      actualTheme = systemDark.current ? 'dark' : 'light';
       document.body.classList.toggle('dark', systemDark.current);
     } else if (currentTheme === 'dark') {
+      actualTheme = 'dark';
       document.body.classList.toggle('dark', true);
     } else {
+      actualTheme = 'light';
+
       document.body.classList.toggle('dark', false);
     }
 
-    theme.set(currentTheme);
+    theme.set(actualTheme);
   });
 
   function setTheme() {
