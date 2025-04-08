@@ -6,7 +6,7 @@
       alt="..."
       width="48px"
       height="48px"
-      class= "rounded-full glass-effect w-[fill-available]  {src !== undefined ? "border-opacity-0" : ""}"
+      class= "rounded-full glass-effect w-[stretch]  {src !== undefined ? "border-opacity-0" : ""}"
       onerror={() => (src = undefined)}
       {src}
     />
