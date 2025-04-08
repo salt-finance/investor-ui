@@ -54,7 +54,7 @@ let  controller = new AbortController();
       controller = new AbortController();
     }
     
-    timeout = setTimeout(getProducts, 1000)
+    timeout = setTimeout(getProducts, 300)
   }
 
   function handleError() {
