@@ -1,10 +1,12 @@
 <span
-  class="inline-flex max-h-14 min-w-10 items-center justify-center rounded-full shadow-sm aspect-square"
+  class="inline-flex max-h-12 min-w-10 items-center justify-center rounded-full shadow-sm aspect-square"
 >
   {#if src}
     <img
       alt="..."
-      class="h-auto rounded-full glass-effect"
+      width="48px"
+      height="48px"
+      class= "rounded-full glass-effect w-[fill-available]  {src !== undefined ? "border-opacity-0" : ""}"
       onerror={() => (src = undefined)}
       {src}
     />

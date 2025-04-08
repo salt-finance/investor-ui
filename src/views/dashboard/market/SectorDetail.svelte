@@ -7,6 +7,8 @@
   import type { ISecurity } from 'models/security'
   import { onDestroy, type SvelteComponent } from 'svelte'
   import { params } from 'svelte-spa-router'
+  import { circOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
   import {
       formatCurrencyWithNotation,
       formatPercentage,
@@ -39,19 +41,56 @@
     <Loading />
   </div>
 {:else if sector !== undefined}
-  <div class="flex-col flex w-full motion-preset-fade p-2">
-    <span class="page-title mb-4">{sector.title}</span>
+  <div class="flex-col flex w-full p-2">
+    <span
+      class="page-title mb-4"
+ 
+      in:fly|global={{
+        y: 50,
+        easing: circOut,
+        opacity: 0,
+        delay: 300,
+        duration: 500,
+      }} 
+      >
+      {sector.title}
+    </span>
     {#if sector.description !== undefined}
-      <span class="body-text dark-light-text lg:w-2/3">
+      <span
+        class="body-text dark-light-text lg:w-2/3"
+        
+        in:fly|global={{
+          y: 50,
+          easing: circOut,
+          opacity: 0,
+          delay: 200,
+          duration: 500,
+        }} 
+        >
         {sector.description}
       </span>
     {/if}
     {#if sector?.securities?.data}
-      <span class="page-subtitle my-4">Securities</span>
+      <span
+        class="page-subtitle my-4"
+        in:fly|global={{
+          y: 50,
+          easing: circOut,
+          duration: 500,
+          opacity: 0,
+        }}>
+        Securities
+      </span>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4 flex-wrap">
-        {#each sector.securities.data as security}
+        {#each sector.securities.data as security, index}
           <button
+            in:fly|global={{
+              easing: circOut,
+              duration: 500,
+              delay: index * 100,
+              y: 100,
+            }}
             onclick={() => onRowTap(security)}
             class="unset"
             title="View security details">

@@ -4,13 +4,14 @@
   import { accountStore } from '@/store/account'
   import type { IAccount } from 'models/account'
   import { onDestroy } from 'svelte'
+  import { circOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
   import {
-    currencyFormat,
-    formatCurrencyWithNotation,
-    formatPercentage,
-    styleForValue,
+      currencyFormat,
+      formatCurrencyWithNotation,
+      formatPercentage,
+      styleForValue,
   } from 'utils/formatTools'
-
   let account: IAccount | undefined = $state()
 
   const getStats = () => {
@@ -79,8 +80,13 @@
 
 <!-- Header -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 flex-wrap gap-4">
-  {#each getStats() as stat}
-    <div class="motion-preset-focus-lg motion-duration-500">
+  {#each getStats() as stat, index}
+    <div   in:fly|global={{
+     easing: circOut,
+          duration:500,
+          delay: index * 100,
+          y: -100,
+    }}>
       <CardStats
         statDescripiron={stat.statDescription}
         statIconName={stat.statIcon}

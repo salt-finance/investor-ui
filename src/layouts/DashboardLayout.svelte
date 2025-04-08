@@ -63,15 +63,14 @@
   })
   onDestroy(accountSubscription)
 </script>
-<link rel="dns-prefetch" href="https://salt-server.com">
-<link rel="dns-prefetch" href="http://localhost:8000">
+
 <div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap">
   <div
-    class="flex justify-center w-full min-h-fit xl:max-w-screen-xl relative px-5 xl:px-0">
+    class="flex flex-col items-center w-full min-h-fit xl:max-w-screen-xl relative px-5 xl:px-0">
        <IndexNavbar isLoggedIn={true} />
 
     <div
-      class=" w-full flex flex-col justify-between gap-4 pt-[calc(80px+2rem)] pb-10 min-h-screen">
+      class=" w-full flex fdjustify-between gap-4 pt-[calc(80px+2rem)] pb-10 min-h-screen">
       <div class="flex flex-col justify-end w-full gap-4 flex-grow">
         {#if requiresFunding && account !== undefined}
           {#if !isSettingsPage}
@@ -115,8 +114,9 @@
           {/if}
         </div>
       </div>
-      <FooterAdmin />
     </div>
+    <FooterAdmin />
+
   </div>
 
   <StillThere />

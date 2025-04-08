@@ -8,6 +8,8 @@
   import { accountStore } from '@/store/account'
   import type { IAccount } from 'models/account'
   import { onDestroy, type SvelteComponent, tick, unmount } from 'svelte'
+  import { circOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
   import { mountChart } from 'utils/chartTools'
 
   let roiChart: SvelteComponent | undefined = $state()
@@ -52,17 +54,30 @@
 <!--   in:blur|global={{ amount: 30, delay: 50, duration: 1000 }}
  -->
 
-<span class="page-title my-4 flex gap-2 items-center">
+<span
+  class="page-title my-4 flex gap-2 items-center"
+  in:fly|global={{
+    y: 50,
+    easing: circOut,
+    opacity: 0,
+    delay: 200,
+    duration: 500,
+  }} 
+  >
   <span class="material-symbols-outlined skiptranslate thin">pie_chart</span>
   Portfolio
 </span>
 
-<div
-  class="w-full motion-preset-focus-lg motion-duration-150"
-  class:opacity-50={requiresFunding}>
+<div class="w-full" class:opacity-50={requiresFunding}>
   <div class="grid gap-y-4 sm:gap-4 grid-rows-1 md:grid-cols-8">
     <div
-      class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6 motion-preset-fade">
+      in:fly|global={{
+        // easing: circInOut,
+        easing: circOut,
+        x: -50,
+        duration: 1000,
+      }}
+      class="w-full glass-effect col-span-2 sm:col-span-5 lg:col-span-6">
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
@@ -78,7 +93,16 @@
       </div>
     </div>
     <div
-      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect motion-preset-fade">
+      in:fly|global={{
+        // easing: circInOut,
+        easing: circOut,
+        x: 50,
+        // y: 200,
+        delay: 100,
+        opacity: 0,
+        duration: 500,
+      }}
+      class="overflow-hidden col-span-2 md:col-span-3 lg:col-span-2 w-full glass-effect">
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between">
         <div class="mb-0 px-4 py-3">
@@ -97,7 +121,14 @@
     </div>
 
     <div
-      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect motion-preset-fade">
+      in:fly|global={{
+        // easing: circInOut,
+        easing: circOut,
+        x: -50,
+        duration: 1000,
+        delay: 200,
+      }}
+      class="sm:col-span-5 col-span-2 order-2 md:-order-none lg:col-span-6 w-full glass-effect">
       <div class="relative flex flex-col min-w-0 break-words w-full h-full">
         <div class="mb-0 px-4 py-3">
           <div class="w-full max-w-full flex-grow flex-1">
@@ -116,7 +147,17 @@
       </div>
     </div>
     <div
-      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect motion-preset-fade">
+      in:fly={{
+        // easing: circInOut,
+        easing: circOut,
+        x: 50,
+
+        // y: 200,
+        opacity: 0,
+        delay: 300,
+        duration: 1000,
+      }}
+      class="col-span-2 sm:col-span-3 lg:col-span-2 overflow-hidden glass-effect">
       <div
         class="relative flex flex-col min-w-0 break-words w-full h-full justify-between">
         <div class="mb-0 px-4 py-3">

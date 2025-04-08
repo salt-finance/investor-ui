@@ -77,7 +77,7 @@
   }
 </script>
 
-<div bind:this={target}></div>
+<div bind:this={target} ></div>
 
 {#snippet title()}
   <span class="font-semibold text-lg">
@@ -86,7 +86,7 @@
 {/snippet}
 
 {#snippet body()}
-  <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10">
+  <div class="p-4 pt-1 flex flex-col gap-4 h-full overflow-y-scroll z-10 min-h-[100vh] lg:min-h-max">
     {#if loading}
       <Loading />
     {:else if loadingError.length > 0}
@@ -94,7 +94,7 @@
     {:else if security !== undefined}
       <!--      Security Title-->
       <div
-        class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:-top-1 bottom-0 z-10 card"
+        class="flex justify-between flex-wrap gap-4 p-4 order-2 md:order-none sticky md:top-1 bottom-28 z-10 card"
       >
         <div class="flex items-center gap-4">
           <RoundedImage src={security.logoUrl} fallBackText={security.name} />
@@ -129,7 +129,7 @@
       </div>
       <!--Security body-->
 
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 w-full flex-wrap">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-2 w-full flex-wrap mb-20 pb-2 lg:pb-0 lg:mb-0">
         <div class="col-span-1 lg:col-span-3 flex flex-col">
           <div class="flex gap-2 w-full flex-wrap md:flex-nowrap">
             <div class="card p-4 w-full gap-2 flex flex-col">

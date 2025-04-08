@@ -8,6 +8,8 @@
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
   import type { IAccount, IFundingMethod } from 'models/account'
   import { mount, onMount, unmount } from 'svelte'
+  import { circOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
 
   let fundingMethods: IFundingMethod[] | undefined = $state()
 
@@ -59,7 +61,7 @@
       loading: false,
       headerClass: 'pb-4 flex justify-between w-auto items-center',
       modalClass:
-        'w-full max-w-96 h-fit max-h-full rounded-xl card flex flex-col sm:mx-16 overflow-hidden p-6',
+        'w-full max-w-96 max-h-full rounded-xl card flex h-auto flex-col sm:mx-16 overflow-hidden p-6 transition-transform',
     }
     modal = mount(ModalDialog, { props, target })
   }
@@ -76,31 +78,63 @@
 {/snippet}
 
 {#snippet body()}
-  {#if fundingMethods !== undefined}
-    Select funding method to use.
-    <div class="flex gap-3 flex-col mt-4">
-      {#each fundingMethods as method}
-        <label
-          class="card flex cursor-pointer rounded-lg items-center border-accent border border-opacity-0 has-[input:checked]:border-opacity-50 transition-all hover:border-opacity-50 justify-between p-4">
-          <span>{method.method}</span>
+  <div
+    class="flex flex-col  transition-all duration-300
+{selectedMethod !== undefined ? 'h-auto' : ''}
+">
+    {#if fundingMethods !== undefined}
+      <span
+        in:fly|global={{
+          // easing: circInOut,
+          easing: circOut,
+          y: 50,
+          delay: 200,
+          duration: 500,
+        }}>
+        Select funding method to use.
+      </span>
 
-          <input
-            checked={selectedMethod === method.id}
-            bind:group={selectedMethod}
-            value={method.id}
-            class="box-content h-1.5 w-1.5 appearance-none rounded-full border-[5px] border-white bg-white bg-clip-padding ring-1 ring-gray-950/20 outline-none checked:border-accent checked:ring-accent transition-all"
-            type="radio" />
-        </label>
-      {/each}
-    </div>
+      <div class="flex gap-3 flex-col mt-4">
+        {#each fundingMethods as method, index}
+          <label
+            in:fly|global={{
+              // easing: circInOut,
+              easing: circOut,
+              x: 50,
+              duration: 500,
+              delay: 200 * index,
+            }}
+            
+            class="card flex cursor-pointer rounded-lg items-center border-accent border border-opacity-0 has-[input:checked]:border-opacity-50 transition-all hover:border-opacity-50 justify-between p-4">
+            <span>{method.method}</span>
 
-    <button
-      disabled={selectedMethod === undefined}
-      onclick={selectFundingMethod}
-      class="primary-button gap-4 mt-8">
-      Confirm
-    </button>
-  {:else}
-    <Loading />
-  {/if}
+            <input
+              checked={selectedMethod === method.id}
+              bind:group={selectedMethod}
+              value={method.id}
+              tabindex="0"
+              class="box-content h-1.5 w-1.5 appearance-none rounded-full border-[5px] border-white bg-white bg-clip-padding ring-1 ring-gray-950/20 outline-none checked:border-accent checked:ring-accent transition-all"
+              type="radio" />
+          </label>
+        {/each}
+      </div>
+
+      {#if selectedMethod !== undefined}
+        <button
+          in:fly={{
+            // easing: circInOut,
+            easing: circOut,
+            y: 50,
+            delay: 0,
+            duration: 500,
+          }}
+          onclick={selectFundingMethod}
+          class="primary-button gap-4 mt-8">
+          Confirm
+        </button>
+      {/if}
+    {:else}
+      <Loading />
+    {/if}
+  </div>
 {/snippet}

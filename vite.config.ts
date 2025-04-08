@@ -6,11 +6,15 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    minify: 'terser'
+    minify: 'terser',
+  },
+  preview: {
+    port: 4040,
+    
   },
   base: '/investor-ui',
   server: {
-    port: 4040
+    port: 4040,
   },
   resolve: {
     alias: {

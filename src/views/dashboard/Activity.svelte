@@ -10,12 +10,10 @@
   import { Activity } from 'models/account'
   import { onDestroy, type SvelteComponent } from 'svelte'
   import { push } from 'svelte-spa-router'
+  import { circInOut, circOut } from 'svelte/easing'
   import { MediaQuery } from 'svelte/reactivity'
-  import {
-      currencyFormat,
-      parsedDate,
-      styleForValue,
-  } from 'utils/formatTools'
+  import { blur, fly } from 'svelte/transition'
+  import { currencyFormat, parsedDate, styleForValue } from 'utils/formatTools'
 
   let mobile = new MediaQuery('max-width: 1024px')
   let tearsheetModal: SvelteComponent | undefined = $state()
@@ -31,8 +29,9 @@
   }
 
   const imageFallBackFunc = (activity: Activity) => {
-  return activity.securitySymbol ??
-  activity.securityName ?? activity.transaction; 
+    return (
+      activity.securitySymbol ?? activity.securityName ?? activity.transaction
+    )
   }
 
   const columns: TableColumn<Activity>[] = [
@@ -116,8 +115,19 @@
 </script>
 
 <div class="w-full block">
-  <div class="flex justify-between">
-    <span class="page-title my-4 flex gap-2 items-center">
+  <div class="flex justify-between" 
+  in:fly|global={{
+    y: 50,
+    easing: circOut,
+    opacity: 0,
+    delay: 200,
+    duration: 500,
+  }} 
+  >
+    <span
+      class="page-title my-4 flex gap-2 items-center"
+      
+      >
       <span class="material-symbols-outlined skiptranslate thin">
         swap_horiz
       </span>
@@ -128,6 +138,7 @@
     </span>
     {#if showTop && all.length > maxTop}
       <button
+      
         class="mb-3 dashed-button border-current"
         onclick={() => {
           push('/dashboard/activity')
@@ -137,84 +148,98 @@
     {/if}
   </div>
 
-  <div class="card">
+  <div
+    class="card"
+    in:fly|global={{
+      y: 50,
+      easing: circOut,
+      opacity: 0,
+      duration: 500,
+    }}>
     {#if loading}
       <div class="h-8 m-4 flex items-center">
         <Loading />
       </div>
-    {:else if mobile.current}
-      <div class="flex flex-col motion-preset-focus-lg motion-duration-1000">
-        {#if filtered.length === 0}
-          <span class="p-6">No results found.</span>
-        {:else}
-          <span
-            class="p-4 flex flex-col w-full card z-10 gap-y-1 border-0 dark:border-b  border-foreground/50 rounded-b-none shadow-md dark:shadow-none {showTop? "" : "sticky top-0"}">
-            <span class="flex justify-between gap-2">
-              <span>
-                <strong>Ticker</strong>
-                | Security name
+    {:else}
+      <div
+        class="flex flex-col"
+        transition:blur={{
+          easing: circInOut,
+          duration: 500,
+        }}>
+        {#if mobile.current}
+          {#if filtered.length === 0}
+            <span class="p-6">No results found.</span>
+          {:else}
+            <span
+              class="p-4 flex flex-col w-full card z-10 gap-y-1 border-0 dark:border-b border-foreground/50 rounded-b-none shadow-md dark:shadow-none {showTop
+                ? ''
+                : 'sticky top-0'}">
+              <span class="flex justify-between gap-2">
+                <span>
+                  <strong>Ticker</strong>
+                  | Security name
+                </span>
+                <span>Description</span>
               </span>
-              <span>Description</span>
-            </span>
-            <span class="flex justify-between gap-2">
-              <span>
-                <span class="opacity-50">↓</span>
-                Date
+              <span class="flex justify-between gap-2">
+                <span>
+                  <span class="opacity-50">↓</span>
+                  Date
+                </span>
+                <span>Net amount</span>
               </span>
-              <span>Net amount</span>
             </span>
-          </span>
-          {#each filtered as activity}
-            <button
-              onclick={() => onRowTap(activity)}
-              class="border-b  border-foreground/30 hover:bg-accent/30 text-left">
-              <span class="flex w-full justify-between p-4">
-                <span class="flex items-center w-full justify-between">
-                  <RoundedImage
-                    src={activity.securityLogoUrl}
-                    fallBackText={imageFallBackFunc(activity)} />
-                  <span class="flex flex-col w-[calc(100%-4rem)] gap-y-2">
-                    <span class="flex justify-between gap-x-4">
-                      <span>
-                        {#if activity.securitySymbol}
-                        <strong>{activity.securitySymbol}</strong>
-                        |
-                        {activity.securityName ?? '--'}
-                        {:else}
-                        --
-                        {/if}
+            {#each filtered as activity}
+              <button
+                onclick={() => onRowTap(activity)}
+                class="border-b border-foreground/30 hover:bg-accent/30 text-left">
+                <span class="flex w-full justify-between p-4">
+                  <span class="flex items-center w-full justify-between">
+                    <RoundedImage
+                      src={activity.securityLogoUrl}
+                      fallBackText={imageFallBackFunc(activity)} />
+                    <span class="flex flex-col w-[calc(100%-4rem)] gap-y-2">
+                      <span class="flex justify-between gap-x-4">
+                        <span>
+                          {#if activity.securitySymbol}
+                            <strong>{activity.securitySymbol}</strong>
+                            |
+                            {activity.securityName ?? '--'}
+                          {:else}
+                            --
+                          {/if}
+                        </span>
+                        <div class="inline text-right">
+                          {@html activity.transaction}
+                        </div>
                       </span>
-                      <div class="inline text-right">
-                        {@html activity.transaction}
-                      </div>
-                    </span>
-                    <span class="flex justify-between gap-x-4">
-                      <span class="body-text">
-                        {parsedDate(activity.date)}
-                      </span>
-                      <span
-                        class="body-text {styleForValue(activity.netAmount)}">
-                        {currencyFormat({ signDisplay: 'exceptZero' })(
-                          activity.netAmount
-                        )}
+                      <span class="flex justify-between gap-x-4">
+                        <span class="body-text">
+                          {parsedDate(activity.date)}
+                        </span>
+                        <span
+                          class="body-text {styleForValue(activity.netAmount)}">
+                          {currencyFormat({ signDisplay: 'exceptZero' })(
+                            activity.netAmount,
+                          )}
+                        </span>
                       </span>
                     </span>
                   </span>
                 </span>
-              </span>
-            </button>
-          {/each}
+              </button>
+            {/each}
+          {/if}
+        {:else}
+          <CardTable
+            {onRowTap}
+            {columns}
+            bind:data={filtered}
+            sortIndex={2}
+            sticky={!showTop}
+            sortDirection="desc" />
         {/if}
-      </div>
-    {:else}
-      <div class="flex flex-col motion-preset-focus-lg motion-duration-1000">
-        <CardTable
-          {onRowTap}
-          {columns}
-          bind:data={filtered}
-          sortIndex={2}
-          sticky={!showTop}
-          sortDirection="desc" />
       </div>
     {/if}
   </div>

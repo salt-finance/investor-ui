@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { decimalFormat, formatCurrencyWithNotation } from 'utils/formatTools'
-  import BaseInput from 'components/Inputs/BaseInput.svelte'
   import { depositFunds, withdrawFunds } from '@/api/api_account.js'
   import { fetchAccounts } from '@/store/account'
-  import { mount, unmount } from 'svelte'
+  import BaseInput from 'components/Inputs/BaseInput.svelte'
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
+  import { mount, unmount } from 'svelte'
+  import { decimalFormat, formatCurrencyWithNotation } from 'utils/formatTools'
 
-  import type { IAccount } from 'models/account'
   import Loading from 'components/Loading.svelte'
+  import type { IAccount } from 'models/account'
+  import { circOut } from 'svelte/easing'
+  import { fly } from 'svelte/transition'
 
   let inProgress = $state(false)
 
@@ -119,29 +121,60 @@
 
 {#snippet body()}
   <div class="flex justify-between mb-4">
-    <span>Available to {verb()}</span>
-    <span class={availableAmount() === amount ? 'text-amber-500' : ''}>
+    <span
+      in:fly|global={{
+        // easing: circInOut,
+        easing: circOut,
+        x: -50,
+        delay: 200,
+        duration: 500,
+      }}>
+      Available to {verb()}
+    </span>
+    <span
+      in:fly|global={{
+        // easing: circInOut,
+        easing: circOut,
+        x: 50,
+        delay: 400,
+        duration: 500,
+      }}
+      class={availableAmount() === amount ? 'text-amber-500' : ''}>
       {formatCurrencyWithNotation(availableAmount())}
     </span>
   </div>
 
-  <BaseInput
-    inputClass="py-4"
-    placeholder="0.00"
-    prependIcon="money"
-    disabled={availableAmount() <= 0}
-    label="Enter amount"
-    bind:value={() => format(), (v) => formatValue(v)}
-  />
+  <div
+    transition:fly|global={{
+      // easing: circInOut,
+      easing: circOut,
+      y: 50,
+      delay: 200,
+      duration: 500,
+    }}>
+    <BaseInput
+      inputClass="py-4"
+      placeholder="0.00"
+      prependIcon="money"
+      disabled={availableAmount() <= 0}
+      label="Enter amount"
+      bind:value={() => format(), (v) => formatValue(v)} />
+  </div>
 
   <button
+    transition:fly|global={{
+      // easing: circInOut,
+      easing: circOut,
+      y: 50,
+      delay: 400,
+      duration: 500,
+    }}
     disabled={amount === undefined ||
       amount <= 0 ||
       inProgress ||
       amount > availableAmount()}
-    class="base-button primary-button mt-4 hover:dark-light-text focus:dark-light-text"
-    onclick={handleSubmit}
-  >
+    class="base-button primary-button mt-4 hover:dark-light-text focus:dark-light-text transition-all duration-500"
+    onclick={handleSubmit}>
     {verb()}
     {#if amount}
       {formatCurrencyWithNotation(amount)}

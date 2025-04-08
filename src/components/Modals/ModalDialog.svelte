@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
 
   import Loading from 'components/Loading.svelte'
-  import { circInOut } from 'svelte/easing'
+  import { expoOut, sineOut } from 'svelte/easing'
   import { fly } from 'svelte/transition'
 
   let dialogRef: HTMLDialogElement
@@ -27,11 +27,17 @@
 <dialog
   bind:this={dialogRef}
   class="tearsheet"
-  transition:fly|global={{
-    y: 200,
-    easing: circInOut,
+  out:fly|global={{
+    y: 50,
+    easing: sineOut,
     opacity: 0,
-    duration: 200,
+    duration: 300,
+  }}
+  in:fly|global={{
+    y: 50,
+    easing: expoOut,
+    opacity: 0,
+    duration: 300,
   }}>
   <div class={modalClass}>
     <div class={headerClass}>

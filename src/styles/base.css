@@ -28,7 +28,7 @@ body {
   --logo-url: url('./assets/img/logos/color-black.webp');
   --gain: 0, 140, 0;
   --loss: 255, 100, 100;
-  
+
   /* DB */
   /* --accent: 60, 71, 147; */
   /* --logo-url: url('https://dashenbanksc.com/wp-content/uploads/Dashen-Bank-Logo-Addis-Ababa-Ethiopia.png'); */
@@ -105,6 +105,7 @@ dialog {
 
   &[open] {
     display: flex;
+ 
   }
 
   @apply bg-transparent w-screen dark-light-text;
@@ -113,11 +114,20 @@ dialog {
     @apply shadow-xl;
   }
 
+
   &[inert] {
     &::backdrop {
       @apply motion-hide-opacity;
     }
   }
+
+  &:not([inert]) {
+    &::backdrop {
+      @apply motion-show-opacity;
+    }
+  }
+
+
 
   &::backdrop {
     backdrop-filter: blur(10px);

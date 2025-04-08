@@ -1,13 +1,13 @@
 {
   "name": "investor-ui",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "type": "module",
   "description": "Investor UI is the investor portal built on svelte",
   "scripts": {
     "dev": "npm-run-all --parallel check vite build:tailwind-dev ",
     "vite": "vite --host --strictPort --open",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite --port '4040' preview",
     "open:chrome": "open -na 'Google Chrome' --args --auto-open-devtools-for-tabs --incognito 'http://localhost:4040/investor-ui'",
     "build:tailwind": "tailwind build -i index.css -o dist/tailwind.css --minify",
     "build:tailwind-dev": "tailwind build -i index.css -o dist/tailwind.css --watch",

@@ -14,19 +14,22 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ 
   </head>
   <body class="antialiased h-screen body-colors">
-    <link rel="stylesheet" href="/index.css" />
     <div id="app"></div>
+    <link rel="stylesheet" href="/index.css" />
+
 
     <script type="module" src="/src/main.ts"></script>
 
+   
     <!--- Google translate-->
-    <script
+    <!-- <script
       type="text/javascript"
       defer
       src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-    ></script>
+    ></script> -->
 
     <script defer type="text/javascript">
       async function setupGoogleTranslate() {
@@ -54,16 +57,17 @@
       }
 
       function googleTranslateElementInit() {
-        if (document.readyState !== 'complete') {
-          document.addEventListener('readystatechange', (event) => {
-            if (document.readyState === 'complete') {
-              setupGoogleTranslate();
-            }
-          });
-        } else {
-          setupGoogleTranslate();
-        }
+        // if (document.readyState !== 'complete') {
+        //   document.addEventListener('readystatechange', (event) => {
+        //     if (document.readyState === 'complete') {
+        //       setupGoogleTranslate();
+        //     }
+        //   });
+        // } else {
+        //   setupGoogleTranslate();
+        // }
       }
     </script>
   </body>
+
 </html>

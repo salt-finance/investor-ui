@@ -13,8 +13,20 @@
 }
 
 @keyframes motion-hide {
+    0% {
+        opacity: 1;
+    }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes motion-show {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 
@@ -29,23 +41,28 @@
 
 
 }
-
+.motion-show-opacity {
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    animation-name: motion-show;
+    animation-fill-mode: forwards;
+}
 
 .motion-hide-opacity {
-    animation-fill-mode: forwards;
     animation-duration: 300ms;
-    animation-timing-function: ease;
-    animation-delay: 100ms;
+    animation-delay: 0ms;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-fill-mode: forwards;
     animation-name: motion-hide;
 }
 
-.motion-hide {
+/* .motion-hide {
     transform-origin: 50% 100%;
     animation-fill-mode: forwards;
-    animation-duration: 300ms;
-    /* animation-timing-function: linear; */
+    animation-duration: 200ms;
+    animation-delay: 50ms;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
     animation-name: motion-hide-scale;
-}
+} */
 
 
