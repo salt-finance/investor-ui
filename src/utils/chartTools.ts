@@ -1,6 +1,7 @@
 import { Color as kColor } from '@kurkle/color'
 import {
-  Chart,
+  // Chart,
+  // type Chart,
   type ChartArea,
   type ChartOptions,
   type Color,
@@ -71,7 +72,7 @@ export const createRadialGradient = (
   context: any,
   color: string,
 ): Color | undefined => {
-  const chart: Chart = context?.chart
+  const chart: any = context?.chart
 
   if (!chart) {
     // This case happens on initial chart load

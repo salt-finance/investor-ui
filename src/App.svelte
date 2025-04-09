@@ -13,7 +13,6 @@
 
   import Register from 'views/auth/Signup.svelte'
   // No Layout Pages
-  import posthog from 'posthog-js/dist/module.no-external'
   import { onMount } from 'svelte'
   import Router from 'svelte-spa-router'
 
@@ -26,11 +25,12 @@
   ]);
 
   if (process.env.NODE_ENV !== 'development') {
-    onMount(() => {
-      posthog.init('phc_faqICTnQr6DINP15c3R4tPyj1GbaGTsbDT6Ph05SNVm', {
-        api_host: 'https://us.i.posthog.com',
-        person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
-      });
+    onMount(async () => {
+      // let {posthog} = await import("posthog-js/");
+      // posthog.init('phc_faqICTnQr6DINP15c3R4tPyj1GbaGTsbDT6Ph05SNVm', {
+      //   api_host: 'https://us.i.posthog.com',
+      //   person_profiles: 'identified_only' // or 'always' to create profiles for anonymous users as well
+      // });
     });
   }
 </script>
