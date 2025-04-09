@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;400;600;700;800&display=swap" rel="stylesheet">
 <link  href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<link  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=alternate_email,backspace,cancel,category,close,dark_mode,dashboard,key,leaderboard,light_mode,lock,lock_open,menu,money,more_vert,night_sight_auto,north_east,person,pie_chart,priority_high,search,search_activity,settings,speed,storefront,swap_horiz,trending_down,trending_up&display=swap" rel="stylesheet">
+<link  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=alternate_email,backspace,cancel,category,check_circle,close,dark_mode,dashboard,error,key,leaderboard,light_mode,lock,lock_open,menu,money,more_vert,night_sight_auto,north_east,person,pie_chart,priority_high,search,search_activity,settings,speed,storefront,swap_horiz,trending_down,trending_up&display=swap" rel="stylesheet">
 
 <Router {routes} />
 

@@ -15,14 +15,22 @@
   let loading = $state(true)
   let ssoInProgress = $state(false)
   let emailInProgress = $state(false)
+  let errorMessage = $state('')
+  let emailSent = $state(false)
 
   let src: string | undefined = $state('assets/img/login.jpg')
 
   async function continueWithEmail() {
     emailInProgress = true
-    await startWithEmail(email).finally(() => {
-      emailInProgress = false
-    })
+    errorMessage = ''
+    const result = await startWithEmail(email)
+    emailInProgress = false
+    if (result.data) {
+      emailSent = true
+    } else {
+      // Handle error
+      errorMessage = `Unable to continue. ${result.error.message}`
+    }
   }
 
   function continueWithSSO() {
@@ -84,13 +92,11 @@
           <form
             class="overflow-y-auto flex flex-col justify-start lg:justify-center gap-4 w-full h-1/2 sm:w-3/4 lg:w-2/5 self-center mx-auto lg:h-full px-8 md:px-12 py-6 lg:mb-3">
             {#if loading}
-              <div
-                transition:fade={{  duration: 500 }}
-                class="text-center">
+              <div transition:fade={{ duration: 500 }} class="text-center">
                 <Loading />
               </div>
             {:else}
-              <div transition:fade={{ delay: 500, duration: 500 }}>
+              <div in:fade={{ duration: 500 }}>
                 <h1
                   class="text-xl md:text-2xl/tight font-serif font-extralight max-w-[60vw]">
                   Enter your email address to continue
@@ -101,18 +107,37 @@
                   appendIcon="alternate_email"
                   placeholder="Email"
                   type="email"
+                  oninput={() => {
+                    emailSent = false;
+                    errorMessage = '';
+                  }}
                   bind:disabled={emailInProgress}
                   bind:value={email} />
 
-                <div class=" w-full flex flex-col lg:mt-4">
+                <div class=" w-full flex flex-col mt-4">
                   <!-- Error will show here -->
-
+                  {#if errorMessage?.length > 0}
+                    <div
+                      transition:fade={{ duration: 300 }}
+                      class="mb-2 alert alert-danger">
+                      {errorMessage}
+                    </div>
+                  {:else if emailSent}
+                    <div
+                      in:fade={{ duration: 500 }}
+                      class="alert alert-confirm mb-2">
+                      <p>
+                       An email has been sent to {email}. Follow the steps in the email to continue.
+                      </p>
+                    </div>
+                  {/if}
                   <button
                     disabled={!email || emailInProgress}
                     class="primary-button gap-4"
                     onclick={continueWithEmail}
                     type="button">
-                    Continue
+
+                    {emailSent ? 'Resend email' : 'Continue'}
 
                     {#if emailInProgress}
                       <Loading />

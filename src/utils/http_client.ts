@@ -1,62 +1,61 @@
-import { fromJson } from 'models/parser';
-import { tryCatch } from 'models/trycatch';
+import { fromJson } from 'models/parser'
+import { tryCatch } from 'models/trycatch'
 
 export const ApiURL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:8000/v1'
-    : 'https://salt-server.com/v1';
+    : 'https://salt-server.com/v1'
 
-    
 const getToken = () => {
-  return localStorage.getItem('token');
-};
+  return localStorage.getItem('token')
+}
 
-const _headers = { 'Content-Type': 'application/json', Authorization: '' };
+const _headers = { 'Content-Type': 'application/json', Authorization: '' }
 
 interface IApiError {
-  message: string;
-  validation?: Record<string, any>;
+  message: string
+  validation?: Record<string, any>
 }
 
 interface IApiStatus {
-  code: number;
-  description: string;
+  code: number
+  description: string
 }
 
-export type Reviver = (data :Record <string, any>) => any;
+export type Reviver = (data: Record<string, any>) => any
 export interface IApiResponse<T> {
-  response: T;
-  error?: IApiError;
-  status?: IApiStatus;
+  response: T
+  error?: IApiError
+  status?: IApiStatus
 }
 
 const parseResponse = async <T>(response: Response, reviver?: Reviver) => {
-  const data = await response.json();
-  const parsed = fromJson<IApiResponse<T>>(data, reviver);
+  const data = await response.json()
+  const parsed = fromJson<IApiResponse<T>>(data, reviver)
 
   if (!parsed) {
-    throw 'Unable to parse value';
+    throw 'Unable to parse value'
   }
 
   if (!response.ok) {
-    throw parsed;
+    throw parsed
   }
-  return parsed;
-};
+  return parsed
+}
 
 const createRequest = async <T>(
   method: string,
   endpoint: string,
   body: any,
   reviver?: Reviver,
-  controller?: AbortController
+  controller?: AbortController,
 ) => {
   // 10 seconds
-  const timeout = 10 * 1000;
+  const timeout = 10 * 1000
 
-  controller ??= new AbortController();
-  
-  const timeoutId = setTimeout(() => controller.abort('timeout'), timeout);
+  controller ??= new AbortController()
+
+  const timeoutId = setTimeout(() => controller.abort('timeout'), timeout)
 
   let payload: Record<string, any> = {
     headers: _headers,
@@ -64,26 +63,34 @@ const createRequest = async <T>(
     mode: 'cors', // Enable CORS
     redirect: 'follow',
     credentials: 'include',
-    signal: controller.signal
-  };
+    signal: controller.signal,
+  }
 
   if (getToken()) {
-    payload.headers.Authorization = `Bearer ${getToken()}`;
+    payload.headers.Authorization = `Bearer ${getToken()}`
   }
 
   if (method === 'POST') {
-    payload['body'] = JSON.stringify(body);
+    payload['body'] = JSON.stringify(body)
   }
 
-  const result = await tryCatch(fetch(ApiURL.concat(endpoint), payload));
+  const result = await tryCatch(fetch(ApiURL.concat(endpoint), payload))
 
-  clearTimeout(timeoutId);
+  clearTimeout(timeoutId)
 
   if (result.error !== null) {
-    return result;
+    console.log(result.error.message)
+    if (
+      result.error?.message?.toLowerCase() === 'failed to fetch' ||
+      result.error.message === 'timeout'
+    ) {
+      result.error = new Error('Connection timed out, please try again')
+    }
+
+    return result
   }
 
-  return await tryCatch(parseResponse<T>(result.data, reviver),);
+  return await tryCatch(parseResponse<T>(result.data, reviver))
 
   // try {
   //   const response = await ;
@@ -117,17 +124,24 @@ const createRequest = async <T>(
   //     }
   //   };
   // }
-};
+}
 
-export const post = <T>(endpoint: string, body: Record<string, any>,   reviver?: Reviver) => {
-  return createRequest<T>('POST', endpoint, body, reviver);
-};
-
-export const get = <T>(endpoint: string,   reviver?: Reviver,   controller?: AbortController
+export const post = <T>(
+  endpoint: string,
+  body: Record<string, any>,
+  reviver?: Reviver,
 ) => {
-  return createRequest<T>('GET', endpoint, null, reviver, controller);
-};
+  return createRequest<T>('POST', endpoint, body, reviver)
+}
 
-export const put = <T>(endpoint: string,   reviver?: Reviver) => {
-  return createRequest<T>('PUT', endpoint, null, reviver);
-};
+export const get = <T>(
+  endpoint: string,
+  reviver?: Reviver,
+  controller?: AbortController,
+) => {
+  return createRequest<T>('GET', endpoint, null, reviver, controller)
+}
+
+export const put = <T>(endpoint: string, reviver?: Reviver) => {
+  return createRequest<T>('PUT', endpoint, null, reviver)
+}

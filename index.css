@@ -32,3 +32,130 @@ Danger - Cornell red - #b91c1c - red-700 */
 .unset {
   all: unset;
 }
+
+
+.alert {
+  display: block !important;
+  text-wrap: pretty;
+  position: relative;
+  border: 1px solid;
+  text-align: left !important;
+  line-height: 1.5;
+  padding: 1.25rem;
+  padding-left: 3.125rem !important;
+  border-color: var(--alert-color);
+  --alert-color: '';
+  --alert-label: '';
+  --alert-icon: 'money';
+  --alert-bg-color: '';
+
+
+  &::after {
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+      display: flex;
+      height: 100%;
+      width: calc(3.125rem - 10px);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      font-family: "Material Symbols Outlined", sans-serif;
+      font-size: 1.5rem;
+      line-height: 1;
+      font-style: normal;
+      letter-spacing: normal;
+      text-transform: none;
+      white-space: nowrap;
+      font-feature-settings: "liga";
+      -webkit-font-feature-settings: "liga";
+      -webkit-font-smoothing: antialiased;
+
+      content: var(--alert-icon);
+      background-color: var(--alert-bg-color);
+      color: var(--alert-color);
+  }
+
+
+
+
+
+
+  &:has(button) {
+      padding-right: 2.75rem;
+  }
+
+  button {
+      position: absolute;
+      top: 1.25rem;
+      right: 0.75rem;
+  }
+
+
+
+
+  &[header]:not([header=""])::before {
+      content: "" attr(header) ":";
+  }
+
+  &.alert-warning {
+      --alert-color: var(--alert-warning);
+      --alert-label: "Alert:";
+      --alert-icon: "warning";
+      --alert-bg-color: var(--alert-warning-bg);
+  }
+
+
+  &.alert-confirm {
+      --alert-color: var(--alert-confirm);
+      --alert-label: "Confirmation:";
+      --alert-icon: "check_circle";
+      --alert-bg-color: var(--alert-confirm-bg);
+  }
+
+
+  &-note {
+      --alert-color: var(--alert-note);
+      --alert-label: "Note:";
+      --alert-icon: "info";
+      --alert-bg-color: var(--alert-note-bg);
+  }
+
+  &.alert-danger {
+      --alert-color: var(--alert-error);
+      --alert-label: "Error:";
+      --alert-icon: "error";
+      --alert-bg-color: var(--alert-error-bg);
+  }
+
+  &-promo {
+      --alert-color: var(--alert-promo);
+      --alert-label: "";
+      --alert-icon: "lightbulb";
+      --alert-bg-color: var(--alert-promo-bg);
+  }
+
+  &-info {
+      --alert-color: var(--alert-info);
+      --alert-label: "Info:";
+      --alert-icon: "info";
+      --alert-bg-color: var(--alert-info-bg);
+  }
+
+  &-floating {
+      left: auto;
+      right: 2rem;
+      top: 2rem;
+  }
+
+  &::before {
+    font-weight: bold;
+    display: inline-block;
+    content: var(--alert-label);
+    margin-right: 0.25rem;
+}
+
+}

@@ -28,6 +28,8 @@ body {
   --logo-url: url('./assets/img/logos/color-black.webp');
   --gain: 0, 140, 0;
   --loss: 255, 100, 100;
+  --alert-error :red;
+  --alert-confirm :#159b17;
 
   /* DB */
   /* --accent: 60, 71, 147; */

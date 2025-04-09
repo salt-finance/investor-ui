@@ -57,17 +57,16 @@
   })
 </script>
 
-<div
-  >
-  <span class="page-title my-4 flex gap-2 items-center" 
-  in:fly|global={{
-    y: 50,
-    easing: circOut,
-    opacity: 0,
-    delay: 200,
-    duration: 500,
-  }} 
-  >
+<div class="w-full">
+  <span
+    class="page-title my-4 flex gap-2 items-center"
+    in:fly|global={{
+      y: 50,
+      easing: circOut,
+      opacity: 0,
+      delay: 200,
+      duration: 500,
+    }}>
     <span class="material-symbols-outlined skiptranslate thin">dashboard</span>
     Dashboard
   </span>
@@ -76,15 +75,14 @@
   {:else}
     <div class="w-full">
       <div
-      
         class="grid gap-y-4 sm:gap-4 grid-rows-1 sm:grid-cols-6 md:grid-cols-8">
         <div
-        in:fly|global={{
-          // easing: circInOut,
-          easing: circOut,
-    x: -50,
-          duration:1000,
-        }}
+          in:fly|global={{
+            // easing: circInOut,
+            easing: circOut,
+            x: -50,
+            duration: 1000,
+          }}
           class:opacity-50={requiresFunding}
           class="w-full card bg-opacity-40 col-span-2 sm:col-span-4 md:col-span-5 lg:col-span-6">
           <div class="relative flex flex-col min-w-0 break-words w-full h-full">
@@ -107,16 +105,16 @@
         </div>
 
         <div
-        in:fly|global={{
-          // easing: circInOut,
-          easing: circOut,
-    x: 50,
-    
-          // y: 200,
-          opacity: 0,
-          delay: 100,
-          duration:1000,
-        }}
+          in:fly|global={{
+            // easing: circInOut,
+            easing: circOut,
+            x: 50,
+
+            // y: 200,
+            opacity: 0,
+            delay: 100,
+            duration: 1000,
+          }}
           class:opacity-50={requiresFunding}
           class="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-2 overflow-hidden card bg-opacity-40">
           <div
