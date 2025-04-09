@@ -1,79 +1,74 @@
 <script lang="ts">
-  import { expiryTimeout, logout, tokenTest } from '@/api/api_auth'
-  import { mount, onDestroy, unmount } from 'svelte'
+  import { expiry, expiryTimeout, logout, tokenTest } from '@/api/api_auth'
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
+  import { mount, onDestroy, unmount } from 'svelte'
 
-  const timeout = 60
 
-  let secondsLeft = $state(timeout)
 
-  let countdown: NodeJS.Timeout
+  let secondsLeft = $state(expiry)
+  let refreshing = $state(false)
 
-  let validateTimeout: NodeJS.Timeout
+  // let countdown: NodeJS.Timeout
+  let timeLeftCountDown: NodeJS.Timeout
+
+  let refreshTimeout: NodeJS.Timeout
 
   async function getTimeLeft() {
-    secondsLeft = expiryTimeout()?.secondsLeft ?? timeout
-    if (secondsLeft < timeout) {
+    if(refreshing){
+      return;
+    }
+    secondsLeft = expiryTimeout()?.secondsLeft ?? expiry
+    
+    if (secondsLeft < expiry) {
       show()
     }
+     if(secondsLeft === 0){
+      hide();
+    }
+   
   }
 
   // Start listening;
-  countdown = setInterval(getTimeLeft, 1000)
+
+  timeLeftCountDown = setInterval(getTimeLeft, 1000)
 
   window.onpointerover = resetTimer // catches mouse movements
 
   async function resetTimer() {
     // Called on interaction.
-    if (secondsLeft < timeout) {
+    if (modal) {
       // Ignore events if modal is visible;
       return
     }
-    clearTimeout(validateTimeout)
+    clearTimeout(refreshTimeout)
     await getTimeLeft()
     // Call revalidate after :
-    let refreshAfter = secondsLeft - timeout
+    let refreshAfter = secondsLeft - expiry
     // Revalidate token after `refreshAfter` seconds to refresh the token from api;
-    validateTimeout = setTimeout(async () => {
-      clearInterval(countdown)
+    refreshTimeout = setTimeout(async () => {
       await revalidateToken()
       // check updateSecondsLeft every 1s until reset by validateTimeout;
-      countdown = setInterval(getTimeLeft, 1000)
     }, refreshAfter * 1000)
   }
 
   // Modal functions
   let target: HTMLElement
 
-  let modal: Record<string, any>
+  let modal: Record<string, any> | undefined
 
   async function hide() {
-    // Clear interval set by show(); Revalidate token;
-    clearInterval(countdown)
-    await revalidateToken()
-    // Check timeleft every 1s
-    countdown = setInterval(getTimeLeft, 1000)
-    // close modal
-    await unmount(modal, { outro: true })
+    // close modal then revalidate only if visible
+    if (modal) {
+      await unmount(modal, { outro: true })
+      await revalidateToken()
+      modal = undefined
+    }
   }
 
   function show() {
-    // clear interval for getTimeLeft
-    clearInterval(countdown)
-
-    // Set countdown interval to countdown from secondsLeft to 0
-    // if secondsLeft <= 0 call refresh();
-    countdown = setInterval(async () => {
-      if (secondsLeft > 0) {
-        secondsLeft--
-        return
-      }
-
-      if (secondsLeft <= 0) {
-        await revalidateToken()
-      }
-    }, 1000)
-
+    if (modal) {
+      return
+    }
     let props = {
       hide: hide,
       title: title,
@@ -87,20 +82,20 @@
   }
 
   async function revalidateToken() {
+    refreshing = true;
     const result = await tokenTest()
     // If token has expired, trigger logout.
     if (result.error) {
       await logout()
-      return result
+      return
     }
-    secondsLeft = expiryTimeout()?.secondsLeft ?? timeout
-
-    return result
+    await getTimeLeft();
+    refreshing = false;
   }
 
   onDestroy(() => {
-    clearInterval(countdown)
-    clearTimeout(validateTimeout)
+    clearInterval(timeLeftCountDown)
+    clearTimeout(refreshTimeout)
   })
 </script>
 
@@ -126,8 +121,7 @@
 
   <button
     class="primary-button my-3 justify-between gap-10 mt-10"
-    onclick={hide}
-  >
+    onclick={hide}>
     <span class="flex-grow">Stay signed in</span>
     <span class="border-current border-solid border-l self-stretch"></span>
     <span class="material-symbols-outlined skiptranslate text-[1.25rem]">

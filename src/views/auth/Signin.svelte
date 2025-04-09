@@ -8,38 +8,43 @@
 
   import Loading from 'components/Loading.svelte'
   import { onDestroy, onMount } from 'svelte'
+  import { fade } from 'svelte/transition'
 
   let email = $state('')
 
-  let loading = $state(false)
+  let loading = $state(true)
+  let ssoInProgress = $state(false)
+  let emailInProgress = $state(false)
 
-  let src: string | undefined = $state(
-    'assets/img/login.jpg',
-  )
+  let src: string | undefined = $state('assets/img/login.jpg')
 
   async function continueWithEmail() {
-    loading = true
+    emailInProgress = true
     await startWithEmail(email).finally(() => {
-      loading = false
+      emailInProgress = false
     })
   }
 
   function continueWithSSO() {
-    loading = true
+    ssoInProgress = true
     window.location.href = `${ApiURL}/auth/google`
   }
 
-  const unsubscribe = querystring.subscribe(async (value) => {
+  const unsubscribe = querystring.subscribe((value) => {
     if (value !== undefined && value !== '') {
       let token = value.split('continue=')[1]
       if (token) {
-        loginWithToken(token)
+        console.log('login with this')
+        console.log(token)
+        return loginWithToken(token)
       }
     }
   })
 
   onMount(async () => {
+    loading = true
     const result = await tokenTest()
+    loading = false
     if (result.data) {
       replace('/dashboard')
     }
@@ -48,8 +53,7 @@
   onDestroy(unsubscribe)
 </script>
 
-<link rel="preload" as="image" href={src}>
-
+<link rel="preload" as="image" href={src} />
 
 <div
   class="flex flex-col body-colors p-5 lg:p-8 content-center w-screen flex-wrap h-screen overflow-hidden justify-center">
@@ -79,48 +83,58 @@
           </div>
           <form
             class="overflow-y-auto flex flex-col justify-start lg:justify-center gap-4 w-full h-1/2 sm:w-3/4 lg:w-2/5 self-center mx-auto lg:h-full px-8 md:px-12 py-6 lg:mb-3">
-            <h1
-              class="text-xl md:text-2xl/tight font-serif font-extralight max-w-[60vw]">
-              Enter your email address to continue
-            </h1>
+            {#if loading}
+              <div
+                transition:fade={{  duration: 500 }}
+                class="text-center">
+                <Loading />
+              </div>
+            {:else}
+              <div transition:fade={{ delay: 500, duration: 500 }}>
+                <h1
+                  class="text-xl md:text-2xl/tight font-serif font-extralight max-w-[60vw]">
+                  Enter your email address to continue
+                </h1>
 
-            <BaseInput
-              large
-              appendIcon="alternate_email"
-              placeholder="Email"
-              type="email"
-              bind:disabled={loading}
-              bind:value={email} />
+                <BaseInput
+                  large
+                  appendIcon="alternate_email"
+                  placeholder="Email"
+                  type="email"
+                  bind:disabled={emailInProgress}
+                  bind:value={email} />
 
-            <div class=" w-full flex flex-col lg:mt-4">
-              <!-- Error will show here -->
+                <div class=" w-full flex flex-col lg:mt-4">
+                  <!-- Error will show here -->
 
-              <button
-                disabled={!email || loading}
-                class="primary-button gap-4"
-                onclick={continueWithEmail}
-                type="button">
-                Continue
+                  <button
+                    disabled={!email || emailInProgress}
+                    class="primary-button gap-4"
+                    onclick={continueWithEmail}
+                    type="button">
+                    Continue
 
-                {#if loading}
-                  <Loading />
-                {/if}
-              </button>
+                    {#if emailInProgress}
+                      <Loading />
+                    {/if}
+                  </button>
 
-              <hr
-                class="my-8 opacity-60 border-1 border-neutral-800 dark:border-neutral-300" />
+                  <hr
+                    class="my-8 opacity-60 border-1 border-neutral-800 dark:border-neutral-300" />
 
-              <button
-                class="primary-button bg-black dark:bg-white text-white dark:text-black w-full login-with-google-btn flex gap-4 items-center justify-center"
-                onclick={continueWithSSO}
-                type="button"
-                disabled={loading}>
-                Continue with Google &nbsp;
-                {#if loading}
-                  <Loading />
-                {/if}
-              </button>
-            </div>
+                  <button
+                    class="primary-button bg-black dark:bg-white text-white dark:text-black w-full login-with-google-btn flex gap-4 items-center justify-center"
+                    onclick={continueWithSSO}
+                    type="button"
+                    disabled={ssoInProgress}>
+                    Continue with Google &nbsp;
+                    {#if ssoInProgress}
+                      <Loading />
+                    {/if}
+                  </button>
+                </div>
+              </div>
+            {/if}
           </form>
         </div>
       </div>

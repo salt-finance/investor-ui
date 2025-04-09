@@ -7,10 +7,12 @@ export const logout = async () => {
   window.location.replace(window.location.origin + window.location.pathname);
 };
 
-export const loginWithToken = async (token: string) => {
+export const loginWithToken = (token: string) => {
   localStorage.setItem('token', token);
   localStorage.removeItem('expiry');
 };
+
+export const expiry = 60;
 
 export const tokenTest = async () => {
   const token = localStorage.getItem('token');
@@ -27,12 +29,12 @@ export const tokenTest = async () => {
   }
 
   // Expired
-  if (secondsLeft === -1) {
+  if (secondsLeft <= 0) {
     return { data: null, error: 'Expired' };
   }
 
   // 30 seconds to expiry, ask for refresh
-  if (secondsLeft <= 60) {
+  if (secondsLeft <= expiry) {
     return refreshToken();
   }
 
@@ -55,6 +57,9 @@ const refreshToken = async () => {
       localStorage.setItem('expiry', expiry);
     }
     localStorage.setItem('token', token);
+  }else{
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiry');
   }
 
   return result;

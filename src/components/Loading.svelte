@@ -23,7 +23,7 @@
     background: currentColor;
     padding: 5px;
     border-radius: 50%;
-    animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    animation: lds-circle 0.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
   }
 
   @keyframes lds-circle {
@@ -35,11 +35,11 @@
       transform: rotateY(0deg);
     }
     50% {
-      transform: rotateY(1800deg);
+      transform: rotateY(180deg);
       animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
     }
     100% {
-      transform: rotateY(3600deg);
+      transform: rotateY(360deg);
     }
   }
 </style>
