@@ -9,17 +9,20 @@
   import Loading from 'components/Loading.svelte'
   import type { IAccount } from 'models/account'
   import { circOut } from 'svelte/easing'
-  import { fly } from 'svelte/transition'
+  import { fade, fly } from 'svelte/transition'
 
   let inProgress = $state(false)
 
   let amount: number | undefined = $state()
+  let confirmation = $state()
 
   async function handleSubmit() {
     if (amount === undefined || amount <= 0 || amount > availableAmount()) {
       return
     }
     inProgress = true
+    confirmation = undefined;
+
     let result
     if (withdrawal) {
       result = await withdrawFunds(account, amount)
@@ -36,6 +39,7 @@
     }
 
     await fetchAccounts()
+    confirmation = `${verb()} Successful`;
     amount = 0
     inProgress = false
   }
@@ -92,7 +96,8 @@
   let modal: Record<string, any>
 
   async function hide() {
-    amount = undefined
+    amount = undefined;
+    confirmation = undefined;
     // close modal
     await unmount(modal, { outro: true })
   }
@@ -160,7 +165,11 @@
       label="Enter amount"
       bind:value={() => format(), (v) => formatValue(v)} />
   </div>
-
+  {#if confirmation}
+      <div transition:fade={{ duration: 500 }} class="alert alert-confirm my-2">
+        { confirmation }
+      </div>
+    {/if}
   <button
     transition:fly|global={{
       // easing: circInOut,

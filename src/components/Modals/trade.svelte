@@ -17,6 +17,7 @@
   import ModalDialog from 'components/Modals/ModalDialog.svelte'
   import { type Result } from 'models/trycatch'
   import { link } from 'svelte-spa-router'
+  import { fade } from 'svelte/transition'
 
   let { security, buy } = $props<{
     security: ISecurity
@@ -26,6 +27,7 @@
   let account: IAccount | undefined = $state()
 
   let holding: IHolding | undefined = $state()
+  let confirmation = $state()
   let processing = $state(false)
 
   let quantity = $state(0)
@@ -49,6 +51,7 @@
     if (!account) {
       return
     }
+    confirmation = undefined
     processing = true
 
     let result: Result<any>
@@ -67,7 +70,7 @@
     await fetchAccounts()
     await fetchHoldings(account?.id, true)
     quantity = 0
-
+    confirmation = 'Order placed. Check Activity page for details'
     processing = false
   }
 
@@ -107,6 +110,7 @@
   // noinspection JSUnusedGlobalSymbols
   export function show() {
     quantity = 0
+    confirmation = undefined
 
     // noinspection JSUnusedGlobalSymbols
     let props = {
@@ -194,6 +198,11 @@
         onchange={() =>
           (quantity =
             quantity === holding?.quantity ? 0 : (holding?.quantity ?? 0))} />
+    {/if}
+    {#if confirmation}
+      <div transition:fade={{ duration: 500 }} class="alert alert-confirm mb-2">
+        { confirmation }
+      </div>
     {/if}
 
     {#if account?.fundingMethod == null}
