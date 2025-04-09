@@ -6,9 +6,8 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 // https://vite.dev/config/
 export default defineConfig({
   build: {
-    minify: 'terser',
-    sourcemap: true,
-  },
+minify: 'esbuild',
+   },
   preview: {
     port: 4040,
     

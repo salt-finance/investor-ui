@@ -1,20 +1,20 @@
 <script lang="ts">
   // core components
-  import { querystring, replace } from 'svelte-spa-router'
-  import BaseInput from 'components/Inputs/BaseInput.svelte'
-  import DarkModeToggle from 'components/DarkModeToggle.svelte'
-  import { ApiURL } from 'utils/http_client'
   import { loginWithToken, startWithEmail, tokenTest } from '@/api/api_auth'
+  import DarkModeToggle from 'components/DarkModeToggle.svelte'
+  import BaseInput from 'components/Inputs/BaseInput.svelte'
+  import { querystring, replace } from 'svelte-spa-router'
+  import { ApiURL } from 'utils/http_client'
 
-  import { onDestroy, onMount } from 'svelte'
   import Loading from 'components/Loading.svelte'
+  import { onDestroy, onMount } from 'svelte'
 
   let email = $state('')
 
   let loading = $state(false)
 
   let src: string | undefined = $state(
-    'https://picsum.photos/id/525/3000?grayscale',
+    'assets/img/login.jpg',
   )
 
   async function continueWithEmail() {
@@ -48,6 +48,9 @@
   onDestroy(unsubscribe)
 </script>
 
+<link rel="preload" as="image" href={src}>
+
+
 <div
   class="flex flex-col body-colors p-5 lg:p-8 content-center w-screen flex-wrap h-screen overflow-hidden justify-center">
   <div class="xl:max-w-screen-2xl xl:max-h-[1400px] w-full h-[90%]">
@@ -68,7 +71,7 @@
             class="lg:w-1/2 h-1/2 flex-col w-full lg:h-full lg:flex items-center justify-center content-start flex-wrap">
             {#if src !== undefined}
               <img
-                src="assets/img/login.jpg"
+                {src}
                 onerror={() => (src = undefined)}
                 class="w-full h-full object-cover dark:opacity-80"
                 alt="" />
