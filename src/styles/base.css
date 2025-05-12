@@ -12,7 +12,7 @@
 html {
   min-height: 100vh;
   height: auto !important;
-  overflow: hidden;
+  overfw: hidden;
 }
 
 body {
@@ -25,7 +25,7 @@ body {
   --buy-fg: 255, 255, 255;
   --sell: 234, 179, 8;
   --sell-fg: 0, 0, 0;
-  --logo-url: url('./assets/img/logos/color-black.webp');
+  --logo-url: url('./assets/img/logos/light.webp');
   --gain: 0, 140, 0;
   --loss: 255, 100, 100;
   --alert-error :red;
@@ -40,7 +40,7 @@ body {
   .logo {
     background-image: var(--logo-url);
     filter: opacity(0.9);
-    min-width: 100px;
+    min-width: 75px;
     margin-right: 10px;
     object-fit: contain;
     background-size: contain;
@@ -64,14 +64,13 @@ body {
     --buy-fg: 255, 255, 255;
     --sell: 234, 179, 8;
     --sell-fg: 0, 0, 0;
-    --logo-url: url('./assets/img/logos/color-white.webp');
+  --logo-url: url('./assets/img/logos/dark.webp');
 
     --gain: 100, 255, 100;
     --loss: 255, 100, 100;
 
     .logo {
       background-image: var(--logo-url);
-      min-width: 100px;
     }
   }
 }

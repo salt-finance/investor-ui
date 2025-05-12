@@ -99,7 +99,7 @@
               <div in:fade={{ duration: 500 }}>
                 <h1
                   class="text-xl md:text-2xl/tight font-serif font-extralight max-w-[60vw]">
-                  Enter your email address to continue
+                  Enter your email  to continue
                 </h1>
 
                 <BaseInput
