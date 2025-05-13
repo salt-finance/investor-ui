@@ -68,7 +68,7 @@
 </script>
 
 <div
-  class="navbar-fixed top-4 w-full px-5 xl:px-0 z-20 transition-transform max-w-full xl:max-w-screen-xl"
+  class="navbar-fixed top-4 w-full px-5  z-20 transition-transform max-w-full xl:max-w-screen-xl"
   bind:this={navRef}>
   <nav class="flex flex-col p-[14px] glass-effect">
     <div

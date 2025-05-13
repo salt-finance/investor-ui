@@ -66,7 +66,7 @@
 
 <div class="flex flex-col lg:flex-row justify-center w-screen flex-wrap">
   <div
-    class="flex flex-col items-center w-full min-h-fit xl:max-w-screen-xl relative px-5 xl:px-0">
+    class="flex flex-col items-center w-full min-h-fit xl:max-w-screen-xl relative px-5 ">
        <IndexNavbar isLoggedIn={true} />
 
     <div
