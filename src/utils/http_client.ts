@@ -2,9 +2,9 @@ import { fromJson } from 'models/parser'
 import { tryCatch } from 'models/trycatch'
 
 export const ApiURL =
-  process.env.NODE_ENV === 'development'
+  process.env.NODE_ENV === 'develop'
     ? 'http://localhost:8000/v1'
-    : 'https://salt-server.com/v1'
+    : 'https://api.salt.et/v1'
 
 const getToken = () => {
   return localStorage.getItem('token')
