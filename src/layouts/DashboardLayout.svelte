@@ -16,6 +16,7 @@
   import Activity from 'views/dashboard/Activity.svelte'
   import Dashboard from 'views/dashboard/Dashboard.svelte'
   import Holdings from 'views/dashboard/Holdings.svelte'
+  import Watchlist from 'views/dashboard/Watchlist.svelte'
   import Market from 'views/dashboard/Market.svelte'
   import Portfolio from 'views/dashboard/Portfolio.svelte'
   import Settings from 'views/dashboard/Settings.svelte'
@@ -23,6 +24,7 @@
 
   const routes = {
     '/dashboard/holdings': Holdings,
+    '/dashboard/watchlist': Watchlist,
     '/dashboard/activity': Activity,
     '/dashboard/market': Market,
     '/dashboard/settings': Settings,
@@ -33,7 +35,7 @@
     '*': Dashboard,
   }
 
-  let loading = $state(true)
+  let loading = $state(false)
   let isSettingsPage = $state(false)
 
   let requiresFunding = $state(false)

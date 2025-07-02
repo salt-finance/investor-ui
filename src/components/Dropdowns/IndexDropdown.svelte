@@ -4,6 +4,7 @@
   // library for creating dropdown menu appear on click
 
   let { isLoggedIn = false } = $props()
+  console.log('locked in', isLoggedIn)
 </script>
 
 <div class="flex flex-col gap-x-10 lg:flex-row capitalize py-2">
@@ -47,6 +48,16 @@
         category
       </span>
       <p>holdings</p>
+    </a>
+    <a
+      use:link
+      use:active
+      href="/dashboard/watchlist"
+      class="font-semibold inline-flex gap-1 hover:no-underline py-4 lg:py-0 items-center">
+      <span class="material-symbols-outlined skiptranslate flex items-center">
+        monitoring
+      </span>
+      <p>watch list</p>
     </a>
     <a
       use:link
