@@ -1,0 +1,37 @@
+name: app.salt.et 
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  build:
+    permissions:
+      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: 20.x
+      - name: Install node packages
+        run: npm i
+      - name: Build tailwind
+        run: npm run build:tailwind
+      - name: Build project
+        run: npm run build
+
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.PRIVATE_KEY }}
+          name: id_rsaß
+          known_hosts: ${{ secrets.SSH_HOST }}
+
+      - name: Deploy API with SCP
+        run: scp -r StrictHostKeyChecking=no -i ~/.ssh/id_rsa dist/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/home/${{secrets.SSH_USER}}

@@ -117,7 +117,7 @@ Danger - Cornell red - #b91c1c - red-700 */
   }
 
 
-  &-note {
+  &.alert-note {
       --alert-color: var(--alert-note);
       --alert-label: "Note:";
       --alert-icon: "info";
@@ -131,21 +131,21 @@ Danger - Cornell red - #b91c1c - red-700 */
       --alert-bg-color: var(--alert-error-bg);
   }
 
-  &-promo {
+  &.alert-promo {
       --alert-color: var(--alert-promo);
       --alert-label: "";
       --alert-icon: "lightbulb";
       --alert-bg-color: var(--alert-promo-bg);
   }
 
-  &-info {
+  &.alert-info {
       --alert-color: var(--alert-info);
       --alert-label: "Info:";
       --alert-icon: "info";
       --alert-bg-color: var(--alert-info-bg);
   }
 
-  &-floating {
+  &.alert-floating {
       left: auto;
       right: 2rem;
       top: 2rem;

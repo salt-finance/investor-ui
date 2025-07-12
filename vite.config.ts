@@ -12,7 +12,7 @@ minify: 'esbuild',
     port: 4040,
     
   },
-  base: '/investor-ui',
+  base: '/',
   server: {
     port: 4040,
   },
