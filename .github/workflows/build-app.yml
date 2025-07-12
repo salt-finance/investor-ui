@@ -34,4 +34,4 @@ jobs:
           known_hosts: ${{ secrets.SSH_HOST }}
 
       - name: Deploy API with SCP
-        run: scp -r StrictHostKeyChecking=no -i ~/.ssh/id_rsa dist/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/home/${{secrets.SSH_USER}}
+        run: scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r dist/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/home/web
